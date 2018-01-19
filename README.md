@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+## Fantasy Survivor Web Form
 
-You can use the [editor on GitHub](https://github.com/ethanebinger/FantasySurvivor.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+![Image](https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Web form and visualizations used for a personal Survivor fantasy league. 
 
-### Markdown
+Currently in progress, but finished product will have an interactive form that auto-updates graphics displaying the current winner.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Fantasy Rules
 
-```markdown
-Syntax highlighted code block
+Weekly points are given if the player properly guesses the following:
+- Who will win reward?                    (+5)
+- Who will win immunity?                  (+7.5)
+- Who will be eliminated?                 (+10)
+- Who will be safe?                       (+10)
+- Will there be nudity this episode?      (+2)
+- Who's quote is the episode title?       (+2)
+- Will an immunity idol be found?         (+2)
+- Will an immunity idol be played?        (+2)
 
-# Header 1
-## Header 2
-### Header 3
+Players will also pick a Final Three after the first episode. For each survivor chosen that makes it to the Final Three they will recieve +25 points.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ethanebinger/FantasySurvivor.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+When there are 8 Survivors left, weekly points will no longer be assigned. Instead, players will rank the remaining players in the order they go home. Based on these picks, the following points are assigned:
+- For every survivor correctly picked safe (+2.5)
+- For correctly guessing the week/place in which a survivor is eliminated (+5)
+- For correctly guessing a member of the Final Three (+10)
+- For correctly guessing the 3rd place Survivor (+10)
+- For correctly guessing the Runner-Up (+20)
+- For correctly guessing the Sole Survivor (+20)
