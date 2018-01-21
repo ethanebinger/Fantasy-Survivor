@@ -119,7 +119,7 @@
                 </form>
             </div>
             <div class="tab">
-                <h3>Outwit</h3>
+                <h3>OUTWIT</h3>
                 <p>Who will win REWARD this week?</p>
                 <form name="reward">
                     <input name="reward" type="radio" value="Angela Perkins">
@@ -185,7 +185,7 @@
                 </form>
             </div>
             <div class="tab">
-                <h3>Outlast</h3>
+                <h3>OUTLAST</h3>
                 <p>Who will win IMMUNITY this week?</p>
                 <form name="immunity">
                     <input name="immunity" type="radio" value="Angela Perkins">
@@ -251,7 +251,7 @@
                 </form>
             </div>
             <div class="tab">
-                <h3>Outplay</h3>
+                <h3>OUTPLAY</h3>
                 <p>Who will be VOTED OFF this week?</p>
                 <form name="eliminated">
                     <input name="eliminated" type="radio" value="Angela Perkins">
@@ -317,7 +317,7 @@
                 </form>
             </div>
             <div class="tab">
-                <h3>Outplay</h3>
+                <h3>OUTPLAY</h3>
                 <p>Who will be SAFE this week?</p>
                 <form name="safe">
                     <input name="safe" type="radio" value="Angela Perkins">
@@ -383,7 +383,7 @@
                 </form>
             </div>
             <div class="tab">
-                <h3>Bonus Questions</h3>
+                <h3>BONUS QUESTIONS</h3>
                 <p>This weeks episode is title "...". Who said this?</p>
                 <form name="titleQuote">
                     <select>
@@ -452,7 +452,7 @@
                         </option>
                     </select>
                 </form>
-                <br>
+                
                 <p>Will there be nudity this week?</p>
                 <form name="nudity">
                     <input name="nudity" type="radio" value="Yes">
@@ -462,7 +462,7 @@
                         No
                     <br>
                 </form>
-                <br>
+                
                 <p>Will an idol be found this week?</p>
                 <form name="idolFound">
                     <input name="idolFound" type="radio" value="Yes">
@@ -472,7 +472,7 @@
                         No
                     <br>
                 </form>
-                <br>
+                
                 <p>Will an idol be played this week?</p>
                 <form name="idolPlayed">
                     <input name="idolPlayed" type="radio" value="Yes">
@@ -494,7 +494,7 @@
                 </div>
             </div>
             <div style="text-align:center;margin-top:40px;">
-                <progress value="0" max="100" color="rebeccapurple"></progress>
+                <progress value="0" max="6" color="rebeccapurple"></progress>
             </div>
         </div>
         
@@ -541,7 +541,7 @@
             } else {
                 $("#prevBtn").removeClass("isHidden");
             }
-            if (n == (x.length - 1)) {
+            if (n == (x.length - 2)) {
                 $("#nextBtn").html("Submit");
             } else {
                 $("#nextBtn").html("Next");
@@ -572,7 +572,7 @@
         };
         
         function fixStepIndicator(n) {
-            $("progress").val(n*25);
+            $("progress").val(n+1);
         };
         
         // Validate data
@@ -733,10 +733,10 @@
 			{   'name': 'Ethan', 
                 'week': 1, 
                 'date': '2/28/18', 
-                'reward': 'Devon', 
-                'immunity': 'Ben', 
-                'eliminated': 'Dr. Mike', 
-                'safe': 'Ben'
+                'reward': '', 
+                'immunity': '', 
+                'eliminated': '', 
+                'safe': ''
             },
 		];
 		var results = [
