@@ -33,7 +33,7 @@
             display: none;            
         }
         .tab {
-            display: none;
+            display: block;
         }
         #prevBtn, #nextBtn {
             background-color: rebeccapurple;
@@ -200,82 +200,39 @@
 				'Week 15': 0
 			},
 			{	'name': 'Colin', 
-				'total': 0, 
+				'total': 273, 
 				'Week 1': 0, 
-				'Week 2': 0, 
-				'Week 3': 0,
-				'Week 4': 0, 
-				'Week 5': 0, 
-				'Week 6': 0,
-				'Week 7': 0, 
-				'Week 8': 0, 
-				'Week 9': 0,
-				'Week 10': 0, 
-				'Week 11': 0, 
-				'Week 12': 0,
-				'Week 13': 0, 
-				'Week 14': 0, 
-				'Week 15': 0
+				'Week 2': 2, 
+				'Week 3': 6,
+				'Week 4': 7, 
+				'Week 5': 13, 
+				'Week 6': 3,
+				'Week 7': 10, 
+				'Week 8': 7, 
+				'Week 9': 2,
+				'Week 10': 6, 
+				'Week 11': 4, 
+				'Week 12': 35,
+				'Week 13': 19, 
+				'Week 14': 159
 			},
 			{	'name': 'Anastassia', 
-				'total': 0, 
+				'total': 306, 
 				'Week 1': 0, 
-				'Week 2': 0, 
-				'Week 3': 0,
-				'Week 4': 0, 
-				'Week 5': 0, 
-				'Week 6': 0,
-				'Week 7': 0, 
-				'Week 8': 0, 
-				'Week 9': 0,
-				'Week 10': 0, 
-				'Week 11': 0, 
-				'Week 12': 0,
-				'Week 13': 0, 
-				'Week 14': 0, 
-				'Week 15': 0
-			},
-		];
-		var response = [
-			{'name': 'Ethan', 'week': 1, 'date': '2/28/18', 'reward': 'Devon', 'immunity': 'Ben', 'eliminated': 'Dr. Mike', 'safe': 'Ben'},
-			{'name': 'Walter', 'week': 1, 'date': '2/28/18', 'reward': 'Lauren', 'immunity': 'Dr. Mike', 'eliminated': 'Joe', 'safe': 'Ben'},
-			{'name': 'David', 'week': 1, 'date': '2/28/18', 'reward': 'Devon', 'immunity': 'Joe', 'eliminated': 'Ben', 'safe': 'Cole'},
-			{'name': 'Ethan', 'week': 2, 'date': '3/7/18', 'reward': 'Devon', 'immunity': 'Ben', 'eliminated': 'Ashley', 'safe': 'Ben'},
-			{'name': 'David', 'week': 2, 'date': '3/7/18', 'reward': 'Chrissy', 'immunity': 'Joe', 'eliminated': 'Ashley', 'safe': 'Ryan'},
-			{'name': 'Walter', 'week': 2, 'date': '3/7/18', 'reward': 'Lauren', 'immunity': 'Ben', 'eliminated': 'Ryan', 'safe': 'Lauren'},
-			{'name': 'Ezra', 'week': 3, 'date': '3/14/18', 'reward': 'Jeff', 'immunity': 'Ben', 'eliminated': 'Ryan', 'safe': 'Jeff'},
-		];
-		var results = [
-			{	'week': 1,
-				'date': '2/28/18', 
-				'reward': 'Devon', 
-				'immunity': 'Dr. Mike', 
-				'eliminated': 'Joe',
-				'idolFound': null,
-				'idolPlayed': null,
-				'titleQuote': null,
-				'nudity': null
-			},
-			{	'week': 2,
-				'date': '3/7/18', 
-				'reward': 'Devon', 
-				'immunity': 'Ben', 
-				'eliminated': 'Ashley',
-				'idolFound': null,
-				'idolPlayed': null,
-				'titleQuote': null,
-				'nudity': null
-			},
-			{	'week': 3,
-				'date': '3/14/18', 
-				'reward': 'Jeff', 
-				'immunity': 'Jeff', 
-				'eliminated': 'Jeff',
-				'idolFound': null,
-				'idolPlayed': null,
-				'titleQuote': null,
-				'nudity': null
-			},
+				'Week 2': 5, 
+				'Week 3': 3,
+				'Week 4': 7, 
+				'Week 5': 8, 
+				'Week 6': 4,
+				'Week 7': 2, 
+				'Week 8': 9, 
+				'Week 9': 23,
+				'Week 10': 4, 
+				'Week 11': 14, 
+				'Week 12': 56,
+				'Week 13': 59, 
+				'Week 14': 112
+			}
 		];
 		
 		// Create arrays for players, keys (weeks)
@@ -320,60 +277,7 @@
 				.attr("height", height + margin.top + margin.bottom)
 		var chart = svg.append("g")
 			.attr("transform",  "translate(" + margin.left + "," + margin.top + ")")
-			.call(tip);	
-		
-		// Calculate scores
-		for (var n=0; n<scores.length; n++) {
-			var cur_player = scores[n].name;
-			for (var i=0; i<results.length; i++) {
-				for (var j=0; j<response.length; j++) {
-					if (response[j].name == cur_player && results[i].week == response[j].week) {
-						// Define Week
-						var cur_week = 'Week ' + String(results[i].week)
-						// Reward
-						if (results[i].reward == response[j].reward && response[j].reward) {
-							scores[n][cur_week] += 5;
-							scores[n].total += 5;
-						};
-						// Immunity
-						if (results[i].immunity == response[j].immunity && response[j].immunity) {
-							scores[n][cur_week] += 7.5;
-							scores[n].total += 7.5;
-						};
-						// Eliminated
-						if (results[i].eliminated == response[j].eliminated && response[j].eliminated) {
-							scores[n][cur_week] += 10;
-							scores[n].total += 10;
-						};
-						// Safe
-						if (results[i].eliminated !== response[j].safe && response[j].safe) {
-							scores[n][cur_week] += 10;
-							scores[n].total += 10;
-						};
-						// Title Quote
-						if (results[i].titleQuote !== response[j].titleQuote && response[j].titleQuote) {
-							scores[n][cur_week] += 2;
-							scores[n].total += 2;
-						};
-						// Nudity
-						if (results[i].nudity !== response[j].nudity && response[j].nudity) {
-							scores[n][cur_week] += 2;
-							scores[n].total += 2;
-						};
-						// Idol Found
-						if (results[i].idolFound !== response[j].idolFound && response[j].idolFound) {
-							scores[n][cur_week] += 2;
-							scores[n].total += 2;
-						};
-						// Idol Played
-						if (results[i].idolPlayed !== response[j].idolPlayed && response[j].idolPlayed) {
-							scores[n][cur_week] += 2;
-							scores[n].total += 2;
-						};
-					};
-				};
-			};
-		};
+			.call(tip);
 		
 		// Define X-Scale Domain
 		x.domain([0,d3.max(scores, function(d) { return d.total; })]);
