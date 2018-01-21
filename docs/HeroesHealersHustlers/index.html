@@ -1,18 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="icon" href="https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639">
-	
-	<!-- d3 Library and Plugins -->
-	<script src="https://d3js.org/d3.v4.min.js"></script>
-	<script src="d3-tip.js"></script>
-	
-	<!-- JavaScript for jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-	<style>
-		#chart {
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639">
+        <title>Survivor - Ghost Island</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- D3 -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="d3-tip.js"></script>
+        
+    </head>
+    <style>
+        body {
+            background-color: #efedf5;
+            font-family: "Trebuchet";
+        }
+        #title {
+            text-align: center;
+        }
+        #survivor_form {
+            margin: 0 auto;
+            width: 60%;
+            height: 75%;
+            background-color: #fff;
+        }
+        .isHidden {
+            display: none;            
+        }
+        .tab {
+            display: none;
+        }
+        #prevBtn, #nextBtn {
+            background-color: rebeccapurple;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-family: Raleway;
+            cursor: pointer;
+        }
+        #prevBtn:hover, #nextBtn:hover {
+            opacity: 0.8;
+        }
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
+        #chart {
 			display: table;
 			margin: 0 auto;		
 		}
@@ -36,14 +74,21 @@
 			font: 12px verdana, sans-serif;
 		}
     </style>
-	
-  </head>
-  <body>
-    <div id="chart"></div>
+    <body>
+        <div id="survivor_form">
+            <div id="title">
+                <h1>Fantasy Survivor - Ghost Island</h1>
+                <img src="https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639"/>
+            </div>
+            <div class="tab graph">
+                <h3>RESULTS</h3>
+                <div id="chart"></div>
+            </div>
+        </div>
+        
+    </body>
     <script>
-		
-		//https://bl.ocks.org/mbostock/3886208
-		
+				
 		// Define temp data
 		var scores = [
 			{	'name': 'Walter', 
@@ -239,7 +284,7 @@
 		
 		// Define chart elements
 		var margin = {top: 20, right: 20, bottom: 30, left: 80},
-			width = 900 - margin.left - margin.right,
+			width = $('#survivor_form').width() - margin.left - margin.right,
 			height = 480 - margin.top - margin.bottom;
 			
 		// Define Scales and Axes
@@ -390,5 +435,4 @@
 		
 		
     </script>
-  </body>
 </html>

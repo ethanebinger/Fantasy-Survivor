@@ -486,7 +486,14 @@
                     <br>
                 </form>
             </div>
+            <!--
             <div class="tab graph">
+                <h3>WEEKLY RESULTS</h3>
+                <div id="chart"></div>
+            </div>
+            -->
+            <div class="tab graph">
+                <h3>RESULTS</h3>
                 <div id="chart"></div>
             </div>
             <br>
@@ -549,7 +556,7 @@
             };
             fixStepIndicator(n)
             
-            if (x[n].className == "graph") {
+            if (x[n].className == "tab graph") {
                 $("#nextBtn").addClass("isHidden");
                 $("#prevBtn").addClass("isHidden");
             };
