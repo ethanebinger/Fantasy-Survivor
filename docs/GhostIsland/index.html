@@ -1,18 +1,62 @@
+<!--
+    In Progress
+
+    https://www.w3schools.com/howto/howto_js_form_steps.asp
+    https://bl.ocks.org/mbostock/3886208
+-->
 <!DOCTYPE html>
 <html>
-  <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="icon" href="https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639">
-	
-	<!-- d3 Library and Plugins -->
-	<script src="https://d3js.org/d3.v4.min.js"></script>
-	<script src="d3-tip.js"></script>
-	
-	<!-- JavaScript for jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-	<style>
-		#chart {
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639">
+        <title>Survivor - Ghost Island</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- D3 -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="d3-tip.js"></script>
+        
+    </head>
+    <style>
+        body {
+            background-color: #efedf5;
+            font-family: "Trebuchet";
+        }
+        #title {
+            text-align: center;
+        }
+        #survivor_form {
+            margin: 0 auto;
+            width: 60%;
+            height: 75%;
+            background-color: #fff;
+        }
+        .isHidden {
+            display: none;            
+        }
+        .tab {
+            display: none;
+        }
+        #prevBtn, #nextBtn {
+            background-color: rebeccapurple;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-family: Raleway;
+            cursor: pointer;
+        }
+        #prevBtn:hover, #nextBtn:hover {
+            opacity: 0.8;
+        }
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
+        #chart {
 			display: table;
 			margin: 0 auto;		
 		}
@@ -36,15 +80,174 @@
 			font: 12px verdana, sans-serif;
 		}
     </style>
-	
-  </head>
-  <body>
-    <div id="chart"></div>
+    <body>
+        <div id="survivor_form">
+            <div id="title">
+                <h1>Fantasy Survivor - Ghost Island</h1>
+                <img src="https://upload.wikimedia.org/wikipedia/en/8/8c/Survivor_Ghost_Island_logo.jpeg"/>
+            </div>
+            <div class="tab">
+                <p>What is your name?</p>
+                <form name="name">
+                    <input name="name" type="radio" value="Anastassia">
+                        Anastassia
+                    <br>
+                    <input name="name" type="radio" value="Colin">
+                        Colin
+                    <br>
+                    <input name="name" type="radio" value="David">
+                        David
+                    <br>
+                    <input name="name" type="radio" value="Ethan">
+                        Ethan
+                    <br>
+                    <input name="name" type="radio" value="Emily">
+                        Emily
+                    <br>
+                    <input name="name" type="radio" value="Ezra">
+                        Ezra
+                    <br>
+                    <input name="name" type="radio" value="Josh">
+                        Josh
+                    <br>
+                    <input name="name" type="radio" value="Lucas">
+                        Lucas
+                    <br>
+                    <input name="name" type="radio" value="Walter">
+                        Walter
+                    <br>
+                </form>
+            </div>
+            <div class="tab">
+                <h3>Outwit</h3>
+                <p>Who will win REWARD this week?</p>
+                <form name="reward">
+                    <input name="reward" type="radio" value="Bradley Kleihege">
+                        Bradley Kleihege
+                    <br>
+                    <input name="reward" type="radio" value="Brendan Shapiro">
+                        Brendan Shapiro
+                    <br>
+                    <input name="reward" type="radio" value="Chris Noble">
+                        Chris Noble
+                    <br>
+                </form>
+            </div>
+            <div class="tab">
+                <h3>Outlast</h3>
+                <p>Who will win IMMUNITY this week?</p>
+                <form name="immunity">
+                    <input name="immunity" type="radio" value="Bradley Kleihege">
+                        Bradley Kleihege
+                    <br>
+                    <input name="immunity" type="radio" value="Brendan Shapiro">
+                        Brendan Shapiro
+                    <br>
+                    <input name="immunity" type="radio" value="Chris Noble">
+                        Chris Noble
+                    <br>
+                </form>
+            </div>
+            <div>
+                <div id="chart"></div>
+            </div>
+            <br>
+            <div style="overflow:auto;">
+                <div style="float:middle;">
+                    <button type="button" id="prevBtn">Previous</button>
+                    <button type="button" id="nextBtn">Next</button>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:40px;">
+                <progress value="0" max="100" color="rebeccapurple"></progress>
+            </div>
+        </div>
+        
+    </body>
+    
     <script>
-		
-		//https://bl.ocks.org/mbostock/3886208
-		
-		// Define temp data
+    $(document).ready(function(){
+        
+        // Collect form results
+        function get_results(form) {
+            var val = ""
+            for(var c=0; c<form.length-1; c++) {
+                if (form[c].checked === true) {
+                    val = form[c].value;     
+                };
+            };
+            return val;
+        };
+        
+        $("#reward_button").click(function(e){
+            var results = get_results(this.form.reward);
+            console.log(results);
+        });
+        
+        
+        // Tab switching
+        var currentTab = 0;
+        showTab(currentTab);
+        
+        $("#prevBtn").click(function(e) {
+            nextPrev(-1);   
+        });
+        $("#nextBtn").click(function(e) {
+            nextPrev(1);   
+        });
+        
+        function showTab(n) {
+            // This function will display the specified tab of the form...
+            var x = $(".tab");
+            x[n].style.display = "block";
+            //... and fix the Previous/Next buttons:
+            if (n == 0) {
+                $("#prevBtn").addClass("isHidden");
+            } else {
+                $("#prevBtn").removeClass("isHidden");
+            }
+            if (n == (x.length - 1)) {
+                $("#nextBtn").html("Submit");
+            } else {
+                $("#nextBtn").html("Next");
+            }
+            //... and run a function that will display the correct step indicator:
+            fixStepIndicator(n)
+        };
+        
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            var x = $(".tab");
+            // Exit the function if any field in the current tab is invalid:
+            if (n == 1 && !validateform()) {
+                return false;
+            };
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form...
+            if (currentTab >= x.length) {
+                // ... the form gets submitted:
+                document.getElementById("regForm").submit();
+                return false;
+            };
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+        };
+        
+        function fixStepIndicator(n) {
+            $("progress").val(n*25);
+        };
+        
+        // Validate data
+        function validateform() {
+            return true;
+        };
+        
+        
+        // Graphs
+        // Define temp data
 		var scores = [
 			{	'name': 'Walter', 
 				'total': 0, 
@@ -387,8 +590,8 @@
 			.attr("y", 9.5)
 			.attr("dy", "0.32em")
 			.text(function(d) { return d; });
-		
-		
+        
+    });
     </script>
-  </body>
+    
 </html>
