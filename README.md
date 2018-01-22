@@ -26,4 +26,4 @@ When there are 8 Survivors left, weekly points will no longer be assigned. Inste
 - For correctly guessing a member of the Final Three (+10)
 - For correctly guessing the 3rd place Survivor (+10)
 - For correctly guessing the Runner-Up (+20)
-- For correctly guessing the Sole Survivor (+20)
+- For correctly guessing the Sole Survivor (+30)
