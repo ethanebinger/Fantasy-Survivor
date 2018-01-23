@@ -24,9 +24,10 @@
     <style>
         body {
             background-color: #efedf5;
-            font-family: "Trebuchet";
+            font-family: "Sans Serif";
         }
-        #title {
+        #title,
+        #results_title {
             text-align: center;
         }
         #survivor_form {
@@ -41,7 +42,8 @@
         .tab {
             display: none;
         }
-        #prevBtn, #nextBtn {
+        #prevBtn, 
+        #nextBtn {
             background-color: rebeccapurple;
             color: #ffffff;
             border: none;
@@ -50,7 +52,8 @@
             font-family: Raleway;
             cursor: pointer;
         }
-        #prevBtn:hover, #nextBtn:hover {
+        #prevBtn:hover, 
+        #nextBtn:hover {
             opacity: 0.8;
         }
         #prevBtn {
@@ -493,7 +496,7 @@
             </div>
             -->
             <div class="tab graph">
-                <h3>RESULTS</h3>
+                <h3 id="results_title">RESULTS</h3>
                 <div id="chart"></div>
             </div>
             <br>
@@ -559,6 +562,7 @@
             if (x[n].className == "tab graph") {
                 $("#nextBtn").addClass("isHidden");
                 $("#prevBtn").addClass("isHidden");
+                $("progress").addClass("isHidden");
             };
         };
         
