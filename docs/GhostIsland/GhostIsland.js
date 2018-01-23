@@ -24,7 +24,7 @@ function init() {
         nextPrev(-1);   
     });
     $("#nextBtn").click(function(e) {
-        if ($("#nextBtn").html("Submit")) {
+        if ($("#nextBtn").html() === "Submit") {
           window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html" 
         };
         nextPrev(1);   
@@ -33,12 +33,12 @@ function init() {
     function showTab(n) {
         var x = $(".tab");
         x[n].style.display = "block";
-        if (n == 0) {
+        if (n === 0) {
             $("#prevBtn").addClass("isHidden");
         } else {
             $("#prevBtn").removeClass("isHidden");
         };
-        if (n == (x.length - 2)) {
+        if (n === (x.length - 2)) {
             $("#nextBtn").html("Submit");
         } else {
             $("#nextBtn").html("Next");
@@ -58,7 +58,7 @@ function init() {
         // This function will figure out which tab to display
         var x = $(".tab");
         // Exit the function if any field in the current tab is invalid:
-        if (n == 1 && !validateform()) {
+        if (n === 1 && !validateform()) {
             return false;
         };
         // Hide the current tab:
