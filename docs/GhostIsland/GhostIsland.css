@@ -1,0 +1,63 @@
+body {
+    background-color: #efedf5;
+    font-family: "Sans Serif";
+}
+#title,
+#results_title {
+    text-align: center;
+}
+#survivor_form {
+    margin: 0 auto;
+    width: 60%;
+    height: 75%;
+    background-color: #fff;
+}
+.isHidden {
+    display: none;            
+}
+.tab {
+    display: none;
+}
+.graph {
+    display: block;
+}
+#prevBtn, 
+#nextBtn {
+    background-color: rebeccapurple;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+#prevBtn:hover, 
+#nextBtn:hover {
+    opacity: 0.8;
+}
+#prevBtn {
+    background-color: #bbbbbb;
+}
+#chart {
+    display: table;
+    margin: 0 auto;		
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+    stroke-width: 2px;
+}
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    text-align: left;
+    position: absolute;
+    z-index: 40;
+    font: 12px verdana, sans-serif;
+}
