@@ -146,31 +146,19 @@ body {
 .Wendell_Holland{
     background-image: url(http://wwwimage5.cbsstatic.com/thumbnails/photos/w170-h215/cast/0d5d1e4dc1bdb364_svr_wholland_800x1000.jpg)
 }
-
-
 label {
     padding-top: 5px;
     color: black;
     font-weight: bold;
     text-shadow: white 0.1em 0.1em 0.2em;
 }
-
 .cc-selector input{
-    margin:0;padding:0;
+    margin:0;
+    padding:0;
     -webkit-appearance:none;
        -moz-appearance:none;
             appearance:none;
 }
-/*
-.cc-selector input:active +.survivor-cc{
-    opacity: .9;
-}
-.cc-selector input:checked +.survivor-cc{
-    -webkit-filter: none;
-       -moz-filter: none;
-            filter: none;
-}
-*/
 .survivor-cc{
     cursor:pointer;
     background-size:contain;
@@ -178,18 +166,20 @@ label {
     display:inline-block;
     width:200px;
     height:280px;
-    /*
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
-    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-            filter: brightness(1.8) grayscale(1) opacity(.7);
-    */
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
 }
 .survivor-cc:hover{
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
             filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
-  
+.greyLabel{
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}

@@ -1,20 +1,33 @@
 function init() {
+    // Input button coloring
+    $('input').click(function(e) {
+        var cur_id = $(e.target).attr('value');
+        cur_id = cur_id.replace(" ","_");
+        $(e.target).parent().children('label').addClass('greyLabel');
+        $(e.target).parent().children('label.'+cur_id).removeClass('greyLabel');
+    });
+    
     // Collect form results
     function get_results(form) {
+        var results = {};
         var val = ""
-        for(var c=0; c<form.length-1; c++) {
-            if (form[c].checked === true) {
-                val = form[c].value;     
+        $('form').each(function(e) {
+            var q = this.name;
+            val = $(this).find(":selected").text();
+            if (val.length > 0) {
+                val = val.trim();
+            } else {
+                for(var c=0; c<this.length-1; c++) {
+                    if (this[c].checked === true) {
+                        val = this[c].value;     
+                    };
+                };
             };
-        };
-        return val;
+            results[q] = val;
+        });
+        results['submit_time'] = new Date();
+        return results;
     };
-
-    $("#reward_button").click(function(e){
-        var results = get_results(this.form.reward);
-        console.log(results);
-    });
-
 
     // Tab switching
     var currentTab = 0;
@@ -26,7 +39,9 @@ function init() {
     });
     $("#nextBtn").click(function(e) {
         if ($("#nextBtn").html() === "Submit") {
-          window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html" 
+            var form_results = get_results();
+            alert(form_results);
+            window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html" 
         };
         nextPrev(1);
         window.scrollTo(0,0);
