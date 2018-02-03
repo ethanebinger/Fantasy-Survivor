@@ -38,20 +38,7 @@ function init() {
         window.scrollTo(0,0);
     });
     $("#nextBtn").click(function(e) {
-        if ($("#nextBtn").html() === "Submit") {
-            var form_results = get_results();
-            // DEBUG BELOW
-            var alert_text = ""
-            for (var key in form_results) {
-                if (form_results.hasOwnProperty(key)) {
-                    alert_text += key + " = " + form_results[key] + "\n";
-                };
-            };
-            alert(alert_text);
-            window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html" 
-        };
         nextPrev(1);
-        window.scrollTo(0,0);
     });
 
     function showTab(n) {
@@ -67,15 +54,8 @@ function init() {
         } else {
             $("#nextBtn").html("Next");
         };
-        fixStepIndicator(n)
-        
-        /*
-        if (x[n].className == "tab graph") {
-            $("#nextBtn").addClass("isHidden");
-            $("#prevBtn").addClass("isHidden");
-            $("progress").addClass("isHidden");
-        };
-        //*/
+        fixStepIndicator(n);
+        window.scrollTo(0,0);
     };
 
     function nextPrev(n) {
@@ -83,7 +63,20 @@ function init() {
         var x = $(".tab");
         // Exit the function if any field in the current tab is invalid:
         if (n === 1 && !validateform()) {
+            alert("please fill out all questions on page");
             return false;
+        };
+        if ($("#nextBtn").html() === "Submit") {
+            var form_results = get_results();
+            // DEBUG BELOW
+            var alert_text = ""
+            for (var key in form_results) {
+                if (form_results.hasOwnProperty(key)) {
+                    alert_text += key + " = " + form_results[key] + "\n";
+                };
+            };
+            alert(alert_text);
+            window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html" 
         };
         // Hide the current tab:
         x[currentTab].style.display = "none";
@@ -105,12 +98,32 @@ function init() {
 
     // Validate data
     function validateform() {
-        return true;
+        var x, y, z, i, valid = true;
+        x = $(".tab");
+        y = x[currentTab].getElementsByTagName("input");
+        if (y.length === 0) {
+            z = x[currentTab].getElementsByTagName("option");
+            for (i=1; i<z.length; i++) {
+                if (z[i].selected) {
+                    valid = true;
+                    break;
+                } else {
+                    valid = false;
+                };
+            };
+        } else {
+            for (i=0; i<y.length; i++) {
+                // If a field is empty...
+                if (y[i].checked) {
+                    valid = true;
+                    break;
+                } else {
+                    valid = false;
+                };
+            };
+        };
+        return valid;
     };
-
-    
-    
-    
     
     // Define temp data
     var scores = [
