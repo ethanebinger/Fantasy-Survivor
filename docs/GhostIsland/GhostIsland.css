@@ -152,7 +152,7 @@ label {
     padding-top: 5px;
     color: black;
     font-weight: bold;
-    text-shadow: white 0.1em 0.1em 0.2em
+    text-shadow: white 0.1em 0.1em 0.2em;
 }
 
 .cc-selector input{
@@ -161,6 +161,7 @@ label {
        -moz-appearance:none;
             appearance:none;
 }
+/*
 .cc-selector input:active +.survivor-cc{
     opacity: .9;
 }
@@ -169,6 +170,7 @@ label {
        -moz-filter: none;
             filter: none;
 }
+*/
 .survivor-cc{
     cursor:pointer;
     background-size:contain;
@@ -176,12 +178,14 @@ label {
     display:inline-block;
     width:200px;
     height:300px;
+    /*
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
     -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
             filter: brightness(1.8) grayscale(1) opacity(.7);
+    */
 }
 .survivor-cc:hover{
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
