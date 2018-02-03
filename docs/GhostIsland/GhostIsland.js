@@ -21,13 +21,15 @@ function init() {
     showTab(currentTab);
 
     $("#prevBtn").click(function(e) {
-        nextPrev(-1);   
+        nextPrev(-1);
+        window.scrollTo(0,0);
     });
     $("#nextBtn").click(function(e) {
         if ($("#nextBtn").html() === "Submit") {
           window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html" 
         };
-        nextPrev(1);   
+        nextPrev(1);
+        window.scrollTo(0,0);
     });
 
     function showTab(n) {
@@ -38,7 +40,7 @@ function init() {
         } else {
             $("#prevBtn").removeClass("isHidden");
         };
-        if (n === (x.length - 2)) {
+        if (n === (x.length - 1)) {
             $("#nextBtn").html("Submit");
         } else {
             $("#nextBtn").html("Next");

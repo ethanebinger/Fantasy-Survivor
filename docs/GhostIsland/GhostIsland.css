@@ -17,7 +17,14 @@ body {
 }
 .tab {
     display: none;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    text-align: center;
 }
+
 .graph {
     display: block;
 }
@@ -61,3 +68,124 @@ body {
     z-index: 40;
     font: 12px verdana, sans-serif;
 }
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Contestant Input Buttons */
+.Angela_Perkins {
+    background-image: url(http://wwwimage4.cbsstatic.com/thumbnails/photos/w170-h215/cast/54543c3d83448a69_svr_aperkins_800x1000.jpg);
+}
+.Bradley_Kleihege {
+    background-image: url(http://wwwimage5.cbsstatic.com/thumbnails/photos/w170-h215/cast/1dd8b7148fe36791_svr_bkleihege_800x1000.jpg);
+}
+.Brendan_Shapiro {
+    background-image: url(http://wwwimage3.cbsstatic.com/thumbnails/photos/w170-h215/cast/3730df931472e96b_svr_bshapiro_800x1000.jpg);
+}
+.Chelsea_Townsend {
+    background-image: url(http://wwwimage1.cbsstatic.com/thumbnails/photos/w170-h215/cast/703177ff5d4a4e11_svr_ctownsend_800x1000.jpg);
+}
+.Chris_Noble {
+    background-image: url(http://wwwimage4.cbsstatic.com/thumbnails/photos/w170-h215/cast/0980fcc972709eea_svr_cnoble_800x1000.jpg);
+}
+.Desiree_Afuye {
+    background-image: url(http://wwwimage1.cbsstatic.com/thumbnails/photos/w170-h215/cast/516029d2f6ae844e_svr_dafuye_800x1000.jpg);
+}
+.Domenick_Abbate{
+    background-image: url(http://wwwimage3.cbsstatic.com/thumbnails/photos/w170-h215/cast/e9c5f8b4bbac953d_svr_dabbate_800x1000.jpg)
+}
+.Donathan_Hurley {
+    background-image: url(http://wwwimage5.cbsstatic.com/thumbnails/photos/w170-h215/cast/2332b5497588a04d_svr_dhurley_800x1000.jpg);
+}
+.Jacob_Derwin{
+    background-image: url(http://wwwimage1.cbsstatic.com/thumbnails/photos/w170-h215/cast/01014fd199ee363b_svr_jderwin_800x1000.jpg)
+}
+.James_Lim{
+    background-image: url(http://wwwimage3.cbsstatic.com/thumbnails/photos/w170-h215/cast/793f98a83b62db15_svr_jlim_800x1000.jpg)
+}
+.Jenna_Bowman{
+    background-image: url(http://wwwimage2.cbsstatic.com/thumbnails/photos/w170-h215/cast/ce232b76d747c7b2_svr_jbowman_800x1000.jpg)
+}
+.Kellyn_Bechtold{
+    background-image: url(http://wwwimage1.cbsstatic.com/thumbnails/photos/w170-h215/cast/f51f8ea0b0a2d950_svr_kbechtold_800x1000.jpg)
+}
+.Laurel_Johnson{
+    background-image: url()
+}
+.Laurel_Johnson{
+    background-image: url(http://wwwimage1.cbsstatic.com/thumbnails/photos/w170-h215/cast/691dffcb2c689ceb_svr_ljohnson_800x1000.jpg)
+}
+.Libby_Vincek{
+    background-image: url(http://wwwimage2.cbsstatic.com/thumbnails/photos/w170-h215/cast/fa9c278b58c0422d_svr_lvincek_800x1000.jpg)
+}
+.Michael_Yerger{
+    background-image: url(http://wwwimage4.cbsstatic.com/thumbnails/photos/w170-h215/cast/60e2c4645dd26aec_svr_myerger_800x1000.jpg)
+}
+.Morgan_Ricke{
+    background-image: url(http://wwwimage2.cbsstatic.com/thumbnails/photos/w170-h215/cast/695f9f3e1ae61b94_svr_mricke_800x1000.jpg)
+}
+.Sebastian_Noel{
+    background-image: url(http://wwwimage3.cbsstatic.com/thumbnails/photos/w170-h215/cast/ca40ed9f195781ab_svr_snoel_800x1000.jpg)
+}
+.Stephanie_Gonzalez{
+    background-image: url(http://wwwimage1.cbsstatic.com/thumbnails/photos/w170-h215/cast/5ad767dee84cdcc8_svr_sgonzalez_800x1000.jpg)
+}
+.Stephanie_Johnson{
+    background-image: url(http://wwwimage5.cbsstatic.com/thumbnails/photos/w170-h215/cast/8660599a631094f7_svr_sjohnson_800x1000.jpg)
+}
+.Wendell_Holland{
+    background-image: url(http://wwwimage5.cbsstatic.com/thumbnails/photos/w170-h215/cast/0d5d1e4dc1bdb364_svr_wholland_800x1000.jpg)
+}
+
+
+label {
+    padding-top: 5px;
+    color: black;
+    font-weight: bold;
+    text-shadow: white 0.1em 0.1em 0.2em
+}
+
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+.cc-selector input:active +.survivor-cc{
+    opacity: .9;
+}
+.cc-selector input:checked +.survivor-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.survivor-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:200px;
+    height:300px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.survivor-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+  

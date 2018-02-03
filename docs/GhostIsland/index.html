@@ -34,297 +34,391 @@
             <div class="tab">
                 <p>What is your name?</p>
                 <form name="name">
-                    <input name="name" type="radio" value="Anastassia">
-                        Anastassia
-                    <br>
-                    <input name="name" type="radio" value="Colin">
-                        Colin
-                    <br>
-                    <input name="name" type="radio" value="David">
-                        David
-                    <br>
-                    <input name="name" type="radio" value="Ethan">
-                        Ethan
-                    <br>
-                    <input name="name" type="radio" value="Emily">
-                        Emily
-                    <br>
-                    <input name="name" type="radio" value="Ezra">
-                        Ezra
-                    <br>
-                    <input name="name" type="radio" value="Josh">
-                        Josh
-                    <br>
-                    <input name="name" type="radio" value="Lucas">
-                        Lucas
-                    <br>
-                    <input name="name" type="radio" value="Walter">
-                        Walter
-                    <br>
+                    <select>
+                        <option value="">
+                            Select One
+                        </option>
+                        <option value="Anastassia">
+                            Anastassia
+                        </option>
+                        <option value="Colin">
+                            Colin
+                        </option>
+                        <option value="David">
+                            David
+                        </option>
+                        <option value="Emily">
+                            Emily
+                        </option>
+                        <option value="Ethan">
+                            Ethan
+                        </option>
+                        <option value="Ezra">
+                            Ezra
+                        </option>
+                        <option value="Josh">
+                            Josh
+                        </option>
+                        <option value="Lucas">
+                            Lucas
+                        </option>
+                        <option value="Walter">
+                            Walter
+                        </option>
+                    </select>
                 </form>
             </div>
+            <!-- http://jsfiddle.net/La8wQ/313/ -->
             <div class="tab">
                 <h3>OUTWIT</h3>
                 <p>Who will win REWARD this week?</p>
-                <form name="reward">
-                    <input name="reward" type="radio" value="Angela Perkins">
-                        Angela Perkins
-                    <br>
-                    <input name="reward" type="radio" value="Bradley Kleihege">
-                        Bradley Kleihege
-                    <br>
-                    <input name="reward" type="radio" value="Brendan Shapiro">
-                        Brendan Shapiro
-                    <br>
-                    <input name="reward" type="radio" value="Chelsea Townsend">
-                        Chelsea Townsend
-                    <br>
-                    <input name="reward" type="radio" value="Chris Noble">
-                        Chris Noble
-                    <br>
-                    <input name="reward" type="radio" value="Desiree Afuye">
-                        Desiree Afuye
-                    <br>
-                    <input name="reward" type="radio" value="Domenick Abbate">
-                        Domenick Abbate
-                    <br>
-                    <input name="reward" type="radio" value="Donathan Hurley">
-                        Donathan Hurley
-                    <br>
-                    <input name="reward" type="radio" value="Jacob Derwin">
-                        Jacob Derwin
-                    <br>
-                    <input name="reward" type="radio" value="James Lim">
-                        James Lim
-                    <br>
-                    <input name="reward" type="radio" value="Jenna Bowman">
-                        Jenna Bowman
-                    <br>
-                    <input name="reward" type="radio" value="Kellyn Bechtold">
-                        Kellyn Bechtold
-                    <br>
-                    <input name="reward" type="radio" value="Laurel Johnson">
-                        Laurel Johnson
-                    <br>
-                    <input name="reward" type="radio" value="Libby Vincek">
-                        Libby Vincek
-                    <br>
-                    <input name="reward" type="radio" value="Michael Yerger">
-                        Michael Yerger
-                    <br>
-                    <input name="reward" type="radio" value="Morgan Ricke">
-                        Morgan Ricke
-                    <br>
-                    <input name="reward" type="radio" value="Sebastian Noel">
-                        Sebastian Noel
-                    <br>
-                    <input name="reward" type="radio" value="Stephanie Gonzalez">
-                        Stephanie Gonzalez
-                    <br>
-                    <input name="reward" type="radio" value="Stephanie Johnson">
-                        Stephanie Johnson
-                    <br>
-                    <input name="reward" type="radio" value="Wendell Holland">
-                        Wendell Holland
-                    <br>
+                <form name="reward"> 
+                    <div class="cc-selector">
+                        <input id="Angela_Perkins" type="radio" name="reward" value="Angela Perkins" />
+                        <label class="survivor-cc Angela_Perkins" for="Angela_Perkins">
+                            Angela Perkins
+                        </label>
+                        <input id="Bradley_Kleihege" type="radio" name="reward" value="Bradley Kleihege" />
+                        <label class="survivor-cc Bradley_Kleihege" for="Bradley_Kleihege">
+                            Bradley Kleihege
+                        </label>
+                        <input id="Brendan_Shapiro" type="radio" name="reward" value="Brendan Shapiro" />
+                        <label class="survivor-cc Brendan_Shapiro" for="Brendan_Shapiro">
+                            Brendan Shapiro
+                        </label>
+                        <input id="Chelsea_Townsend" type="radio" name="reward" value="Chelsea Townsend" />
+                        <label class="survivor-cc Chelsea_Townsend" for="Chelsea_Townsend">
+                            Chelsea Townsend
+                        </label>
+                        <input id="Chris_Noble" type="radio" name="reward" value="Chris Noble" />
+                        <label class="survivor-cc Chris_Noble" for="Chris_Noble">
+                            Chris Noble
+                        </label>
+                        <input id="Desiree_Afuye" type="radio" name="reward" value="Desiree Afuye" />
+                        <label class="survivor-cc Desiree_Afuye" for="Desiree_Afuye">
+                            Desiree Afuye
+                        </label>
+                        <input id="Domenick_Abbate" type="radio" name="reward" value="Domenick Abbate" />
+                        <label class="survivor-cc Domenick_Abbate" for="Domenick_Abbate">
+                            Domenick Abbate
+                        </label>
+                        <input id="Donathan_Hurley" type="radio" name="reward" value="Donathan Hurley" />
+                        <label class="survivor-cc Donathan_Hurley" for="Donathan_Hurley">
+                            Donathan Hurley
+                        </label>
+                        <input id="Jacob_Derwin" type="radio" name="reward" value="Jacob Derwin" />
+                        <label class="survivor-cc Jacob_Derwin" for="Jacob_Derwin">
+                            Jacob Derwin
+                        </label>
+                        <input id="James_Lim" type="radio" name="reward" value="James Lim" />
+                        <label class="survivor-cc James_Lim" for="James_Lim">
+                            James Lim
+                        </label>
+                        <input id="Jenna_Bowman" type="radio" name="reward" value="Jenna Bowman" />
+                        <label class="survivor-cc Jenna_Bowman" for="Jenna_Bowman">
+                            Jenna Bowman
+                        </label>
+                        <input id="Kellyn_Bechtold" type="radio" name="reward" value="Kellyn Bechtold" />
+                        <label class="survivor-cc Kellyn_Bechtold" for="Kellyn_Bechtold">
+                            Kellyn Bechtold
+                        </label>
+                        <input id="Laurel_Johnson" type="radio" name="reward" value="Laurel Johnson" />
+                        <label class="survivor-cc Laurel_Johnson" for="Laurel_Johnson">
+                            Laurel Johnson
+                        </label>
+                        <input id="Libby_Vincek" type="radio" name="reward" value="Libby Vincek" />
+                        <label class="survivor-cc Libby_Vincek" for="Libby_Vincek">
+                            Libby Vincek
+                        </label>
+                        <input id="Michael_Yerger" type="radio" name="reward" value="Michael Yerger" />
+                        <label class="survivor-cc Michael_Yerger" for="Michael_Yerger">
+                            Michael Yerger
+                        </label>
+                        <input id="Morgan_Ricke" type="radio" name="reward" value="Morgan Ricke" />
+                        <label class="survivor-cc Morgan_Ricke" for="Morgan_Ricke">
+                            Morgan Ricke
+                        </label>
+                        <input id="Sebastian_Noel" type="radio" name="reward" value="Sebastian Noel" />
+                        <label class="survivor-cc Sebastian_Noel" for="Sebastian_Noel">
+                            Sebastian Noel
+                        </label>
+                        <input id="Stephanie_Gonzalez" type="radio" name="reward" value="Stephanie Gonzalez" />
+                        <label class="survivor-cc Stephanie_Gonzalez" for="Stephanie_Gonzalez">
+                            Stephanie Gonzalez
+                        </label>
+                        <input id="Stephanie_Johnson" type="radio" name="reward" value="Stephanie Johnson" />
+                        <label class="survivor-cc Stephanie_Johnson" for="Stephanie_Johnson">
+                            Stephanie Johnson
+                        </label>
+                        <input id="Wendell_Holland" type="radio" name="reward" value="Wendell Holland" />
+                        <label class="survivor-cc Wendell_Holland" for="Wendell_Holland">
+                            Wendell Holland
+                        </label>
+                    </div>
                 </form>
             </div>
             <div class="tab">
                 <h3>OUTLAST</h3>
                 <p>Who will win IMMUNITY this week?</p>
-                <form name="immunity">
-                    <input name="immunity" type="radio" value="Angela Perkins">
-                        Angela Perkins
-                    <br>
-                    <input name="immunity" type="radio" value="Bradley Kleihege">
-                        Bradley Kleihege
-                    <br>
-                    <input name="immunity" type="radio" value="Brendan Shapiro">
-                        Brendan Shapiro
-                    <br>
-                    <input name="immunity" type="radio" value="Chelsea Townsend">
-                        Chelsea Townsend
-                    <br>
-                    <input name="immunity" type="radio" value="Chris Noble">
-                        Chris Noble
-                    <br>
-                    <input name="immunity" type="radio" value="Desiree Afuye">
-                        Desiree Afuye
-                    <br>
-                    <input name="immunity" type="radio" value="Domenick Abbate">
-                        Domenick Abbate
-                    <br>
-                    <input name="immunity" type="radio" value="Donathan Hurley">
-                        Donathan Hurley
-                    <br>
-                    <input name="immunity" type="radio" value="Jacob Derwin">
-                        Jacob Derwin
-                    <br>
-                    <input name="immunity" type="radio" value="James Lim">
-                        James Lim
-                    <br>
-                    <input name="immunity" type="radio" value="Jenna Bowman">
-                        Jenna Bowman
-                    <br>
-                    <input name="immunity" type="radio" value="Kellyn Bechtold">
-                        Kellyn Bechtold
-                    <br>
-                    <input name="immunity" type="radio" value="Laurel Johnson">
-                        Laurel Johnson
-                    <br>
-                    <input name="immunity" type="radio" value="Libby Vincek">
-                        Libby Vincek
-                    <br>
-                    <input name="immunity" type="radio" value="Michael Yerger">
-                        Michael Yerger
-                    <br>
-                    <input name="immunity" type="radio" value="Morgan Ricke">
-                        Morgan Ricke
-                    <br>
-                    <input name="immunity" type="radio" value="Sebastian Noel">
-                        Sebastian Noel
-                    <br>
-                    <input name="immunity" type="radio" value="Stephanie Gonzalez">
-                        Stephanie Gonzalez
-                    <br>
-                    <input name="immunity" type="radio" value="Stephanie Johnson">
-                        Stephanie Johnson
-                    <br>
-                    <input name="immunity" type="radio" value="Wendell Holland">
-                        Wendell Holland
-                    <br>
+                <form name="immunity"> 
+                    <div class="cc-selector">
+                        <input id="Angela_Perkins" type="radio" name="immunity" value="Angela Perkins" />
+                        <label class="survivor-cc Angela_Perkins" for="Angela_Perkins">
+                            Angela Perkins
+                        </label>
+                        <input id="Bradley_Kleihege" type="radio" name="immunity" value="Bradley Kleihege" />
+                        <label class="survivor-cc Bradley_Kleihege" for="Bradley_Kleihege">
+                            Bradley Kleihege
+                        </label>
+                        <input id="Brendan_Shapiro" type="radio" name="immunity" value="Brendan Shapiro" />
+                        <label class="survivor-cc Brendan_Shapiro" for="Brendan_Shapiro">
+                            Brendan Shapiro
+                        </label>
+                        <input id="Chelsea_Townsend" type="radio" name="immunity" value="Chelsea Townsend" />
+                        <label class="survivor-cc Chelsea_Townsend" for="Chelsea_Townsend">
+                            Chelsea Townsend
+                        </label>
+                        <input id="Chris_Noble" type="radio" name="immunity" value="Chris Noble" />
+                        <label class="survivor-cc Chris_Noble" for="Chris_Noble">
+                            Chris Noble
+                        </label>
+                        <input id="Desiree_Afuye" type="radio" name="immunity" value="Desiree Afuye" />
+                        <label class="survivor-cc Desiree_Afuye" for="Desiree_Afuye">
+                            Desiree Afuye
+                        </label>
+                        <input id="Domenick_Abbate" type="radio" name="immunity" value="Domenick Abbate" />
+                        <label class="survivor-cc Domenick_Abbate" for="Domenick_Abbate">
+                            Domenick Abbate
+                        </label>
+                        <input id="Donathan_Hurley" type="radio" name="immunity" value="Donathan Hurley" />
+                        <label class="survivor-cc Donathan_Hurley" for="Donathan_Hurley">
+                            Donathan Hurley
+                        </label>
+                        <input id="Jacob_Derwin" type="radio" name="immunity" value="Jacob Derwin" />
+                        <label class="survivor-cc Jacob_Derwin" for="Jacob_Derwin">
+                            Jacob Derwin
+                        </label>
+                        <input id="James_Lim" type="radio" name="immunity" value="James Lim" />
+                        <label class="survivor-cc James_Lim" for="James_Lim">
+                            James Lim
+                        </label>
+                        <input id="Jenna_Bowman" type="radio" name="immunity" value="Jenna Bowman" />
+                        <label class="survivor-cc Jenna_Bowman" for="Jenna_Bowman">
+                            Jenna Bowman
+                        </label>
+                        <input id="Kellyn_Bechtold" type="radio" name="immunity" value="Kellyn Bechtold" />
+                        <label class="survivor-cc Kellyn_Bechtold" for="Kellyn_Bechtold">
+                            Kellyn Bechtold
+                        </label>
+                        <input id="Laurel_Johnson" type="radio" name="immunity" value="Laurel Johnson" />
+                        <label class="survivor-cc Laurel_Johnson" for="Laurel_Johnson">
+                            Laurel Johnson
+                        </label>
+                        <input id="Libby_Vincek" type="radio" name="immunity" value="Libby Vincek" />
+                        <label class="survivor-cc Libby_Vincek" for="Libby_Vincek">
+                            Libby Vincek
+                        </label>
+                        <input id="Michael_Yerger" type="radio" name="immunity" value="Michael Yerger" />
+                        <label class="survivor-cc Michael_Yerger" for="Michael_Yerger">
+                            Michael Yerger
+                        </label>
+                        <input id="Morgan_Ricke" type="radio" name="immunity" value="Morgan Ricke" />
+                        <label class="survivor-cc Morgan_Ricke" for="Morgan_Ricke">
+                            Morgan Ricke
+                        </label>
+                        <input id="Sebastian_Noel" type="radio" name="immunity" value="Sebastian Noel" />
+                        <label class="survivor-cc Sebastian_Noel" for="Sebastian_Noel">
+                            Sebastian Noel
+                        </label>
+                        <input id="Stephanie_Gonzalez" type="radio" name="immunity" value="Stephanie Gonzalez" />
+                        <label class="survivor-cc Stephanie_Gonzalez" for="Stephanie_Gonzalez">
+                            Stephanie Gonzalez
+                        </label>
+                        <input id="Stephanie_Johnson" type="radio" name="immunity" value="Stephanie Johnson" />
+                        <label class="survivor-cc Stephanie_Johnson" for="Stephanie_Johnson">
+                            Stephanie Johnson
+                        </label>
+                        <input id="Wendell_Holland" type="radio" name="immunity" value="Wendell Holland" />
+                        <label class="survivor-cc Wendell_Holland" for="Wendell_Holland">
+                            Wendell Holland
+                        </label>
+                    </div>
                 </form>
             </div>
             <div class="tab">
                 <h3>OUTPLAY</h3>
                 <p>Who will be VOTED OFF this week?</p>
-                <form name="eliminated">
-                    <input name="eliminated" type="radio" value="Angela Perkins">
-                        Angela Perkins
-                    <br>
-                    <input name="eliminated" type="radio" value="Bradley Kleihege">
-                        Bradley Kleihege
-                    <br>
-                    <input name="eliminated" type="radio" value="Brendan Shapiro">
-                        Brendan Shapiro
-                    <br>
-                    <input name="eliminated" type="radio" value="Chelsea Townsend">
-                        Chelsea Townsend
-                    <br>
-                    <input name="eliminated" type="radio" value="Chris Noble">
-                        Chris Noble
-                    <br>
-                    <input name="eliminated" type="radio" value="Desiree Afuye">
-                        Desiree Afuye
-                    <br>
-                    <input name="eliminated" type="radio" value="Domenick Abbate">
-                        Domenick Abbate
-                    <br>
-                    <input name="eliminated" type="radio" value="Donathan Hurley">
-                        Donathan Hurley
-                    <br>
-                    <input name="eliminated" type="radio" value="Jacob Derwin">
-                        Jacob Derwin
-                    <br>
-                    <input name="eliminated" type="radio" value="James Lim">
-                        James Lim
-                    <br>
-                    <input name="eliminated" type="radio" value="Jenna Bowman">
-                        Jenna Bowman
-                    <br>
-                    <input name="eliminated" type="radio" value="Kellyn Bechtold">
-                        Kellyn Bechtold
-                    <br>
-                    <input name="eliminated" type="radio" value="Laurel Johnson">
-                        Laurel Johnson
-                    <br>
-                    <input name="eliminated" type="radio" value="Libby Vincek">
-                        Libby Vincek
-                    <br>
-                    <input name="eliminated" type="radio" value="Michael Yerger">
-                        Michael Yerger
-                    <br>
-                    <input name="eliminated" type="radio" value="Morgan Ricke">
-                        Morgan Ricke
-                    <br>
-                    <input name="eliminated" type="radio" value="Sebastian Noel">
-                        Sebastian Noel
-                    <br>
-                    <input name="eliminated" type="radio" value="Stephanie Gonzalez">
-                        Stephanie Gonzalez
-                    <br>
-                    <input name="eliminated" type="radio" value="Stephanie Johnson">
-                        Stephanie Johnson
-                    <br>
-                    <input name="eliminated" type="radio" value="Wendell Holland">
-                        Wendell Holland
-                    <br>
+                <form name="eliminated"> 
+                    <div class="cc-selector">
+                        <input id="Angela_Perkins" type="radio" name="eliminated" value="Angela Perkins" />
+                        <label class="survivor-cc Angela_Perkins" for="Angela_Perkins">
+                            Angela Perkins
+                        </label>
+                        <input id="Bradley_Kleihege" type="radio" name="eliminated" value="Bradley Kleihege" />
+                        <label class="survivor-cc Bradley_Kleihege" for="Bradley_Kleihege">
+                            Bradley Kleihege
+                        </label>
+                        <input id="Brendan_Shapiro" type="radio" name="eliminated" value="Brendan Shapiro" />
+                        <label class="survivor-cc Brendan_Shapiro" for="Brendan_Shapiro">
+                            Brendan Shapiro
+                        </label>
+                        <input id="Chelsea_Townsend" type="radio" name="eliminated" value="Chelsea Townsend" />
+                        <label class="survivor-cc Chelsea_Townsend" for="Chelsea_Townsend">
+                            Chelsea Townsend
+                        </label>
+                        <input id="Chris_Noble" type="radio" name="eliminated" value="Chris Noble" />
+                        <label class="survivor-cc Chris_Noble" for="Chris_Noble">
+                            Chris Noble
+                        </label>
+                        <input id="Desiree_Afuye" type="radio" name="eliminated" value="Desiree Afuye" />
+                        <label class="survivor-cc Desiree_Afuye" for="Desiree_Afuye">
+                            Desiree Afuye
+                        </label>
+                        <input id="Domenick_Abbate" type="radio" name="eliminated" value="Domenick Abbate" />
+                        <label class="survivor-cc Domenick_Abbate" for="Domenick_Abbate">
+                            Domenick Abbate
+                        </label>
+                        <input id="Donathan_Hurley" type="radio" name="eliminated" value="Donathan Hurley" />
+                        <label class="survivor-cc Donathan_Hurley" for="Donathan_Hurley">
+                            Donathan Hurley
+                        </label>
+                        <input id="Jacob_Derwin" type="radio" name="eliminated" value="Jacob Derwin" />
+                        <label class="survivor-cc Jacob_Derwin" for="Jacob_Derwin">
+                            Jacob Derwin
+                        </label>
+                        <input id="James_Lim" type="radio" name="eliminated" value="James Lim" />
+                        <label class="survivor-cc James_Lim" for="James_Lim">
+                            James Lim
+                        </label>
+                        <input id="Jenna_Bowman" type="radio" name="eliminated" value="Jenna Bowman" />
+                        <label class="survivor-cc Jenna_Bowman" for="Jenna_Bowman">
+                            Jenna Bowman
+                        </label>
+                        <input id="Kellyn_Bechtold" type="radio" name="eliminated" value="Kellyn Bechtold" />
+                        <label class="survivor-cc Kellyn_Bechtold" for="Kellyn_Bechtold">
+                            Kellyn Bechtold
+                        </label>
+                        <input id="Laurel_Johnson" type="radio" name="eliminated" value="Laurel Johnson" />
+                        <label class="survivor-cc Laurel_Johnson" for="Laurel_Johnson">
+                            Laurel Johnson
+                        </label>
+                        <input id="Libby_Vincek" type="radio" name="eliminated" value="Libby Vincek" />
+                        <label class="survivor-cc Libby_Vincek" for="Libby_Vincek">
+                            Libby Vincek
+                        </label>
+                        <input id="Michael_Yerger" type="radio" name="eliminated" value="Michael Yerger" />
+                        <label class="survivor-cc Michael_Yerger" for="Michael_Yerger">
+                            Michael Yerger
+                        </label>
+                        <input id="Morgan_Ricke" type="radio" name="eliminated" value="Morgan Ricke" />
+                        <label class="survivor-cc Morgan_Ricke" for="Morgan_Ricke">
+                            Morgan Ricke
+                        </label>
+                        <input id="Sebastian_Noel" type="radio" name="eliminated" value="Sebastian Noel" />
+                        <label class="survivor-cc Sebastian_Noel" for="Sebastian_Noel">
+                            Sebastian Noel
+                        </label>
+                        <input id="Stephanie_Gonzalez" type="radio" name="eliminated" value="Stephanie Gonzalez" />
+                        <label class="survivor-cc Stephanie_Gonzalez" for="Stephanie_Gonzalez">
+                            Stephanie Gonzalez
+                        </label>
+                        <input id="Stephanie_Johnson" type="radio" name="eliminated" value="Stephanie Johnson" />
+                        <label class="survivor-cc Stephanie_Johnson" for="Stephanie_Johnson">
+                            Stephanie Johnson
+                        </label>
+                        <input id="Wendell_Holland" type="radio" name="eliminated" value="Wendell Holland" />
+                        <label class="survivor-cc Wendell_Holland" for="Wendell_Holland">
+                            Wendell Holland
+                        </label>
+                    </div>
                 </form>
             </div>
             <div class="tab">
                 <h3>OUTPLAY</h3>
                 <p>Who will be SAFE this week?</p>
-                <form name="safe">
-                    <input name="safe" type="radio" value="Angela Perkins">
-                        Angela Perkins
-                    <br>
-                    <input name="safe" type="radio" value="Bradley Kleihege">
-                        Bradley Kleihege
-                    <br>
-                    <input name="safe" type="radio" value="Brendan Shapiro">
-                        Brendan Shapiro
-                    <br>
-                    <input name="safe" type="radio" value="Chelsea Townsend">
-                        Chelsea Townsend
-                    <br>
-                    <input name="safe" type="radio" value="Chris Noble">
-                        Chris Noble
-                    <br>
-                    <input name="safe" type="radio" value="Desiree Afuye">
-                        Desiree Afuye
-                    <br>
-                    <input name="safe" type="radio" value="Domenick Abbate">
-                        Domenick Abbate
-                    <br>
-                    <input name="safe" type="radio" value="Donathan Hurley">
-                        Donathan Hurley
-                    <br>
-                    <input name="safe" type="radio" value="Jacob Derwin">
-                        Jacob Derwin
-                    <br>
-                    <input name="safe" type="radio" value="James Lim">
-                        James Lim
-                    <br>
-                    <input name="safe" type="radio" value="Jenna Bowman">
-                        Jenna Bowman
-                    <br>
-                    <input name="safe" type="radio" value="Kellyn Bechtold">
-                        Kellyn Bechtold
-                    <br>
-                    <input name="safe" type="radio" value="Laurel Johnson">
-                        Laurel Johnson
-                    <br>
-                    <input name="safe" type="radio" value="Libby Vincek">
-                        Libby Vincek
-                    <br>
-                    <input name="safe" type="radio" value="Michael Yerger">
-                        Michael Yerger
-                    <br>
-                    <input name="safe" type="radio" value="Morgan Ricke">
-                        Morgan Ricke
-                    <br>
-                    <input name="safe" type="radio" value="Sebastian Noel">
-                        Sebastian Noel
-                    <br>
-                    <input name="safe" type="radio" value="Stephanie Gonzalez">
-                        Stephanie Gonzalez
-                    <br>
-                    <input name="safe" type="radio" value="Stephanie Johnson">
-                        Stephanie Johnson
-                    <br>
-                    <input name="safe" type="radio" value="Wendell Holland">
-                        Wendell Holland
-                    <br>
+                <form name="safe"> 
+                    <div class="cc-selector">
+                        <input id="Angela_Perkins" type="radio" name="safe" value="Angela Perkins" />
+                        <label class="survivor-cc Angela_Perkins" for="Angela_Perkins">
+                            Angela Perkins
+                        </label>
+                        <input id="Bradley_Kleihege" type="radio" name="safe" value="Bradley Kleihege" />
+                        <label class="survivor-cc Bradley_Kleihege" for="Bradley_Kleihege">
+                            Bradley Kleihege
+                        </label>
+                        <input id="Brendan_Shapiro" type="radio" name="safe" value="Brendan Shapiro" />
+                        <label class="survivor-cc Brendan_Shapiro" for="Brendan_Shapiro">
+                            Brendan Shapiro
+                        </label>
+                        <input id="Chelsea_Townsend" type="radio" name="safe" value="Chelsea Townsend" />
+                        <label class="survivor-cc Chelsea_Townsend" for="Chelsea_Townsend">
+                            Chelsea Townsend
+                        </label>
+                        <input id="Chris_Noble" type="radio" name="safe" value="Chris Noble" />
+                        <label class="survivor-cc Chris_Noble" for="Chris_Noble">
+                            Chris Noble
+                        </label>
+                        <input id="Desiree_Afuye" type="radio" name="safe" value="Desiree Afuye" />
+                        <label class="survivor-cc Desiree_Afuye" for="Desiree_Afuye">
+                            Desiree Afuye
+                        </label>
+                        <input id="Domenick_Abbate" type="radio" name="safe" value="Domenick Abbate" />
+                        <label class="survivor-cc Domenick_Abbate" for="Domenick_Abbate">
+                            Domenick Abbate
+                        </label>
+                        <input id="Donathan_Hurley" type="radio" name="safe" value="Donathan Hurley" />
+                        <label class="survivor-cc Donathan_Hurley" for="Donathan_Hurley">
+                            Donathan Hurley
+                        </label>
+                        <input id="Jacob_Derwin" type="radio" name="safe" value="Jacob Derwin" />
+                        <label class="survivor-cc Jacob_Derwin" for="Jacob_Derwin">
+                            Jacob Derwin
+                        </label>
+                        <input id="James_Lim" type="radio" name="safe" value="James Lim" />
+                        <label class="survivor-cc James_Lim" for="James_Lim">
+                            James Lim
+                        </label>
+                        <input id="Jenna_Bowman" type="radio" name="safe" value="Jenna Bowman" />
+                        <label class="survivor-cc Jenna_Bowman" for="Jenna_Bowman">
+                            Jenna Bowman
+                        </label>
+                        <input id="Kellyn_Bechtold" type="radio" name="safe" value="Kellyn Bechtold" />
+                        <label class="survivor-cc Kellyn_Bechtold" for="Kellyn_Bechtold">
+                            Kellyn Bechtold
+                        </label>
+                        <input id="Laurel_Johnson" type="radio" name="safe" value="Laurel Johnson" />
+                        <label class="survivor-cc Laurel_Johnson" for="Laurel_Johnson">
+                            Laurel Johnson
+                        </label>
+                        <input id="Libby_Vincek" type="radio" name="safe" value="Libby Vincek" />
+                        <label class="survivor-cc Libby_Vincek" for="Libby_Vincek">
+                            Libby Vincek
+                        </label>
+                        <input id="Michael_Yerger" type="radio" name="safe" value="Michael Yerger" />
+                        <label class="survivor-cc Michael_Yerger" for="Michael_Yerger">
+                            Michael Yerger
+                        </label>
+                        <input id="Morgan_Ricke" type="radio" name="safe" value="Morgan Ricke" />
+                        <label class="survivor-cc Morgan_Ricke" for="Morgan_Ricke">
+                            Morgan Ricke
+                        </label>
+                        <input id="Sebastian_Noel" type="radio" name="safe" value="Sebastian Noel" />
+                        <label class="survivor-cc Sebastian_Noel" for="Sebastian_Noel">
+                            Sebastian Noel
+                        </label>
+                        <input id="Stephanie_Gonzalez" type="radio" name="safe" value="Stephanie Gonzalez" />
+                        <label class="survivor-cc Stephanie_Gonzalez" for="Stephanie_Gonzalez">
+                            Stephanie Gonzalez
+                        </label>
+                        <input id="Stephanie_Johnson" type="radio" name="safe" value="Stephanie Johnson" />
+                        <label class="survivor-cc Stephanie_Johnson" for="Stephanie_Johnson">
+                            Stephanie Johnson
+                        </label>
+                        <input id="Wendell_Holland" type="radio" name="safe" value="Wendell Holland" />
+                        <label class="survivor-cc Wendell_Holland" for="Wendell_Holland">
+                            Wendell Holland
+                        </label>
+                    </div>
                 </form>
             </div>
             <div class="tab">
