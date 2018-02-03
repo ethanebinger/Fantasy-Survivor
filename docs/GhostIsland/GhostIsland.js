@@ -17,7 +17,7 @@ function init() {
             if (val.length > 0) {
                 val = val.trim();
             } else {
-                for(var c=0; c<this.length-1; c++) {
+                for(var c=0; c<this.length; c++) {
                     if (this[c].checked === true) {
                         val = this[c].value;     
                     };
@@ -40,7 +40,14 @@ function init() {
     $("#nextBtn").click(function(e) {
         if ($("#nextBtn").html() === "Submit") {
             var form_results = get_results();
-            alert(form_results);
+            // DEBUG BELOW
+            var alert_text = ""
+            for (var key in form_results) {
+                if (form_results.hasOwnProperty(key)) {
+                    alert_text += key + " = " + form_results[key] + "\n";
+                };
+            };
+            alert(alert_text);
             window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html" 
         };
         nextPrev(1);
