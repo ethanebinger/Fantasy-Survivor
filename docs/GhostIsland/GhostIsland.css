@@ -28,6 +28,13 @@ body {
 .graph {
     display: block;
 }
+
+#progress_buttons {
+    overflow: auto;
+    text-align: center;
+    padding-top: 40px;
+}
+
 #prevBtn, 
 #nextBtn {
     background-color: rebeccapurple;
@@ -45,6 +52,13 @@ body {
 #prevBtn {
     background-color: #bbbbbb;
 }
+
+#progress_bar {
+    text-align: center;
+    margin-top:40px;
+}
+
+
 #chart {
     display: table;
     margin: 0 auto;		

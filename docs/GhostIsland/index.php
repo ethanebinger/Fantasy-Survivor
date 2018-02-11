@@ -22,6 +22,12 @@
         <!-- D3 -->
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="d3-tip.js"></script>
+        
+        <!-- Github.js -->
+        <!--<script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script>-->
+        <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
+        <!--<script src="https://gist.github.com/iktash/31ccc1d8582bd9dcb15ee468c7326f2d.js"></script>-->
+        <script src="http://requirejs.org/docs/release/2.2.0/minified/require.js"></script>
 
         <!-- Stylesheet and Javascript -->
         <link rel="stylesheet" href="GhostIsland.css">

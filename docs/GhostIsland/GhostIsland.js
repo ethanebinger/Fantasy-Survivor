@@ -76,7 +76,8 @@ function init() {
                 };
             };
             alert(alert_text);
-            window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html" 
+            window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
+            init_chart();
         };
         // Hide the current tab:
         x[currentTab].style.display = "none";
@@ -124,7 +125,42 @@ function init() {
         };
         return valid;
     };
-    
+};
+
+function pushData(data) {
+    var GitHub = require('github-api');
+
+    // unauthenticated client
+    var gh = new GitHub({
+      username: 'foo',
+      password: 'bar'
+    });
+
+    var gist = gh.getGist(); // not a gist yet
+    var data = {
+       public: true,
+       description: 'My first gist',
+       files: {
+          "file1.txt": {
+             contents: "Aren't gists great!"
+          }
+       }
+    };
+
+    gist.create(data)
+      .then(function(httpResponse) {
+         var gistJson = httpResponse.data;
+
+         // Callbacks too
+         gist.read(function(err, gist, xhr) {
+            // if no error occurred then err == null
+            // gistJson == httpResponse.data
+            // xhr == httpResponse
+         });
+      });
+};
+
+function init_chart() {
     // Define temp data
     var scores = [
         {	'name': 'Walter', 
