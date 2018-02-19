@@ -1,0 +1,1 @@
+{'name': 'Ethan', 'week': 1, 'date': '2/28/18', 'reward': '', 'immunity': '', 'eliminated': '', 'safe': ''}
