@@ -68,7 +68,7 @@ function init() {
         };
         if ($("#nextBtn").html() === "Submit") {
             var form_results = get_results();
-            // DEBUG BELOW
+            /* DEBUG BELOW
             var alert_text = ""
             for (var key in form_results) {
                 if (form_results.hasOwnProperty(key)) {
@@ -76,8 +76,8 @@ function init() {
                 };
             };
             alert(alert_text);
-            window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
-            init_chart();
+            //*/
+            PushPullGithub(form_results);
         };
         // Hide the current tab:
         x[currentTab].style.display = "none";
@@ -127,40 +127,64 @@ function init() {
     };
 };
 
-function pushData(data) {
-    var GitHub = require('github-api');
+function PushPullGithub(form_results) {
+    // PULL existing data 
+    // This is SUPER janky and needs help :)
+    $.ajax({
+        type: "GET",
+        url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json",
+        dataType: "json",
+        success: function(result) {
+            console.log(result);
+            var x = result.content;
+            var existing_responses = atob(x);
+            var responses = JSON.parse(existing_responses);
+            
+            // Append 'form_results' to 'existing_responses', convert back to string
+            responses.push(form_results);
 
-    // unauthenticated client
-    var gh = new GitHub({
-      username: 'foo',
-      password: 'bar'
+            /*
+            // PUSH new data
+            var token = '91b27b17e286172a6e271929ca6a8d490d0e46bd',
+                user = 'ethanebinger',
+                repo = 'Fantasy-Survivor';
+            let api = new GithubAPI({token: token});
+            api.setRepo(user, repo);
+            api.setBranch('master')
+                .then( () => api.pushFiles(
+                    'test commit',
+                    [{
+                        content: new_data_str, 
+                        path: 'GhostIsland_Responses.txt'
+                    }]
+                ))
+                .then(function() {
+                    console.log('Files committed!');
+                });
+            //*/
+            window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
+            init_chart(new_data);
+            
+        }
     });
-
-    var gist = gh.getGist(); // not a gist yet
-    var data = {
-       public: true,
-       description: 'My first gist',
-       files: {
-          "file1.txt": {
-             contents: "Aren't gists great!"
-          }
-       }
-    };
-
-    gist.create(data)
-      .then(function(httpResponse) {
-         var gistJson = httpResponse.data;
-
-         // Callbacks too
-         gist.read(function(err, gist, xhr) {
-            // if no error occurred then err == null
-            // gistJson == httpResponse.data
-            // xhr == httpResponse
-         });
-      });
+    /*
+    var x = $.get(
+        "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.txt",
+        {paramOne : 1, paramX : 'abc'},
+        function(data) {
+           console.log('page content: ' + JSON.parse(data));
+        }
+    ).done(function(data) {
+        console.log("second success")   
+    });
+    //*/
+    //console.log(x);
+    //var existing_responses = atob(x.responseJSON.content);
+    //existing_responses = JSON.parse(existing_responses);
+    
 };
 
-function init_chart() {
+function init_chart(response) {
     // Define temp data
     var scores = [
         {	'name': 'Walter', 
@@ -308,6 +332,7 @@ function init_chart() {
             'Week 15': 0
         },
     ];
+    /*
     var response = [
         {   'name': 'Ethan', 
             'week': 1, 
@@ -318,6 +343,7 @@ function init_chart() {
             'safe': ''
         },
     ];
+    //*/
     var results = [
         {	'week': 1,
             'date': '2/28/18', 
