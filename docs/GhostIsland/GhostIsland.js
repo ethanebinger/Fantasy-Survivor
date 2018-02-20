@@ -145,7 +145,7 @@ function PushPullGithub(form_results) {
             var responses_str = JSON.stringify(responses);
             
             // PUSH new data
-            var token = 'd9b9d90afcea0652a7fcecd65b3445909a538f5c',
+            var token = '13b984d3b89b8a748c41d54004a20c2a9ea01604',
                 user = 'ethanebinger',
                 repo = 'Fantasy-Survivor';
             let api = new GithubAPI({token: token});
