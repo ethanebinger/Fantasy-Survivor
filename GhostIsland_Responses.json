@@ -1,0 +1,20 @@
+[
+  {
+    'name': 'Ethan', 
+    'week': 1, 
+    'date': '02/28/18', 
+    'reward': '', 
+    'immunity': '', 
+    'eliminated': '', 
+    'safe': ''
+   },
+   {
+    'name': 'Ethan', 
+    'week': 2, 
+    'date': '03/05/18', 
+    'reward': '', 
+    'immunity': '', 
+    'eliminated': '', 
+    'safe': ''
+   }
+]
