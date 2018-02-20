@@ -142,10 +142,10 @@ function PushPullGithub(form_results) {
             
             // Append 'form_results' to 'existing_responses', convert back to string
             responses.push(form_results);
-
-            /*
+            var responses_str = JSON.stringify(responses);
+            
             // PUSH new data
-            var token = '91b27b17e286172a6e271929ca6a8d490d0e46bd',
+            var token = 'd9b9d90afcea0652a7fcecd65b3445909a538f5c',
                 user = 'ethanebinger',
                 repo = 'Fantasy-Survivor';
             let api = new GithubAPI({token: token});
@@ -154,34 +154,17 @@ function PushPullGithub(form_results) {
                 .then( () => api.pushFiles(
                     'test commit',
                     [{
-                        content: new_data_str, 
-                        path: 'GhostIsland_Responses.txt'
+                        content: responses_str, 
+                        path: 'GhostIsland_Responses.json'
                     }]
                 ))
                 .then(function() {
                     console.log('Files committed!');
-                });
-            //*/
-            window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
-            init_chart(new_data);
-            
+                    window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
+                    init_chart(new_data);
+                });   
         }
     });
-    /*
-    var x = $.get(
-        "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.txt",
-        {paramOne : 1, paramX : 'abc'},
-        function(data) {
-           console.log('page content: ' + JSON.parse(data));
-        }
-    ).done(function(data) {
-        console.log("second success")   
-    });
-    //*/
-    //console.log(x);
-    //var existing_responses = atob(x.responseJSON.content);
-    //existing_responses = JSON.parse(existing_responses);
-    
 };
 
 function init_chart(response) {
