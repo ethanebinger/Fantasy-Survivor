@@ -140,8 +140,8 @@ function PushPullGithub(form_results) {
             var responses_str = JSON.stringify(responses);
             
             // PUSH new data
-            var t_a = 'NGE3OTk3OWJiZQ==',
-                t_b = 'MzMzZGQ1MjM0Mw=='
+            var t_a = 'Mzk2Njc0YjdlYWQxMjZhMTFl',
+                t_b = 'NWFmNmVmZTFhMmZjZDA1NDZjZjU0NA==',
                 user = 'ethanebinger',
                 repo = 'Fantasy-Survivor';
             let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
