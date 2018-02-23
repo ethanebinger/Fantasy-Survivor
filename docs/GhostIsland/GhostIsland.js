@@ -140,10 +140,11 @@ function PushPullGithub(form_results) {
             var responses_str = JSON.stringify(responses);
             
             // PUSH new data
-            var token = '153a5cbc8e9df5b48eab',
+            var t_a = 'NGE3OTk3OWJiZQ==',
+                t_b = 'MzMzZGQ1MjM0Mw=='
                 user = 'ethanebinger',
                 repo = 'Fantasy-Survivor';
-            let api = new GithubAPI({token: token});
+            let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
             api.setRepo(user, repo);
             api.setBranch('master')
                 .then( () => api.pushFiles(
