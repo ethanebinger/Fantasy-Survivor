@@ -122,7 +122,6 @@ function init() {
     };
 };
 
-var responses;
 function PushPullGithub(form_results) {
     // This is SUPER janky and needs help :)
     // http://github-tools.github.io/github/docs/3.1.0/Repository.html#getRef
@@ -135,7 +134,7 @@ function PushPullGithub(form_results) {
             // PULL existing data (saved in 'responses' object)
             var x = result.content;
             var existing_responses = atob(x);
-            responses = JSON.parse(existing_responses);
+            var responses = JSON.parse(existing_responses);
             
             // PUSH new data (only following index.html submission)
             if (form_results != 0) {
@@ -159,6 +158,8 @@ function PushPullGithub(form_results) {
                         console.log('Files committed!');
                         window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
                     });
+            } else {
+                return responses;  
             };
         }
     });
@@ -166,8 +167,7 @@ function PushPullGithub(form_results) {
 
 function init_chart() {
     // PULL results from Github JSON
-    var responses;
-    PushPullGithub(0);
+    var responses = PushPullGithub(0);
     
     // Define temp data
     var scores = [
