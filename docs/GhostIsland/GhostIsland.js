@@ -122,48 +122,49 @@ function init() {
     };
 };
 
+var responses;
 function PushPullGithub(form_results) {
-    // PULL existing data 
     // This is SUPER janky and needs help :)
+    // http://github-tools.github.io/github/docs/3.1.0/Repository.html#getRef
+    // backup option? https://github.com/philschatz/octokat.js/
     $.ajax({
         type: "GET",
         url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json",
         dataType: "json",
         success: function(result) {
-            console.log(result);
+            // PULL existing data (saved in 'responses' object)
             var x = result.content;
             var existing_responses = atob(x);
-            var responses = JSON.parse(existing_responses);
+            responses = JSON.parse(existing_responses);
             
-            // Append 'form_results' to 'existing_responses', convert back to string
-            responses.push(form_results);
-            var responses_str = JSON.stringify(responses);
-            
-            // PUSH new data
-            var t_a = 'Mzk2Njc0YjdlYWQxMjZhMTFl',
-                t_b = 'NWFmNmVmZTFhMmZjZDA1NDZjZjU0NA==',
-                user = 'ethanebinger',
-                repo = 'Fantasy-Survivor';
-            let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
-            api.setRepo(user, repo);
-            api.setBranch('master')
-                .then( () => api.pushFiles(
-                    'test commit',
-                    [{
-                        content: responses_str, 
-                        path: 'GhostIsland_Responses.json'
-                    }]
-                ))
-                .then(function() {
-                    console.log('Files committed!');
-                    window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
-                    init_chart(responses);
-                });   
+            // PUSH new data (only following index.html submission)
+            if (form_results != 0) {
+                responses.push(form_results);
+                var responses_str = JSON.stringify(responses);
+                var t_a = 'Mzk2Njc0YjdlYWQxMjZhMTFl',
+                    t_b = 'NWFmNmVmZTFhMmZjZDA1NDZjZjU0NA==',
+                    user = 'ethanebinger',
+                    repo = 'Fantasy-Survivor';
+                let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
+                api.setRepo(user, repo);
+                api.setBranch('master')
+                    .then( () => api.pushFiles(
+                        'test commit',
+                        [{
+                            content: responses_str, 
+                            path: 'GhostIsland_Responses.json'
+                        }]
+                    ))
+                    .then(function() {
+                        console.log('Files committed!');
+                        window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
+                    });
+            };
         }
     });
 };
 
-function init_chart(response) {
+function init_chart() {
     // Define temp data
     var scores = [
         {	'name': 'Walter', 
@@ -312,7 +313,8 @@ function init_chart(response) {
         },
     ];
     /*
-    var response = [
+    // defined above
+    var responses = [
         {   'name': 'Ethan', 
             'week': 1, 
             'date': '2/28/18', 
@@ -385,7 +387,7 @@ function init_chart(response) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-            for (var j=0; j<response.length; j++) {
+            for (var j=0; j<responses.length; j++) {
                 // Determine Week
                 var cur_week = 0;
                 var submit_time = new Date(results[i].submit_time);
@@ -420,46 +422,46 @@ function init_chart(response) {
                     cur_week = 14;
                 };
                 // Validate Player, Week
-                if (response[j].name == cur_player && results[i].week == cur_week) {
+                if (responses[j].name == cur_player && results[i].week == cur_week) {
                     // Week
                     var cur_week = 'Week ' + String(results[i].week);
                     // Reward
-                    if (results[i].reward == response[j].reward && response[j].reward) {
+                    if (results[i].reward == responses[j].reward && responses[j].reward) {
                         scores[n][cur_week] += 5;
                         scores[n].total += 5;
                     };
                     // Immunity
-                    if (results[i].immunity == response[j].immunity && response[j].immunity) {
+                    if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
                         scores[n][cur_week] += 7.5;
                         scores[n].total += 7.5;
                     };
                     // Eliminated
-                    if (results[i].eliminated == response[j].eliminated && response[j].eliminated) {
+                    if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
                         scores[n][cur_week] += 10;
                         scores[n].total += 10;
                     };
                     // Safe
-                    if (results[i].eliminated !== response[j].safe && response[j].safe) {
+                    if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
                         scores[n][cur_week] += 10;
                         scores[n].total += 10;
                     };
                     // Title Quote
-                    if (results[i].titleQuote !== response[j].titleQuote && response[j].titleQuote) {
+                    if (results[i].titleQuote !== responses[j].titleQuote && responses[j].titleQuote) {
                         scores[n][cur_week] += 2;
                         scores[n].total += 2;
                     };
                     // Nudity
-                    if (results[i].nudity !== response[j].nudity && response[j].nudity) {
+                    if (results[i].nudity !== responses[j].nudity && responses[j].nudity) {
                         scores[n][cur_week] += 2;
                         scores[n].total += 2;
                     };
                     // Idol Found
-                    if (results[i].idolFound !== response[j].idolFound && response[j].idolFound) {
+                    if (results[i].idolFound !== responses[j].idolFound && responses[j].idolFound) {
                         scores[n][cur_week] += 2;
                         scores[n].total += 2;
                     };
                     // Idol Played
-                    if (results[i].idolPlayed !== response[j].idolPlayed && response[j].idolPlayed) {
+                    if (results[i].idolPlayed !== responses[j].idolPlayed && responses[j].idolPlayed) {
                         scores[n][cur_week] += 2;
                         scores[n].total += 2;
                     };
