@@ -165,6 +165,10 @@ function PushPullGithub(form_results) {
 };
 
 function init_chart() {
+    // PULL results from Github JSON
+    var responses;
+    PushPullGithub();
+    
     // Define temp data
     var scores = [
         {	'name': 'Walter', 
