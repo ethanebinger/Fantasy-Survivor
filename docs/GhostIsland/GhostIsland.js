@@ -167,7 +167,7 @@ function PushPullGithub(form_results) {
 function init_chart() {
     // PULL results from Github JSON
     var responses;
-    PushPullGithub();
+    PushPullGithub(0);
     
     // Define temp data
     var scores = [
