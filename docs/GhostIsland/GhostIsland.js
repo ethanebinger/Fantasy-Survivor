@@ -159,16 +159,14 @@ function PushPullGithub(form_results) {
                         window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
                     });
             } else {
-                return responses;  
+                // load results chart
+                init_chart(responses);  
             };
         }
     });
 };
 
-function init_chart() {
-    // PULL results from Github JSON
-    var responses = PushPullGithub(0);
-    
+function init_chart(responses) {
     // Define temp data
     var scores = [
         {	'name': 'Walter', 
