@@ -2,7 +2,7 @@
 
 ![Image](https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639)
 
-Here you can find the rules and the code behind the Web form and visualizations used for the Somerville Survivors Fantasy League. 
+Here you can find the rules and the code behind the web form and visualizations used for the Somerville Survivors Fantasy League. 
 
 ### Fantasy Rules
 
