@@ -148,11 +148,12 @@ function PushPullGithub(form_results) {
                     t_b = 'NWFmNmVmZTFhMmZjZDA1NDZjZjU0NA==',
                     user = 'ethanebinger',
                     repo = 'Fantasy-Survivor';
+                var push_user = responses.name;
                 let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
                 api.setRepo(user, repo);
                 api.setBranch('master')
                     .then( () => api.pushFiles(
-                        'new user input',
+                        'new input from '+push_user,
                         [{
                             content: responses_str, 
                             path: 'GhostIsland_Responses.json'
