@@ -1,5 +1,6 @@
 body {
-    background-color: #efedf5;
+    /*background-image: url(https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639);
+    background-repeat: round;*/
     font-family: "Sans Serif";
 }
 #title,
@@ -8,9 +9,20 @@ body {
 }
 #survivor_form {
     margin: 0 auto;
-    width: 60%;
+    padding-top: 20px;
+    width: 80%;
     height: 75%;
-    background-color: #fff;
+    background-color: #efedf5;
+}
+.malolo_banner {
+    background-color: rgb(213,107,35);
+    padding: 10px 0px;
+    color: #fff;
+} 
+.naviti_banner {
+    background-color: rgb(122,41,107);
+    padding: 10px 0px;
+    color: #fff;
 }
 .isHidden {
     display: none;            

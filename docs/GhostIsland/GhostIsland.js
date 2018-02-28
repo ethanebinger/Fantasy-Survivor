@@ -126,6 +126,10 @@ function PushPullGithub(form_results) {
     // This is SUPER janky and needs help :)
     // http://github-tools.github.io/github/docs/3.1.0/Repository.html#getRef
     // backup option? https://github.com/philschatz/octokat.js/
+    $("#nextBtn").addClass("isHidden");
+    $("#prevBtn").addClass("isHidden");
+    $("progress").addClass("isHidden");
+    $("#loading_results").removeClass("isHidden");
     $.ajax({
         type: "GET",
         url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json",
@@ -135,7 +139,7 @@ function PushPullGithub(form_results) {
             var x = result.content;
             var existing_responses = atob(x);
             var responses = JSON.parse(existing_responses);
-            
+
             // PUSH new data (only following index.html submission)
             if (form_results != 0) {
                 responses.push(form_results);
@@ -148,7 +152,7 @@ function PushPullGithub(form_results) {
                 api.setRepo(user, repo);
                 api.setBranch('master')
                     .then( () => api.pushFiles(
-                        'test commit',
+                        'new user input',
                         [{
                             content: responses_str, 
                             path: 'GhostIsland_Responses.json'
