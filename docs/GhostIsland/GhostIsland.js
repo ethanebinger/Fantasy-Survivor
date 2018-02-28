@@ -148,7 +148,7 @@ function PushPullGithub(form_results) {
                     t_b = 'NWFmNmVmZTFhMmZjZDA1NDZjZjU0NA==',
                     user = 'ethanebinger',
                     repo = 'Fantasy-Survivor';
-                var push_user = responses.name;
+                var push_user = form_results.name;
                 let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
                 api.setRepo(user, repo);
                 api.setBranch('master')
