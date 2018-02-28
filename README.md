@@ -12,11 +12,13 @@ Weekly points are given if the player properly guesses the following:
 - Who will be eliminated?                 (+10)
 - Who will be safe?                       (+10)
 - Will there be nudity this episode?      (+2)
-- Who's quote is the episode title?       (+2)
+- Whose quote is the episode title?       (+2)
 - Will an immunity idol be found?         (+2)
 - Will an immunity idol be played?        (+2)
 
 Before the merge points for reward and immunity will be assesed per tribe, so simply pick any player on the tribe you predict will win that challenge.
+
+Other questions may be added for weekly challenges or to accomodate for specifics within the season (i.e. who is sent to Ghost Island this week?).
 
 Players will also pick a Final Three after the first episode. For each survivor chosen that makes it to the Final Three they will recieve +25 points.
 
