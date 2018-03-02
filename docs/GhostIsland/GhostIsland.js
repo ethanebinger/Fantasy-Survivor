@@ -351,7 +351,7 @@ function init_chart(responses) {
             'reward': null, 
             'immunity': 'Naviti', 
             'eliminated': 'Jacob Derwin',
-            'idolFound': 'no',
+            'idolFound': 'Domenick Abbate',
             'idolPlayed': 'no',
             'titleQuote': null,
             'nudity': 'no',
