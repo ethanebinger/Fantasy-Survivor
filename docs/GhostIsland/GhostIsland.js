@@ -476,33 +476,33 @@ function init_chart(responses) {
                 var cur_week = 0;
                 var submit_time = new Date(results[i].submit_time);
                 // Determine Week and ignore late sumissions
-                if (submit_time <= new Date('2,28,2018')) {
+                if (submit_time <= new Date(2018,1,28,20)) {
                     cur_week = 1;
-                } else if (submit_time <= new Date('3,7,2018')) {
+                } else if (submit_time <= new Date(2018,2,7,20)) {
                     cur_week = 2;
-                } else if (submit_time <= new Date('3,14,2018')) {
+                } else if (submit_time <= new Date(2018,2,14,20)) {
                     cur_week = 3;
-                } else if (submit_time <= new Date('3,21,2018')) {
+                } else if (submit_time <= new Date(2018,2,21,20)) {
                     cur_week = 4;
-                } else if (submit_time <= new Date('3,28,2018')) {
+                } else if (submit_time <= new Date(2018,2,28,20)) {
                     cur_week = 5;
-                } else if (submit_time <= new Date('4,4,2018')) {
+                } else if (submit_time <= new Date(2018,3,4,20)) {
                     cur_week = 6;
-                } else if (submit_time <= new Date('4,11,2018')) {
+                } else if (submit_time <= new Date(2018,3,11,20)) {
                     cur_week = 7;
-                } else if (submit_time <= new Date('4,18,2018')) {
+                } else if (submit_time <= new Date(2018,3,18,20)) {
                     cur_week = 8;
-                } else if (submit_time <= new Date('4,25,2018')) {
+                } else if (submit_time <= new Date(2018,3,25,20)) {
                     cur_week = 9;
-                } else if (submit_time <= new Date('5,2,2018')) {
+                } else if (submit_time <= new Date(2018,4,2,20)) {
                     cur_week = 10;
-                } else if (submit_time <= new Date('5,9,2018')) {
+                } else if (submit_time <= new Date(2018,4,9,20)) {
                     cur_week = 11;
-                } else if (submit_time <= new Date('5,16,2018')) {
+                } else if (submit_time <= new Date(2018,4,16,20)) {
                     cur_week = 12;
-                } else if (submit_time <= new Date('5,23,2018')) {
+                } else if (submit_time <= new Date(2018,4,23,20)) {
                     cur_week = 13;
-                } else if (submit_time <= new Date('5,30,2018')) {
+                } else if (submit_time <= new Date(2018,4,30,20)) {
                     cur_week = 14;
                 };
                 // Validate Player, Week
