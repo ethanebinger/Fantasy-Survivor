@@ -334,15 +334,28 @@ function init_chart(responses) {
     //*/
     var results = [
         {	'week': 1,
-            'date': '2/28/18', 
+            'date': '2/28/18',
+            'merge': 'no',
+            'reward': 'Malolo', 
+            'immunity': 'Naviti', 
+            'eliminated': 'Stephanie Gonzalez',
+            'idolFound': 'no',
+            'idolPlayed': 'no',
+            'titleQuote': 'Jeff Probst',
+            'nudity': 'no',
+            'ghostIsland': 'Jacob Derwin'
+        },
+        {	'week': 1.5,
+            'date': '2/28/18',
+            'merge': 'no',
             'reward': null, 
-            'immunity': null, 
-            'eliminated': null,
-            'safe': null,
-            'idolFound': null,
-            'idolPlayed': null,
+            'immunity': 'Naviti', 
+            'eliminated': 'Jacob Derwin',
+            'idolFound': 'no',
+            'idolPlayed': 'no',
             'titleQuote': null,
-            'nudity': null
+            'nudity': 'no',
+            'ghostIsland': 'Donathan Hurley'
         }
     ];
 
