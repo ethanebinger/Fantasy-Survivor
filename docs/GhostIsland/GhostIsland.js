@@ -38,7 +38,13 @@ function init() {
         window.scrollTo(0,0);
     });
     $("#nextBtn").click(function(e) {
-        nextPrev(1);
+        // if you have reached the end of the form...
+        if ($("#nextBtn").html() === "Submit" || currentTab >= x.length) {
+            var form_results = get_results();
+            PushPullGithub(form_results);
+        } else {
+            nextPrev(1);
+        };
     });
 
     function showTab(n) {
@@ -70,21 +76,7 @@ function init() {
         x[currentTab].style.display = "none";
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
-        // if you have reached the end of the form...
-        if ($("#nextBtn").html() === "Submit" || currentTab >= x.length) {
-            var form_results = get_results();
-            /* DEBUG BELOW
-            var alert_text = ""
-            for (var key in form_results) {
-                if (form_results.hasOwnProperty(key)) {
-                    alert_text += key + " = " + form_results[key] + "\n";
-                };
-            };
-            alert(alert_text);
-            //*/
-            PushPullGithub(form_results);
-        };
-        // Otherwise, display the correct tab:
+        // Display the correct tab:
         showTab(currentTab);
     };
 
@@ -318,6 +310,60 @@ function init_chart(responses) {
             'Week 14': 0, 
             'Week 15': 0
         },
+        {	'name': 'Aaron', 
+            'total': 0, 
+            'Week 1': 0, 
+            'Week 2': 0, 
+            'Week 3': 0,
+            'Week 4': 0, 
+            'Week 5': 0, 
+            'Week 6': 0,
+            'Week 7': 0, 
+            'Week 8': 0, 
+            'Week 9': 0,
+            'Week 10': 0, 
+            'Week 11': 0, 
+            'Week 12': 0,
+            'Week 13': 0, 
+            'Week 14': 0, 
+            'Week 15': 0
+        },
+        {	'name': 'Vivian', 
+            'total': 0, 
+            'Week 1': 0, 
+            'Week 2': 0, 
+            'Week 3': 0,
+            'Week 4': 0, 
+            'Week 5': 0, 
+            'Week 6': 0,
+            'Week 7': 0, 
+            'Week 8': 0, 
+            'Week 9': 0,
+            'Week 10': 0, 
+            'Week 11': 0, 
+            'Week 12': 0,
+            'Week 13': 0, 
+            'Week 14': 0, 
+            'Week 15': 0
+        },
+        {	'name': 'Myles', 
+            'total': 0, 
+            'Week 1': 0, 
+            'Week 2': 0, 
+            'Week 3': 0,
+            'Week 4': 0, 
+            'Week 5': 0, 
+            'Week 6': 0,
+            'Week 7': 0, 
+            'Week 8': 0, 
+            'Week 9': 0,
+            'Week 10': 0, 
+            'Week 11': 0, 
+            'Week 12': 0,
+            'Week 13': 0, 
+            'Week 14': 0, 
+            'Week 15': 0
+        }
     ];
     /*
     // defined above
