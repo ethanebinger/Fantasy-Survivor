@@ -474,7 +474,7 @@ function init_chart(responses) {
             for (var j=0; j<responses.length; j++) {
                 // Determine Week
                 var cur_week = 0;
-                var submit_time = new Date(responses[i].submit_time);
+                var submit_time = new Date(responses[j].submit_time);
                 // Determine Week and ignore late sumissions
                 if (submit_time <= new Date(2018,1,28,20)) {
                     cur_week = 1;
