@@ -385,14 +385,14 @@ function init_chart(responses) {
     var results = [
         {	'week': 1,
             'date': '2/28/18',
-            'merge': 'no',
+            'merge': 'No',
             'reward': 'Malolo', 
             'immunity': 'Naviti', 
             'eliminated': 'Stephanie Gonzalez',
-            'idolFound': 'no',
-            'idolPlayed': 'no',
+            'idolFound': 'No',
+            'idolPlayed': 'No',
             'titleQuote': 'Jeff Probst',
-            'nudity': 'no',
+            'nudity': 'No',
             'ghostIsland': 'Jacob Derwin',
             'malolo': [
                 'Brendan Shapiro',
@@ -421,14 +421,14 @@ function init_chart(responses) {
         },
         {	'week': 1.5,
             'date': '2/28/18',
-            'merge': 'no',
+            'merge': 'No',
             'reward': null, 
             'immunity': 'Naviti', 
             'eliminated': 'Jacob Derwin',
             'idolFound': 'Domenick Abbate',
-            'idolPlayed': 'no',
+            'idolPlayed': 'No',
             'titleQuote': null,
-            'nudity': 'no',
+            'nudity': 'No',
             'ghostIsland': 'Donathan Hurley',
             'malolo': [
                 'Brendan Shapiro',
@@ -556,7 +556,7 @@ function init_chart(responses) {
                     // Week
                     var cur_week = 'Week ' + String(results[i].week);
                     // Determine by team if before merge but no swap:
-                    if (results[i].merge === 'yes' || results[i].merge === 'swap') {
+                    if (results[i].merge === 'Yes' || results[i].merge === 'Swap') {
                         // Reward
                         if (results[i].reward == responses[j].reward && responses[j].reward) {
                             scores[n][cur_week] += 5;
