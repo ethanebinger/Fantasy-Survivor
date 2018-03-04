@@ -38,13 +38,7 @@ function init() {
         window.scrollTo(0,0);
     });
     $("#nextBtn").click(function(e) {
-        // if you have reached the end of the form...
-        if ($("#nextBtn").html() === "Submit" || currentTab >= x.length) {
-            var form_results = get_results();
-            PushPullGithub(form_results);
-        } else {
-            nextPrev(1);
-        };
+        nextPrev(1);
     });
 
     function showTab(n) {
@@ -76,6 +70,11 @@ function init() {
         x[currentTab].style.display = "none";
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if ($("#nextBtn").html() === "Submit" || currentTab >= x.length && n === -1) {
+            var form_results = get_results();
+            PushPullGithub(form_results);
+        }
         // Display the correct tab:
         showTab(currentTab);
     };
