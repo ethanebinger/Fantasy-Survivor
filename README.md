@@ -11,6 +11,7 @@ Weekly points are given if the player properly guesses the following:
 - Who will win immunity?                  (+7.5)
 - Who will be eliminated?                 (+10)
 - Who will be safe?                       (+10)
+- Who (if any) will be sent to Ghost Island? (+2)
 - Will there be nudity this episode?      (+2)
 - Whose quote is the episode title?       (+2)
 - Will an immunity idol be found?         (+2)
