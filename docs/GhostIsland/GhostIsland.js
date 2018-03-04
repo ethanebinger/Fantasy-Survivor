@@ -383,19 +383,6 @@ function init_chart(responses) {
             'Week 15': 0
         }
     ];
-    /*
-    // defined above
-    var responses = [
-        {   'name': 'Ethan', 
-            'week': 1, 
-            'date': '2/28/18', 
-            'reward': '', 
-            'immunity': '', 
-            'eliminated': '', 
-            'safe': ''
-        },
-    ];
-    //*/
     var results = [
         {	'week': 1,
             'date': '2/28/18',
@@ -407,7 +394,31 @@ function init_chart(responses) {
             'idolPlayed': 'no',
             'titleQuote': 'Jeff Probst',
             'nudity': 'no',
-            'ghostIsland': 'Jacob Derwin'
+            'ghostIsland': 'Jacob Derwin',
+            'malolo': [
+                'Brendan Shapiro',
+                'Donathan Hurley',
+                'Jacob Derwin',
+                'James Lim',
+                'Jenna Bowman',
+                'Laurel Johnson',
+                'Libby Vincek',
+                'Michael Yerger',
+                'Stephanie Gonzalez',
+                'Stephanie Johnson'
+            ],
+            'naviti': [
+                'Angela Perkins',
+                'Bradley Kleihege',
+                'Chelsea Townsend',
+                'Chris Noble',
+                'Desiree Afuye',
+                'Domenick Abbate',
+                'Kellyn Bechtold',
+                'Morgan Ricke',
+                'Sebastian Noel',
+                'Wendell Holland'
+            ]
         },
         {	'week': 1.5,
             'date': '2/28/18',
@@ -419,9 +430,43 @@ function init_chart(responses) {
             'idolPlayed': 'no',
             'titleQuote': null,
             'nudity': 'no',
-            'ghostIsland': 'Donathan Hurley'
+            'ghostIsland': 'Donathan Hurley',
+            'malolo': [
+                'Brendan Shapiro',
+                'Donathan Hurley',
+                'Jacob Derwin',
+                'James Lim',
+                'Jenna Bowman',
+                'Laurel Johnson',
+                'Libby Vincek',
+                'Michael Yerger',
+                'Stephanie Johnson'
+            ],
+            'naviti': [
+                'Angela Perkins',
+                'Bradley Kleihege',
+                'Chelsea Townsend',
+                'Chris Noble',
+                'Desiree Afuye',
+                'Domenick Abbate',
+                'Kellyn Bechtold',
+                'Morgan Ricke',
+                'Sebastian Noel',
+                'Wendell Holland'
+            ]
         }
     ];
+    
+    // Function to check if x in array
+    var inArray = function(x,y) {
+        var i;
+        for (i=0; i < y.length; i++) {
+            if (y[i] === x) {
+                return true;
+            };
+        };
+        return false;
+    };
 
     // Create arrays for players, keys (weeks)
     var players = scores.map(function(d) { return d.name; });
@@ -471,6 +516,8 @@ function init_chart(responses) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
+                var malolo = results[i].malolo;
+                var naviti = results[i].naviti;
             for (var j=0; j<responses.length; j++) {
                 // Determine Week
                 var cur_week = 0;
@@ -509,15 +556,35 @@ function init_chart(responses) {
                 if (responses[j].name == cur_player && results[i].week == cur_week) {
                     // Week
                     var cur_week = 'Week ' + String(results[i].week);
-                    // Reward
-                    if (results[i].reward == responses[j].reward && responses[j].reward) {
-                        scores[n][cur_week] += 5;
-                        scores[n].total += 5;
-                    };
-                    // Immunity
-                    if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                        scores[n][cur_week] += 7.5;
-                        scores[n].total += 7.5;
+                    // Determine by team if before merge but no swap:
+                    if (results[i].merge === 'yes' || results[i].merge === 'swap') {
+                        // Reward
+                        if (results[i].reward == responses[j].reward && responses[j].reward) {
+                            scores[n][cur_week] += 5;
+                            scores[n].total += 5;
+                        };
+                        // Immunity
+                        if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
+                            scores[n][cur_week] += 7.5;
+                            scores[n].total += 7.5;
+                        };
+                    } else {
+                        // Reward
+                        if (results[i].reward === 'Malolo' && inArray(responses[j].reward, malolo) && responses[j].reward) {
+                            scores[n][cur_week] += 5;
+                            scores[n].total += 5;
+                        } else if (results[i].reward === 'Naviti' && inArray(responses[j].reward, naviti) && responses[j].reward) {
+                            scores[n][cur_week] += 5;
+                            scores[n].total += 5;   
+                        };
+                        // Immunity
+                        if (results[i].immunity == 'Malolo' && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
+                            scores[n][cur_week] += 7.5;
+                            scores[n].total += 7.5;
+                        } else if (results[i].immunity == 'Naviti' && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
+                            scores[n][cur_week] += 7.5;
+                            scores[n].total += 7.5;
+                        };
                     };
                     // Eliminated
                     if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
@@ -530,22 +597,27 @@ function init_chart(responses) {
                         scores[n].total += 10;
                     };
                     // Title Quote
-                    if (results[i].titleQuote !== responses[j].titleQuote && responses[j].titleQuote) {
+                    if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
+                        scores[n][cur_week] += 2;
+                        scores[n].total += 2;
+                    };
+                    // Ghost Island Inhabitant
+                    if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
                         scores[n][cur_week] += 2;
                         scores[n].total += 2;
                     };
                     // Nudity
-                    if (results[i].nudity !== responses[j].nudity && responses[j].nudity) {
+                    if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
                         scores[n][cur_week] += 2;
                         scores[n].total += 2;
                     };
                     // Idol Found
-                    if (results[i].idolFound !== responses[j].idolFound && responses[j].idolFound) {
+                    if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
                         scores[n][cur_week] += 2;
                         scores[n].total += 2;
                     };
                     // Idol Played
-                    if (results[i].idolPlayed !== responses[j].idolPlayed && responses[j].idolPlayed) {
+                    if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
                         scores[n][cur_week] += 2;
                         scores[n].total += 2;
                     };
