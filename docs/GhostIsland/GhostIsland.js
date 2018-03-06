@@ -536,10 +536,11 @@ function init_chart(responses) {
                 var submit_time = new Date(responses[j].submit_time);
                 if (submit_time <= new Date(2018,1,28,20)) {
                     // Extra Loop for Double Episode
-                    if (inArray(1, iter_ep)) {
+                    if (inArray(1, iter_ep) && responses[j].name == cur_player) {
                         cur_vote = 2;
                     } else {
                         cur_vote = 1;
+                        iter_ep.push(cur_vote);
                     };
                 } else if (submit_time <= new Date(2018,2,7,20)) {
                     cur_vote = 3;
@@ -568,10 +569,8 @@ function init_chart(responses) {
                 } else if (submit_time <= new Date(2018,4,30,20)) {
                     cur_vote = 15;
                 };
-                iter_ep.push(cur_vote);
                 // Validate Player, Vote Number/Week
                 if (responses[j].name == cur_player && results[i].vote == cur_vote) {
-                    // vote
                     var val_vote = 'Vote ' + String(results[i].vote);
                     // Determine by team if before merge but no swap:
                     if (results[i].merge === 'Yes' || results[i].merge === 'Swap') {
