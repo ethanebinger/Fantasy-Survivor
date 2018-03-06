@@ -531,111 +531,114 @@ function init_chart(responses) {
                 var naviti = results[i].naviti;
                 var iter_ep = [];
             for (var j=0; j<responses.length; j++) {
-                // Determine Vote Number/Week (and ignore late sumissions)
-                var cur_vote = 0;
-                var submit_time = new Date(responses[j].submit_time);
-                if (submit_time <= new Date(2018,1,28,20)) {
-                    // Extra Loop for Double Episode
-                    if (inArray(1, iter_ep) && responses[j].name == cur_player) {
-                        cur_vote = 2;
-                    } else {
-                        cur_vote = 1;
-                        iter_ep.push(cur_vote);
-                    };
-                } else if (submit_time <= new Date(2018,2,7,20)) {
-                    cur_vote = 3;
-                } else if (submit_time <= new Date(2018,2,14,20)) {
-                    cur_vote = 4;
-                } else if (submit_time <= new Date(2018,2,21,20)) {
-                    cur_vote = 5;
-                } else if (submit_time <= new Date(2018,2,28,20)) {
-                    cur_vote = 6;
-                } else if (submit_time <= new Date(2018,3,4,20)) {
-                    cur_vote = 7;
-                } else if (submit_time <= new Date(2018,3,11,20)) {
-                    cur_vote = 8;
-                } else if (submit_time <= new Date(2018,3,18,20)) {
-                    cur_vote = 9;
-                } else if (submit_time <= new Date(2018,3,25,20)) {
-                    cur_vote = 10;
-                } else if (submit_time <= new Date(2018,4,2,20)) {
-                    cur_vote = 11;
-                } else if (submit_time <= new Date(2018,4,9,20)) {
-                    cur_vote = 12;
-                } else if (submit_time <= new Date(2018,4,16,20)) {
-                    cur_vote = 13;
-                } else if (submit_time <= new Date(2018,4,23,20)) {
-                    cur_vote = 14;
-                } else if (submit_time <= new Date(2018,4,30,20)) {
-                    cur_vote = 15;
-                };
-                // Validate Player, Vote Number/Week
-                if (responses[j].name == cur_player && results[i].vote == cur_vote) {
-                    var val_vote = 'Vote ' + String(results[i].vote);
-                    // Determine by team if before merge but no swap:
-                    if (results[i].merge === 'Yes' || results[i].merge === 'Swap') {
-                        // Reward
-                        if (results[i].reward == responses[j].reward && responses[j].reward) {
-                            scores[n][val_vote] += 5;
-                            scores[n].total += 5;
+                // Validate Player
+                if (responses[j].name === cur_player) {
+                    // Determine Vote Number/Week (and ignore late sumissions)
+                    var cur_vote = 0;
+                    var submit_time = new Date(responses[j].submit_time);
+                    if (submit_time <= new Date(2018,1,28,20)) {
+                        // Extra Loop for Double Episode
+                        if (inArray(1, iter_ep)) {
+                            cur_vote = 2;
+                        } else {
+                            cur_vote = 1;
+                            iter_ep.push(cur_vote);
                         };
-                        // Immunity
-                        if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                            scores[n][val_vote] += 7.5;
-                            scores[n].total += 7.5;
+                    } else if (submit_time <= new Date(2018,2,7,20)) {
+                        cur_vote = 3;
+                    } else if (submit_time <= new Date(2018,2,14,20)) {
+                        cur_vote = 4;
+                    } else if (submit_time <= new Date(2018,2,21,20)) {
+                        cur_vote = 5;
+                    } else if (submit_time <= new Date(2018,2,28,20)) {
+                        cur_vote = 6;
+                    } else if (submit_time <= new Date(2018,3,4,20)) {
+                        cur_vote = 7;
+                    } else if (submit_time <= new Date(2018,3,11,20)) {
+                        cur_vote = 8;
+                    } else if (submit_time <= new Date(2018,3,18,20)) {
+                        cur_vote = 9;
+                    } else if (submit_time <= new Date(2018,3,25,20)) {
+                        cur_vote = 10;
+                    } else if (submit_time <= new Date(2018,4,2,20)) {
+                        cur_vote = 11;
+                    } else if (submit_time <= new Date(2018,4,9,20)) {
+                        cur_vote = 12;
+                    } else if (submit_time <= new Date(2018,4,16,20)) {
+                        cur_vote = 13;
+                    } else if (submit_time <= new Date(2018,4,23,20)) {
+                        cur_vote = 14;
+                    } else if (submit_time <= new Date(2018,4,30,20)) {
+                        cur_vote = 15;
+                    };
+                    // Validate Vote Number/Week
+                    if (results[i].vote === cur_vote) {
+                        var val_vote = 'Vote ' + String(results[i].vote);
+                        // Determine by team if before merge but no swap:
+                        if (results[i].merge === 'Yes' || results[i].merge === 'Swap') {
+                            // Reward
+                            if (results[i].reward == responses[j].reward && responses[j].reward) {
+                                scores[n][val_vote] += 5;
+                                scores[n].total += 5;
+                            };
+                            // Immunity
+                            if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
+                                scores[n][val_vote] += 7.5;
+                                scores[n].total += 7.5;
+                            };
+                        } else {
+                            // Reward
+                            if (results[i].reward === 'Malolo' && inArray(responses[j].reward, malolo) && responses[j].reward) {
+                                scores[n][val_vote] += 5;
+                                scores[n].total += 5;
+                            } else if (results[i].reward === 'Naviti' && inArray(responses[j].reward, naviti) && responses[j].reward) {
+                                scores[n][val_vote] += 5;
+                                scores[n].total += 5;   
+                            };
+                            // Immunity
+                            if (results[i].immunity == 'Malolo' && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
+                                scores[n][val_vote] += 7.5;
+                                scores[n].total += 7.5;
+                            } else if (results[i].immunity == 'Naviti' && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
+                                scores[n][val_vote] += 7.5;
+                                scores[n].total += 7.5;
+                            };
                         };
-                    } else {
-                        // Reward
-                        if (results[i].reward === 'Malolo' && inArray(responses[j].reward, malolo) && responses[j].reward) {
-                            scores[n][val_vote] += 5;
-                            scores[n].total += 5;
-                        } else if (results[i].reward === 'Naviti' && inArray(responses[j].reward, naviti) && responses[j].reward) {
-                            scores[n][val_vote] += 5;
-                            scores[n].total += 5;   
+                        // Eliminated
+                        if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
+                            scores[n][val_vote] += 10;
+                            scores[n].total += 10;
                         };
-                        // Immunity
-                        if (results[i].immunity == 'Malolo' && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
-                            scores[n][val_vote] += 7.5;
-                            scores[n].total += 7.5;
-                        } else if (results[i].immunity == 'Naviti' && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
-                            scores[n][val_vote] += 7.5;
-                            scores[n].total += 7.5;
+                        // Safe
+                        if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
+                            scores[n][val_vote] += 10;
+                            scores[n].total += 10;
                         };
-                    };
-                    // Eliminated
-                    if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                        scores[n][val_vote] += 10;
-                        scores[n].total += 10;
-                    };
-                    // Safe
-                    if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-                        scores[n][val_vote] += 10;
-                        scores[n].total += 10;
-                    };
-                    // Title Quote
-                    if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                        scores[n][val_vote] += 2;
-                        scores[n].total += 2;
-                    };
-                    // Ghost Island Inhabitant
-                    if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
-                        scores[n][val_vote] += 2;
-                        scores[n].total += 2;
-                    };
-                    // Nudity
-                    if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                        scores[n][val_vote] += 2;
-                        scores[n].total += 2;
-                    };
-                    // Idol Found
-                    if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                        scores[n][val_vote] += 2;
-                        scores[n].total += 2;
-                    };
-                    // Idol Played
-                    if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                        scores[n][val_vote] += 2;
-                        scores[n].total += 2;
+                        // Title Quote
+                        if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
+                            scores[n][val_vote] += 2;
+                            scores[n].total += 2;
+                        };
+                        // Ghost Island Inhabitant
+                        if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
+                            scores[n][val_vote] += 2;
+                            scores[n].total += 2;
+                        };
+                        // Nudity
+                        if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
+                            scores[n][val_vote] += 2;
+                            scores[n].total += 2;
+                        };
+                        // Idol Found
+                        if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
+                            scores[n][val_vote] += 2;
+                            scores[n].total += 2;
+                        };
+                        // Idol Played
+                        if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
+                            scores[n][val_vote] += 2;
+                            scores[n].total += 2;
+                        };
                     };
                 };
             };
