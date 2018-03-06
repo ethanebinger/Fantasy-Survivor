@@ -514,6 +514,7 @@ function init_chart(responses) {
     // Calculate scores
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
+        var iter_ep = [];
         for (var i=0; i<results.length; i++) {
                 var malolo = results[i].malolo;
                 var naviti = results[i].naviti;
@@ -523,34 +524,40 @@ function init_chart(responses) {
                 var submit_time = new Date(responses[j].submit_time);
                 // Determine Week and ignore late sumissions
                 if (submit_time <= new Date(2018,1,28,20)) {
-                    cur_week = 1;
+                    // Extra Loop for Double Episode
+                    if (inArray(iter_ep, 1)) {
+                        cur_week = 2;
+                    } else {
+                        cur_week = 1;
+                    };
                 } else if (submit_time <= new Date(2018,2,7,20)) {
-                    cur_week = 2;
-                } else if (submit_time <= new Date(2018,2,14,20)) {
                     cur_week = 3;
-                } else if (submit_time <= new Date(2018,2,21,20)) {
+                } else if (submit_time <= new Date(2018,2,14,20)) {
                     cur_week = 4;
-                } else if (submit_time <= new Date(2018,2,28,20)) {
+                } else if (submit_time <= new Date(2018,2,21,20)) {
                     cur_week = 5;
-                } else if (submit_time <= new Date(2018,3,4,20)) {
+                } else if (submit_time <= new Date(2018,2,28,20)) {
                     cur_week = 6;
-                } else if (submit_time <= new Date(2018,3,11,20)) {
+                } else if (submit_time <= new Date(2018,3,4,20)) {
                     cur_week = 7;
-                } else if (submit_time <= new Date(2018,3,18,20)) {
+                } else if (submit_time <= new Date(2018,3,11,20)) {
                     cur_week = 8;
-                } else if (submit_time <= new Date(2018,3,25,20)) {
+                } else if (submit_time <= new Date(2018,3,18,20)) {
                     cur_week = 9;
-                } else if (submit_time <= new Date(2018,4,2,20)) {
+                } else if (submit_time <= new Date(2018,3,25,20)) {
                     cur_week = 10;
-                } else if (submit_time <= new Date(2018,4,9,20)) {
+                } else if (submit_time <= new Date(2018,4,2,20)) {
                     cur_week = 11;
-                } else if (submit_time <= new Date(2018,4,16,20)) {
+                } else if (submit_time <= new Date(2018,4,9,20)) {
                     cur_week = 12;
-                } else if (submit_time <= new Date(2018,4,23,20)) {
+                } else if (submit_time <= new Date(2018,4,16,20)) {
                     cur_week = 13;
-                } else if (submit_time <= new Date(2018,4,30,20)) {
+                } else if (submit_time <= new Date(2018,4,23,20)) {
                     cur_week = 14;
+                } else if (submit_time <= new Date(2018,4,30,20)) {
+                    cur_week = 15;
                 };
+                iter_ep.push(cur_week);
                 // Validate Player, Week
                 if (responses[j].name == cur_player && results[i].week == cur_week) {
                     // Week
