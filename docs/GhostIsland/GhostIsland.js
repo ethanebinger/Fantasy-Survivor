@@ -167,223 +167,235 @@ function init_chart(responses) {
     var scores = [
         {	'name': 'Walter', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Vivian', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Myles', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Lucas', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Josh', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Ezra', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Ethan', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Emily', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'David', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Colin', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Anastassia', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         },
         {	'name': 'Aaron', 
             'total': 0, 
-            'Week 1': 0, 
-            'Week 2': 0, 
-            'Week 3': 0,
-            'Week 4': 0, 
-            'Week 5': 0, 
-            'Week 6': 0,
-            'Week 7': 0, 
-            'Week 8': 0, 
-            'Week 9': 0,
-            'Week 10': 0, 
-            'Week 11': 0, 
-            'Week 12': 0,
-            'Week 13': 0, 
-            'Week 14': 0, 
-            'Week 15': 0
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0, 
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0
         }
     ];
     var results = [
-        {	'week': 1,
+        {	'vote': 1,
             'date': '2/28/18',
             'merge': 'No',
             'reward': 'Malolo', 
@@ -419,13 +431,13 @@ function init_chart(responses) {
                 'Wendell Holland'
             ]
         },
-        {	'week': 2,
+        {	'vote': 2,
             'date': '2/28/18',
             'merge': 'No',
             'reward': null, 
             'immunity': 'Naviti', 
             'eliminated': 'Jacob Derwin',
-            'idolFound': 'Domenick Abbate',
+            'idolFound': 'Yes', //Domenick Abbate
             'idolPlayed': 'No',
             'titleQuote': null,
             'nudity': 'No',
@@ -467,7 +479,7 @@ function init_chart(responses) {
         return false;
     };
 
-    // Create arrays for players, keys (weeks)
+    // Create arrays for players, keys (votes)
     var players = scores.map(function(d) { return d.name; });
     var keys = Object.keys(scores[0]).splice(2,)
 
@@ -519,112 +531,111 @@ function init_chart(responses) {
                 var malolo = results[i].malolo;
                 var naviti = results[i].naviti;
             for (var j=0; j<responses.length; j++) {
-                // Determine Week
-                var cur_week = 0;
+                // Determine Vote NUuber/Week (and ignore late sumissions)
+                var cur_vote = 0;
                 var submit_time = new Date(responses[j].submit_time);
-                // Determine Week and ignore late sumissions
                 if (submit_time <= new Date(2018,1,28,20)) {
                     // Extra Loop for Double Episode
                     if (inArray(1, iter_ep)) {
-                        cur_week = 2;
+                        cur_vote = 2;
                     } else {
-                        cur_week = 1;
+                        cur_vote = 1;
                     };
                 } else if (submit_time <= new Date(2018,2,7,20)) {
-                    cur_week = 3;
+                    cur_vote = 3;
                 } else if (submit_time <= new Date(2018,2,14,20)) {
-                    cur_week = 4;
+                    cur_vote = 4;
                 } else if (submit_time <= new Date(2018,2,21,20)) {
-                    cur_week = 5;
+                    cur_vote = 5;
                 } else if (submit_time <= new Date(2018,2,28,20)) {
-                    cur_week = 6;
+                    cur_vote = 6;
                 } else if (submit_time <= new Date(2018,3,4,20)) {
-                    cur_week = 7;
+                    cur_vote = 7;
                 } else if (submit_time <= new Date(2018,3,11,20)) {
-                    cur_week = 8;
+                    cur_vote = 8;
                 } else if (submit_time <= new Date(2018,3,18,20)) {
-                    cur_week = 9;
+                    cur_vote = 9;
                 } else if (submit_time <= new Date(2018,3,25,20)) {
-                    cur_week = 10;
+                    cur_vote = 10;
                 } else if (submit_time <= new Date(2018,4,2,20)) {
-                    cur_week = 11;
+                    cur_vote = 11;
                 } else if (submit_time <= new Date(2018,4,9,20)) {
-                    cur_week = 12;
+                    cur_vote = 12;
                 } else if (submit_time <= new Date(2018,4,16,20)) {
-                    cur_week = 13;
+                    cur_vote = 13;
                 } else if (submit_time <= new Date(2018,4,23,20)) {
-                    cur_week = 14;
+                    cur_vote = 14;
                 } else if (submit_time <= new Date(2018,4,30,20)) {
-                    cur_week = 15;
+                    cur_vote = 15;
                 };
-                iter_ep.push(cur_week);
-                // Validate Player, Week
-                if (responses[j].name == cur_player && results[i].week == cur_week) {
-                    // Week
-                    var cur_week = 'Week ' + String(results[i].week);
+                iter_ep.push(cur_vote);
+                // Validate Player, Vote Number/Week
+                if (responses[j].name == cur_player && results[i].vote == cur_vote) {
+                    // vote
+                    var val_vote = 'Vote ' + String(results[i].vote);
                     // Determine by team if before merge but no swap:
                     if (results[i].merge === 'Yes' || results[i].merge === 'Swap') {
                         // Reward
                         if (results[i].reward == responses[j].reward && responses[j].reward) {
-                            scores[n][cur_week] += 5;
+                            scores[n][val_vote] += 5;
                             scores[n].total += 5;
                         };
                         // Immunity
                         if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                            scores[n][cur_week] += 7.5;
+                            scores[n][val_vote] += 7.5;
                             scores[n].total += 7.5;
                         };
                     } else {
                         // Reward
                         if (results[i].reward === 'Malolo' && inArray(responses[j].reward, malolo) && responses[j].reward) {
-                            scores[n][cur_week] += 5;
+                            scores[n][val_vote] += 5;
                             scores[n].total += 5;
                         } else if (results[i].reward === 'Naviti' && inArray(responses[j].reward, naviti) && responses[j].reward) {
-                            scores[n][cur_week] += 5;
+                            scores[n][val_vote] += 5;
                             scores[n].total += 5;   
                         };
                         // Immunity
                         if (results[i].immunity == 'Malolo' && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
-                            scores[n][cur_week] += 7.5;
+                            scores[n][val_vote] += 7.5;
                             scores[n].total += 7.5;
                         } else if (results[i].immunity == 'Naviti' && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
-                            scores[n][cur_week] += 7.5;
+                            scores[n][val_vote] += 7.5;
                             scores[n].total += 7.5;
                         };
                     };
                     // Eliminated
                     if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                        scores[n][cur_week] += 10;
+                        scores[n][val_vote] += 10;
                         scores[n].total += 10;
                     };
                     // Safe
                     if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-                        scores[n][cur_week] += 10;
+                        scores[n][val_vote] += 10;
                         scores[n].total += 10;
                     };
                     // Title Quote
                     if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                        scores[n][cur_week] += 2;
+                        scores[n][val_vote] += 2;
                         scores[n].total += 2;
                     };
                     // Ghost Island Inhabitant
                     if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
-                        scores[n][cur_week] += 2;
+                        scores[n][val_vote] += 2;
                         scores[n].total += 2;
                     };
                     // Nudity
                     if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                        scores[n][cur_week] += 2;
+                        scores[n][val_vote] += 2;
                         scores[n].total += 2;
                     };
                     // Idol Found
                     if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                        scores[n][cur_week] += 2;
+                        scores[n][val_vote] += 2;
                         scores[n].total += 2;
                     };
                     // Idol Played
                     if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                        scores[n][cur_week] += 2;
+                        scores[n][val_vote] += 2;
                         scores[n].total += 2;
                     };
                 };
