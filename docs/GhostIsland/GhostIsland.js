@@ -525,7 +525,7 @@ function init_chart(responses) {
                 // Determine Week and ignore late sumissions
                 if (submit_time <= new Date(2018,1,28,20)) {
                     // Extra Loop for Double Episode
-                    if (inArray(iter_ep, 1)) {
+                    if (inArray(1, iter_ep)) {
                         cur_week = 2;
                     } else {
                         cur_week = 1;
