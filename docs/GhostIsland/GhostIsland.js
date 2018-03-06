@@ -419,7 +419,7 @@ function init_chart(responses) {
                 'Wendell Holland'
             ]
         },
-        {	'week': 1.5,
+        {	'week': 2,
             'date': '2/28/18',
             'merge': 'No',
             'reward': null, 
