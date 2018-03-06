@@ -526,12 +526,12 @@ function init_chart(responses) {
     // Calculate scores
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
-        var iter_ep = [];
         for (var i=0; i<results.length; i++) {
                 var malolo = results[i].malolo;
                 var naviti = results[i].naviti;
+                var iter_ep = [];
             for (var j=0; j<responses.length; j++) {
-                // Determine Vote NUuber/Week (and ignore late sumissions)
+                // Determine Vote Number/Week (and ignore late sumissions)
                 var cur_vote = 0;
                 var submit_time = new Date(responses[j].submit_time);
                 if (submit_time <= new Date(2018,1,28,20)) {
