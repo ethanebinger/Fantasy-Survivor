@@ -16,5 +16,23 @@
     "pick_1": "Kellyn",
     "pick_2": "Wendell",
     "pick_3": "Michael",
+  },
+  {
+    "name":"Vivian",
+    "pick_1": "Laurel",
+    "pick_2": "Sebastian",
+    "pick_3": "Stephanie",
+  },
+  {
+    "name":"Emily",
+    "pick_1": "Kellyn",
+    "pick_2": "Brendan",
+    "pick_3": "Stephanie",
+  },
+  {
+    "name":"Colin",
+    "pick_1": "Kellyn",
+    "pick_2": "Wendell",
+    "pick_3": "Stephanie",
   }
 ]
