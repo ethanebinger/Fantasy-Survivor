@@ -465,6 +465,40 @@ function init_chart(responses) {
                 'Sebastian Noel',
                 'Wendell Holland'
             ]
+        },
+        {	'vote': 3,
+            'date': '3/7/18',
+            'merge': 'Swap',
+            'reward': null, 
+            'immunity': 'Naviti', 
+            'eliminated': 'Morgan Ricke',
+            'idolFound': 'Yes', //Micahel Yerger
+            'idolPlayed': 'No',
+            'titleQuote': 'Morgan Ricke',
+            'nudity': 'No',
+            'ghostIsland': 'Chris Noble',
+            'malolo': [
+                'Brendan Shapiro',
+                'Jenna Bowman',
+                'Michael Yerger',
+                'Stephanie Johnson',
+                'Bradley Kleihege',
+                'Chelsea Townsend',
+                'Sebastian Noel',
+                'Kellyn Bechtold',
+                'Desiree Afuye'
+            ],
+            'naviti': [
+                'Angela Perkins',
+                'Donathan Hurley',
+                'James Lim',
+                'Laurel Johnson',
+                'Libby Vincek',
+                'Chris Noble',
+                'Domenick Abbate',
+                'Morgan Ricke',
+                'Wendell Holland'
+            ]
         }
     ];
     
@@ -575,7 +609,7 @@ function init_chart(responses) {
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
                         // Determine by team if before merge but no swap:
-                        if (results[i].merge === 'Yes' || results[i].merge === 'Swap') {
+                        if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             // Reward
                             if (results[i].reward == responses[j].reward && responses[j].reward) {
                                 scores[n][val_vote] += 5;
