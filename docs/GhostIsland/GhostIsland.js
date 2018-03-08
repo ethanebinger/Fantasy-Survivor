@@ -470,7 +470,7 @@ function init_chart(responses) {
             'date': '3/7/18',
             'merge': 'Swap',
             'reward': null, 
-            'immunity': 'Naviti', 
+            'immunity': 'Malolo', 
             'eliminated': 'Morgan Ricke',
             'idolFound': 'Yes', //Micahel Yerger
             'idolPlayed': 'No',
