@@ -40,5 +40,11 @@
     "pick_1": "Jenna",
     "pick_2": "Wendell",
     "pick_3": "Bradley",
+  },
+  {
+    "name":"Ezra",
+    "pick_1": "Bradley",
+    "pick_2": "Domenick",
+    "pick_3": "Stephanie",
   }
 ]
