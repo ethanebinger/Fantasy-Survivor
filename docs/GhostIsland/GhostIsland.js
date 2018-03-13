@@ -71,7 +71,7 @@ function init() {
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
         // if you have reached the end of the form...
-        if ($("#nextBtn").html() === "Submit" || currentTab >= x.length && n === -1) {
+        if (($("#nextBtn").html() === "Submit" || currentTab >= x.length) && n === -1) {
             var form_results = get_results();
             PushPullGithub(form_results);
         }
@@ -130,7 +130,7 @@ function PushPullGithub(form_results) {
             var x = result.content;
             var existing_responses = atob(x);
             var responses = JSON.parse(existing_responses);
-
+ /* TESTING
             // PUSH new data (only following index.html submission)
             if (form_results != 0) {
                 responses.push(form_results);
@@ -158,6 +158,7 @@ function PushPullGithub(form_results) {
                 // load results chart
                 init_chart(responses);  
             };
+//*/
         }
     });
 };
@@ -472,7 +473,7 @@ function init_chart(responses) {
             'reward': null, 
             'immunity': 'Malolo', 
             'eliminated': 'Morgan Ricke',
-            'idolFound': 'Yes', //Micahel Yerger
+            'idolFound': 'Yes', //Michael Yerger
             'idolPlayed': 'No',
             'titleQuote': 'Morgan Ricke',
             'nudity': 'No',
