@@ -73,7 +73,7 @@ function init() {
         // if you have reached the end of the form...
         if (($("#nextBtn").html() === "Submit" || currentTab >= x.length) && n !== -1) {
             var form_results = get_results();
-            //PushPullGithub(form_results);
+            PushPullGithub(form_results);
         };
         // Display the correct tab:
         showTab(currentTab);
@@ -130,7 +130,6 @@ function PushPullGithub(form_results) {
             var x = result.content;
             var existing_responses = atob(x);
             var responses = JSON.parse(existing_responses);
- /* TESTING
             // PUSH new data (only following index.html submission)
             if (form_results != 0) {
                 responses.push(form_results);
@@ -158,7 +157,6 @@ function PushPullGithub(form_results) {
                 // load results chart
                 init_chart(responses);  
             };
-//*/
         }
     });
 };
