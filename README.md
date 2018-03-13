@@ -14,8 +14,8 @@ Weekly points are given if the player properly guesses the following:
 - Who (if any) will be sent to Ghost Island? (+2)
 - Will there be nudity this episode?      (+2)
 - Whose quote is the episode title?       (+2)
-- Will an immunity idol be found?         (+2)
-- Will an immunity idol be played?        (+2)
+- Will an immunity idol or secret advantage be found?         (+2)
+- Will an immunity idol or secret advantage be played?        (+2)
 
 Before the merge points for reward and immunity will be assesed per tribe, so simply pick any player on the tribe you predict will win that challenge.
 
