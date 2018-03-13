@@ -71,10 +71,10 @@ function init() {
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
         // if you have reached the end of the form...
-        if (($("#nextBtn").html() === "Submit" || currentTab >= x.length) && n === -1) {
+        if (($("#nextBtn").html() === "Submit" || currentTab >= x.length) && n !== -1) {
             var form_results = get_results();
-            PushPullGithub(form_results);
-        }
+            //PushPullGithub(form_results);
+        };
         // Display the correct tab:
         showTab(currentTab);
     };
