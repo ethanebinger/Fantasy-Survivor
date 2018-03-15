@@ -498,6 +498,39 @@ function init_chart(responses) {
                 'Morgan Ricke',
                 'Wendell Holland'
             ]
+        },
+        {	'vote': 4,
+            'date': '3/14/18',
+            'merge': 'No',
+            'reward': 'Naviti', 
+            'immunity': 'Naviti', 
+            'eliminated': 'Brendan Shapiro',
+            'idolFound': 'No',
+            'idolPlayed': 'Yes',
+            'titleQuote': 'Kellyn Bechtold',
+            'nudity': 'No',
+            'ghostIsland': 'Kellyn Bechtold',
+            'malolo': [
+                'Brendan Shapiro',
+                'Jenna Bowman',
+                'Michael Yerger',
+                'Stephanie Johnson',
+                'Bradley Kleihege',
+                'Chelsea Townsend',
+                'Sebastian Noel',
+                'Kellyn Bechtold',
+                'Desiree Afuye'
+            ],
+            'naviti': [
+                'Angela Perkins',
+                'Donathan Hurley',
+                'James Lim',
+                'Laurel Johnson',
+                'Libby Vincek',
+                'Chris Noble',
+                'Domenick Abbate',
+                'Wendell Holland'
+            ]
         }
     ];
     
