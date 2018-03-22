@@ -550,6 +550,38 @@ function init_chart(responses) {
                 'Domenick Abbate',
                 'Wendell Holland'
             ]
+        },
+        {	'vote': 5,
+            'date': '3/21/18',
+            'merge': 'No',
+            'reward': 'Naviti', 
+            'immunity': 'Naviti', 
+            'eliminated': 'Stephanie Johnson',
+            'idolFound': 'No',
+            'idolPlayed': 'No',
+            'titleQuote': 'Chris Noble',
+            'nudity': 'Yes',
+            'ghostIsland': 'Stephanie Johnson',
+            'malolo': [
+                'Jenna Bowman',
+                'Michael Yerger',
+                'Stephanie Johnson',
+                'Bradley Kleihege',
+                'Chelsea Townsend',
+                'Sebastian Noel',
+                'Kellyn Bechtold',
+                'Desiree Afuye'
+            ],
+            'naviti': [
+                'Angela Perkins',
+                'Donathan Hurley',
+                'James Lim',
+                'Laurel Johnson',
+                'Libby Vincek',
+                'Chris Noble',
+                'Domenick Abbate',
+                'Wendell Holland'
+            ]
         }
     ];
     
