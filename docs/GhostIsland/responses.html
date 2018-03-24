@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639">
+        <title>Survivor - Ghost Island</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- Stylesheet and Javascript -->
+        <link rel="stylesheet" href="GhostIsland.css">
+        <script src="GhostIsland.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <div id="survivor_form">
+            <div id="title">
+                <h1>Fantasy Survivor - Ghost Island</h1>
+                <img src="https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639"/>
+            </div>
+            <div class="tab graph">
+                <p>Select name to see past responses: </p>
+                <select id="past_responses_name">
+                    <option value="">
+                        Select One
+                    </option>
+                    <option value="Aaron">
+                        Aaron
+                    </option>
+                    <option value="Anastassia">
+                        Anastassia
+                    </option>
+                    <option value="Colin">
+                        Colin
+                    </option>
+                    <option value="David">
+                        David
+                    </option>
+                    <option value="Emily">
+                        Emily
+                    </option>
+                    <option value="Ethan">
+                        Ethan
+                    </option>
+                    <option value="Ezra">
+                        Ezra
+                    </option>
+                    <option value="Hue">
+                        Hue
+                    </option>
+                    <option value="Josh">
+                        Josh
+                    </option>
+                    <option value="Lucas">
+                        Lucas
+                    </option>
+                    <option value="Myles">
+                        Myles
+                    </option>
+                    <option value="Vivian">
+                        Vivian
+                    </option>
+                    <option value="Walter">
+                        Walter
+                    </option>
+                </select>
+                <div id="past_responses">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    
+    <script>
+        $(document).ready(function(){
+           getPastResponses(); 
+        });
+    </script>
+    
+</html>
