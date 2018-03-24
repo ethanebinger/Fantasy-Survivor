@@ -159,6 +159,15 @@ function PushPullGithub(form_results) {
             };
         }
     });
+    $('#PastResponses').click(
+        window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/responses.html"
+    );
+};
+
+function getPastResponses() {
+    $("#PastResponses").change(function() {
+        alert( "Handler for .change() called." );
+    });
 };
 
 function init_chart(responses) {
@@ -424,6 +433,7 @@ function init_chart(responses) {
             'titleQuote': 'Jeff Probst',
             'nudity': 'No',
             'ghostIsland': 'Jacob Derwin',
+            'ghostIdol': 'Yes',
             'malolo': [
                 'Brendan Shapiro',
                 'Donathan Hurley',
@@ -460,6 +470,7 @@ function init_chart(responses) {
             'titleQuote': null,
             'nudity': 'No',
             'ghostIsland': 'Donathan Hurley',
+            'ghostIdol': 'No',
             'malolo': [
                 'Brendan Shapiro',
                 'Donathan Hurley',
@@ -495,6 +506,7 @@ function init_chart(responses) {
             'titleQuote': 'Morgan Ricke',
             'nudity': 'No',
             'ghostIsland': 'Chris Noble',
+            'ghostIdol': 'No',
             'malolo': [
                 'Brendan Shapiro',
                 'Jenna Bowman',
@@ -529,6 +541,7 @@ function init_chart(responses) {
             'titleQuote': 'Kellyn Bechtold',
             'nudity': 'No',
             'ghostIsland': 'Kellyn Bechtold',
+            'ghostIdol': 'Yes',
             'malolo': [
                 'Brendan Shapiro',
                 'Jenna Bowman',
@@ -562,6 +575,7 @@ function init_chart(responses) {
             'titleQuote': 'Chris Noble',
             'nudity': 'Yes',
             'ghostIsland': 'Stephanie Johnson',
+            'ghostIdol': 'Yes',
             'malolo': [
                 'Jenna Bowman',
                 'Michael Yerger',
@@ -738,6 +752,11 @@ function init_chart(responses) {
                         };
                         // Ghost Island Inhabitant
                         if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
+                            scores[n][val_vote] += 2;
+                            scores[n].total += 2;
+                        };
+                        // Ghost Island Play - Y/N
+                        if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
                             scores[n][val_vote] += 2;
                             scores[n].total += 2;
                         };
