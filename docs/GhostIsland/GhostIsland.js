@@ -159,9 +159,9 @@ function PushPullGithub(form_results) {
             };
         }
     });
-    $('#PastResponses').click(
-        window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/responses.html"
-    );
+    $('#PastResponses').click(function() {
+        window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/responses.html";   
+    });
 };
 
 function getPastResponses() {
