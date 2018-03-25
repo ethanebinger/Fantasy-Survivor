@@ -171,26 +171,37 @@ function getPastResponses() {
             url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json",
             dataType: "json",
             success: function(result) {
+                // Clear existing
+                $("#past_responses").empty();
+                
                 // PULL existing data (saved in 'responses' object)
                 var x = result.content;
                 var existing_responses = atob(x);
                 var responses = JSON.parse(existing_responses);
                 
-                // Filter for only selected name
+                // Filter for only selected name and Print
                 var curName = $("#past_responses_name option:selected").val();
-                var curResponses = [];
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
-                        curResponses.push(responses[i]);  
+                        var cur_vote = determineWeek(responses[i]);
+                        $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
+                        $("#week_"+String(i)).html("Vote #"+String(cur_vote));
+                        $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
+                        $("#json_"+String(i)).html(
+                            "<stong>Wins Reward Challenge: </strong>" + responses[i].reward + "<br>" +
+                            "<stong>Wins Immunity: </strong>" + responses[i].immunity + "<br>" +
+                            "<stong>Eliminated: </strong>" + responses[i].eliminated + "<br>" +
+                            "<stong>Safe: </strong>" + responses[i].safe + "<br>" +
+                            "<stong>Title Quote: </strong>" + responses[i].titleQuote + "<br>" +
+                            "<stong>Nudity? </strong>" + responses[i].nudity + "<br>" +
+                            "<stong>Ghost Island Inhabitant: </strong>" + responses[i].ghostIsland + "<br>" +
+                            "<stong>Ghost Island Idol or Secret Advantage Found? </strong>" + responses[i].ghostIdol + "<br>" +
+                            "<stong>Idol or Secret Advantage Found? </strong>" + responses[i].idolFound + "<br>" +
+                            "<stong>Idol or Secret Advantage Played? </strong>" + responses[i].idolPlayed + "<br>"
+                            //JSON.stringify(responses[i], undefined, 4)
+                        );
                     };
                 };
-                
-                // Pretty Print JSON
-                for (var i=0; i<curResponses.length; i++) {
-                    $("#past_responses").append("<pre id='json_"+String(i)+"'></pre>");
-                    document.getElementById("json_"+String(i)).innerHTML = JSON.stringify(curResponses[i], undefined, 4);
-                };
-                //$("#past_responses p").html(curResponses);
             }
         });
     });
@@ -865,4 +876,45 @@ function init_chart(responses) {
         .attr("dy", "0.32em")
         .text(function(d) { return d; });
 
+};
+
+function determineWeek(responses) {
+    var cur_vote = 0;
+    var submit_time = new Date(responses.submit_time);
+    if (submit_time <= new Date(2018,1,28,20)) {
+        // Extra Loop for Double Episode
+        if (inArray(1, iter_ep)) {
+            cur_vote = 2;
+        } else {
+            cur_vote = 1;
+            iter_ep.push(cur_vote);
+        };
+    } else if (submit_time <= new Date(2018,2,7,20)) {
+        cur_vote = 3;
+    } else if (submit_time <= new Date(2018,2,14,20)) {
+        cur_vote = 4;
+    } else if (submit_time <= new Date(2018,2,21,20)) {
+        cur_vote = 5;
+    } else if (submit_time <= new Date(2018,2,28,20)) {
+        cur_vote = 6;
+    } else if (submit_time <= new Date(2018,3,4,20)) {
+        cur_vote = 7;
+    } else if (submit_time <= new Date(2018,3,11,20)) {
+        cur_vote = 8;
+    } else if (submit_time <= new Date(2018,3,18,20)) {
+        cur_vote = 9;
+    } else if (submit_time <= new Date(2018,3,25,20)) {
+        cur_vote = 10;
+    } else if (submit_time <= new Date(2018,4,2,20)) {
+        cur_vote = 11;
+    } else if (submit_time <= new Date(2018,4,9,20)) {
+        cur_vote = 12;
+    } else if (submit_time <= new Date(2018,4,16,20)) {
+        cur_vote = 13;
+    } else if (submit_time <= new Date(2018,4,23,20)) {
+        cur_vote = 14;
+    } else if (submit_time <= new Date(2018,4,30,20)) {
+        cur_vote = 15;
+    };
+    return cur_vote;
 };
