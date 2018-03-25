@@ -194,11 +194,11 @@ function getPastResponses() {
                             "<stong>Safe: </strong>" + responses[i].safe + "<br>" +
                             "<stong>Title Quote: </strong>" + responses[i].titleQuote + "<br>" +
                             "<stong>Nudity? </strong>" + responses[i].nudity + "<br>" +
-                            "<stong>Ghost Island Inhabitant: </strong>" + responses[i].ghostIsland + "<br>" +
-                            "<stong>Ghost Island Idol or Secret Advantage Found? </strong>" + responses[i].ghostIdol + "<br>" +
                             "<stong>Idol or Secret Advantage Found? </strong>" + responses[i].idolFound + "<br>" +
-                            "<stong>Idol or Secret Advantage Played? </strong>" + responses[i].idolPlayed + "<br>"
-                            //JSON.stringify(responses[i], undefined, 4)
+                            "<stong>Idol or Secret Advantage Played? </strong>" + responses[i].idolPlayed + "<br>" +
+                            "<stong>Ghost Island Inhabitant: </strong>" + responses[i].ghostIsland + "<br>" +
+                            "<stong>Able to play on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>" +
+                            "<stong>Secret Advantage Found on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>"
                         );
                     };
                 };
