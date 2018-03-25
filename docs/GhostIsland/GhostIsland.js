@@ -166,7 +166,6 @@ function PushPullGithub(form_results) {
 
 function getPastResponses() {
     $("#past_responses_name").change(function() {
-        alert( "Handler for .change() called." );
         $.ajax({
             type: "GET",
             url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json",
@@ -176,8 +175,22 @@ function getPastResponses() {
                 var x = result.content;
                 var existing_responses = atob(x);
                 var responses = JSON.parse(existing_responses);
-                var responses = JSON.stringify(responses, undefined, 4);
-                $("#past_responses").append("<p>" + responses + "</p>");
+                
+                // Filter for only selected name
+                var curName = $("#past_responses_name option:selected").val();
+                var curResponses = [];
+                for (var i=0; i<responses.length; i++) {
+                    if (responses[i].name === curName) {
+                        curResponses.push(responses[i]);  
+                    };
+                };
+                
+                // Pretty Print JSON
+                for (var i=0; i<curResponses.length; i++) {
+                    $("#past_responses").append("<pre id='json_"+String(i)+"'></pre>");
+                    document.getElementById("json_"+String(i)).innerHTML = JSON.stringify(curResponses[i], undefined, 4);
+                };
+                //$("#past_responses p").html(curResponses);
             }
         });
     });
