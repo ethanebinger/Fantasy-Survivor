@@ -702,43 +702,7 @@ function init_chart(responses) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
                     // Determine Vote Number/Week (and ignore late sumissions)
-                    var cur_vote = 0;
-                    var submit_time = new Date(responses[j].submit_time);
-                    if (submit_time <= new Date(2018,1,28,20)) {
-                        // Extra Loop for Double Episode
-                        if (inArray(1, iter_ep)) {
-                            cur_vote = 2;
-                        } else {
-                            cur_vote = 1;
-                            iter_ep.push(cur_vote);
-                        };
-                    } else if (submit_time <= new Date(2018,2,7,20)) {
-                        cur_vote = 3;
-                    } else if (submit_time <= new Date(2018,2,14,20)) {
-                        cur_vote = 4;
-                    } else if (submit_time <= new Date(2018,2,21,20)) {
-                        cur_vote = 5;
-                    } else if (submit_time <= new Date(2018,2,28,20)) {
-                        cur_vote = 6;
-                    } else if (submit_time <= new Date(2018,3,4,20)) {
-                        cur_vote = 7;
-                    } else if (submit_time <= new Date(2018,3,11,20)) {
-                        cur_vote = 8;
-                    } else if (submit_time <= new Date(2018,3,18,20)) {
-                        cur_vote = 9;
-                    } else if (submit_time <= new Date(2018,3,25,20)) {
-                        cur_vote = 10;
-                    } else if (submit_time <= new Date(2018,4,2,20)) {
-                        cur_vote = 11;
-                    } else if (submit_time <= new Date(2018,4,9,20)) {
-                        cur_vote = 12;
-                    } else if (submit_time <= new Date(2018,4,16,20)) {
-                        cur_vote = 13;
-                    } else if (submit_time <= new Date(2018,4,23,20)) {
-                        cur_vote = 14;
-                    } else if (submit_time <= new Date(2018,4,30,20)) {
-                        cur_vote = 15;
-                    };
+                    var cur_vote = determineWeek(responses[j]);
                     // Validate Vote Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
@@ -792,10 +756,15 @@ function init_chart(responses) {
                             scores[n][val_vote] += 2;
                             scores[n].total += 2;
                         };
-                        // Ghost Island Play - Y/N
+                        // Ghost Island Play - Y/N/NA
+                        if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
+                            scores[n][val_vote] += 1;
+                            scores[n].total += 1;
+                        };
+                        // Ghost Island Idol - Y/N/NA
                         if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
-                            scores[n][val_vote] += 2;
-                            scores[n].total += 2;
+                            scores[n][val_vote] += 1;
+                            scores[n].total += 1;
                         };
                         // Nudity
                         if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
