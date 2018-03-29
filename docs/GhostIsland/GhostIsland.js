@@ -188,17 +188,17 @@ function getPastResponses() {
                         $("#week_"+String(i)).html("Vote #"+String(cur_vote));
                         $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
                         $("#json_"+String(i)).html(
-                            "<stong>Wins Reward Challenge: </strong>" + responses[i].reward + "<br>" +
-                            "<stong>Wins Immunity: </strong>" + responses[i].immunity + "<br>" +
-                            "<stong>Eliminated: </strong>" + responses[i].eliminated + "<br>" +
-                            "<stong>Safe: </strong>" + responses[i].safe + "<br>" +
-                            "<stong>Title Quote: </strong>" + responses[i].titleQuote + "<br>" +
-                            "<stong>Nudity? </strong>" + responses[i].nudity + "<br>" +
-                            "<stong>Idol or Secret Advantage Found? </strong>" + responses[i].idolFound + "<br>" +
-                            "<stong>Idol or Secret Advantage Played? </strong>" + responses[i].idolPlayed + "<br>" +
-                            "<stong>Ghost Island Inhabitant: </strong>" + responses[i].ghostIsland + "<br>" +
-                            "<stong>Able to play on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>" +
-                            "<stong>Secret Advantage Found on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>"
+                            "<strong>Wins Reward Challenge: </strong>" + responses[i].reward + "<br>" +
+                            "<strong>Wins Immunity: </strong>" + responses[i].immunity + "<br>" +
+                            "<strong>Eliminated: </strong>" + responses[i].eliminated + "<br>" +
+                            "<strong>Safe: </strong>" + responses[i].safe + "<br>" +
+                            "<strong>Title Quote: </strong>" + responses[i].titleQuote + "<br>" +
+                            "<strong>Nudity? </strong>" + responses[i].nudity + "<br>" +
+                            "<strong>Idol or Secret Advantage Found? </strong>" + responses[i].idolFound + "<br>" +
+                            "<strong>Idol or Secret Advantage Played? </strong>" + responses[i].idolPlayed + "<br>" +
+                            "<strong>Ghost Island Inhabitant: </strong>" + responses[i].ghostIsland + "<br>" +
+                            "<strong>Able to play on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>" +
+                            "<strong>Secret Advantage Found on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>"
                         );
                     };
                 };
@@ -633,6 +633,40 @@ function init_chart(responses) {
                 'Domenick Abbate',
                 'Wendell Holland'
             ]
+        },
+        {	'vote': 6,
+            'date': '3/28/18',
+            'merge': 'Swap',
+            'reward': null, 
+            'immunity': ['Naviti', 'Yanuya'],
+            'eliminated': 'James Lim',
+            'idolFound': 'No',
+            'idolPlayed': 'No',
+            'titleQuote': 'Desiree Afuye',
+            'nudity': 'No',
+            'ghostIsland': 'NA',
+            'ghostIdol': 'NA',
+            'malolo': [
+                'Michael Yerger',
+                'Kellyn Bechtold',
+                'Desiree Afuye',
+                'James Lim',
+                'Angela Perkins',
+            ],
+            'naviti': [
+                'Donathan Hurley',
+                'Bradley Kleihege',
+                'Chelsea Townsend',                
+                'Libby Vincek',
+                'Domenick Abbate'
+            ],
+            'yanuya': [
+                'Jenna Bowman',
+                'Sebastian Noel',
+                'Chris Noble',
+                'Wendell Holland',
+                'Laurel Johnson',
+            ]
         }
     ];
     
@@ -697,6 +731,7 @@ function init_chart(responses) {
         for (var i=0; i<results.length; i++) {
                 var malolo = results[i].malolo;
                 var naviti = results[i].naviti;
+                var yanuya = results[i].yanuya;
                 var iter_ep = [];
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
@@ -720,20 +755,26 @@ function init_chart(responses) {
                             };
                         } else {
                             // Reward
-                            if (results[i].reward === 'Malolo' && inArray(responses[j].reward, malolo) && responses[j].reward) {
+                            if ((results[i].reward === 'Malolo' || results[i].reward[0] = 'Malolo' || results[i].reward[1] = 'Malolo') && inArray(responses[j].reward, malolo) && responses[j].reward) {
                                 scores[n][val_vote] += 5;
                                 scores[n].total += 5;
-                            } else if (results[i].reward === 'Naviti' && inArray(responses[j].reward, naviti) && responses[j].reward) {
+                            } else if ((results[i].reward === 'Naviti' || results[i].reward[0] = 'Naviti' || results[i].reward[1] = 'Naviti') && inArray(responses[j].reward, naviti) && responses[j].reward) {
+                                scores[n][val_vote] += 5;
+                                scores[n].total += 5;   
+                            } else if ((results[i].reward === 'Yanuya' || results[i].reward[0] = 'Yanuya' || results[i].reward[1] = 'Yanuya') && inArray(responses[j].reward, yanuya) && responses[j].reward) {
                                 scores[n][val_vote] += 5;
                                 scores[n].total += 5;   
                             };
                             // Immunity
-                            if (results[i].immunity == 'Malolo' && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
+                            if ((results[i].immunity === 'Malolo' || results[i].immunity[0] = 'Malolo' || results[i].immunity[1] = 'Malolo') && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
                                 scores[n][val_vote] += 7.5;
                                 scores[n].total += 7.5;
-                            } else if (results[i].immunity == 'Naviti' && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'Naviti' || results[i].immunity[0] = 'Naviti' || results[i].immunity[1] = 'Naviti') && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
                                 scores[n][val_vote] += 7.5;
                                 scores[n].total += 7.5;
+                            } else if ((results[i].immunity === 'Yanuya' || results[i].immunity[0] = 'Yanuya' || results[i].immunity[1] = 'Yanuya') && inArray(responses[j].immunity, yanuya) && responses[j].immunity) {
+                                scores[n][val_vote] += 7.5;
+                                scores[n].total += 7.5;   
                             };
                         };
                         // Eliminated

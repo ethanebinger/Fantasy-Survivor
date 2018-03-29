@@ -24,6 +24,11 @@ body {
     padding: 10px 0px;
     color: #fff;
 }
+.yanuya_banner {
+    background-color: rgb(54,222,47);
+    padding: 10px 0px;
+    color: #fff;
+}
 .isHidden {
     display: none;            
 }
