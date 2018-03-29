@@ -767,13 +767,13 @@ function init_chart(responses) {
                                 scores[n].total += 5;   
                             };
                             // Immunity
-                            if ((results[i].immunity === 'Malolo' || results[i].immunity === 'Malolo') && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
+                            if ((results[i].immunity === 'Malolo' || results[i].immunity2 === 'Malolo') && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
                                 scores[n][val_vote] += 7.5;
                                 scores[n].total += 7.5;
-                            } else if ((results[i].immunity === 'Naviti' || results[i].immunity === 'Naviti')  && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'Naviti' || results[i].immunity2 === 'Naviti')  && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
                                 scores[n][val_vote] += 7.5;
                                 scores[n].total += 7.5;
-                            } else if ((results[i].immunity === 'Yanuya' || results[i].immunity === 'Yanuya')  && inArray(responses[j].immunity, yanuya) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'Yanuya' || results[i].immunity2 === 'Yanuya')  && inArray(responses[j].immunity, yanuya) && responses[j].immunity) {
                                 scores[n][val_vote] += 7.5;
                                 scores[n].total += 7.5;
                             };
