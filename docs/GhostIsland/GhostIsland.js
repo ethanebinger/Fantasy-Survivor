@@ -838,11 +838,11 @@ function init_chart(responses) {
                             // Nudity
                             if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
                                 scores[n][val_vote] += 4;
-                                scores[n].total += 2;
+                                scores[n].total += 4;
                             };
                             // Idol Found
                             if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                                scores[n][val_vote] += 2;
+                                scores[n][val_vote] += 4;
                                 scores[n].total += 4;
                             };
                             // Idol Played
