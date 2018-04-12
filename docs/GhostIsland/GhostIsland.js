@@ -705,6 +705,20 @@ function init_chart(responses) {
                 'Wendell Holland',
                 'Laurel Johnson',
             ]
+        },
+        {	'vote': 8,
+            'date': '4/11/18',
+            'merge': 'Yes',
+            'reward': null,
+            'immunity': 'Kellyn Bechtold', 
+            'eliminated': 'Chris Noble',
+            'idolFound': 'No',
+            'idolPlayed': 'Yes',
+            'titleQuote': 'Domenick Abbate',
+            'nudity': 'No',
+            'ghostIsland': 'Chris Noble',
+            'ghostPlay': 'Yes',
+            'ghostIdol': 'Yes'
         }
     ];
     
@@ -783,13 +797,58 @@ function init_chart(responses) {
                         if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             // Reward
                             if (results[i].reward == responses[j].reward && responses[j].reward) {
-                                scores[n][val_vote] += 5;
-                                scores[n].total += 5;
+                                scores[n][val_vote] += 10;
+                                scores[n].total += 10;
                             };
                             // Immunity
                             if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                                scores[n][val_vote] += 7.5;
-                                scores[n].total += 7.5;
+                                scores[n][val_vote] += 15;
+                                scores[n].total += 15;
+                            };
+                            // Eliminated
+                            if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
+                                scores[n][val_vote] += 20;
+                                scores[n].total += 20;
+                            };
+                            // Safe
+                            if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
+                                scores[n][val_vote] += 20;
+                                scores[n].total += 20;
+                            };
+                            // Title Quote
+                            if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
+                                scores[n][val_vote] += 4;
+                                scores[n].total += 4;
+                            };
+                            // Ghost Island Inhabitant
+                            if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
+                                scores[n][val_vote] += 4;
+                                scores[n].total += 4;
+                            };
+                            // Ghost Island Play - Y/N/NA
+                            if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
+                                scores[n][val_vote] += 2;
+                                scores[n].total += 2;
+                            };
+                            // Ghost Island Idol - Y/N/NA
+                            if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
+                                scores[n][val_vote] += 2;
+                                scores[n].total += 2;
+                            };
+                            // Nudity
+                            if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
+                                scores[n][val_vote] += 4;
+                                scores[n].total += 2;
+                            };
+                            // Idol Found
+                            if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
+                                scores[n][val_vote] += 2;
+                                scores[n].total += 4;
+                            };
+                            // Idol Played
+                            if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
+                                scores[n][val_vote] += 4;
+                                scores[n].total += 4;
                             };
                         } else {
                             // Reward
@@ -814,51 +873,51 @@ function init_chart(responses) {
                                 scores[n][val_vote] += 7.5;
                                 scores[n].total += 7.5;
                             };
-                        };
-                        // Eliminated
-                        if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                            scores[n][val_vote] += 10;
-                            scores[n].total += 10;
-                        };
-                        // Safe
-                        if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-                            scores[n][val_vote] += 10;
-                            scores[n].total += 10;
-                        };
-                        // Title Quote
-                        if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                            scores[n][val_vote] += 2;
-                            scores[n].total += 2;
-                        };
-                        // Ghost Island Inhabitant
-                        if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
-                            scores[n][val_vote] += 2;
-                            scores[n].total += 2;
-                        };
-                        // Ghost Island Play - Y/N/NA
-                        if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
-                            scores[n][val_vote] += 1;
-                            scores[n].total += 1;
-                        };
-                        // Ghost Island Idol - Y/N/NA
-                        if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
-                            scores[n][val_vote] += 1;
-                            scores[n].total += 1;
-                        };
-                        // Nudity
-                        if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                            scores[n][val_vote] += 2;
-                            scores[n].total += 2;
-                        };
-                        // Idol Found
-                        if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                            scores[n][val_vote] += 2;
-                            scores[n].total += 2;
-                        };
-                        // Idol Played
-                        if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                            scores[n][val_vote] += 2;
-                            scores[n].total += 2;
+                            // Eliminated
+                            if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
+                                scores[n][val_vote] += 10;
+                                scores[n].total += 10;
+                            };
+                            // Safe
+                            if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
+                                scores[n][val_vote] += 10;
+                                scores[n].total += 10;
+                            };
+                            // Title Quote
+                            if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
+                                scores[n][val_vote] += 2;
+                                scores[n].total += 2;
+                            };
+                            // Ghost Island Inhabitant
+                            if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
+                                scores[n][val_vote] += 2;
+                                scores[n].total += 2;
+                            };
+                            // Ghost Island Play - Y/N/NA
+                            if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
+                                scores[n][val_vote] += 1;
+                                scores[n].total += 1;
+                            };
+                            // Ghost Island Idol - Y/N/NA
+                            if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
+                                scores[n][val_vote] += 1;
+                                scores[n].total += 1;
+                            };
+                            // Nudity
+                            if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
+                                scores[n][val_vote] += 2;
+                                scores[n].total += 2;
+                            };
+                            // Idol Found
+                            if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
+                                scores[n][val_vote] += 2;
+                                scores[n].total += 2;
+                            };
+                            // Idol Played
+                            if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
+                                scores[n][val_vote] += 2;
+                                scores[n].total += 2;
+                            };
                         };
                     };
                 };
