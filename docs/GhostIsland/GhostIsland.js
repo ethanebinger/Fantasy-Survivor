@@ -738,7 +738,7 @@ function init_chart(responses) {
             'nudity': 'No',
             'ghostIsland': 'Jenna Bowman',
             'ghostPlay': 'No',
-            'ghostIdol': 'No'
+            'ghostIdol': 'NA'
         }
     ];
     
