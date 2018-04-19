@@ -819,7 +819,7 @@ function init_chart(responses) {
                             if (results[i].reward == responses[j].reward && responses[j].reward) {
                                 scores[n][val_vote] += 10;
                                 scores[n].total += 10;
-                            } else if (typeof results[i].reward==="object" && inArray(responses[j].reward,results[i].reward) && responses[j].reward) {
+                            } else if (results[i].reward !== null && typeof results[i].reward==="object" && inArray(responses[j].reward,results[i].reward) && responses[j].reward) {
                                 scores[n][val_vote] += 10;
                                 scores[n].total += 10;
                             };
