@@ -719,6 +719,26 @@ function init_chart(responses) {
             'ghostIsland': 'Chris Noble',
             'ghostPlay': 'Yes',
             'ghostIdol': 'Yes'
+        },
+        {	'vote': 9,
+            'date': '4/18/18',
+            'merge': 'Yes',
+            'reward': [
+                'Angela Perkins', 
+                'Donathan Hurley',
+                'Chelsea Townsend',                
+                'Libby Vincek',
+                'Wendell Holland',
+                'Laurel Johnson'],
+            'immunity': 'Angela Perkins', 
+            'eliminated': 'Libby Vincek',
+            'idolFound': 'No',
+            'idolPlayed': 'Yes',
+            'titleQuote': null,
+            'nudity': 'No',
+            'ghostIsland': 'Jenna Bowman',
+            'ghostPlay': 'No',
+            'ghostIdol': 'No'
         }
     ];
     
@@ -796,7 +816,7 @@ function init_chart(responses) {
                         // Determine by team if before merge but no swap:
                         if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             // Reward
-                            if (results[i].reward == responses[j].reward && responses[j].reward) {
+                            if ((results[i].reward == responses[j].reward || inArray(responses[j].reward, results[i].reward)) && responses[j].reward) {
                                 scores[n][val_vote] += 10;
                                 scores[n].total += 10;
                             };
