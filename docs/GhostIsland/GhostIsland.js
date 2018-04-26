@@ -739,6 +739,25 @@ function init_chart(responses) {
             'ghostIsland': 'Jenna Bowman',
             'ghostPlay': 'No',
             'ghostIdol': 'NA'
+        },
+        {	'vote': 10,
+            'date': '4/25/18',
+            'merge': 'Yes',
+            'reward': [
+                'Michael Yerger',
+                'Kellyn Bechtold', 
+                'Sebastian Noel',
+                'Chelsea Townsend',                
+                'Jenna Bowman'],
+            'immunity': 'Chelsea Townsend', 
+            'eliminated': 'Desiree Afuye',
+            'idolFound': 'Yes',
+            'idolPlayed': 'No',
+            'titleQuote': 'Jeff Probst',
+            'nudity': 'No',
+            'ghostIsland': 'Angela Perkins',
+            'ghostPlay': 'Yes',
+            'ghostIdol': 'No'
         }
     ];
     
