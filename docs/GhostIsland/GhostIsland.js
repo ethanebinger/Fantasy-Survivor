@@ -758,6 +758,34 @@ function init_chart(responses) {
             'ghostIsland': 'Angela Perkins',
             'ghostPlay': 'Yes',
             'ghostIdol': 'No'
+        },
+        {	'vote': 11,
+            'date': '5/2/18',
+            'merge': 'Yes',
+            'reward': null,
+            'immunity': 'Chelsea Townsend', 
+            'eliminated': 'Jenna Bowman',
+            'idolFound': 'No',
+            'idolPlayed': 'Yes',
+            'titleQuote': 'Domenick Abbate',
+            'nudity': 'No',
+            'ghostIsland': 'No',
+            'ghostPlay': 'NA',
+            'ghostIdol': 'NA'
+        },
+        {	'vote': 12,
+            'date': '5/2/18',
+            'merge': 'Yes',
+            'reward': null,
+            'immunity': 'Domenick Abbate', 
+            'eliminated': 'Michael Yerger',
+            'idolFound': null,
+            'idolPlayed': null,
+            'titleQuote': null,
+            'nudity': null,
+            'ghostIsland': null,
+            'ghostPlay': null,
+            'ghostIdol': null
         }
     ];
     
