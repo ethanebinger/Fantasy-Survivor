@@ -1056,6 +1056,16 @@ function init_chart(responses) {
 };
 
 function determineWeek(responses) {
+    // Function to check if x in array
+    var inArray = function(x,y) {
+        var i;
+        for (i=0; i < y.length; i++) {
+            if (y[i] === x) {
+                return true;
+            };
+        };
+        return false;
+    };
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
     if (submit_time <= new Date(2018,1,28,20)) {
@@ -1083,18 +1093,21 @@ function determineWeek(responses) {
     } else if (submit_time <= new Date(2018,3,25,20)) {
         cur_vote = 10;
     } else if (submit_time <= new Date(2018,4,2,20)) {
-        // Extra Loop for Double Vote Episode
+        cur_vote = 11;
+        /*// Extra Loop for Double Vote Episode
         if (inArray(11, iter_ep)) {
             cur_vote = 12;
         } else {
             cur_vote = 11;
             iter_ep.push(cur_vote);
-        };
-    } else if (submit_time <= new Date(2018,4,16,20)) {
+        };//*/
+    } else if (submit_time <= new Date(2018,4,2,20)) {
+        cur_vote = 12;
+    } else if (submit_time <= new Date(2018,4,9,20)) {
         cur_vote = 13;
-    } else if (submit_time <= new Date(2018,4,23,20)) {
+    } else if (submit_time <= new Date(2018,4,16,20)) {
         cur_vote = 14;
-    } else if (submit_time <= new Date(2018,4,30,20)) {
+    } else if (submit_time <= new Date(2018,4,23,20)) {
         cur_vote = 15;
     };
     return cur_vote;
