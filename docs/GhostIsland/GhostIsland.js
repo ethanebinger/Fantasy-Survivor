@@ -1114,5 +1114,5 @@ function determineWeek(responses, iter_ep) {
     } else if (submit_time <= new Date(2018,4,23,20)) {
         cur_vote = 15;
     };
-    return cur_vote;
+    return [cur_vote, iter_ep];
 };
