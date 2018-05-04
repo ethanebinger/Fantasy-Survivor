@@ -183,10 +183,13 @@ function getPastResponses() {
                 var curName = $("#past_responses_name option:selected").val();
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
-                        var cur_vote = determineWeek(responses[i], []);
-                        cur_vote = cur_vote[0];
+                        var cur_vote = determineWeek(responses[i], 0);
                         $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
-                        $("#week_"+String(i)).html("Vote #"+String(cur_vote));
+                        if (cur_vote===11) {
+                            $("#week_"+String(i)).html("Vote #11 and #12"));
+                        } else {
+                            $("#week_"+String(i)).html("Vote #"+String(cur_vote));
+                        };
                         $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
                         $("#json_"+String(i)).html(
                             "<strong>Wins Reward Challenge: </strong>" + responses[i].reward + "<br>" +
@@ -849,17 +852,15 @@ function init_chart(responses) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-                var malolo = results[i].malolo;
-                var naviti = results[i].naviti;
-                var yanuya = results[i].yanuya;
-                var iter_ep = [];
+            var malolo = results[i].malolo;
+            var naviti = results[i].naviti;
+            var yanuya = results[i].yanuya;
+            var iter_ep = [];
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
                     // Determine Vote Number/Week (and ignore late sumissions)
-                    var cur_vote = determineWeek(responses[j], iter_ep);
-                    iter_ep = cur_vote[1];
-                    cur_vote = cur_vote[0];
+                    var cur_vote = determineWeek(responses[j], results[i].vote);
                     // Validate Vote Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
@@ -1069,17 +1070,18 @@ var inArray = function(x,y) {
     return false;
 };
 
-function determineWeek(responses, iter_ep) {
+function determineWeek(responses, results_vote) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
     if (submit_time <= new Date(2018,1,28,20)) {
-        // Extra Loop for Double Episode
+        /*// Extra Loop for Double Episode
         if (inArray(1, iter_ep)) {
             cur_vote = 2;
         } else {
             cur_vote = 1;
             iter_ep.push(cur_vote);
-        };
+        }//;*/
+        cur_vote = 1;
     } else if (submit_time <= new Date(2018,2,7,20)) {
         cur_vote = 3;
     } else if (submit_time <= new Date(2018,2,14,20)) {
@@ -1096,17 +1098,10 @@ function determineWeek(responses, iter_ep) {
         cur_vote = 9;
     } else if (submit_time <= new Date(2018,3,25,20)) {
         cur_vote = 10;
-    } else if (submit_time <= new Date(2018,4,2,20)) {
-        //cur_vote = 11;
-        // Extra Loop for Double Vote Episode
-        if (inArray(11, iter_ep)) {
-            cur_vote = 12;
-        } else {
-            cur_vote = 11;
-            iter_ep.push(cur_vote);
-        };//*/
-    //} else if (submit_time <= new Date(2018,4,2,20)) {
-        //cur_vote = 12;
+    } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 11) {
+        cur_vote = 11;
+    } else if (submit_time <= new Date(2018,4,2,20)  && results_vote === 12) {
+        cur_vote = 12;
     } else if (submit_time <= new Date(2018,4,9,20)) {
         cur_vote = 13;
     } else if (submit_time <= new Date(2018,4,16,20)) {
@@ -1114,5 +1109,5 @@ function determineWeek(responses, iter_ep) {
     } else if (submit_time <= new Date(2018,4,23,20)) {
         cur_vote = 15;
     };
-    return [cur_vote, iter_ep];
+    return cur_vote;
 };
