@@ -186,7 +186,7 @@ function getPastResponses() {
                         var cur_vote = determineWeek(responses[i], 0);
                         $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                         if (cur_vote===11) {
-                            $("#week_"+String(i)).html("Vote #11 and #12"));
+                            $("#week_"+String(i)).html("Vote #11 and #12");
                         } else {
                             $("#week_"+String(i)).html("Vote #"+String(cur_vote));
                         };
