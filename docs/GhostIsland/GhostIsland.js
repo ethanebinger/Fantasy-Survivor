@@ -183,7 +183,8 @@ function getPastResponses() {
                 var curName = $("#past_responses_name option:selected").val();
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
-                        var cur_vote = determineWeek(responses[i]);
+                        var cur_vote = determineWeek(responses[i], []);
+                        cur_vote = cur_vote[0];
                         $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                         $("#week_"+String(i)).html("Vote #"+String(cur_vote));
                         $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
@@ -856,7 +857,9 @@ function init_chart(responses) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
                     // Determine Vote Number/Week (and ignore late sumissions)
-                    var cur_vote = determineWeek(responses[j]);
+                    var cur_vote = determineWeek(responses[j], iter_ep);
+                    iter_ep = cur_vote[1];
+                    cur_vote = cur_vote[0];
                     // Validate Vote Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
@@ -1055,17 +1058,18 @@ function init_chart(responses) {
 
 };
 
-function determineWeek(responses) {
-    // Function to check if x in array
-    var inArray = function(x,y) {
-        var i;
-        for (i=0; i < y.length; i++) {
-            if (y[i] === x) {
-                return true;
-            };
+// Function to check if x in array
+var inArray = function(x,y) {
+    var i;
+    for (i=0; i < y.length; i++) {
+        if (y[i] === x) {
+            return true;
         };
-        return false;
     };
+    return false;
+};
+
+function determineWeek(responses, iter_ep) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
     if (submit_time <= new Date(2018,1,28,20)) {
@@ -1093,16 +1097,16 @@ function determineWeek(responses) {
     } else if (submit_time <= new Date(2018,3,25,20)) {
         cur_vote = 10;
     } else if (submit_time <= new Date(2018,4,2,20)) {
-        cur_vote = 11;
-        /*// Extra Loop for Double Vote Episode
+        //cur_vote = 11;
+        // Extra Loop for Double Vote Episode
         if (inArray(11, iter_ep)) {
             cur_vote = 12;
         } else {
             cur_vote = 11;
             iter_ep.push(cur_vote);
         };//*/
-    } else if (submit_time <= new Date(2018,4,2,20)) {
-        cur_vote = 12;
+    //} else if (submit_time <= new Date(2018,4,2,20)) {
+        //cur_vote = 12;
     } else if (submit_time <= new Date(2018,4,9,20)) {
         cur_vote = 13;
     } else if (submit_time <= new Date(2018,4,16,20)) {
