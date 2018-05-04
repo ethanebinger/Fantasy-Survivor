@@ -649,7 +649,7 @@ function init_chart(responses) {
             'idolPlayed': 'No',
             'titleQuote': 'Desiree Afuye',
             'nudity': 'No',
-            'ghostIsland': 'NA',
+            'ghostIsland': 'No Ghost',
             'ghostPlay': 'NA',
             'ghostIdol': 'NA',
             'malolo': [
@@ -774,7 +774,7 @@ function init_chart(responses) {
             'idolPlayed': 'Yes',
             'titleQuote': 'Domenick Abbate',
             'nudity': 'No',
-            'ghostIsland': 'No',
+            'ghostIsland': 'No Ghost',
             'ghostPlay': 'NA',
             'ghostIdol': 'NA'
         },
