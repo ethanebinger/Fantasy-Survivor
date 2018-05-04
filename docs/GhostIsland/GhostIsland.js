@@ -183,7 +183,7 @@ function getPastResponses() {
                 var curName = $("#past_responses_name option:selected").val();
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
-                        var cur_vote = determineWeek(responses[i], 0);
+                        var cur_vote = determineWeek(responses[i], 11);
                         $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                         if (cur_vote===11) {
                             $("#week_"+String(i)).html("Vote #11 and #12");
@@ -885,7 +885,7 @@ function init_chart(responses) {
                                 scores[n].total += 20;
                             };
                             // Safe
-                            if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
+                            if (results[i].eliminated !== responses[j].safe && responses[j].safe && cur_vote !== 12) {
                                 scores[n][val_vote] += 20;
                                 scores[n].total += 20;
                             };
@@ -1100,7 +1100,7 @@ function determineWeek(responses, results_vote) {
         cur_vote = 10;
     } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 11) {
         cur_vote = 11;
-    } else if (submit_time <= new Date(2018,4,2,20)  && results_vote === 12) {
+    } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 12) {
         cur_vote = 12;
     } else if (submit_time <= new Date(2018,4,9,20)) {
         cur_vote = 13;
