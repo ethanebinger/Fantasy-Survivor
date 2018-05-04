@@ -769,6 +769,7 @@ function init_chart(responses) {
             'reward': null,
             'immunity': 'Chelsea Townsend', 
             'eliminated': 'Jenna Bowman',
+            'eliminated2': 'Michael Yerger',
             'idolFound': 'No',
             'idolPlayed': 'Yes',
             'titleQuote': 'Domenick Abbate',
@@ -885,7 +886,10 @@ function init_chart(responses) {
                                 scores[n].total += 20;
                             };
                             // Safe
-                            if (results[i].eliminated !== responses[j].safe && responses[j].safe && cur_vote !== 12) {
+                            if (cur_vote === 11 && results[i].eliminated !== responses[j].safe && results[i].eliminated2 !== responses[j].safe && responses[j].safe) {
+                                scores[n][val_vote] += 20;
+                                scores[n].total += 20;
+                            } else if (results[i].eliminated !== responses[j].safe && responses[j].safe && cur_vote !== 12) {
                                 scores[n][val_vote] += 20;
                                 scores[n].total += 20;
                             };
