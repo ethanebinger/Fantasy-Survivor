@@ -883,6 +883,7 @@ function init_chart(responses) {
                     // Validate Vote Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
+                        console.log(responses[j].name, val_vote)
                         // Determine by team if before merge but no swap:
                         if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             if (results[i].vote < 13) {
