@@ -885,7 +885,7 @@ function init_chart(responses) {
                         var val_vote = 'Vote ' + String(results[i].vote);
                         // Determine by team if before merge but no swap:
                         if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
-                            if (val_vote < 13) {
+                            if (results[i].vote < 13) {
                                 // Reward
                                 if (results[i].reward == responses[j].reward && responses[j].reward) {
                                     scores[n][val_vote] += 10;
