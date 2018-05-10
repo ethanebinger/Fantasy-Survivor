@@ -868,13 +868,13 @@ function init_chart(responses) {
         .call(tip);	
 
     // Calculate scores
+    var name_ep_count = [0];
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
             var malolo = results[i].malolo;
             var naviti = results[i].naviti;
             var yanuya = results[i].yanuya;
-            var iter_ep = [];
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
@@ -883,9 +883,10 @@ function init_chart(responses) {
                     // Validate Vote Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
-                        console.log(responses[j].name, val_vote)
                         // Determine by team if before merge but no swap:
-                        if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
+                        if (inArray(cur_player+"_"+str(cur_vote),name_ep_count)) {
+                            console.log("duplicate: "+cur_player+"_"+str(cur_vote));
+                        } else if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             if (results[i].vote < 13) {
                                 // Reward
                                 if (results[i].reward == responses[j].reward && responses[j].reward) {
@@ -949,6 +950,8 @@ function init_chart(responses) {
                                 scores[n][val_vote] += 4;
                                 scores[n].total += 4;
                             };
+                            name_ep_count.push(cur_player+"_"+str(cur_vote));
+                            console.log(responses[j].name, val_vote);
                         } else {
                             // Reward
                             if ((results[i].reward === 'Malolo' || results[i].reward2 === 'Malolo') && inArray(responses[j].reward, malolo) && responses[j].reward) {
@@ -1017,6 +1020,8 @@ function init_chart(responses) {
                                 scores[n][val_vote] += 2;
                                 scores[n].total += 2;
                             };
+                            name_ep_count.push(cur_player+"_"+str(cur_vote));
+                            console.log(responses[j].name, val_vote);
                         };
                     };
                 };
