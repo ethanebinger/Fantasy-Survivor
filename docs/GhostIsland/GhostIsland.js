@@ -791,6 +791,24 @@ function init_chart(responses) {
             'ghostIsland': null,
             'ghostPlay': null,
             'ghostIdol': null
+        },
+        {	'vote': 13,
+            'date': '5/8/18',
+            'merge': 'Yes',
+            'reward': [ 
+                'Sebastian Noel',
+                'Domenick Abbate',                
+                'Donathan Hurley'
+            ],
+            'immunity': 'Domenick Abbate', 
+            'eliminated': 'Chelsea Townsend',
+            'idolFound': 'No',
+            'idolPlayed': 'No',
+            'titleQuote': 'Chelsea Townsend',
+            'nudity': 'No',
+            'ghostIsland': 'Wendell Holland',
+            'ghostPlay': 'Yes',
+            'ghostIdol': 'Yes'
         }
     ];
     
