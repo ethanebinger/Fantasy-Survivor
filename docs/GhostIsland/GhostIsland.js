@@ -883,6 +883,13 @@ function init_chart(responses) {
                     // Validate Vote Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
+                        //safeguard because being weird:
+                        if (val_vote === 13) {
+                            responses[j].reward == null;
+                            responses[j].immunity == null;
+                            responses[j].eliminated == null;
+                            responses[j].safe == null;
+                        };
                         // Determine by team if before merge but no swap:
                         if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             // Reward
