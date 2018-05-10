@@ -884,8 +884,8 @@ function init_chart(responses) {
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
                         // Determine by team if before merge but no swap:
-                        if (inArray(cur_player+"_"+str(cur_vote),name_ep_count)) {
-                            console.log("duplicate: "+cur_player+"_"+str(cur_vote));
+                        if (inArray(cur_player+"_"+String(cur_vote),name_ep_count)) {
+                            console.log("duplicate: "+cur_player+"_"+String(cur_vote));
                         } else if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             if (results[i].vote < 13) {
                                 // Reward
@@ -950,7 +950,7 @@ function init_chart(responses) {
                                 scores[n][val_vote] += 4;
                                 scores[n].total += 4;
                             };
-                            name_ep_count.push(cur_player+"_"+str(cur_vote));
+                            name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote);
                         } else {
                             // Reward
@@ -1020,7 +1020,7 @@ function init_chart(responses) {
                                 scores[n][val_vote] += 2;
                                 scores[n].total += 2;
                             };
-                            name_ep_count.push(cur_player+"_"+str(cur_vote));
+                            name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote);
                         };
                     };
