@@ -883,40 +883,35 @@ function init_chart(responses) {
                     // Validate Vote Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
-                        //safeguard because being weird:
-                        if (results[i].vote === 13) {
-                            responses[j].reward == null;
-                            responses[j].immunity == null;
-                            responses[j].eliminated == null;
-                            responses[j].safe == null;
-                        };
                         // Determine by team if before merge but no swap:
                         if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
-                            // Reward
-                            if (results[i].reward == responses[j].reward && responses[j].reward) {
-                                scores[n][val_vote] += 10;
-                                scores[n].total += 10;
-                            } else if (results[i].reward !== null && typeof results[i].reward==="object" && inArray(responses[j].reward,results[i].reward) && responses[j].reward) {
-                                scores[n][val_vote] += 10;
-                                scores[n].total += 10;
-                            };
-                            // Immunity
-                            if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                                scores[n][val_vote] += 15;
-                                scores[n].total += 15;
-                            };
-                            // Eliminated
-                            if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                                scores[n][val_vote] += 20;
-                                scores[n].total += 20;
-                            };
-                            // Safe
-                            if (cur_vote === 11 && results[i].eliminated !== responses[j].safe && results[i].eliminated2 !== responses[j].safe && responses[j].safe) {
-                                scores[n][val_vote] += 20;
-                                scores[n].total += 20;
-                            } else if (results[i].eliminated !== responses[j].safe && responses[j].safe && cur_vote !== 12) {
-                                scores[n][val_vote] += 20;
-                                scores[n].total += 20;
+                            if (val_vote < 13) {
+                                // Reward
+                                if (results[i].reward == responses[j].reward && responses[j].reward) {
+                                    scores[n][val_vote] += 10;
+                                    scores[n].total += 10;
+                                } else if (results[i].reward !== null && typeof results[i].reward==="object" && inArray(responses[j].reward,results[i].reward) && responses[j].reward) {
+                                    scores[n][val_vote] += 10;
+                                    scores[n].total += 10;
+                                };
+                                // Immunity
+                                if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
+                                    scores[n][val_vote] += 15;
+                                    scores[n].total += 15;
+                                };
+                                // Eliminated
+                                if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
+                                    scores[n][val_vote] += 20;
+                                    scores[n].total += 20;
+                                };
+                                // Safe
+                                if (cur_vote === 11 && results[i].eliminated !== responses[j].safe && results[i].eliminated2 !== responses[j].safe && responses[j].safe) {
+                                    scores[n][val_vote] += 20;
+                                    scores[n].total += 20;
+                                } else if (results[i].eliminated !== responses[j].safe && responses[j].safe && cur_vote !== 12) {
+                                    scores[n][val_vote] += 20;
+                                    scores[n].total += 20;
+                                };
                             };
                             // Title Quote
                             if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
