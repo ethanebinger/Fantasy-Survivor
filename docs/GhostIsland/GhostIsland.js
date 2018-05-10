@@ -793,7 +793,7 @@ function init_chart(responses) {
             'ghostIdol': null
         },
         {	'vote': 13,
-            'date': '5/8/18',
+            'date': '5/9/18',
             'merge': 'Yes',
             'reward': [ 
                 'Sebastian Noel',
