@@ -884,7 +884,7 @@ function init_chart(responses) {
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
                         //safeguard because being weird:
-                        if (val_vote === 13) {
+                        if (results[i].vote === 13) {
                             responses[j].reward == null;
                             responses[j].immunity == null;
                             responses[j].eliminated == null;
