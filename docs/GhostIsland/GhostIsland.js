@@ -224,7 +224,7 @@ function getPastResponses() {
                     if (finalEight[j].name === curName) {
                         $("#past_responses").append("<h3 id='finalEight_title'></h3>");
                         $("#finalEight_title").html("Order of Final Eight Survivors");
-                        $("#past_responses").append("<table id='finalEight_table' class='responsive-table highlight'></table>");
+                        $("#past_responses").append("<table id='finalEight_table'></table>");
                         $("#finalEight_table").html(
                             "<thead><tr><th>Rank</th><th>Name</th></tr></thead>" +
                             "<tbody><tr><td>8th</td><td>"+ finalEight[j].place_8 +"</td></tr>" +
