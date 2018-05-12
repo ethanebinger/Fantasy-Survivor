@@ -207,37 +207,37 @@ function getPastResponses() {
                         );
                     };
                 };
-                // Get Final 8 Order
-                $.ajax({
-                    type: "GET",
-                    url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json",
-                    dataType: "json",
-                    success: function(result2) {
-                        // PULL existing data (saved in 'finalEight' object)
-                        var finalEight = JSON.parse(atob(result2.content));
-                        
-                        // Create table displaying data in order
-                        // var curName = $("#past_responses_name option:selected").val();
-                        for (var j=0; j<finalEight.length; i++) {
-                            if (finalEight[j].name === curName) {
-                                $("#past_responses").append("<h3 id='finalEight_title'></h3>");
-                                $("#finalEight_title").html("Order of Final Eight Survivors");
-                                $("#past_responses").append("<span id='finalEight_table'></span>");
-                                $("#finalEight_table").html(
-                                    "<tr><th>Rank</th><th>Name</th></tr>" +
-                                    "<tr><th>8th</th><th>"+ finalEight[j].place_8 +"</th></tr>" +
-                                    "<tr><th>7th</th><th>"+ finalEight[j].place_7 +"</th></tr>" +
-                                    "<tr><th>6th</th><th>"+ finalEight[j].place_6 +"</th></tr>" +
-                                    "<tr><th>5th</th><th>"+ finalEight[j].place_5 +"</th></tr>" +
-                                    "<tr><th>4th</th><th>"+ finalEight[j].place_4 +"</th></tr>" +
-                                    "<tr><th>3rd</th><th>"+ finalEight[j].place_3 +"</th></tr>" +
-                                    "<tr><th>2nd</th><th>"+ finalEight[j].place_2 +"</th></tr>" +
-                                    "<tr><th>1st</th><th>"+ finalEight[j].place_1 +"</th></tr>"
-                                );
-                            };
-                        };
-                    }
-                });
+            }
+        });
+        // Get Final 8 Order
+        $.ajax({
+            type: "GET",
+            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json",
+            dataType: "json",
+            success: function(result2) {
+                // PULL existing data (saved in 'finalEight' object)
+                var finalEight = JSON.parse(atob(result2.content));
+
+                // Create table displaying data in order
+                // var curName = $("#past_responses_name option:selected").val();
+                for (var j=0; j<finalEight.length; i++) {
+                    if (finalEight[j].name === curName) {
+                        $("#past_responses").append("<h3 id='finalEight_title'></h3>");
+                        $("#finalEight_title").html("Order of Final Eight Survivors");
+                        $("#past_responses").append("<span id='finalEight_table'></span>");
+                        $("#finalEight_table").html(
+                            "<tr><th>Rank</th><th>Name</th></tr>" +
+                            "<tr><th>8th</th><th>"+ finalEight[j].place_8 +"</th></tr>" +
+                            "<tr><th>7th</th><th>"+ finalEight[j].place_7 +"</th></tr>" +
+                            "<tr><th>6th</th><th>"+ finalEight[j].place_6 +"</th></tr>" +
+                            "<tr><th>5th</th><th>"+ finalEight[j].place_5 +"</th></tr>" +
+                            "<tr><th>4th</th><th>"+ finalEight[j].place_4 +"</th></tr>" +
+                            "<tr><th>3rd</th><th>"+ finalEight[j].place_3 +"</th></tr>" +
+                            "<tr><th>2nd</th><th>"+ finalEight[j].place_2 +"</th></tr>" +
+                            "<tr><th>1st</th><th>"+ finalEight[j].place_1 +"</th></tr>"
+                        );
+                    };
+                };
             }
         });
     });
