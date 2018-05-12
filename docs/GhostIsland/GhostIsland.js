@@ -197,7 +197,7 @@ function getPastResponses() {
                         'total': 0,
                         'reward': 0,
                         'immunity': 0,
-                        'elminated': 0,
+                        'eliminated': 0,
                         'safe': 0,
                         'titleQuote': 0,
                         'nudity': 0,
