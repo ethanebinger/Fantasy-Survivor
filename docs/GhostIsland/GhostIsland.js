@@ -191,6 +191,25 @@ function getPastResponses() {
                 // Parse data into readable json
                 var responses = JSON.parse(atob(result.content));
                 
+                // Calc score
+                var scores = [
+                    {	'name': curName, 
+                        'total': 0,
+                        'reward': 0,
+                        'immunity': 0,
+                        'elminated': 0,
+                        'safe': 0,
+                        'titleQuote': 0,
+                        'nudity': 0,
+                        'idolFound': 0,
+                        'idolPlayed': 0,
+                        'ghostIsland': 0,
+                        'ghostIdol': 0,
+                        'ghostPlay': 0
+                    }
+                ];
+                scores = calculateScores(scores, results, responses, "individual");
+                
                 // Filter for only selected name and vote, then add html to page
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
@@ -204,18 +223,18 @@ function getPastResponses() {
                             };
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
                             $("#json_"+String(i)).html(
-                                "<tr><th>Question</th><th>Response</th></tr>" +
-                                "<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td></tr>" +
-                                "<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td></tr>" +
-                                "<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td></tr>" +
-                                "<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td></tr>" +
-                                "<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td></tr>" +
-                                "<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td></tr>" +
-                                "<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td></tr>" +
-                                "<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td></tr>" +
-                                "<tr><td><strong>Ghost Island Inhabitant</strong></td><td>" + responses[i].ghostIsland + "</td></tr>" +
-                                "<tr><td><strong>Able to play on Ghost Island?</strong></td><td>" + responses[i].ghostIdol + "</td></tr>" +
-                                "<tr><td><strong>Secret Advantage Found on Ghost Island?</strong></td><td>" + responses[i].ghostIdol + "</td></tr>"
+                                "<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+                                "<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+                                "<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+                                "<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
+                                "<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
+                                "<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+                                "<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+                                "<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+                                "<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
+                                "<tr><td><strong>Ghost Island Inhabitant</strong></td><td>" + responses[i].ghostIsland + "</td><td>"+ scores[0].ghostIsland +"</td></tr>" +
+                                "<tr><td><strong>Able to play on Ghost Island?</strong></td><td>" + responses[i].ghostPlay + "</td><td>"+ scores[0].ghostPlay +"</td></tr>" +
+                                "<tr><td><strong>Secret Advantage Found on Ghost Island?</strong></td><td>" + responses[i].ghostIdol + "</td><td>"+ scores[0].ghostIdol +"</td></tr>"
                             );  
                         };
                     };
@@ -598,7 +617,7 @@ function init_chart(responses) {
         .call(tip);	
 
     // Calculate scores
-    scores = calculateScores(scores, results, responses);
+    scores = calculateScores(scores, results, responses, null);
 
     // Define X-Scale Domain
     x.domain([0,d3.max(scores, function(d) { return d.total; })]);
@@ -715,7 +734,7 @@ function determineWeek(responses, results_vote) {
 };
 
 // FUNCTION TO CALCULATE SCORES
-function calculateScores(scores, results, responses) {
+function calculateScores(scores, results, responses, calcType) {
     var name_ep_count = [0];
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
@@ -738,64 +757,77 @@ function calculateScores(scores, results, responses) {
                             if (results[i].vote < 13) {
                                 // Reward
                                 if (results[i].reward == responses[j].reward && responses[j].reward) {
-                                    scores[n][val_vote] += 10;
+                                    if (calcType === "individual") { scores[n].reward; }
+                                    else { scores[n][val_vote] += 10; };
                                     scores[n].total += 10;
                                 } else if (results[i].reward !== null && typeof results[i].reward==="object" && inArray(responses[j].reward,results[i].reward) && responses[j].reward) {
-                                    scores[n][val_vote] += 10;
+                                    if (calcType === "individual") { scores[n].reward; }
+                                    else { scores[n][val_vote] += 10; };
                                     scores[n].total += 10;
                                 };
                                 // Immunity
                                 if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                                    scores[n][val_vote] += 15;
+                                    if (calcType === "individual") { scores[n].immunity; }
+                                    else { scores[n][val_vote] += 15; };
                                     scores[n].total += 15;
                                 };
                                 // Eliminated
                                 if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                                    scores[n][val_vote] += 20;
+                                    if (calcType === "individual") { scores[n].eliminated; }
+                                    else { scores[n][val_vote] += 20; };
                                     scores[n].total += 20;
                                 };
                                 // Safe
                                 if (cur_vote === 11 && results[i].eliminated !== responses[j].safe && results[i].eliminated2 !== responses[j].safe && responses[j].safe) {
-                                    scores[n][val_vote] += 20;
+                                    if (calcType === "individual") { scores[n].safe; }
+                                    else { scores[n][val_vote] += 20; };
                                     scores[n].total += 20;
                                 } else if (results[i].eliminated !== responses[j].safe && responses[j].safe && cur_vote !== 12) {
-                                    scores[n][val_vote] += 20;
+                                    if (calcType === "individual") { scores[n].safe; }
+                                    else { scores[n][val_vote] += 20; };
                                     scores[n].total += 20;
                                 };
                             };
                             // Title Quote
                             if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                                scores[n][val_vote] += 4;
+                                if (calcType === "individual") { scores[n].titleQuote; }
+                                else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             // Ghost Island Inhabitant
                             if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
-                                scores[n][val_vote] += 4;
+                                if (calcType === "individual") { scores[n].ghostIsland; }
+                                else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             // Ghost Island Play - Y/N/NA
                             if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
-                                scores[n][val_vote] += 2;
+                                if (calcType === "individual") { scores[n].ghostPlay; }
+                                else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Ghost Island Idol - Y/N/NA
                             if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
-                                scores[n][val_vote] += 2;
+                                if (calcType === "individual") { scores[n].ghostIdol; }
+                                else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Nudity
                             if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                                scores[n][val_vote] += 4;
+                                if (calcType === "individual") { scores[n].nudity; }
+                                else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             // Idol Found
                             if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                                scores[n][val_vote] += 4;
+                                if (calcType === "individual") { scores[n].idolFound; }
+                                else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             // Idol Played
                             if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                                scores[n][val_vote] += 4;
+                                if (calcType === "individual") { scores[n].idolPLayed; }
+                                else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
@@ -803,69 +835,84 @@ function calculateScores(scores, results, responses) {
                         } else {
                             // Reward
                             if ((results[i].reward === 'Malolo' || results[i].reward2 === 'Malolo') && inArray(responses[j].reward, malolo) && responses[j].reward) {
-                                scores[n][val_vote] += 5;
+                                if (calcType === "individual") { scores[n].reward; }
+                                else { scores[n][val_vote] += 5; }
                                 scores[n].total += 5;
                             } else if ((results[i].reward === 'Naviti' || results[i].reward2 === 'Naviti') && inArray(responses[j].reward, naviti) && responses[j].reward) {
-                                scores[n][val_vote] += 5;
+                                if (calcType === "individual") { scores[n].reward; }
+                                else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;   
                             } else if ((results[i].reward === 'Yanuya' || results[i].reward2 === 'Yanuya') && inArray(responses[j].reward, yanuya) && responses[j].reward) {
-                                scores[n][val_vote] += 5;
+                                if (calcType === "individual") { scores[n].reward; }
+                                else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;   
                             };
                             // Immunity
                             if ((results[i].immunity === 'Malolo' || results[i].immunity2 === 'Malolo') && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
-                                scores[n][val_vote] += 7.5;
+                                if (calcType === "individual") { scores[n].immunity; }
+                                else { scores[n][val_vote] += 7.5; };
                                 scores[n].total += 7.5;
                             } else if ((results[i].immunity === 'Naviti' || results[i].immunity2 === 'Naviti')  && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
-                                scores[n][val_vote] += 7.5;
+                                if (calcType === "individual") { scores[n].immunity; }
+                                else { scores[n][val_vote] += 7.5; };
                                 scores[n].total += 7.5;
                             } else if ((results[i].immunity === 'Yanuya' || results[i].immunity2 === 'Yanuya')  && inArray(responses[j].immunity, yanuya) && responses[j].immunity) {
-                                scores[n][val_vote] += 7.5;
+                                if (calcType === "individual") { scores[n].immunity; }
+                                else { scores[n][val_vote] += 7.5; };
                                 scores[n].total += 7.5;
                             };
                             // Eliminated
                             if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                                scores[n][val_vote] += 10;
+                                if (calcType === "individual") { scores[n].eliminated; }
+                                else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
                             };
                             // Safe
                             if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-                                scores[n][val_vote] += 10;
+                                if (calcType === "individual") { scores[n].safe; }
+                                else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
                             };
                             // Title Quote
                             if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                                scores[n][val_vote] += 2;
+                                if (calcType === "individual") { scores[n].titleQuote; }
+                                else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Ghost Island Inhabitant
                             if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
-                                scores[n][val_vote] += 2;
+                                if (calcType === "individual") { scores[n].ghostIsland; }
+                                else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Ghost Island Play - Y/N/NA
                             if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
-                                scores[n][val_vote] += 1;
+                                if (calcType === "individual") { scores[n].ghostPlay; }
+                                else { scores[n][val_vote] += 1; };
                                 scores[n].total += 1;
                             };
                             // Ghost Island Idol - Y/N/NA
                             if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
-                                scores[n][val_vote] += 1;
+                                if (calcType === "individual") { scores[n].ghostIdol; }
+                                else { scores[n][val_vote] += 1; };
                                 scores[n].total += 1;
                             };
                             // Nudity
                             if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                                scores[n][val_vote] += 2;
+                                if (calcType === "individual") { scores[n].nudity; }
+                                else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Idol Found
                             if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                                scores[n][val_vote] += 2;
+                                if (calcType === "individual") { scores[n].idolFound; }
+                                else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Idol Played
                             if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                                scores[n][val_vote] += 2;
+                                if (calcType === "individual") { scores[n].idolPlayed; }
+                                else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
