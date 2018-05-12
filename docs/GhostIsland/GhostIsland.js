@@ -204,17 +204,18 @@ function getPastResponses() {
                             };
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
                             $("#json_"+String(i)).html(
-                                "<tr><td><strong>Wins Reward Challenge</strong><td></td>" + responses[i].reward + "</td></tr>" +
-                                "<tr><td><strong>Wins Immunity</strong><td></td>" + responses[i].immunity + "</td></tr>" +
-                                "<tr><td><strong>Eliminated</strong><td></td>" + responses[i].eliminated + "</td></tr>" +
-                                "<tr><td><strong>Safe</strong><td></td>" + responses[i].safe + "</td></tr>" +
-                                "<tr><td><strong>Title Quote</strong><td></td>" + responses[i].titleQuote + "</td></tr>" +
-                                "<tr><td><strong>Nudity?</strong><td></td>" + responses[i].nudity + "</td></tr>" +
-                                "<tr><td><strong>Idol or Secret Advantage Found?</strong><td></td>" + responses[i].idolFound + "</td></tr>" +
-                                "<tr><td><strong>Idol or Secret Advantage Played?</strong><td></td>" + responses[i].idolPlayed + "</td></tr>" +
-                                "<tr><td><strong>Ghost Island Inhabitant</strong><td></td>" + responses[i].ghostIsland + "</td></tr>" +
-                                "<tr><td><strong>Able to play on Ghost Island?</strong><td></td>" + responses[i].ghostIdol + "</td></tr>" +
-                                "<tr><td><strong>Secret Advantage Found on Ghost Island?</strong><td></td>" + responses[i].ghostIdol + "</td></tr>"
+                                "<tr><th>Question</th><th>Response</th></tr>" +
+                                "<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td></tr>" +
+                                "<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td></tr>" +
+                                "<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td></tr>" +
+                                "<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td></tr>" +
+                                "<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td></tr>" +
+                                "<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td></tr>" +
+                                "<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td></tr>" +
+                                "<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td></tr>" +
+                                "<tr><td><strong>Ghost Island Inhabitant</strong></td><td>" + responses[i].ghostIsland + "</td></tr>" +
+                                "<tr><td><strong>Able to play on Ghost Island?</strong></td><td>" + responses[i].ghostIdol + "</td></tr>" +
+                                "<tr><td><strong>Secret Advantage Found on Ghost Island?</strong></td><td>" + responses[i].ghostIdol + "</td></tr>"
                             );  
                         };
                     };
@@ -551,366 +552,6 @@ function init_chart(responses) {
             'Vote 16': 0
         }
     ];
-    var results = [
-        {	'vote': 1,
-            'date': '2/28/18',
-            'merge': 'No',
-            'reward': 'Malolo', 
-            'immunity': 'Naviti', 
-            'eliminated': 'Stephanie Gonzalez',
-            'idolFound': 'No',
-            'idolPlayed': 'No',
-            'titleQuote': 'Jeff Probst',
-            'nudity': 'No',
-            'ghostIsland': 'Jacob Derwin',
-            'ghostIdol': 'Yes',
-            'malolo': [
-                'Brendan Shapiro',
-                'Donathan Hurley',
-                'Jacob Derwin',
-                'James Lim',
-                'Jenna Bowman',
-                'Laurel Johnson',
-                'Libby Vincek',
-                'Michael Yerger',
-                'Stephanie Gonzalez',
-                'Stephanie Johnson'
-            ],
-            'naviti': [
-                'Angela Perkins',
-                'Bradley Kleihege',
-                'Chelsea Townsend',
-                'Chris Noble',
-                'Desiree Afuye',
-                'Domenick Abbate',
-                'Kellyn Bechtold',
-                'Morgan Ricke',
-                'Sebastian Noel',
-                'Wendell Holland'
-            ]
-        },
-        {	'vote': 2,
-            'date': '2/28/18',
-            'merge': 'No',
-            'reward': null, 
-            'immunity': 'Naviti', 
-            'eliminated': 'Jacob Derwin',
-            'idolFound': 'Yes', //Domenick Abbate
-            'idolPlayed': 'No',
-            'titleQuote': null,
-            'nudity': 'No',
-            'ghostIsland': 'Donathan Hurley',
-            'ghostIdol': 'No',
-            'malolo': [
-                'Brendan Shapiro',
-                'Donathan Hurley',
-                'Jacob Derwin',
-                'James Lim',
-                'Jenna Bowman',
-                'Laurel Johnson',
-                'Libby Vincek',
-                'Michael Yerger',
-                'Stephanie Johnson'
-            ],
-            'naviti': [
-                'Angela Perkins',
-                'Bradley Kleihege',
-                'Chelsea Townsend',
-                'Chris Noble',
-                'Desiree Afuye',
-                'Domenick Abbate',
-                'Kellyn Bechtold',
-                'Morgan Ricke',
-                'Sebastian Noel',
-                'Wendell Holland'
-            ]
-        },
-        {	'vote': 3,
-            'date': '3/7/18',
-            'merge': 'Swap',
-            'reward': null, 
-            'immunity': 'Malolo', 
-            'eliminated': 'Morgan Ricke',
-            'idolFound': 'Yes', //Michael Yerger
-            'idolPlayed': 'No',
-            'titleQuote': 'Morgan Ricke',
-            'nudity': 'No',
-            'ghostIsland': 'Chris Noble',
-            'ghostIdol': 'No',
-            'malolo': [
-                'Brendan Shapiro',
-                'Jenna Bowman',
-                'Michael Yerger',
-                'Stephanie Johnson',
-                'Bradley Kleihege',
-                'Chelsea Townsend',
-                'Sebastian Noel',
-                'Kellyn Bechtold',
-                'Desiree Afuye'
-            ],
-            'naviti': [
-                'Angela Perkins',
-                'Donathan Hurley',
-                'James Lim',
-                'Laurel Johnson',
-                'Libby Vincek',
-                'Chris Noble',
-                'Domenick Abbate',
-                'Morgan Ricke',
-                'Wendell Holland'
-            ]
-        },
-        {	'vote': 4,
-            'date': '3/14/18',
-            'merge': 'No',
-            'reward': 'Naviti', 
-            'immunity': 'Naviti', 
-            'eliminated': 'Brendan Shapiro',
-            'idolFound': 'No',
-            'idolPlayed': 'Yes',
-            'titleQuote': 'Kellyn Bechtold',
-            'nudity': 'No',
-            'ghostIsland': 'Kellyn Bechtold',
-            'ghostIdol': 'Yes',
-            'malolo': [
-                'Brendan Shapiro',
-                'Jenna Bowman',
-                'Michael Yerger',
-                'Stephanie Johnson',
-                'Bradley Kleihege',
-                'Chelsea Townsend',
-                'Sebastian Noel',
-                'Kellyn Bechtold',
-                'Desiree Afuye'
-            ],
-            'naviti': [
-                'Angela Perkins',
-                'Donathan Hurley',
-                'James Lim',
-                'Laurel Johnson',
-                'Libby Vincek',
-                'Chris Noble',
-                'Domenick Abbate',
-                'Wendell Holland'
-            ]
-        },
-        {	'vote': 5,
-            'date': '3/21/18',
-            'merge': 'No',
-            'reward': 'Naviti', 
-            'immunity': 'Naviti', 
-            'eliminated': 'Stephanie Johnson',
-            'idolFound': 'No',
-            'idolPlayed': 'No',
-            'titleQuote': 'Chris Noble',
-            'nudity': 'Yes',
-            'ghostIsland': 'Stephanie Johnson',
-            'ghostIdol': 'Yes',
-            'malolo': [
-                'Jenna Bowman',
-                'Michael Yerger',
-                'Stephanie Johnson',
-                'Bradley Kleihege',
-                'Chelsea Townsend',
-                'Sebastian Noel',
-                'Kellyn Bechtold',
-                'Desiree Afuye'
-            ],
-            'naviti': [
-                'Angela Perkins',
-                'Donathan Hurley',
-                'James Lim',
-                'Laurel Johnson',
-                'Libby Vincek',
-                'Chris Noble',
-                'Domenick Abbate',
-                'Wendell Holland'
-            ]
-        },
-        {	'vote': 6,
-            'date': '3/28/18',
-            'merge': 'Swap',
-            'reward': null, 
-            'immunity': 'Yanuya', 
-            'immunity2': 'Naviti',
-            'eliminated': 'James Lim',
-            'idolFound': 'No',
-            'idolPlayed': 'No',
-            'titleQuote': 'Desiree Afuye',
-            'nudity': 'No',
-            'ghostIsland': 'No Ghost',
-            'ghostPlay': 'NA',
-            'ghostIdol': 'NA',
-            'malolo': [
-                'Michael Yerger',
-                'Kellyn Bechtold',
-                'Desiree Afuye',
-                'James Lim',
-                'Angela Perkins',
-            ],
-            'naviti': [
-                'Donathan Hurley',
-                'Bradley Kleihege',
-                'Chelsea Townsend',                
-                'Libby Vincek',
-                'Domenick Abbate'
-            ],
-            'yanuya': [
-                'Jenna Bowman',
-                'Sebastian Noel',
-                'Chris Noble',
-                'Wendell Holland',
-                'Laurel Johnson',
-            ]
-        },
-        {	'vote': 7,
-            'date': '4/4/18',
-            'merge': 'No',
-            'reward': 'Naviti', 
-            'reward2': 'Yanuya', 
-            'immunity': 'Yanuya', 
-            'immunity2': 'Malolo',
-            'eliminated': 'Bradley Kleihege',
-            'idolFound': 'Yes',
-            'idolPlayed': 'No',
-            'titleQuote': 'Kellyn Bechtold',
-            'nudity': 'No',
-            'ghostIsland': 'Kellyn Bechtold',
-            'ghostPlay': 'Yes',
-            'ghostIdol': 'Yes',
-            'malolo': [
-                'Michael Yerger',
-                'Kellyn Bechtold',
-                'Desiree Afuye',
-                'Angela Perkins',
-            ],
-            'naviti': [
-                'Donathan Hurley',
-                'Bradley Kleihege',
-                'Chelsea Townsend',                
-                'Libby Vincek',
-                'Domenick Abbate'
-            ],
-            'yanuya': [
-                'Jenna Bowman',
-                'Sebastian Noel',
-                'Chris Noble',
-                'Wendell Holland',
-                'Laurel Johnson',
-            ]
-        },
-        {	'vote': 8,
-            'date': '4/11/18',
-            'merge': 'Yes',
-            'reward': null,
-            'immunity': 'Kellyn Bechtold', 
-            'eliminated': 'Chris Noble',
-            'idolFound': 'No',
-            'idolPlayed': 'Yes',
-            'titleQuote': 'Domenick Abbate',
-            'nudity': 'No',
-            'ghostIsland': 'Chris Noble',
-            'ghostPlay': 'Yes',
-            'ghostIdol': 'Yes'
-        },
-        {	'vote': 9,
-            'date': '4/18/18',
-            'merge': 'Yes',
-            'reward': [
-                'Angela Perkins', 
-                'Donathan Hurley',
-                'Chelsea Townsend',                
-                'Libby Vincek',
-                'Wendell Holland',
-                'Laurel Johnson'],
-            'immunity': 'Angela Perkins', 
-            'eliminated': 'Libby Vincek',
-            'idolFound': 'No',
-            'idolPlayed': 'Yes',
-            'titleQuote': null,
-            'nudity': 'No',
-            'ghostIsland': 'Jenna Bowman',
-            'ghostPlay': 'No',
-            'ghostIdol': 'NA'
-        },
-        {	'vote': 10,
-            'date': '4/25/18',
-            'merge': 'Yes',
-            'reward': [
-                'Michael Yerger',
-                'Kellyn Bechtold', 
-                'Sebastian Noel',
-                'Chelsea Townsend',                
-                'Jenna Bowman'],
-            'immunity': 'Chelsea Townsend', 
-            'eliminated': 'Desiree Afuye',
-            'idolFound': 'Yes',
-            'idolPlayed': 'No',
-            'titleQuote': 'Jeff Probst',
-            'nudity': 'No',
-            'ghostIsland': 'Angela Perkins',
-            'ghostPlay': 'Yes',
-            'ghostIdol': 'No'
-        },
-        {	'vote': 11,
-            'date': '5/2/18',
-            'merge': 'Yes',
-            'reward': null,
-            'immunity': 'Chelsea Townsend', 
-            'eliminated': 'Jenna Bowman',
-            'eliminated2': 'Michael Yerger',
-            'idolFound': 'No',
-            'idolPlayed': 'Yes',
-            'titleQuote': 'Domenick Abbate',
-            'nudity': 'No',
-            'ghostIsland': 'No Ghost',
-            'ghostPlay': 'NA',
-            'ghostIdol': 'NA'
-        },
-        {	'vote': 12,
-            'date': '5/2/18',
-            'merge': 'Yes',
-            'reward': null,
-            'immunity': 'Domenick Abbate', 
-            'eliminated': 'Michael Yerger',
-            'idolFound': null,
-            'idolPlayed': null,
-            'titleQuote': null,
-            'nudity': null,
-            'ghostIsland': null,
-            'ghostPlay': null,
-            'ghostIdol': null
-        },
-        {	'vote': 13,
-            'date': '5/9/18',
-            'merge': 'Yes',
-            'reward': [ 
-                'Sebastian Noel',
-                'Domenick Abbate',                
-                'Donathan Hurley'
-            ],
-            'immunity': 'Domenick Abbate', 
-            'eliminated': 'Chelsea Townsend',
-            'idolFound': 'No',
-            'idolPlayed': 'No',
-            'titleQuote': 'Chelsea Townsend',
-            'nudity': 'No',
-            'ghostIsland': 'Wendell Holland',
-            'ghostPlay': 'Yes',
-            'ghostIdol': 'Yes'
-        }
-    ];
-    
-    // Function to check if x in array
-    var inArray = function(x,y) {
-        var i;
-        for (i=0; i < y.length; i++) {
-            if (y[i] === x) {
-                return true;
-            };
-        };
-        return false;
-    };
 
     // Create arrays for players, keys (votes)
     var players = scores.map(function(d) { return d.name; });
@@ -957,6 +598,124 @@ function init_chart(responses) {
         .call(tip);	
 
     // Calculate scores
+    scores = calculateScores(scores, results, responses);
+
+    // Define X-Scale Domain
+    x.domain([0,d3.max(scores, function(d) { return d.total; })]);
+
+    // Render Chart
+    chart.append("g")
+        .selectAll("g")
+        .data(d3.stack().keys(keys)(scores))
+        .enter().append("g")
+            .attr("fill", function (d){ return color(d.key); })
+        .selectAll("rect")
+        .data(function(d) { return d; })
+        .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d[0]); })
+            .attr("y", function(d) { return y(d.data.name); })
+            .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+            .attr("height", y.bandwidth())
+            .on("mouseenter", function(d) { 
+                tip.show(d); 
+                d3.select(this).style("cursor", "pointer")
+                               .style("fill-opacity", 0.5);
+            })
+            .on("mouseleave", function(d) { 
+                d3.select(this).style("fill-opacity", 1);
+                tip.hide(d);
+            });
+
+    // Add Axes
+    chart.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+    chart.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+    // Add Legend
+    var legend = chart.append("g")
+        .attr("font-family", "sans-serif")
+        .attr("font-size", 10)
+        .attr("text-anchor", "end")
+        .selectAll("g")
+            .data(keys)
+            .enter().append("g")
+            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+    legend.append("rect")
+        .attr("x", width - 19)
+        .attr("width", 19)
+        .attr("height", 19)
+        .attr("fill", color);
+
+    legend.append("text")
+        .attr("x", width - 24)
+        .attr("y", 9.5)
+        .attr("dy", "0.32em")
+        .text(function(d) { return d; });
+
+};
+
+// Function to check if x in array
+var inArray = function(x,y) {
+    var i;
+    for (i=0; i < y.length; i++) {
+        if (y[i] === x) {
+            return true;
+        };
+    };
+    return false;
+};
+
+// Function to identify week based on date of vote
+function determineWeek(responses, results_vote) {
+    var cur_vote = 0;
+    var submit_time = new Date(responses.submit_time);
+    if (submit_time <= new Date(2018,1,28,20)) {
+        /*// Extra Loop for Double Episode
+        if (inArray(1, iter_ep)) {
+            cur_vote = 2;
+        } else {
+            cur_vote = 1;
+            iter_ep.push(cur_vote);
+        }//;*/
+        cur_vote = 1;
+    } else if (submit_time <= new Date(2018,2,7,20)) {
+        cur_vote = 3;
+    } else if (submit_time <= new Date(2018,2,14,20)) {
+        cur_vote = 4;
+    } else if (submit_time <= new Date(2018,2,21,20)) {
+        cur_vote = 5;
+    } else if (submit_time <= new Date(2018,2,28,20)) {
+        cur_vote = 6;
+    } else if (submit_time <= new Date(2018,3,4,20)) {
+        cur_vote = 7;
+    } else if (submit_time <= new Date(2018,3,11,20)) {
+        cur_vote = 8;
+    } else if (submit_time <= new Date(2018,3,18,20)) {
+        cur_vote = 9;
+    } else if (submit_time <= new Date(2018,3,25,20)) {
+        cur_vote = 10;
+    } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 11) {
+        cur_vote = 11;
+    } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 12) {
+        cur_vote = 12;
+    } else if (submit_time <= new Date(2018,4,9,20)) {
+        cur_vote = 13;
+    } else if (submit_time <= new Date(2018,4,16,20)) {
+        cur_vote = 14;
+    } else if (submit_time <= new Date(2018,4,23,20)) {
+        cur_vote = 15;
+    };
+    return cur_vote;
+};
+
+// FUNCTION TO CALCULATE SCORES
+function calculateScores(scores, results, responses) {
     var name_ep_count = [0];
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
@@ -1117,116 +876,355 @@ function init_chart(responses) {
             };
         };
     };
-
-    // Define X-Scale Domain
-    x.domain([0,d3.max(scores, function(d) { return d.total; })]);
-
-    // Render Chart
-    chart.append("g")
-        .selectAll("g")
-        .data(d3.stack().keys(keys)(scores))
-        .enter().append("g")
-            .attr("fill", function (d){ return color(d.key); })
-        .selectAll("rect")
-        .data(function(d) { return d; })
-        .enter().append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d[0]); })
-            .attr("y", function(d) { return y(d.data.name); })
-            .attr("width", function(d) { return x(d[1]) - x(d[0]); })
-            .attr("height", y.bandwidth())
-            .on("mouseenter", function(d) { 
-                tip.show(d); 
-                d3.select(this).style("cursor", "pointer")
-                               .style("fill-opacity", 0.5);
-            })
-            .on("mouseleave", function(d) { 
-                d3.select(this).style("fill-opacity", 1);
-                tip.hide(d);
-            });
-
-    // Add Axes
-    chart.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
-    chart.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
-
-    // Add Legend
-    var legend = chart.append("g")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", 10)
-        .attr("text-anchor", "end")
-        .selectAll("g")
-            .data(keys)
-            .enter().append("g")
-            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-    legend.append("rect")
-        .attr("x", width - 19)
-        .attr("width", 19)
-        .attr("height", 19)
-        .attr("fill", color);
-
-    legend.append("text")
-        .attr("x", width - 24)
-        .attr("y", 9.5)
-        .attr("dy", "0.32em")
-        .text(function(d) { return d; });
-
+    return scores;
 };
 
-// Function to check if x in array
-var inArray = function(x,y) {
-    var i;
-    for (i=0; i < y.length; i++) {
-        if (y[i] === x) {
-            return true;
-        };
-    };
-    return false;
-};
-
-function determineWeek(responses, results_vote) {
-    var cur_vote = 0;
-    var submit_time = new Date(responses.submit_time);
-    if (submit_time <= new Date(2018,1,28,20)) {
-        /*// Extra Loop for Double Episode
-        if (inArray(1, iter_ep)) {
-            cur_vote = 2;
-        } else {
-            cur_vote = 1;
-            iter_ep.push(cur_vote);
-        }//;*/
-        cur_vote = 1;
-    } else if (submit_time <= new Date(2018,2,7,20)) {
-        cur_vote = 3;
-    } else if (submit_time <= new Date(2018,2,14,20)) {
-        cur_vote = 4;
-    } else if (submit_time <= new Date(2018,2,21,20)) {
-        cur_vote = 5;
-    } else if (submit_time <= new Date(2018,2,28,20)) {
-        cur_vote = 6;
-    } else if (submit_time <= new Date(2018,3,4,20)) {
-        cur_vote = 7;
-    } else if (submit_time <= new Date(2018,3,11,20)) {
-        cur_vote = 8;
-    } else if (submit_time <= new Date(2018,3,18,20)) {
-        cur_vote = 9;
-    } else if (submit_time <= new Date(2018,3,25,20)) {
-        cur_vote = 10;
-    } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 11) {
-        cur_vote = 11;
-    } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 12) {
-        cur_vote = 12;
-    } else if (submit_time <= new Date(2018,4,9,20)) {
-        cur_vote = 13;
-    } else if (submit_time <= new Date(2018,4,16,20)) {
-        cur_vote = 14;
-    } else if (submit_time <= new Date(2018,4,23,20)) {
-        cur_vote = 15;
-    };
-    return cur_vote;
-};
+var results = [
+    {	'vote': 1,
+        'date': '2/28/18',
+        'merge': 'No',
+        'reward': 'Malolo', 
+        'immunity': 'Naviti', 
+        'eliminated': 'Stephanie Gonzalez',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Jeff Probst',
+        'nudity': 'No',
+        'ghostIsland': 'Jacob Derwin',
+        'ghostIdol': 'Yes',
+        'malolo': [
+            'Brendan Shapiro',
+            'Donathan Hurley',
+            'Jacob Derwin',
+            'James Lim',
+            'Jenna Bowman',
+            'Laurel Johnson',
+            'Libby Vincek',
+            'Michael Yerger',
+            'Stephanie Gonzalez',
+            'Stephanie Johnson'
+        ],
+        'naviti': [
+            'Angela Perkins',
+            'Bradley Kleihege',
+            'Chelsea Townsend',
+            'Chris Noble',
+            'Desiree Afuye',
+            'Domenick Abbate',
+            'Kellyn Bechtold',
+            'Morgan Ricke',
+            'Sebastian Noel',
+            'Wendell Holland'
+        ]
+    },
+    {	'vote': 2,
+        'date': '2/28/18',
+        'merge': 'No',
+        'reward': null, 
+        'immunity': 'Naviti', 
+        'eliminated': 'Jacob Derwin',
+        'idolFound': 'Yes', //Domenick Abbate
+        'idolPlayed': 'No',
+        'titleQuote': null,
+        'nudity': 'No',
+        'ghostIsland': 'Donathan Hurley',
+        'ghostIdol': 'No',
+        'malolo': [
+            'Brendan Shapiro',
+            'Donathan Hurley',
+            'Jacob Derwin',
+            'James Lim',
+            'Jenna Bowman',
+            'Laurel Johnson',
+            'Libby Vincek',
+            'Michael Yerger',
+            'Stephanie Johnson'
+        ],
+        'naviti': [
+            'Angela Perkins',
+            'Bradley Kleihege',
+            'Chelsea Townsend',
+            'Chris Noble',
+            'Desiree Afuye',
+            'Domenick Abbate',
+            'Kellyn Bechtold',
+            'Morgan Ricke',
+            'Sebastian Noel',
+            'Wendell Holland'
+        ]
+    },
+    {	'vote': 3,
+        'date': '3/7/18',
+        'merge': 'Swap',
+        'reward': null, 
+        'immunity': 'Malolo', 
+        'eliminated': 'Morgan Ricke',
+        'idolFound': 'Yes', //Michael Yerger
+        'idolPlayed': 'No',
+        'titleQuote': 'Morgan Ricke',
+        'nudity': 'No',
+        'ghostIsland': 'Chris Noble',
+        'ghostIdol': 'No',
+        'malolo': [
+            'Brendan Shapiro',
+            'Jenna Bowman',
+            'Michael Yerger',
+            'Stephanie Johnson',
+            'Bradley Kleihege',
+            'Chelsea Townsend',
+            'Sebastian Noel',
+            'Kellyn Bechtold',
+            'Desiree Afuye'
+        ],
+        'naviti': [
+            'Angela Perkins',
+            'Donathan Hurley',
+            'James Lim',
+            'Laurel Johnson',
+            'Libby Vincek',
+            'Chris Noble',
+            'Domenick Abbate',
+            'Morgan Ricke',
+            'Wendell Holland'
+        ]
+    },
+    {	'vote': 4,
+        'date': '3/14/18',
+        'merge': 'No',
+        'reward': 'Naviti', 
+        'immunity': 'Naviti', 
+        'eliminated': 'Brendan Shapiro',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Kellyn Bechtold',
+        'nudity': 'No',
+        'ghostIsland': 'Kellyn Bechtold',
+        'ghostIdol': 'Yes',
+        'malolo': [
+            'Brendan Shapiro',
+            'Jenna Bowman',
+            'Michael Yerger',
+            'Stephanie Johnson',
+            'Bradley Kleihege',
+            'Chelsea Townsend',
+            'Sebastian Noel',
+            'Kellyn Bechtold',
+            'Desiree Afuye'
+        ],
+        'naviti': [
+            'Angela Perkins',
+            'Donathan Hurley',
+            'James Lim',
+            'Laurel Johnson',
+            'Libby Vincek',
+            'Chris Noble',
+            'Domenick Abbate',
+            'Wendell Holland'
+        ]
+    },
+    {	'vote': 5,
+        'date': '3/21/18',
+        'merge': 'No',
+        'reward': 'Naviti', 
+        'immunity': 'Naviti', 
+        'eliminated': 'Stephanie Johnson',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Chris Noble',
+        'nudity': 'Yes',
+        'ghostIsland': 'Stephanie Johnson',
+        'ghostIdol': 'Yes',
+        'malolo': [
+            'Jenna Bowman',
+            'Michael Yerger',
+            'Stephanie Johnson',
+            'Bradley Kleihege',
+            'Chelsea Townsend',
+            'Sebastian Noel',
+            'Kellyn Bechtold',
+            'Desiree Afuye'
+        ],
+        'naviti': [
+            'Angela Perkins',
+            'Donathan Hurley',
+            'James Lim',
+            'Laurel Johnson',
+            'Libby Vincek',
+            'Chris Noble',
+            'Domenick Abbate',
+            'Wendell Holland'
+        ]
+    },
+    {	'vote': 6,
+        'date': '3/28/18',
+        'merge': 'Swap',
+        'reward': null, 
+        'immunity': 'Yanuya', 
+        'immunity2': 'Naviti',
+        'eliminated': 'James Lim',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Desiree Afuye',
+        'nudity': 'No',
+        'ghostIsland': 'No Ghost',
+        'ghostPlay': 'NA',
+        'ghostIdol': 'NA',
+        'malolo': [
+            'Michael Yerger',
+            'Kellyn Bechtold',
+            'Desiree Afuye',
+            'James Lim',
+            'Angela Perkins',
+        ],
+        'naviti': [
+            'Donathan Hurley',
+            'Bradley Kleihege',
+            'Chelsea Townsend',                
+            'Libby Vincek',
+            'Domenick Abbate'
+        ],
+        'yanuya': [
+            'Jenna Bowman',
+            'Sebastian Noel',
+            'Chris Noble',
+            'Wendell Holland',
+            'Laurel Johnson',
+        ]
+    },
+    {	'vote': 7,
+        'date': '4/4/18',
+        'merge': 'No',
+        'reward': 'Naviti', 
+        'reward2': 'Yanuya', 
+        'immunity': 'Yanuya', 
+        'immunity2': 'Malolo',
+        'eliminated': 'Bradley Kleihege',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Kellyn Bechtold',
+        'nudity': 'No',
+        'ghostIsland': 'Kellyn Bechtold',
+        'ghostPlay': 'Yes',
+        'ghostIdol': 'Yes',
+        'malolo': [
+            'Michael Yerger',
+            'Kellyn Bechtold',
+            'Desiree Afuye',
+            'Angela Perkins',
+        ],
+        'naviti': [
+            'Donathan Hurley',
+            'Bradley Kleihege',
+            'Chelsea Townsend',                
+            'Libby Vincek',
+            'Domenick Abbate'
+        ],
+        'yanuya': [
+            'Jenna Bowman',
+            'Sebastian Noel',
+            'Chris Noble',
+            'Wendell Holland',
+            'Laurel Johnson',
+        ]
+    },
+    {	'vote': 8,
+        'date': '4/11/18',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Kellyn Bechtold', 
+        'eliminated': 'Chris Noble',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Domenick Abbate',
+        'nudity': 'No',
+        'ghostIsland': 'Chris Noble',
+        'ghostPlay': 'Yes',
+        'ghostIdol': 'Yes'
+    },
+    {	'vote': 9,
+        'date': '4/18/18',
+        'merge': 'Yes',
+        'reward': [
+            'Angela Perkins', 
+            'Donathan Hurley',
+            'Chelsea Townsend',                
+            'Libby Vincek',
+            'Wendell Holland',
+            'Laurel Johnson'],
+        'immunity': 'Angela Perkins', 
+        'eliminated': 'Libby Vincek',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': null,
+        'nudity': 'No',
+        'ghostIsland': 'Jenna Bowman',
+        'ghostPlay': 'No',
+        'ghostIdol': 'NA'
+    },
+    {	'vote': 10,
+        'date': '4/25/18',
+        'merge': 'Yes',
+        'reward': [
+            'Michael Yerger',
+            'Kellyn Bechtold', 
+            'Sebastian Noel',
+            'Chelsea Townsend',                
+            'Jenna Bowman'],
+        'immunity': 'Chelsea Townsend', 
+        'eliminated': 'Desiree Afuye',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Jeff Probst',
+        'nudity': 'No',
+        'ghostIsland': 'Angela Perkins',
+        'ghostPlay': 'Yes',
+        'ghostIdol': 'No'
+    },
+    {	'vote': 11,
+        'date': '5/2/18',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Chelsea Townsend', 
+        'eliminated': 'Jenna Bowman',
+        'eliminated2': 'Michael Yerger',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Domenick Abbate',
+        'nudity': 'No',
+        'ghostIsland': 'No Ghost',
+        'ghostPlay': 'NA',
+        'ghostIdol': 'NA'
+    },
+    {	'vote': 12,
+        'date': '5/2/18',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Domenick Abbate', 
+        'eliminated': 'Michael Yerger',
+        'idolFound': null,
+        'idolPlayed': null,
+        'titleQuote': null,
+        'nudity': null,
+        'ghostIsland': null,
+        'ghostPlay': null,
+        'ghostIdol': null
+    },
+    {	'vote': 13,
+        'date': '5/9/18',
+        'merge': 'Yes',
+        'reward': [ 
+            'Sebastian Noel',
+            'Domenick Abbate',                
+            'Donathan Hurley'
+        ],
+        'immunity': 'Domenick Abbate', 
+        'eliminated': 'Chelsea Townsend',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Chelsea Townsend',
+        'nudity': 'No',
+        'ghostIsland': 'Wendell Holland',
+        'ghostPlay': 'Yes',
+        'ghostIdol': 'Yes'
+    }
+];
