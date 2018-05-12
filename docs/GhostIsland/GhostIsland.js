@@ -171,16 +171,12 @@ function getPastResponses() {
         if (curName.length < 1 || curVote.length < 1) {
             alert("Please select both a name and a vote number");
             $("#past_responses").empty();
+        } else if (curVote === "FinalEight") {
+            getFinalEight(curName);
+        } else if (curVote === "FinalThree") {
+            getFinalThree(curName);
         } else {
-            if (curVote === "FinalEight") {
-                getFinalEight(curName);
-            } else if (curVote === "FinalThree") {
-                getFinalThree(curName);
-            } else {
-                getWeeklyResults(curName, +curVote);
-            };
-            
-            var BREAK_ = 0;
+            getWeeklyResults(curName, +curVote);
         };
     });
     function getWeeklyResults(curName, curVote) {
@@ -223,6 +219,7 @@ function getPastResponses() {
                         };
                     };
                 };
+                ifEmptyHTML();
             }
         });
     };
@@ -258,6 +255,7 @@ function getPastResponses() {
                         );
                     };
                 };
+                ifEmptyHTML();
             }
         });
     };
@@ -288,8 +286,17 @@ function getPastResponses() {
                         );
                     };
                 };
+                ifEmptyHTML();
             }
         });
+    };
+    function ifEmptyHTML() {
+        var html_length = $("#past_responses").children().length;
+        if (html_length === 0) {
+            $("#past_responses").append(
+                "<h3></h3><span>Nothing submitted in this category, please select again.</span>"
+            );
+        };
     };
     /*
     $("#past_responses_name").change(function() {
