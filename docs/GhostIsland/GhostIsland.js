@@ -165,6 +165,128 @@ function PushPullGithub(form_results) {
 };
 
 function getPastResponses() {
+    $("#past_responses_button").click(function() {
+        var curName = $("#past_responses_name option:selected").val();
+        var curVote = $("#past_responses_vote option:selected").val();
+        if (curName.length < 1 || curVote.length < 1) {
+            alert("Please select both a name and a vote number");
+        } else if (typeof curVote === "number") {
+            getWeeklyResults(curName, curVote);
+        } else if (curVote === "FinalEight") {
+            getFinalEight(curName);
+        } else if (curVote === "FinalThree") {
+            getFinalThree(curName);
+        };
+    });
+    function getWeeklyResults(curName, curVote) {
+        $.ajax({
+            type: "GET",
+            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json",
+            dataType: "json",
+            success: function(result) {
+                // Clear existing html
+                $("#past_responses").empty();
+                
+                // Parse data into readable json
+                var responses = JSON.parse(atob(result.content));
+                
+                // Filter for only selected name and vote, then add html to page
+                for (var i=0; i<responses.length; i++) {
+                    if (responses[i].name === curName) {
+                        var cur_vote = determineWeek(responses[i], 11);
+                        if (curVote === cur_vote) {
+                            $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
+                            if (cur_vote===11) {
+                                $("#week_"+String(i)).html("Vote #11 and #12");
+                            } else {
+                                $("#week_"+String(i)).html("Vote #"+String(cur_vote));
+                            };
+                            $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
+                            $("#json_"+String(i)).html(
+                                "<strong>Wins Reward Challenge: </strong>" + responses[i].reward + "<br>" +
+                                "<strong>Wins Immunity: </strong>" + responses[i].immunity + "<br>" +
+                                "<strong>Eliminated: </strong>" + responses[i].eliminated + "<br>" +
+                                "<strong>Safe: </strong>" + responses[i].safe + "<br>" +
+                                "<strong>Title Quote: </strong>" + responses[i].titleQuote + "<br>" +
+                                "<strong>Nudity? </strong>" + responses[i].nudity + "<br>" +
+                                "<strong>Idol or Secret Advantage Found? </strong>" + responses[i].idolFound + "<br>" +
+                                "<strong>Idol or Secret Advantage Played? </strong>" + responses[i].idolPlayed + "<br>" +
+                                "<strong>Ghost Island Inhabitant: </strong>" + responses[i].ghostIsland + "<br>" +
+                                "<strong>Able to play on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>" +
+                                "<strong>Secret Advantage Found on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>"
+                            );  
+                        };
+                    };
+                };
+            }
+        });
+    };
+    function getFinalEight(curName) {
+        $.ajax({
+            type: "GET",
+            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json",
+            dataType: "json",
+            success: function(result) {
+                // Clear existing html
+                $("#past_responses").empty();
+                
+                // Parse data into readable json
+                var finalEight = JSON.parse(atob(result.content));
+
+                // Create table displaying data in order
+                var curName = $("#past_responses_name option:selected").val();
+                for (var j=0; j<finalEight.length; j++) {
+                    if (finalEight[j].name === curName) {
+                        $("#past_responses").append("<h3 id='finalEight_title'></h3>");
+                        $("#finalEight_title").html("Order of Final Eight Survivors");
+                        $("#past_responses").append("<span id='finalEight_table'></span>");
+                        $("#finalEight_table").html(
+                            "<tr><th>Rank</th><th>Name</th></tr>" +
+                            "<tr><td>8th</td><td>"+ finalEight[j].place_8 +"</td></tr>" +
+                            "<tr><td>7th</td><td>"+ finalEight[j].place_7 +"</td></tr>" +
+                            "<tr><td>6th</td><td>"+ finalEight[j].place_6 +"</td></tr>" +
+                            "<tr><td>5th</td><td>"+ finalEight[j].place_5 +"</td></tr>" +
+                            "<tr><td>4th</td><td>"+ finalEight[j].place_4 +"</td></tr>" +
+                            "<tr><td>3rd</td><td>"+ finalEight[j].place_3 +"</td></tr>" +
+                            "<tr><td>2nd</td><td>"+ finalEight[j].place_2 +"</td></tr>" +
+                            "<tr><td>1st</td><td>"+ finalEight[j].place_1 +"</td></tr>"
+                        );
+                    };
+                };
+            }
+        });
+    };
+    function getFinalThree(curName) {
+        $.ajax({
+            type: "GET",
+            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalThreePicks.json",
+            dataType: "json",
+            success: function(result) {
+                // Clear existing html
+                $("#past_responses").empty();
+                
+                // Parse data into readable json
+                var finalThree = JSON.parse(atob(result.content));
+
+                // Create table displaying data in order
+                var curName = $("#past_responses_name option:selected").val();
+                for (var j=0; j<finalThree.length; j++) {
+                    if (finalThree[j].name === curName) {
+                        $("#past_responses").append("<h3 id='finalThree_title'></h3>");
+                        $("#finalThree_title").html("Preseason Picks for Final Three Survivors");
+                        $("#past_responses").append("<span id='finalThree_table'></span>");
+                        $("#finalThree_table").html(
+                            "<tr><th>Pick </th><th>Name</th></tr>" +
+                            "<tr><td>1</td><td>"+ finalThree[j].pick_1 +"</td></tr>" +
+                            "<tr><td>2</td><td>"+ finalThree[j].pick_2 +"</td></tr>" +
+                            "<tr><td>3</td><td>"+ finalThree[j].pick_3 +"</td></tr>"
+                        );
+                    };
+                };
+            }
+        });
+    };
+    /*
     $("#past_responses_name").change(function() {
         // Get Weekly Results
         $.ajax({
@@ -224,23 +346,24 @@ function getPastResponses() {
                     if (finalEight[j].name === curName) {
                         $("#past_responses").append("<h3 id='finalEight_title'></h3>");
                         $("#finalEight_title").html("Order of Final Eight Survivors");
-                        $("#past_responses").append("<table id='finalEight_table'></table>");
+                        $("#past_responses").append("<span id='finalEight_table'></span>");
                         $("#finalEight_table").html(
-                            "<thead><tr><th>Rank</th><th>Name</th></tr></thead>" +
-                            "<tbody><tr><td>8th</td><td>"+ finalEight[j].place_8 +"</td></tr>" +
+                            "<tr><th>Rank</th><th>Name</th></tr>" +
+                            "<tr><td>8th</td><td>"+ finalEight[j].place_8 +"</td></tr>" +
                             "<tr><td>7th</td><td>"+ finalEight[j].place_7 +"</td></tr>" +
                             "<tr><td>6th</td><td>"+ finalEight[j].place_6 +"</td></tr>" +
                             "<tr><td>5th</td><td>"+ finalEight[j].place_5 +"</td></tr>" +
                             "<tr><td>4th</td><td>"+ finalEight[j].place_4 +"</td></tr>" +
                             "<tr><td>3rd</td><td>"+ finalEight[j].place_3 +"</td></tr>" +
                             "<tr><td>2nd</td><td>"+ finalEight[j].place_2 +"</td></tr>" +
-                            "<tr><td>1st</td><td>"+ finalEight[j].place_1 +"</td></tr></tbody>"
+                            "<tr><td>1st</td><td>"+ finalEight[j].place_1 +"</td></tr>"
                         );
                     };
                 };
             }
         });
     });
+    //*/
 };
 
 function init_chart(responses) {

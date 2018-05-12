@@ -22,7 +22,7 @@
                 <img src="https://vignette.wikia.nocookie.net/survivor/images/2/26/Survivor_36_Logo.png/revision/latest?cb=20171221043639"/>
             </div>
             <div class="tab graph">
-                <p>Select name to see past responses: </p>
+                <p>Select name and vote number to see past responses: </p>
                 <select id="past_responses_name">
                     <option value="">
                         Select One
@@ -67,6 +67,66 @@
                         Walter
                     </option>
                 </select>
+                <select id="past_responses_vote">
+                    <option value="">
+                        Select One
+                    </option>
+                    <!--
+                    <option value=1>
+                        Vote 1 and 2 (Feb 28, 2018)
+                    </option>
+                    -->
+                    <option value=3>
+                        Vote 3 (Mar 7, 2018)
+                    </option>
+                    <option value=4>
+                        Vote 4 (Mar 14, 2018)
+                    </option>
+                    <option value=5>
+                        Vote 5 (Mar 21, 2018)
+                    </option>
+                    <option value=6>
+                        Vote 6 (Mar 28, 2018)
+                    </option>
+                    <option value=7>
+                        Vote 7 (Apr 4, 2018)
+                    </option>
+                    <option value=8>
+                        Vote 8 (Apr 11, 2018)
+                    </option>
+                    <option value=9>
+                        Vote 9 (Apr 18, 2018)
+                    </option>
+                    <option value=10>
+                        Vote 10 (Apr 25, 2018)
+                    </option>
+                    <option value=11>
+                        Vote 11 and 12 (May 2, 2018)
+                    </option>
+                    <option value=13>
+                        Vote 13 (May 9, 2018)
+                    </option>
+                    <option value=14>
+                        Vote 14 (May 16, 2018)
+                    </option>
+                    <!--
+                    <option value=15>
+                        Vote 15 (May 23, 2018)
+                    </option>
+                    -->
+                    <!--
+                    <option value=16>
+                        Vote 16 (May 30, 2018)
+                    </option>
+                    -->
+                    <option value="FinalEight">
+                        Final Eight Survivors (mid-season picks)
+                    </option>
+                    <option value="FinalThree">
+                        Final Three Survivors (pre-season picks)
+                    </option>
+                </select>
+                <button id="past_responses_button">Get Responses</button>
                 <div id="past_responses"></div>
                 <p></p>
             </div>
