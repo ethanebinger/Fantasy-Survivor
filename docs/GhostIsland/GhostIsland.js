@@ -175,7 +175,7 @@ function getPastResponses() {
         } else if (curVote === "FinalThree") {
             getFinalThree(curName);
         } else {
-            getWeeklyResults(curName, int(curVote));
+            getWeeklyResults(curName, +curVote);
         };
     });
     function getWeeklyResults(curName, curVote) {
