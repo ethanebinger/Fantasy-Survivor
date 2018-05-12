@@ -219,7 +219,7 @@ function getPastResponses() {
                 var finalEight = JSON.parse(atob(result2.content));
 
                 // Create table displaying data in order
-                // var curName = $("#past_responses_name option:selected").val();
+                var curName = $("#past_responses_name option:selected").val();
                 for (var j=0; j<finalEight.length; i++) {
                     if (finalEight[j].name === curName) {
                         $("#past_responses").append("<h3 id='finalEight_title'></h3>");
