@@ -224,17 +224,17 @@ function getPastResponses() {
                     if (finalEight[j].name === curName) {
                         $("#past_responses").append("<h3 id='finalEight_title'></h3>");
                         $("#finalEight_title").html("Order of Final Eight Survivors");
-                        $("#past_responses").append("<span id='finalEight_table'></span>");
+                        $("#past_responses").append("<table id='finalEight_table' class='responsive-table highlight'></table>");
                         $("#finalEight_table").html(
-                            "<tr><th>Rank</th><th>Name</th></tr>" +
-                            "<tr><th>8th</th><th>"+ finalEight[j].place_8 +"</th></tr>" +
-                            "<tr><th>7th</th><th>"+ finalEight[j].place_7 +"</th></tr>" +
-                            "<tr><th>6th</th><th>"+ finalEight[j].place_6 +"</th></tr>" +
-                            "<tr><th>5th</th><th>"+ finalEight[j].place_5 +"</th></tr>" +
-                            "<tr><th>4th</th><th>"+ finalEight[j].place_4 +"</th></tr>" +
-                            "<tr><th>3rd</th><th>"+ finalEight[j].place_3 +"</th></tr>" +
-                            "<tr><th>2nd</th><th>"+ finalEight[j].place_2 +"</th></tr>" +
-                            "<tr><th>1st</th><th>"+ finalEight[j].place_1 +"</th></tr>"
+                            "<thead><tr><th>Rank</th><th>Name</th></tr></thead>" +
+                            "<tbody><tr><td>8th</td><td>"+ finalEight[j].place_8 +"</td></tr>" +
+                            "<tr><td>7th</td><td>"+ finalEight[j].place_7 +"</td></tr>" +
+                            "<tr><td>6th</td><td>"+ finalEight[j].place_6 +"</td></tr>" +
+                            "<tr><td>5th</td><td>"+ finalEight[j].place_5 +"</td></tr>" +
+                            "<tr><td>4th</td><td>"+ finalEight[j].place_4 +"</td></tr>" +
+                            "<tr><td>3rd</td><td>"+ finalEight[j].place_3 +"</td></tr>" +
+                            "<tr><td>2nd</td><td>"+ finalEight[j].place_2 +"</td></tr>" +
+                            "<tr><td>1st</td><td>"+ finalEight[j].place_1 +"</td></tr></tbody>"
                         );
                     };
                 };
