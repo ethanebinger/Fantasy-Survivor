@@ -220,7 +220,7 @@ function getPastResponses() {
 
                 // Create table displaying data in order
                 var curName = $("#past_responses_name option:selected").val();
-                for (var j=0; j<finalEight.length; i++) {
+                for (var j=0; j<finalEight.length; j++) {
                     if (finalEight[j].name === curName) {
                         $("#past_responses").append("<h3 id='finalEight_title'></h3>");
                         $("#finalEight_title").html("Order of Final Eight Survivors");
