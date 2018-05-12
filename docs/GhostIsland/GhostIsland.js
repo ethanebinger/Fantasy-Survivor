@@ -204,17 +204,17 @@ function getPastResponses() {
                             };
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
                             $("#json_"+String(i)).html(
-                                "<strong>Wins Reward Challenge: </strong>" + responses[i].reward + "<br>" +
-                                "<strong>Wins Immunity: </strong>" + responses[i].immunity + "<br>" +
-                                "<strong>Eliminated: </strong>" + responses[i].eliminated + "<br>" +
-                                "<strong>Safe: </strong>" + responses[i].safe + "<br>" +
-                                "<strong>Title Quote: </strong>" + responses[i].titleQuote + "<br>" +
-                                "<strong>Nudity? </strong>" + responses[i].nudity + "<br>" +
-                                "<strong>Idol or Secret Advantage Found? </strong>" + responses[i].idolFound + "<br>" +
-                                "<strong>Idol or Secret Advantage Played? </strong>" + responses[i].idolPlayed + "<br>" +
-                                "<strong>Ghost Island Inhabitant: </strong>" + responses[i].ghostIsland + "<br>" +
-                                "<strong>Able to play on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>" +
-                                "<strong>Secret Advantage Found on Ghost Island? </strong>" + responses[i].ghostIdol + "<br>"
+                                "<tr><td><strong>Wins Reward Challenge</strong><td></td>" + responses[i].reward + "</td></tr>" +
+                                "<tr><td><strong>Wins Immunity</strong><td></td>" + responses[i].immunity + "</td></tr>" +
+                                "<tr><td><strong>Eliminated</strong><td></td>" + responses[i].eliminated + "</td></tr>" +
+                                "<tr><td><strong>Safe</strong><td></td>" + responses[i].safe + "</td></tr>" +
+                                "<tr><td><strong>Title Quote</strong><td></td>" + responses[i].titleQuote + "</td></tr>" +
+                                "<tr><td><strong>Nudity?</strong><td></td>" + responses[i].nudity + "</td></tr>" +
+                                "<tr><td><strong>Idol or Secret Advantage Found?</strong><td></td>" + responses[i].idolFound + "</td></tr>" +
+                                "<tr><td><strong>Idol or Secret Advantage Played?</strong><td></td>" + responses[i].idolPlayed + "</td></tr>" +
+                                "<tr><td><strong>Ghost Island Inhabitant</strong><td></td>" + responses[i].ghostIsland + "</td></tr>" +
+                                "<tr><td><strong>Able to play on Ghost Island?</strong><td></td>" + responses[i].ghostIdol + "</td></tr>" +
+                                "<tr><td><strong>Secret Advantage Found on Ghost Island?</strong><td></td>" + responses[i].ghostIdol + "</td></tr>"
                             );  
                         };
                     };
