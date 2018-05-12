@@ -170,12 +170,12 @@ function getPastResponses() {
         var curVote = $("#past_responses_vote option:selected").val();
         if (curName.length < 1 || curVote.length < 1) {
             alert("Please select both a name and a vote number");
-        } else if (typeof curVote === "number") {
-            getWeeklyResults(curName, curVote);
         } else if (curVote === "FinalEight") {
             getFinalEight(curName);
         } else if (curVote === "FinalThree") {
             getFinalThree(curName);
+        } else {
+            getWeeklyResults(curName, int(curVote));
         };
     });
     function getWeeklyResults(curName, curVote) {
