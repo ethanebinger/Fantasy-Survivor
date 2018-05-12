@@ -170,12 +170,17 @@ function getPastResponses() {
         var curVote = $("#past_responses_vote option:selected").val();
         if (curName.length < 1 || curVote.length < 1) {
             alert("Please select both a name and a vote number");
-        } else if (curVote === "FinalEight") {
-            getFinalEight(curName);
-        } else if (curVote === "FinalThree") {
-            getFinalThree(curName);
+            $("#past_responses").empty();
         } else {
-            getWeeklyResults(curName, +curVote);
+            if (curVote === "FinalEight") {
+                getFinalEight(curName);
+            } else if (curVote === "FinalThree") {
+                getFinalThree(curName);
+            } else {
+                getWeeklyResults(curName, +curVote);
+            };
+            
+            var BREAK_ = 0;
         };
     });
     function getWeeklyResults(curName, curVote) {
