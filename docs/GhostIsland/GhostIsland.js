@@ -197,7 +197,7 @@ function getPastResponses() {
                         'total': 0,
                         'reward': 0,
                         'immunity': 0,
-                        'elminated': 0,
+                        'eliminated': 0,
                         'safe': 0,
                         'titleQuote': 0,
                         'nudity': 0,
@@ -208,12 +208,17 @@ function getPastResponses() {
                         'ghostPlay': 0
                     }
                 ];
-                scores = calculateScores(scores, results, responses, "individual");
+                var cur_vote = determineWeek(responses[i], 11);
+                for (var i=0; i<results.length; i++) {
+                    if (results[i].vote === cur_vote) {
+                        var temp_results = [results[i]];
+                        scores = calculateScores(scores, temp_results, responses, "individual");
+                    };
+                };
                 
                 // Filter for only selected name and vote, then add html to page
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
-                        var cur_vote = determineWeek(responses[i], 11);
                         if (curVote === cur_vote) {
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                             if (cur_vote===11) {
