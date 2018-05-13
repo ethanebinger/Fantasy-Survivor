@@ -208,12 +208,17 @@ function getPastResponses() {
                         'ghostPlay': 0
                     }
                 ];
-                scores = calculateScores(scores, results, responses, "individual");
+                //scores = calculateScores(scores, results, responses, "individual");
                 
                 // Filter for only selected name and vote, then add html to page
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
                         var cur_vote = determineWeek(responses[i], 11);
+                        for (var j=0; j<results.length; j++) {
+                            if (results[j].vote === cur_vote) {
+                                scores = calculateScores(scores, results[j], responses[i], "individual");
+                            };
+                        };
                         if (curVote === cur_vote) {
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                             if (cur_vote===11) {
