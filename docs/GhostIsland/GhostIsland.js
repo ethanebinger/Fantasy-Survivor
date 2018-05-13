@@ -214,12 +214,12 @@ function getPastResponses() {
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
                         var cur_vote = determineWeek(responses[i], 11);
-                        for (var j=0; j<results.length; j++) {
-                            if (results[j].vote === cur_vote) {
-                                scores = calculateScores(scores, results[j], responses[i], "individual");
-                            };
-                        };
                         if (curVote === cur_vote) {
+                            for (var j=0; j<results.length; j++) {
+                                if (results[j].vote === cur_vote) {
+                                    scores = calculateScores(scores, [results[j]], [responses[i]], "individual");
+                                };
+                            };
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                             if (cur_vote===11) {
                                 $("#week_"+String(i)).html("Vote #11 and #12");
