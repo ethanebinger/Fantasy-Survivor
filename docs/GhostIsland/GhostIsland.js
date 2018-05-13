@@ -757,76 +757,76 @@ function calculateScores(scores, results, responses, calcType) {
                             if (results[i].vote < 13) {
                                 // Reward
                                 if (results[i].reward == responses[j].reward && responses[j].reward) {
-                                    if (calcType === "individual") { scores[n].reward; }
+                                    if (calcType === "individual") { scores[n].reward += 10; }
                                     else { scores[n][val_vote] += 10; };
                                     scores[n].total += 10;
                                 } else if (results[i].reward !== null && typeof results[i].reward==="object" && inArray(responses[j].reward,results[i].reward) && responses[j].reward) {
-                                    if (calcType === "individual") { scores[n].reward; }
+                                    if (calcType === "individual") { scores[n].reward += 10; }
                                     else { scores[n][val_vote] += 10; };
                                     scores[n].total += 10;
                                 };
                                 // Immunity
                                 if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                                    if (calcType === "individual") { scores[n].immunity; }
+                                    if (calcType === "individual") { scores[n].immunity += 15; }
                                     else { scores[n][val_vote] += 15; };
                                     scores[n].total += 15;
                                 };
                                 // Eliminated
                                 if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                                    if (calcType === "individual") { scores[n].eliminated; }
+                                    if (calcType === "individual") { scores[n].eliminated += 20; }
                                     else { scores[n][val_vote] += 20; };
                                     scores[n].total += 20;
                                 };
                                 // Safe
                                 if (cur_vote === 11 && results[i].eliminated !== responses[j].safe && results[i].eliminated2 !== responses[j].safe && responses[j].safe) {
-                                    if (calcType === "individual") { scores[n].safe; }
+                                    if (calcType === "individual") { scores[n].safe += 20; }
                                     else { scores[n][val_vote] += 20; };
                                     scores[n].total += 20;
                                 } else if (results[i].eliminated !== responses[j].safe && responses[j].safe && cur_vote !== 12) {
-                                    if (calcType === "individual") { scores[n].safe; }
+                                    if (calcType === "individual") { scores[n].safe += 20; }
                                     else { scores[n][val_vote] += 20; };
                                     scores[n].total += 20;
                                 };
                             };
                             // Title Quote
                             if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                                if (calcType === "individual") { scores[n].titleQuote; }
+                                if (calcType === "individual") { scores[n].titleQuote += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             // Ghost Island Inhabitant
                             if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
-                                if (calcType === "individual") { scores[n].ghostIsland; }
+                                if (calcType === "individual") { scores[n].ghostIsland += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             // Ghost Island Play - Y/N/NA
                             if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
-                                if (calcType === "individual") { scores[n].ghostPlay; }
+                                if (calcType === "individual") { scores[n].ghostPlay += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Ghost Island Idol - Y/N/NA
                             if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
-                                if (calcType === "individual") { scores[n].ghostIdol; }
+                                if (calcType === "individual") { scores[n].ghostIdol += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Nudity
                             if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                                if (calcType === "individual") { scores[n].nudity; }
+                                if (calcType === "individual") { scores[n].nudity += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             // Idol Found
                             if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                                if (calcType === "individual") { scores[n].idolFound; }
+                                if (calcType === "individual") { scores[n].idolFound += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
                             // Idol Played
                             if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                                if (calcType === "individual") { scores[n].idolPLayed; }
+                                if (calcType === "individual") { scores[n].idolPLayed += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
@@ -835,83 +835,83 @@ function calculateScores(scores, results, responses, calcType) {
                         } else {
                             // Reward
                             if ((results[i].reward === 'Malolo' || results[i].reward2 === 'Malolo') && inArray(responses[j].reward, malolo) && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward; }
+                                if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; }
                                 scores[n].total += 5;
                             } else if ((results[i].reward === 'Naviti' || results[i].reward2 === 'Naviti') && inArray(responses[j].reward, naviti) && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward; }
+                                if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;   
                             } else if ((results[i].reward === 'Yanuya' || results[i].reward2 === 'Yanuya') && inArray(responses[j].reward, yanuya) && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward; }
+                                if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;   
                             };
                             // Immunity
                             if ((results[i].immunity === 'Malolo' || results[i].immunity2 === 'Malolo') && inArray(responses[j].immunity, malolo) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity; }
+                                if (calcType === "individual") { scores[n].immunity += 7.5; }
                                 else { scores[n][val_vote] += 7.5; };
                                 scores[n].total += 7.5;
                             } else if ((results[i].immunity === 'Naviti' || results[i].immunity2 === 'Naviti')  && inArray(responses[j].immunity, naviti) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity; }
+                                if (calcType === "individual") { scores[n].immunity += 7.5; }
                                 else { scores[n][val_vote] += 7.5; };
                                 scores[n].total += 7.5;
                             } else if ((results[i].immunity === 'Yanuya' || results[i].immunity2 === 'Yanuya')  && inArray(responses[j].immunity, yanuya) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity; }
+                                if (calcType === "individual") { scores[n].immunity += 7.5; }
                                 else { scores[n][val_vote] += 7.5; };
                                 scores[n].total += 7.5;
                             };
                             // Eliminated
                             if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                                if (calcType === "individual") { scores[n].eliminated; }
+                                if (calcType === "individual") { scores[n].eliminated += 10; }
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
                             };
                             // Safe
                             if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-                                if (calcType === "individual") { scores[n].safe; }
+                                if (calcType === "individual") { scores[n].safe += 10; }
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
                             };
                             // Title Quote
                             if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                                if (calcType === "individual") { scores[n].titleQuote; }
+                                if (calcType === "individual") { scores[n].titleQuote += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Ghost Island Inhabitant
                             if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
-                                if (calcType === "individual") { scores[n].ghostIsland; }
+                                if (calcType === "individual") { scores[n].ghostIsland += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Ghost Island Play - Y/N/NA
                             if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
-                                if (calcType === "individual") { scores[n].ghostPlay; }
+                                if (calcType === "individual") { scores[n].ghostPlay += 1; }
                                 else { scores[n][val_vote] += 1; };
                                 scores[n].total += 1;
                             };
                             // Ghost Island Idol - Y/N/NA
                             if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
-                                if (calcType === "individual") { scores[n].ghostIdol; }
+                                if (calcType === "individual") { scores[n].ghostIdol += 1; }
                                 else { scores[n][val_vote] += 1; };
                                 scores[n].total += 1;
                             };
                             // Nudity
                             if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                                if (calcType === "individual") { scores[n].nudity; }
+                                if (calcType === "individual") { scores[n].nudity += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Idol Found
                             if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                                if (calcType === "individual") { scores[n].idolFound; }
+                                if (calcType === "individual") { scores[n].idolFound += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
                             // Idol Played
                             if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                                if (calcType === "individual") { scores[n].idolPlayed; }
+                                if (calcType === "individual") { scores[n].idolPlayed += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
