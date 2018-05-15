@@ -841,7 +841,7 @@ function calculateScores(scores, results, responses, calcType) {
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote);
-                        } if else {
+                        } else {
                             // Reward
                             if ((results[i].reward === 'Malolo' || results[i].reward2 === 'Malolo') && inArray(responses[j].reward, malolo) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
