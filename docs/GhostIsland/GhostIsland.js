@@ -840,7 +840,7 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 4;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
-                            console.log(responses[j].name, val_vote);
+                            console.log(responses[j].name, val_vote, scores[n][val_vote]);
                         } else {
                             // Reward
                             if ((results[i].reward === 'Malolo' || results[i].reward2 === 'Malolo') && inArray(responses[j].reward, malolo) && responses[j].reward) {
@@ -925,7 +925,7 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 2;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
-                            console.log(responses[j].name, val_vote);
+                            console.log(responses[j].name, val_vote, scores[n][val_vote]);
                         };
                     };
                 };
