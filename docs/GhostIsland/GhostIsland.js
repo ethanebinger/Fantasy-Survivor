@@ -1122,7 +1122,7 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Desiree Afuye',
         'nudity': 'No',
-        'ghostIsland': 'No Ghost',
+        'ghostIsland': 'No One',
         'ghostPlay': 'NA',
         'ghostIdol': 'NA',
         'malolo': [
@@ -1247,7 +1247,7 @@ var results = [
         'idolPlayed': 'Yes',
         'titleQuote': 'Domenick Abbate',
         'nudity': 'No',
-        'ghostIsland': 'No Ghost',
+        'ghostIsland': 'No One',
         'ghostPlay': 'NA',
         'ghostIdol': 'NA'
     },
