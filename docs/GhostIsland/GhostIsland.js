@@ -835,7 +835,7 @@ function calculateScores(scores, results, responses, calcType) {
                             };
                             // Idol Played
                             if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                                if (calcType === "individual") { scores[n].idolPLayed += 4; }
+                                if (calcType === "individual") { scores[n].idolPlayed += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
