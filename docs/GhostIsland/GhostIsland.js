@@ -736,6 +736,8 @@ function determineWeek(responses, results_vote) {
         cur_vote = 14;
     } else if (submit_time <= new Date(2018,4,23,20)) {
         cur_vote = 15;
+    } else if (submit_time <= new Date(2018,4,30,20)) {
+        cur_vote = 16;
     };
     return cur_vote;
 };
