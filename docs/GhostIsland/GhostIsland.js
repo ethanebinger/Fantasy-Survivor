@@ -763,7 +763,7 @@ function calculateScores(scores, results, responses, calcType) {
                         if (cur_vote === 13 && inArray(cur_player+"_"+String(cur_vote),name_ep_count) === false && calcType !== "individual") {
                             console.log("skipping accidental duplicate of vote 12: "+cur_player);
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
-                        } else if (inArray(cur_player+"_"+String(cur_vote),name_ep_count)) {
+                        } else if (inArray(cur_player+"_"+String(cur_vote),name_ep_count) && cur_vote !== 13) {
                             console.log("duplicate: "+cur_player+"_"+String(cur_vote));
                         } else if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             if (results[i].vote < 13) {
