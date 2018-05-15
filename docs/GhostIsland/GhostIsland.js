@@ -216,7 +216,9 @@ function getPastResponses() {
                         var cur_vote = determineWeek(responses[i], 11);
                         if (curVote === cur_vote) {
                             for (var j=0; j<results.length; j++) {
-                                if (results[j].vote === cur_vote) {
+                                if (cur_vote === 11) {
+                                    scores = calculateScores(scores, [results[j], results[j+1]], [responses[i]], "individual");
+                                } else if (results[j].vote === cur_vote) {
                                     scores = calculateScores(scores, [results[j]], [responses[i]], "individual");
                                 };
                             };
