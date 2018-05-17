@@ -783,7 +783,8 @@ function calculateScores(scores, results, responses, calcType) {
                                     else { scores[n][val_vote] += 15; };
                                     scores[n].total += 15;
                                 };
-                            } else if (results[i].vote < 13) {
+                            };
+                            if (results[i].vote < 13) {
                                 // Eliminated
                                 if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
                                     if (calcType === "individual") { scores[n].eliminated += 20; }
