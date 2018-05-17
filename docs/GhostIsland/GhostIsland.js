@@ -766,7 +766,7 @@ function calculateScores(scores, results, responses, calcType) {
                         } else if (inArray(cur_player+"_"+String(cur_vote),name_ep_count) && cur_vote !== 13) {
                             console.log("duplicate: "+cur_player+"_"+String(cur_vote));
                         } else if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
-                            if (results[i].vote < 13) {
+                            if (results[i].vote <> 13) {
                                 // Reward
                                 if (results[i].reward == responses[j].reward && responses[j].reward) {
                                     if (calcType === "individual") { scores[n].reward += 10; }
@@ -783,6 +783,7 @@ function calculateScores(scores, results, responses, calcType) {
                                     else { scores[n][val_vote] += 15; };
                                     scores[n].total += 15;
                                 };
+                            } else if (results[i].vote < 13) {
                                 // Eliminated
                                 if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
                                     if (calcType === "individual") { scores[n].eliminated += 20; }
@@ -1283,6 +1284,24 @@ var results = [
         'titleQuote': 'Chelsea Townsend',
         'nudity': 'No',
         'ghostIsland': 'Wendell Holland',
+        'ghostPlay': 'Yes',
+        'ghostIdol': 'Yes'
+    },
+    {	'vote': 14,
+        'date': '5/16/18',
+        'merge': 'Yes',
+        'reward': [ 
+            'Wendell Holland',
+            'Domenick Abbate',                
+            'Laurel Johnson'
+        ],
+        'immunity': 'Laurel Johnson', 
+        'eliminated': 'Kellyn Bechtold',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Domenick Abbate',
+        'nudity': 'No',
+        'ghostIsland': 'Sebastian Noel',
         'ghostPlay': 'Yes',
         'ghostIdol': 'Yes'
     }
