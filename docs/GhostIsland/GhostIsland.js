@@ -766,7 +766,7 @@ function calculateScores(scores, results, responses, calcType) {
                         } else if (inArray(cur_player+"_"+String(cur_vote),name_ep_count) && cur_vote !== 13) {
                             console.log("duplicate: "+cur_player+"_"+String(cur_vote));
                         } else if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
-                            if (results[i].vote <> 13) {
+                            if (results[i].vote !== 13) {
                                 // Reward
                                 if (results[i].reward == responses[j].reward && responses[j].reward) {
                                     if (calcType === "individual") { scores[n].reward += 10; }
