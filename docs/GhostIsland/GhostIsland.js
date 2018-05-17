@@ -760,7 +760,7 @@ function calculateScores(scores, results, responses, calcType) {
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
                         // Determine by team if before merge but no swap:
-                        if (cur_vote === 13 && inArray(cur_player+"_"+String(cur_vote),name_ep_count) === false && calcType !== "individual") {
+                        if (cur_vote === 13 && inArray(cur_player+"_"+String(cur_vote),name_ep_count) === false && calcType !== "individual" && scores[n].total !== 0) {
                             console.log("skipping accidental duplicate of vote 12: "+cur_player);
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                         } else if (inArray(cur_player+"_"+String(cur_vote),name_ep_count) && cur_vote !== 13) {
