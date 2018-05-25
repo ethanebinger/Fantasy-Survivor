@@ -337,7 +337,7 @@ function init_chart(responses) {
         'Colin', 'Anastassia', 'Aaron'
     ];
     for (var p=0; p<players.length; p++) {
-        scores.append({
+        scores.push({
             'name': players[p], 
             'total': 0, 
             'Vote 1': 0, 
@@ -766,7 +766,7 @@ function final_eight_calc(scores, responses) {
                 return (score);
             };
         };
-    });
+    })
 };
 
 var results = [
