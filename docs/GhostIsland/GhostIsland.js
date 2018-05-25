@@ -408,7 +408,8 @@ function init_chart(responses) {
 
     // Calculate scores
     scores = calculateScores(scores, results, responses, null);
-
+    scores = final_eight_calc(scores);
+    
     // Define X-Scale Domain
     x.domain([0,d3.max(scores, function(d) { return d.total; })]);
 
@@ -726,16 +727,16 @@ function calculateScores(scores, results, responses, calcType) {
 };
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL EIGHT
-function final_eight_calc(scores, responses) {
+function final_eight_calc(scores) {
     $.ajax({
         type: "GET",
         url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json",
         dataType: "json",
         success: function(result) {
             for (var n=0; n<scores.length; n++) {
-                for (var i=0; i<responses.length; i++) {
-                    if (responses[i].name === scores[n].name) {
-                        var score8 = which_castaway(responses[i]);
+                for (var i=0; i<result.length; i++) {
+                    if (result[i].name === scores[n].name) {
+                        var score8 = which_castaway(result[i]);
                         scores[n]['Final Eight'] += score8;
                         scores[n].total += score8;
                     };
@@ -765,6 +766,7 @@ function final_eight_calc(scores, responses) {
                 var score = 200 - (3 * sum)
                 return (score);
             };
+            return (scores);
         }
     });
 };
