@@ -329,271 +329,41 @@ function getPastResponses() {
 
 function init_chart(responses) {
     // Define temp data
-    var scores = [
-        {	'name': 'Walter', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Vivian', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Myles', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Lucas', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Josh', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Hue', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Ezra', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Ethan', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Emily', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'David', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Colin', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Anastassia', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        },
-        {	'name': 'Aaron', 
-            'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0, 
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0
-        }
+    var scores = [];
+    var players = [
+        'Walter', 'Vivian', 'Myles', 
+        'Lucas', 'Josh', 'Hue', 'Ezra', 
+        'Ethan', 'Emily', 'David',
+        'Colin', 'Anastassia', 'Aaron'
     ];
+    for (var p=0; p<players.length; p++) {
+        scores.append({
+            'name': players[p], 
+            'total': 0, 
+            'Vote 1': 0, 
+            'Vote 2': 0, 
+            'Vote 3': 0,
+            'Vote 4': 0, 
+            'Vote 5': 0, 
+            'Vote 6': 0,
+            'Vote 7': 0, 
+            'Vote 8': 0, 
+            'Vote 9': 0,
+            'Vote 10': 0, 
+            'Vote 11': 0, 
+            'Vote 12': 0,
+            'Vote 13': 0,
+            'Vote 14': 0, 
+            'Vote 15': 0,
+            'Vote 16': 0,
+            'Vote 17': 0,
+            'Final Eight': 0,
+            'Final Three': 0
+        });
+    };
 
     // Create arrays for players, keys (votes)
-    var players = scores.map(function(d) { return d.name; });
+    //var players = scores.map(function(d) { return d.name; });
     var keys = Object.keys(scores[0]).splice(2,)
 
     // Define chart elements
@@ -953,6 +723,50 @@ function calculateScores(scores, results, responses, calcType) {
         };
     };
     return scores;
+};
+
+// FUNCTION TO CALCULATE SCORES FOR FINAL EIGHT
+function final_eight_calc(scores, responses) {
+    $.ajax({
+        type: "GET",
+        url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json",
+        dataType: "json",
+        success: function(result) {
+            for (var n=0; n<scores.length; n++) {
+                for (var i=0; i<responses.length; i++) {
+                    if (responses[i].name === scores[n].name) {
+                        var score8 = which_castaway(responses[i]);
+                        scores[n]['Final Eight'] += score8;
+                        scores[n].total += score8;
+                    };
+                };
+            };
+            function which_castaway(castaways){
+                var sum = 0;
+                for (var i=1; i<9; i++){
+                    if (castaways['place_'+String([i])] === 'Wendell Holland') {
+                        sum += Math.pow(Math.abs(i-1),1.5)
+                    } else if (castaways['place_'+String([i])] === 'Domenick Abbate') {
+                        sum += Math.pow(Math.abs(i-2),1.5)
+                    } else if (castaways['place_'+String([i])] === 'Laurel Johnson') {
+                        sum += Math.pow(Math.abs(i-3),1.5)
+                    } else if (castaways['place_'+String([i])] === 'Angela Perkins') {
+                        sum += Math.pow(Math.abs(i-4),1.5)
+                    } else if (castaways['place_'+String([i])] === 'Donathan') {
+                        sum += Math.pow(Math.abs(i-5),1.5)
+                    } else if (castaways['place_'+String([i])] === 'Sebastian Noel') {
+                        sum += Math.pow(Math.abs(i-6),1.5)
+                    } else if (castaways['place_'+String([i])] === 'Kellyn Bechtold') {
+                        sum += Math.pow(Math.abs(i-7),1.5)
+                    } else if (castaways['place_'+String([i])] === 'Chelsea') {
+                        sum += Math.pow(Math.abs(i-8),1.5)
+                    };
+                };
+                var score = 200 - (3 * sum)
+                return (score);
+            };
+        };
+    });
 };
 
 var results = [
