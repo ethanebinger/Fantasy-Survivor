@@ -617,6 +617,10 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].ghostIsland += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
+                            } else if (results[i].ghostIsland !== null && typeof results[i].ghostIsland==="object" && inArray(responses[j].ghostIsland,results[i].ghostIsland) && responses[j].ghostIsland) {
+                                if (calcType === "individual") { scores[n].ghostIsland += 4; }
+                                else { scores[n][val_vote] += 4; };
+                                scores[n].total += 4;
                             };
                             // Ghost Island Play - Y/N/NA
                             if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
