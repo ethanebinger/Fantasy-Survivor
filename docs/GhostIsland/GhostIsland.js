@@ -424,8 +424,11 @@ function init_chart() {
             final3 = result3;
         })
     ).then(function() {
+        var BREAK01 = 'break';
         scores = calculateScores(scores, results, responses, null);
+        var BREAK02 = 'break';
         scores = final_eight_calc(scores, final8);
+        var BREAK03 = 'break';
 
         // Define X-Scale Domain
         x.domain([0,d3.max(scores, function(d) { return d.total; })]);
