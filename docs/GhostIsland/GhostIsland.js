@@ -327,7 +327,7 @@ function getPastResponses() {
     };
 };
 
-function init_chart(responses) {
+function init_chart() {
     // Define temp data
     var scores = [];
     var players = [
@@ -407,67 +407,86 @@ function init_chart(responses) {
         .call(tip);	
 
     // Calculate scores
-    scores = calculateScores(scores, results, responses, null);
-    scores = final_eight_calc(scores);
-    
-    // Define X-Scale Domain
-    x.domain([0,d3.max(scores, function(d) { return d.total; })]);
+    var responses,
+        final8,
+        final3;
+    $.when(
+        // Get the Weekly Responses
+        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json", function(result1) {
+            responses = result1;
+        }),
+        // Get the Final Eight Responses
+        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json", function(result2) {
+            final8 = result2;
+        }),
+        // Get the Final Three Responses
+        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalThreePicks.json", function(result3) {
+            final3 = result3;
+        })
+    ).then(function() {
+        scores = calculateScores(scores, results, responses, null);
+        scores = final_eight_calc(scores, final8);
 
-    // Render Chart
-    chart.append("g")
-        .selectAll("g")
-        .data(d3.stack().keys(keys)(scores))
-        .enter().append("g")
-            .attr("fill", function (d){ return color(d.key); })
-        .selectAll("rect")
-        .data(function(d) { return d; })
-        .enter().append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d[0]); })
-            .attr("y", function(d) { return y(d.data.name); })
-            .attr("width", function(d) { return x(d[1]) - x(d[0]); })
-            .attr("height", y.bandwidth())
-            .on("mouseenter", function(d) { 
-                tip.show(d); 
-                d3.select(this).style("cursor", "pointer")
-                               .style("fill-opacity", 0.5);
-            })
-            .on("mouseleave", function(d) { 
-                d3.select(this).style("fill-opacity", 1);
-                tip.hide(d);
-            });
+        // Define X-Scale Domain
+        x.domain([0,d3.max(scores, function(d) { return d.total; })]);
 
-    // Add Axes
-    chart.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
-    chart.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
-
-    // Add Legend
-    var legend = chart.append("g")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", 10)
-        .attr("text-anchor", "end")
-        .selectAll("g")
-            .data(keys)
+        // Render Chart
+        chart.append("g")
+            .selectAll("g")
+            .data(d3.stack().keys(keys)(scores))
             .enter().append("g")
-            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+                .attr("fill", function (d){ return color(d.key); })
+            .selectAll("rect")
+            .data(function(d) { return d; })
+            .enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d) { return x(d[0]); })
+                .attr("y", function(d) { return y(d.data.name); })
+                .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+                .attr("height", y.bandwidth())
+                .on("mouseenter", function(d) { 
+                    tip.show(d); 
+                    d3.select(this).style("cursor", "pointer")
+                                   .style("fill-opacity", 0.5);
+                })
+                .on("mouseleave", function(d) { 
+                    d3.select(this).style("fill-opacity", 1);
+                    tip.hide(d);
+                });
 
-    legend.append("rect")
-        .attr("x", width - 19)
-        .attr("width", 19)
-        .attr("height", 19)
-        .attr("fill", color);
+        // Add Axes
+        chart.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+        chart.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
 
-    legend.append("text")
-        .attr("x", width - 24)
-        .attr("y", 9.5)
-        .attr("dy", "0.32em")
-        .text(function(d) { return d; });
+        // Add Legend
+        var legend = chart.append("g")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", 10)
+            .attr("text-anchor", "end")
+            .selectAll("g")
+                .data(keys)
+                .enter().append("g")
+                .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
+        legend.append("rect")
+            .attr("x", width - 19)
+            .attr("width", 19)
+            .attr("height", 19)
+            .attr("fill", color);
+
+        legend.append("text")
+            .attr("x", width - 24)
+            .attr("y", 9.5)
+            .attr("dy", "0.32em")
+            .text(function(d) { return d; });
+        
+
+    });
 };
 
 // Function to check if x in array
@@ -727,48 +746,41 @@ function calculateScores(scores, results, responses, calcType) {
 };
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL EIGHT
-function final_eight_calc(scores) {
-    $.ajax({
-        type: "GET",
-        url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json",
-        dataType: "json",
-        success: function(result) {
-            for (var n=0; n<scores.length; n++) {
-                for (var i=0; i<result.length; i++) {
-                    if (result[i].name === scores[n].name) {
-                        var score8 = which_castaway(result[i]);
-                        scores[n]['Final Eight'] += score8;
-                        scores[n].total += score8;
-                    };
-                };
+function final_eight_calc(scores, result) {
+    for (var n=0; n<scores.length; n++) {
+        for (var i=0; i<result.length; i++) {
+            if (result[i].name === scores[n].name) {
+                var score8 = which_castaway(result[i]);
+                scores[n]['Final Eight'] += score8;
+                scores[n].total += score8;
             };
-            function which_castaway(castaways){
-                var sum = 0;
-                for (var i=1; i<9; i++){
-                    if (castaways['place_'+String([i])] === 'Wendell Holland') {
-                        sum += Math.pow(Math.abs(i-1),1.5)
-                    } else if (castaways['place_'+String([i])] === 'Domenick Abbate') {
-                        sum += Math.pow(Math.abs(i-2),1.5)
-                    } else if (castaways['place_'+String([i])] === 'Laurel Johnson') {
-                        sum += Math.pow(Math.abs(i-3),1.5)
-                    } else if (castaways['place_'+String([i])] === 'Angela Perkins') {
-                        sum += Math.pow(Math.abs(i-4),1.5)
-                    } else if (castaways['place_'+String([i])] === 'Donathan') {
-                        sum += Math.pow(Math.abs(i-5),1.5)
-                    } else if (castaways['place_'+String([i])] === 'Sebastian Noel') {
-                        sum += Math.pow(Math.abs(i-6),1.5)
-                    } else if (castaways['place_'+String([i])] === 'Kellyn Bechtold') {
-                        sum += Math.pow(Math.abs(i-7),1.5)
-                    } else if (castaways['place_'+String([i])] === 'Chelsea') {
-                        sum += Math.pow(Math.abs(i-8),1.5)
-                    };
-                };
-                var score = 200 - (3 * sum)
-                return (score);
+        };
+    };
+    function which_castaway(castaways){
+        var sum = 0;
+        for (var i=1; i<9; i++){
+            if (castaways['place_'+String([i])] === 'Wendell Holland') {
+                sum += Math.pow(Math.abs(i-1),1.5)
+            } else if (castaways['place_'+String([i])] === 'Domenick Abbate') {
+                sum += Math.pow(Math.abs(i-2),1.5)
+            } else if (castaways['place_'+String([i])] === 'Laurel Johnson') {
+                sum += Math.pow(Math.abs(i-3),1.5)
+            } else if (castaways['place_'+String([i])] === 'Angela Perkins') {
+                sum += Math.pow(Math.abs(i-4),1.5)
+            } else if (castaways['place_'+String([i])] === 'Donathan') {
+                sum += Math.pow(Math.abs(i-5),1.5)
+            } else if (castaways['place_'+String([i])] === 'Sebastian Noel') {
+                sum += Math.pow(Math.abs(i-6),1.5)
+            } else if (castaways['place_'+String([i])] === 'Kellyn Bechtold') {
+                sum += Math.pow(Math.abs(i-7),1.5)
+            } else if (castaways['place_'+String([i])] === 'Chelsea') {
+                sum += Math.pow(Math.abs(i-8),1.5)
             };
-            return (scores);
-        }
-    });
+        };
+        var score = 200 - (3 * sum)
+        return (score);
+    };
+    return (scores);
 };
 
 var results = [
