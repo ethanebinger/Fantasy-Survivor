@@ -347,7 +347,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Vivian', 
             'total': 0, 
@@ -366,7 +367,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Myles', 
             'total': 0, 
@@ -385,7 +387,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Lucas', 
             'total': 0, 
@@ -404,7 +407,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Josh', 
             'total': 0, 
@@ -423,7 +427,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Hue', 
             'total': 0, 
@@ -442,7 +447,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Ezra', 
             'total': 0, 
@@ -461,7 +467,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Ethan', 
             'total': 0, 
@@ -480,7 +487,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Emily', 
             'total': 0, 
@@ -499,7 +507,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'David', 
             'total': 0, 
@@ -518,7 +527,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Colin', 
             'total': 0, 
@@ -537,7 +547,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Anastassia', 
             'total': 0, 
@@ -556,7 +567,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         },
         {	'name': 'Aaron', 
             'total': 0, 
@@ -575,7 +587,8 @@ function init_chart(responses) {
             'Vote 13': 0, 
             'Vote 14': 0, 
             'Vote 15': 0,
-            'Vote 16': 0
+            'Vote 16': 0,
+            'Vote 17': 0
         }
     ];
 
