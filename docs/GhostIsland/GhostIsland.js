@@ -357,8 +357,8 @@ function init_chart() {
             'Vote 15': 0,
             'Vote 16': 0,
             'Vote 17': 0,
-            'Final Eight': 0,
-            'Final Three': 0
+            'Final Eight': 0
+            //'Final Three': 0
         });
     };
 
@@ -393,8 +393,8 @@ function init_chart() {
         .offset([-5, 0])
         .html(function(d) {
             return 	"<strong>" + d.data.name + "</strong>" +
-                    "<br><span>Weekly Score = " + String(d[1]-d[0]) + "</span>" +
-                    "<br><span>Total Score = " + d.data.total + "</span>"
+                    "<br><span>Weekly Score = " + parseFloat(d[1]-d[0]).toFixed(1) + "</span>" +
+                    "<br><span>Total Score = " + parseFloat(d.data.total).toFixed(1) + "</span>"
         });
 
     // Define SVG and associated elements
