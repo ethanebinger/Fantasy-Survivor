@@ -131,36 +131,28 @@ function PushPullGithub(form_results) {
             var existing_responses = atob(x);
             var responses = JSON.parse(existing_responses);
             // PUSH new data (only following index.html submission)
-            if (form_results != 0) {
-                responses.push(form_results);
-                var responses_str = JSON.stringify(responses);
-                var t_a = 'Mzk2Njc0YjdlYWQxMjZhMTFl',
-                    t_b = 'NWFmNmVmZTFhMmZjZDA1NDZjZjU0NA==',
-                    user = 'ethanebinger',
-                    repo = 'Fantasy-Survivor';
-                var push_user = form_results.name;
-                let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
-                api.setRepo(user, repo);
-                api.setBranch('master')
-                    .then( () => api.pushFiles(
-                        'new input from '+push_user,
-                        [{
-                            content: responses_str, 
-                            path: 'GhostIsland_Responses.json'
-                        }]
-                    ))
-                    .then(function() {
-                        console.log('Files committed!');
-                        window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
-                    });
-            } else {
-                // load results chart
-                init_chart(responses);  
-            };
+            responses.push(form_results);
+            var responses_str = JSON.stringify(responses);
+            var t_a = 'Mzk2Njc0YjdlYWQxMjZhMTFl',
+                t_b = 'NWFmNmVmZTFhMmZjZDA1NDZjZjU0NA==',
+                user = 'ethanebinger',
+                repo = 'Fantasy-Survivor';
+            var push_user = form_results.name;
+            let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
+            api.setRepo(user, repo);
+            api.setBranch('master')
+                .then( () => api.pushFiles(
+                    'new input from '+push_user,
+                    [{
+                        content: responses_str, 
+                        path: 'GhostIsland_Responses.json'
+                    }]
+                ))
+                .then(function() {
+                    console.log('Files committed!');
+                    window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/results.html"
+                });
         }
-    });
-    $('#PastResponses').click(function() {
-        window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/responses.html";   
     });
 };
 
@@ -328,6 +320,10 @@ function getPastResponses() {
 };
 
 function init_chart() {
+    $('#PastResponses').click(function() {
+        window.location = "http://ethanebinger.com/Fantasy-Survivor/GhostIsland/responses.html";   
+    });
+    
     // Define temp data
     var scores = [];
     var players = [
