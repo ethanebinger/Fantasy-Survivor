@@ -352,7 +352,7 @@ function init_chart() {
             'Vote 14': 0, 
             'Vote 15': 0,
             'Vote 16': 0,
-            'Fire Challenge': 0,
+            'Vote 17': 0,
             'Final Eight': 0
             //'Final Three': 0
         });
