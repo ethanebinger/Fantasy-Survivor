@@ -736,8 +736,10 @@ function determineWeek(responses, results_vote) {
         cur_vote = 14;
     } else if (submit_time <= new Date(2018,4,23,20)) {
         cur_vote = 15;
-    } else if (submit_time <= new Date(2018,4,30,20)) {
+    } else if (submit_time <= new Date(2018,4,24,20)) {
         cur_vote = 16;
+    } else if (submit_time <= new Date(2018,4,25,20)) {
+        cur_vote = 17;
     };
     return cur_vote;
 };
@@ -1305,5 +1307,52 @@ var results = [
         'ghostIsland': 'Sebastian Noel',
         'ghostPlay': 'Yes',
         'ghostIdol': 'Yes'
+    },
+    {	'vote': 15,
+        'date': '5/23/18',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Wendell Holland', 
+        'eliminated': 'Sebastian Noel',
+        'idolFound': null,
+        'idolPlayed': null,
+        'titleQuote': null,
+        'nudity': null,
+        'ghostIsland': null,
+        'ghostPlay': null,
+        'ghostIdol': null
+    },
+    {	'vote': 16,
+        'date': '5/23/18',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Wendell Holland', 
+        'eliminated': 'Donathan Hurley',
+        'idolFound': null,
+        'idolPlayed': null,
+        'titleQuote': null,
+        'nudity': null,
+        'ghostIsland': null,
+        'ghostPlay': null,
+        'ghostIdol': null
+    },
+    {	'vote': 17,
+        'date': '5/23/18',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Domenick Abbate', 
+        'eliminated': 'Angela Perkins',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Domenick Abbate',
+        'nudity': 'No',
+        'ghostIsland': [ 
+            'Wendell Holland',
+            'Domenick Abbate',                
+            'Laurel Johnson',
+            'Angela Perkins'
+        ],
+        'ghostPlay': 'NA',
+        'ghostIdol': 'NA'
     }
 ];
