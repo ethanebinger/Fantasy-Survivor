@@ -765,8 +765,8 @@ function final_eight_calc(scores, responses) {
                 var score = 200 - (3 * sum)
                 return (score);
             };
-        };
-    })
+        }
+    });
 };
 
 var results = [
