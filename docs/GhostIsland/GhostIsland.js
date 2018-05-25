@@ -412,16 +412,16 @@ function init_chart() {
         final3;
     $.when(
         // Get the Weekly Responses
-        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json", function(result1) {
-            responses = result1;
+        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/GhostIsland_Responses.json", function(result) {
+            responses = JSON.parse(atob(result.content));
         }),
         // Get the Final Eight Responses
-        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json", function(result2) {
-            final8 = result2;
+        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalEightOrder.json", function(result) {
+            final8 = JSON.parse(atob(result.content));
         }),
         // Get the Final Three Responses
-        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalThreePicks.json", function(result3) {
-            final3 = result3;
+        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/GhostIsland/FinalThreePicks.json", function(result) {
+            final3 = JSON.parse(atob(result.content));
         })
     ).then(function() {
         var BREAK01 = 'break';
