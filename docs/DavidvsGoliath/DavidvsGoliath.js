@@ -163,10 +163,10 @@ function getPastResponses() {
         if (curName.length < 1 || curVote.length < 1) {
             alert("Please select both a name and a vote number");
             $("#past_responses").empty();
-        } else if (curVote === "FinalEight") {
-            getFinalEight(curName);
-        } else if (curVote === "FinalThree") {
-            getFinalThree(curName);
+        //} else if (curVote === "FinalEight") {
+           // getFinalEight(curName);
+        //} else if (curVote === "FinalThree") {
+            //getFinalThree(curName);
         } else {
             getWeeklyResults(curName, +curVote);
         };
@@ -174,7 +174,7 @@ function getPastResponses() {
     function getWeeklyResults(curName, curVote) {
         $.ajax({
             type: "GET",
-            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/DavidvsGoliath_Responses.json",
+            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/DavidvsGoliath/DavidvsGoliath_Responses.json",
             dataType: "json",
             success: function(result) {
                 // Clear existing html
@@ -205,18 +205,10 @@ function getPastResponses() {
                         var cur_vote = determineWeek(responses[i], 11);
                         if (curVote === cur_vote) {
                             for (var j=0; j<results.length; j++) {
-                                if (cur_vote === 11 && results[j].vote === cur_vote) {
-                                    scores = calculateScores(scores, [results[j], results[j+1]], [responses[i]], "individual");
-                                } else if (results[j].vote === cur_vote) {
-                                    scores = calculateScores(scores, [results[j]], [responses[i]], "individual");
-                                };
+                                scores = calculateScores(scores, [results[j]], [responses[i]], "individual");
                             };
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
-                            if (cur_vote===11) {
-                                $("#week_"+String(i)).html("Vote #11 and #12");
-                            } else {
-                                $("#week_"+String(i)).html("Vote #"+String(cur_vote));
-                            };
+                            $("#week_"+String(i)).html("Vote #"+String(cur_vote));
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
                             $("#json_"+String(i)).html(
                                 "<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -227,10 +219,7 @@ function getPastResponses() {
                                 "<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
                                 "<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
                                 "<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-                                "<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-                                "<tr><td><strong>Ghost Island Inhabitant</strong></td><td>" + responses[i].ghostIsland + "</td><td>"+ scores[0].ghostIsland +"</td></tr>" +
-                                "<tr><td><strong>Able to play on Ghost Island?</strong></td><td>" + responses[i].ghostPlay + "</td><td>"+ scores[0].ghostPlay +"</td></tr>" +
-                                "<tr><td><strong>Secret Advantage Found on Ghost Island?</strong></td><td>" + responses[i].ghostIdol + "</td><td>"+ scores[0].ghostIdol +"</td></tr>"
+                                "<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
                             );  
                         };
                     };
@@ -504,45 +493,8 @@ var inArray = function(x,y) {
 function determineWeek(responses, results_vote) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
-    if (submit_time <= new Date(2018,1,28,20)) {
-        /*// Extra Loop for Double Episode
-        if (inArray(1, iter_ep)) {
-            cur_vote = 2;
-        } else {
-            cur_vote = 1;
-            iter_ep.push(cur_vote);
-        }//;*/
+    if (submit_time <= new Date(2018,9,24,20)) {
         cur_vote = 1;
-    } else if (submit_time <= new Date(2018,2,7,20)) {
-        cur_vote = 3;
-    } else if (submit_time <= new Date(2018,2,14,20)) {
-        cur_vote = 4;
-    } else if (submit_time <= new Date(2018,2,21,20)) {
-        cur_vote = 5;
-    } else if (submit_time <= new Date(2018,2,28,20)) {
-        cur_vote = 6;
-    } else if (submit_time <= new Date(2018,3,4,20)) {
-        cur_vote = 7;
-    } else if (submit_time <= new Date(2018,3,11,20)) {
-        cur_vote = 8;
-    } else if (submit_time <= new Date(2018,3,18,20)) {
-        cur_vote = 9;
-    } else if (submit_time <= new Date(2018,3,25,20)) {
-        cur_vote = 10;
-    } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 11) {
-        cur_vote = 11;
-    } else if (submit_time <= new Date(2018,4,2,20) && results_vote === 12) {
-        cur_vote = 12;
-    } else if (submit_time <= new Date(2018,4,9,20)) {
-        cur_vote = 13;
-    } else if (submit_time <= new Date(2018,4,16,20)) {
-        cur_vote = 14;
-    } else if (submit_time <= new Date(2018,4,23,20)) {
-        cur_vote = 15;
-    } else if (submit_time <= new Date(2018,4,24,20)) {
-        cur_vote = 16;
-    } else if (submit_time <= new Date(2018,4,25,20)) {
-        cur_vote = 17;
     };
     return cur_vote;
 };
@@ -553,8 +505,8 @@ function calculateScores(scores, results, responses, calcType) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-            var malolo = results[i].malolo;
-            var naviti = results[i].naviti;
+            var team_1 = results[i].team_1;
+            var team_2 = results[i].team_2;
             var yanuya = results[i].yanuya;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
@@ -701,24 +653,6 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].titleQuote += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
-                            };
-                            // Ghost Island Inhabitant
-                            if (results[i].ghostIsland == responses[j].ghostIsland && responses[j].ghostIsland) {
-                                if (calcType === "individual") { scores[n].ghostIsland += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-                            // Ghost Island Play - Y/N/NA
-                            if (results[i].ghostPlay == responses[j].ghostPlay && responses[j].ghostPlay) {
-                                if (calcType === "individual") { scores[n].ghostPlay += 1; }
-                                else { scores[n][val_vote] += 1; };
-                                scores[n].total += 1;
-                            };
-                            // Ghost Island Idol - Y/N/NA
-                            if (results[i].ghostIdol == responses[j].ghostIdol && responses[j].ghostIdol) {
-                                if (calcType === "individual") { scores[n].ghostIdol += 1; }
-                                else { scores[n][val_vote] += 1; };
-                                scores[n].total += 1;
                             };
                             // Nudity
                             if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
