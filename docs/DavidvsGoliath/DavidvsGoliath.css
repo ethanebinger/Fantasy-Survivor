@@ -1,0 +1,149 @@
+body {
+    font-family: "Sans Serif";
+    background-color: #A5BDAF;
+}
+#title,
+#results_title {
+    text-align: center;
+}
+#s37-logo {
+    height: 50%;
+    width: 50%;
+}
+#survivor_form {
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 80%;
+    height: 75%;
+    background-color: #A5BDAF;
+}
+.team_banner {
+    background-color: rgb(213,107,35);
+    padding: 10px 0px;
+    color: #fff;
+} 
+.isHidden {
+    display: none;            
+}
+.tab {
+    display: none;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    text-align: center;
+}
+
+.graph {
+    display: block;
+}
+
+#progress_buttons {
+    overflow: auto;
+    text-align: center;
+    padding-top: 40px;
+}
+
+#prevBtn, 
+#nextBtn {
+    background-color: rebeccapurple;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+#prevBtn:hover, 
+#nextBtn:hover {
+    opacity: 0.8;
+}
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+#progress_bar {
+    text-align: center;
+    margin-top:40px;
+}
+
+
+#chart {
+    display: table;
+    margin: 0 auto;		
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+    stroke-width: 2px;
+}
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    text-align: left;
+    position: absolute;
+    z-index: 40;
+    font: 12px verdana, sans-serif;
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Contestant Input Buttons */
+.survivor_name {
+    background-image: url();
+}
+label {
+    padding-top: 5px;
+    color: black;
+    font-weight: bold;
+    text-shadow: white 0.1em 0.1em 0.2em;
+}
+.cc-selector input{
+    margin:0;
+    padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+.survivor-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:200px;
+    height:280px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.survivor-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+.greyLabel{
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}

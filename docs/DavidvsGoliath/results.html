@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="https://ewedit.files.wordpress.com/2018/05/s37-logo.jpg">
+        <title>Survivor - David vs Goliath</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- D3 -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="d3-tip.js"></script>
+        
+        <!-- Stylesheet and Javascript -->
+        <link rel="stylesheet" href="DavidvsGoliath.css">
+        <script src="DavidvsGoliath.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <div id="survivor_form">
+            <div id="title">
+                <h1>Fantasy Survivor - David vs Goliath</h1>
+                <img src="https://ewedit.files.wordpress.com/2018/05/s37-logo.jpg"/>
+            </div>
+            <!--
+            <div class="tab graph">
+                <h3>WEEKLY RESULTS</h3>
+                <div id="chart"></div>
+            </div>
+            -->
+            <div class="tab graph">
+                <h3 id="results_title">RESULTS</h3>
+                <div>
+                    <p>
+                        Forgot your past responses?
+                        <button type="button" id="PastResponses">Click Here</button>
+                    </p>
+                </div>
+                <div id="chart"></div>
+            </div>
+        </div>
+        
+    </body>
+    
+    <script>
+        $(document).ready(function(){
+            //PushPullGithub(0);
+            init_chart();
+        });
+    </script>
+    
+</html>
