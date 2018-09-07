@@ -1,29 +1,18 @@
 body {
     font-family: "Sans Serif";
     background-color: #A5BDAF;
+    height: 100%;
+    margin: 0;
+    font: 400 15px/1.8 "Lato", sans-serif;
+    color: #777;
 }
-.title,
 #results_title {
     text-align: center;
 }
-
-.bgimg-1, .bgimg-2, .bgimg-3 {
-  position: relative;
-  opacity: 0.65;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-}
-.bg-img {
-  background-image: url("https://i2.wp.com/techmoran.com/wp-content/uploads/2014/05/david_vs_goliath_color_comp_wip_by_nickhuddlestonartist-d68tsu1.jpg");
-  height: 100%;
-}
-
 .title {
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 40%;
   width: 100%;
   text-align: center;
   color: #000;
@@ -133,8 +122,65 @@ body {
 
 
 /* Contestant Input Buttons */
-.survivor_name {
-    background-image: url();
+.Natalia_Azoqua {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/13c7e74872b87a9d_svr37_800x1000_nataliaazoqa.jpg");
+}
+.Carl_Boudreaux {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/8cb547f9d9960fe9_svr37_800x1000_carlboudreaux.jpg");
+}
+.Natalie_Cole {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/8132580fc0d84588_svr37_800x1000_nataliecole.jpg");
+}
+.Jeremy_Crawford {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/0bdc2f727c6f99ee_svr37_800x1000_jeremycrawford.jpg");
+}
+.Pat_Cusack {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/9b15fdd623795c1a_svr37_800x1000_patcusack.jpg");
+}
+.John_Hennigan {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/297329a83288b25f_svr37_800x1000_johnhennigan.jpg");
+}
+.Christian_Hubicki {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/2f368ae8a128c594_svr_christianh_800x1000.jpg");
+}
+.Kara_Kay {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/806bb21886d2dcf0_svr37_800x1000_karakay.jpg");
+}
+.Angelina_Keeley {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/516aca89f77c9a6b_svr37_800x1000_angelinakeeley.jpg");
+}
+.Alec_Merlino {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/4be6faee886ff178_svr37_800x1000_alecmerlino.jpg");
+}
+.Bi_Nguyen {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/362a1456b98acc15_svr37_800x1000_binguyen.jpg");
+}
+.Elizabeth_Olsen {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/7bb465cc79e38f4b_svr37_800x1000_elizabetholsen.jpg");
+}
+.Gabby_Pascuzzi {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/9128154ea29ea81f_svr37_800x1000_gabbypascuzzi_.jpg");
+}
+.Jessica_Peet {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/f0acab872d91c098_svr37_800x1000_jessicapeet.jpg");
+}
+.Alison_Raybould {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/c70dba33ac036406_svr37_800x1000_alisonraybould.jpg");
+}
+.Dan_Rengering {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/b7af171dcd9574bf_svr37_800x1000_danrengering.jpg");
+}
+.Davie_Rickenbacker {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/7385df05f4baa622_svr37_800x1000_davierickenbacker.jpg");
+}
+.Lyrsa_Torres {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/98015acfff1d282e_svr37_800x1000_lyrsatorres.jpg");
+}
+.Nick_Wilson {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/1187dc4edb2d3a31_svr37_800x1000_nickwilson.jpg");
+}
+.Mike_White {
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/ef738c197d8a9c61_svr37_800x1000_mikewhite.jpg");
 }
 label {
     padding-top: 5px;
