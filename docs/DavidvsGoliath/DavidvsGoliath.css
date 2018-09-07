@@ -2,14 +2,40 @@ body {
     font-family: "Sans Serif";
     background-color: #A5BDAF;
 }
-#title,
+.title,
 #results_title {
     text-align: center;
 }
-#s37-logo {
-    height: 50%;
-    width: 50%;
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
+.bg-img {
+  background-image: url("https://i2.wp.com/techmoran.com/wp-content/uploads/2014/05/david_vs_goliath_color_comp_wip_by_nickhuddlestonartist-d68tsu1.jpg");
+  height: 100%;
+}
+
+.title {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+.title span {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
 #survivor_form {
     margin: 0 auto;
     padding-top: 20px;
