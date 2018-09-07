@@ -3,8 +3,6 @@ body {
     background-color: #A5BDAF;
     height: 100%;
     margin: 0;
-    font: 400 15px/1.8 "Lato", sans-serif;
-    color: #777;
 }
 #results_title {
     text-align: center;
@@ -18,56 +16,69 @@ body {
   color: #000;
 }
 .title span {
-  background-color: #111;
-  color: #fff;
-  padding: 18px;
-  font-size: 25px;
-  letter-spacing: 10px;
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    margin-bottom: 40px;
+    font-size: 25px;
+    letter-spacing: 10px;
 }
 
 #survivor_form {
     margin: 0 auto;
-    padding-top: 20px;
-    width: 80%;
-    height: 75%;
+    /*padding-top: 20px;*/
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: url("https://i2.wp.com/techmoran.com/wp-content/uploads/2014/05/david_vs_goliath_color_comp_wip_by_nickhuddlestonartist-d68tsu1.jpg");
     background-color: #A5BDAF;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.team_banner {
+.team_david {
     background-color: rgb(213,107,35);
     padding: 10px 0px;
     color: #fff;
-} 
+}
+.team_goliath {
+    background-color: rgb(122,41,107);
+    padding: 10px 0px;
+    color: #fff;
+}
 .isHidden {
     display: none;            
 }
 .tab {
     display: none;
     height: 100%;
-    width: 100%;
+    width: auto;
     align-items: center;
     /*display: flex;*/
     /*justify-content: center;*/
     text-align: center;
 }
 
-.graph {
-    display: block;
-}
-
-#progress_buttons {
-    overflow: auto;
+#progress_buttons,
+#progress_bar {
+    margin: 0 auto;
     text-align: center;
-    padding-top: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
-
+#progress_buttons {
+    padding-bottom: 40px;
+}
+#progress_bar {
+    padding-bottom: 10px;
+}
 #prevBtn, 
 #nextBtn {
-    background-color: rebeccapurple;
-    color: #ffffff;
+    background-color: #000;
+    color: #fff;
     border: none;
     padding: 10px 20px;
-    font-size: 17px;
-    font-family: Raleway;
+    font-size: 20px;
     cursor: pointer;
 }
 #prevBtn:hover, 
@@ -78,15 +89,15 @@ body {
     background-color: #bbbbbb;
 }
 
-#progress_bar {
-    text-align: center;
-    margin-top:40px;
-}
-
-
+/****************/
+/* RESULTS.HTML */
+/****************/
 #chart {
     display: table;
     margin: 0 auto;		
+}
+.graph {
+    display: block;
 }
 .axis path,
 .axis line {
@@ -187,6 +198,9 @@ label {
     color: black;
     font-weight: bold;
     text-shadow: white 0.1em 0.1em 0.2em;
+}
+.cc-selector {
+    margin: 0;
 }
 .cc-selector input{
     margin:0;

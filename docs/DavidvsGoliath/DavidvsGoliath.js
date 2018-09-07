@@ -1,10 +1,10 @@
 function init() {
     // Input button coloring
     $('input').click(function(e) {
-        var cur_id = $(e.target).attr('value');
-        cur_id = cur_id.replace(" ","_");
-        $(e.target).parent().children('label').addClass('greyLabel');
-        $(e.target).parent().children('label.'+cur_id).removeClass('greyLabel');
+        //var cur_id = $(e.target).attr('value');
+        //cur_id = cur_id.replace(" ","_");
+        $('label.survivor-cc').addClass('greyLabel');
+        $(e.target).parent().children('label').removeClass('greyLabel');
     });
     
     // Collect form results
@@ -111,6 +111,13 @@ function init() {
         };
         return valid;
     };
+    
+    function autoResizeDiv() {
+        document.getElementById('survivor_form').style.height = window.innerHeight +'px';
+    };
+    window.onresize = autoResizeDiv;
+    autoResizeDiv();
+    
 };
 
 function PushPullGithub(form_results) {
