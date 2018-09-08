@@ -35,16 +35,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.team_david {
-    background-color: rgb(213,107,35);
-    padding: 10px 0px;
-    color: #fff;
-}
-.team_goliath {
-    background-color: rgb(122,41,107);
-    padding: 10px 0px;
-    color: #fff;
-}
 .isHidden {
     display: none;            
 }
@@ -193,14 +183,43 @@ body {
 .Mike_White {
     background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/ef738c197d8a9c61_svr37_800x1000_mikewhite.jpg");
 }
+.contestants{
+    width: 75%;
+    margin: 0 auto;
+}
+.team_david {
+    background-color: rgb(213,107,35);
+}
+.team_goliath {
+    background-color: rgb(122,41,107);
+}
+.cc-selector span {
+    color: black;
+    font-weight: bold;
+    text-shadow: white 0.1em 0.1em 0.2em;
+    font-size: 18px;
+    float: left;
+}
+.team_name {
+    text-align: right;
+}
+/*
 label {
     padding-top: 5px;
     color: black;
     font-weight: bold;
     text-shadow: white 0.1em 0.1em 0.2em;
-}
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 20px;
+}*/
 .cc-selector {
-    margin: 0;
+    position: relative;
+    width: 210px;
+    margin: 5px;
+    float: left;
+    padding: 5px;
+    height: 270px;
 }
 .cc-selector input{
     margin:0;
@@ -215,7 +234,7 @@ label {
     background-repeat:no-repeat;
     display:inline-block;
     width:200px;
-    height:280px;
+    height:245px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
