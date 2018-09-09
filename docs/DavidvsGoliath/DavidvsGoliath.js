@@ -42,10 +42,12 @@ function init() {
 
     $("#prevBtn").click(function(e) {
         nextPrev(-1);
-        window.scrollTo(0,0);
+        $('label.survivor-cc').removeClass('greyLabel');
+        document.body.scrollTop=0;
     });
     $("#nextBtn").click(function(e) {
         nextPrev(1);
+        $('label.survivor-cc').removeClass('greyLabel');
     });
 
     function showTab(n) {
@@ -62,7 +64,7 @@ function init() {
             $("#nextBtn").html("Next");
         };
         fixStepIndicator(n);
-        window.scrollTo(0,0);
+        document.body.scrollTop=0;
     };
 
     function nextPrev(n) {
