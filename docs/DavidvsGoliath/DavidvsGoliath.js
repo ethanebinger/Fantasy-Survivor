@@ -1,4 +1,11 @@
 function init() {
+    // Move past heo page and enter form on click
+    $('#enterBtn').click(function(e) {
+        $('.title_img').addClass('isHidden');
+        $('#survivor_form').removeClass('isHidden');
+        $('#advance_form').removeClass('isHidden');
+    });
+    
     // Input button coloring
     $('input').click(function(e) {
         //var cur_id = $(e.target).attr('value');

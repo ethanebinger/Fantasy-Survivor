@@ -1,39 +1,47 @@
-body {
-    font-family: "Sans Serif";
-    background-color: #A5BDAF;
+@font-face {
+    font-family: survivor;
+    src: url(Survivor_Font.ttf);
+}
+html, body {
+    font-family: "survivor", "Sans Serif";
+    background-color: black;
+    color: white;
     height: 100%;
     margin: 0;
+    position: relative;
 }
 #results_title {
     text-align: center;
 }
-.title {
-  position: absolute;
-  left: 0;
-  top: 40%;
-  width: 100%;
-  text-align: center;
-  color: #000;
+.title_img {
+    background-image: url("https://arthistoryoftheday.files.wordpress.com/2011/08/bernini-david1.jpg");
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
 }
-.title span {
-    background-color: #111;
-    color: #fff;
-    padding: 18px;
-    margin-bottom: 40px;
-    font-size: 25px;
+.title_text {
+    position: absolute;
+    /*width: 100%;*/
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.title_text p {
+    padding: 10px 20px;
+    color: white;
+    background-color: black;
+    font-size: 40px;
     letter-spacing: 10px;
 }
 
 #survivor_form {
     margin: 0 auto;
-    /*padding-top: 20px;*/
-    width: 100%;
-    height: 100%;
+    padding-bottom: 100px;
     position: relative;
-    background-image: url("https://i2.wp.com/techmoran.com/wp-content/uploads/2014/05/david_vs_goliath_color_comp_wip_by_nickhuddlestonartist-d68tsu1.jpg");
-    background-color: #A5BDAF;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .isHidden {
     display: none;            
@@ -47,7 +55,27 @@ body {
     /*justify-content: center;*/
     text-align: center;
 }
-
+h1 {
+    font-size: 72px;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+h3 {
+    font-size: 40px;
+    margin: 10px;
+}
+select,
+.bonusQ_label {
+    font-size: 18px;
+}
+#advance_form {
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    left: 50%;
+}/*
 #progress_buttons,
 #progress_bar {
     margin: 0 auto;
@@ -55,13 +83,15 @@ body {
     width: 100%;
     position: absolute;
     bottom: 0;
-}
+}*/
+/*
 #progress_buttons {
     padding-bottom: 40px;
 }
 #progress_bar {
     padding-bottom: 10px;
-}
+}*/
+#enterBtn,
 #prevBtn, 
 #nextBtn {
     background-color: #000;
@@ -71,6 +101,7 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
+#enterBtn:hover,
 #prevBtn:hover, 
 #nextBtn:hover {
     opacity: 0.8;
@@ -186,6 +217,7 @@ body {
 .contestants{
     width: 75%;
     margin: 0 auto;
+    color: black;
 }
 .team_david {
     background-color: rgb(213,107,35);
@@ -193,33 +225,37 @@ body {
 .team_goliath {
     background-color: rgb(122,41,107);
 }
-.cc-selector span {
-    color: black;
-    font-weight: bold;
-    text-shadow: white 0.1em 0.1em 0.2em;
-    font-size: 18px;
-    float: left;
-}
 .team_name {
     text-align: right;
 }
-/*
-label {
-    padding-top: 5px;
-    color: black;
-    font-weight: bold;
-    text-shadow: white 0.1em 0.1em 0.2em;
-    display: inline-block;
-    vertical-align: bottom;
-    font-size: 20px;
-}*/
 .cc-selector {
     position: relative;
     width: 210px;
-    margin: 5px;
+    margin-bottom: 10px;
+    margin-right: 12px;
     float: left;
-    padding: 5px;
-    height: 270px;
+    padding-bottom: 10px;
+    height: 305px;
+    background-image: url(images/patternBG.jpg);
+    background-repeat: repeat;
+    background-position: center top;
+}
+.cc-selector p {
+    font-size: 24px;
+    position: absolute;
+    text-align: left;
+    margin: 0 0 0 10px;
+}
+.cc-selector .name {
+    top: 10px;
+}
+.cc-selector .team_name {
+    top: 30px;
+}
+.cc-selector img {
+    position: absolute;
+    top: 5px;
+    right: 10px;
 }
 .cc-selector input{
     margin:0;
@@ -228,13 +264,19 @@ label {
        -moz-appearance:none;
             appearance:none;
 }
+.cc-selector label {
+    margin-bottom: 2px;
+    position: absolute;
+    top: 65px;
+    left: 10px;
+}
 .survivor-cc{
     cursor:pointer;
     background-size:contain;
     background-repeat:no-repeat;
     display:inline-block;
     width:200px;
-    height:245px;
+    height:240px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
