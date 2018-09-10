@@ -42,17 +42,17 @@ html, body {
     margin: 0 auto;
     height: 100%;
     align-items: center;
+    text-align: center;
 }
 .isHidden {
     display: none;            
 }
 .tab {
     display: none;
-    height: 100%;
-    width: auto;
-    /*display: flex;*/
-    /*justify-content: center;*/
-    text-align: center;
+    /*height: 100%;*/
+    min-height: 100%;
+    margin-bottom: -100px;
+    padding-bottom: 100px;
 }
 h1 {
     font-size: 72px;
@@ -68,6 +68,7 @@ select,
     font-size: 18px;
 }
 #advance_form {
+    height: 80px;
     width: 100%;
     position: fixed;
     bottom: 0;

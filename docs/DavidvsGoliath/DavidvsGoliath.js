@@ -8,9 +8,8 @@ function init() {
     
     // Input button coloring
     $('input').click(function(e) {
-        //var cur_id = $(e.target).attr('value');
-        //cur_id = cur_id.replace(" ","_");
-        $('label.survivor-cc').addClass('greyLabel');
+        var cur_tab = $(e.target).attr('name');
+        $('label.'+cur_tab).addClass('greyLabel');
         $(e.target).parent().children('label').removeClass('greyLabel');
     });
     
@@ -42,17 +41,16 @@ function init() {
 
     $("#prevBtn").click(function(e) {
         nextPrev(-1);
-        $('label.survivor-cc').removeClass('greyLabel');
+        window.scrollTo(0,0);
         document.body.scrollTop=0;
     });
     $("#nextBtn").click(function(e) {
         nextPrev(1);
-        $('label.survivor-cc').removeClass('greyLabel');
     });
 
     function showTab(n) {
         var x = $(".tab");
-        x[n].style.display = "block";
+        x[n].style.display = "inline-block";
         if (n === 0) {
             $("#prevBtn").addClass("isHidden");
         } else {
@@ -64,6 +62,7 @@ function init() {
             $("#nextBtn").html("Next");
         };
         fixStepIndicator(n);
+        window.scrollTo(0,0);
         document.body.scrollTop=0;
     };
 
