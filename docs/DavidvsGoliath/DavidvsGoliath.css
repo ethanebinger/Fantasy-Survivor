@@ -60,12 +60,12 @@ h1 {
     margin-top: 20px;
 }
 h3 {
-    font-size: 40px;
+    font-size: 36px;
     margin: 10px;
 }
 select,
 .bonusQ_label {
-    font-size: 18px;
+    font-size: 24px;
 }
 #advance_form {
     height: 80px;
@@ -77,7 +77,8 @@ select,
     background-color: #000;
     padding: 10px 0px;
     margin-top: 50px;
-}/*
+}
+/*
 #progress_buttons,
 #progress_bar {
     margin: 0 auto;
