@@ -10,9 +10,6 @@ html, body {
     margin: 0;
     position: relative;
 }
-#results_title {
-    text-align: center;
-}
 .title_img {
     background-image: url("https://arthistoryoftheday.files.wordpress.com/2011/08/bernini-david1.jpg");
     position: relative;
@@ -96,7 +93,8 @@ select,
 }*/
 #enterBtn,
 #prevBtn, 
-#nextBtn {
+#nextBtn,
+#PastResponses {
     background-color: #4CAF50;
     color: #fff;
     border: none;
@@ -106,7 +104,8 @@ select,
 }
 #enterBtn:hover,
 #prevBtn:hover, 
-#nextBtn:hover {
+#nextBtn:hover,
+#PastResponses:hover {
     opacity: 0.8;
 }
 #prevBtn {
@@ -116,6 +115,17 @@ select,
 /****************/
 /* RESULTS.HTML */
 /****************/
+.results_title {
+    text-align: center;
+}
+#PastResponses {
+    padding: 5px;
+    font-size: 18px;
+    background-color: #bbbbbb;
+}
+#PastResponsesText {
+    font-size: 28px;
+}
 #chart {
     display: table;
     margin: 0 auto;		

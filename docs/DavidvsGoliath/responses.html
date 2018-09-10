@@ -16,68 +16,66 @@
         
     </head>
     <body>
-        <div id="survivor_form">
-            <div id="title">
-                <h1>Fantasy Survivor - David vs Goliath</h1>
-                <img id="s37-logo" src="https://ewedit.files.wordpress.com/2018/05/s37-logo.jpg"/>
+       <div class="title_img">
+            <div class="results_title">
+                <div class="graph">
+                    <br>
+                    <h3>Select name and vote number to see past responses</h3>
+                    <select id="past_responses_name" style="font-size: 18px;">
+                        <option value="">
+                            Select One
+                        </option>
+                        <option value="Aaron">
+                            Aaron
+                        </option>
+                        <option value="Anastassia">
+                            Anastassia
+                        </option>
+                        <option value="Ben">
+                            Colin
+                        </option>
+                        <option value="Colin">
+                            Colin
+                        </option>
+                        <option value="David">
+                            David
+                        </option>
+                        <option value="Emily">
+                            Emily
+                        </option>
+                        <option value="Ethan">
+                            Ethan
+                        </option>
+                        <option value="Ezra">
+                            Ezra
+                        </option>
+                        <option value="Josh">
+                            Josh
+                        </option>
+                        <option value="Lucas">
+                            Lucas
+                        </option>
+                        <option value="Mitch">
+                            Myles
+                        </option>
+                        <option value="Vivian">
+                            Vivian
+                        </option>
+                        <option value="Walter">
+                            Walter
+                        </option>
+                    </select>
+                    <select id="past_responses_vote"  style="font-size: 18px;">
+                        <option value="">
+                            Select One
+                        </option>
+                    </select>
+                    <button id="past_responses_button">Get Responses</button>
+                    <div id="past_responses"></div>
+                    <p></p>
+                </div>
             </div>
-            <div class="tab graph">
-                <p>Select name and vote number to see past responses: </p>
-                <select id="past_responses_name">
-                    <option value="">
-                        Select One
-                    </option>
-                    <option value="Aaron">
-                        Aaron
-                    </option>
-                    <option value="Anastassia">
-                        Anastassia
-                    </option>
-                    <option value="Ben">
-                        Colin
-                    </option>
-                    <option value="Colin">
-                        Colin
-                    </option>
-                    <option value="David">
-                        David
-                    </option>
-                    <option value="Emily">
-                        Emily
-                    </option>
-                    <option value="Ethan">
-                        Ethan
-                    </option>
-                    <option value="Ezra">
-                        Ezra
-                    </option>
-                    <option value="Josh">
-                        Josh
-                    </option>
-                    <option value="Lucas">
-                        Lucas
-                    </option>
-                    <option value="Mitch">
-                        Myles
-                    </option>
-                    <option value="Vivian">
-                        Vivian
-                    </option>
-                    <option value="Walter">
-                        Walter
-                    </option>
-                </select>
-                <select id="past_responses_vote">
-                    <option value="">
-                        Select One
-                    </option>
-                </select>
-                <button id="past_responses_button">Get Responses</button>
-                <div id="past_responses"></div>
-                <p></p>
-            </div>
-        </div>
-        
+        </div>        
     </body>
     
     <script>
