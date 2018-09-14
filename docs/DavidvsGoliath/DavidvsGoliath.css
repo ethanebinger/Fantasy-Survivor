@@ -225,7 +225,9 @@ select,
     background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/1187dc4edb2d3a31_svr37_800x1000_nickwilson.jpg");
 }
 .Mike_White {
-    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/ef738c197d8a9c61_svr37_800x1000_mikewhite.jpg");
+    /*background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/ef738c197d8a9c61_svr37_800x1000_mikewhite.jpg");*/
+    /* Lol they changed his photo so he has a shirt on */
+    background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w270/cast/b0ff2beae68866cb_svr_mikew_800x1000.jpg");
 }
 .contestants{
     width: 75%;
