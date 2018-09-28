@@ -1,6 +1,6 @@
 ## WELCOME SOMERVILLE SURVIVORS!
 
-![Image](https://en.wikipedia.org/wiki/Survivor:_David_vs._Goliath#/media/File:Survivor_David_vs_Goliath.png)
+![Image](https://upload.wikimedia.org/wikipedia/en/0/0d/Survivor_David_vs_Goliath.png)
 
 Here you can find the rules and the code behind the web form and visualizations used for the Somerville Survivors Fantasy League. 
 
