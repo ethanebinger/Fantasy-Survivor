@@ -700,7 +700,20 @@ function final_eight_calc(scores, result) {
 
 var results = [
     {	'vote': 1,
-        'date': '9/24/18',
+        'date': '9/26/18',
+        'merge': 'No',
+        'reward': '', 
+        'immunity': '', 
+        'eliminated': 'Pat Cusack',
+        'idolFound': 'Dan Rengering',
+        'idolPlayed': 'No',
+        'titleQuote': '',
+        'nudity': 'No',
+        'team_1': [],
+        'team_2': []
+    },
+    {	'vote': 2,
+        'date': '10/3/18',
         'merge': 'No',
         'reward': '', 
         'immunity': '', 
@@ -708,9 +721,7 @@ var results = [
         'idolFound': '',
         'idolPlayed': '',
         'titleQuote': '',
-        'nudity': '',
-        'ghostIsland': '',
-        'ghostIdol': '',
+        'nudity': 'No',
         'team_1': [],
         'team_2': []
     }
