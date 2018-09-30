@@ -714,11 +714,10 @@ var results = [
     {	'vote': 1,
         'date': '9/26/18',
         'merge': 'No',
-<<<<<<< HEAD
         'reward': null, 
         'immunity': 'Goliath', 
-        'eliminated': 'Pat',
-        'idolFound': 'Dan',
+        'eliminated': 'Pat Cusack',
+        'idolFound': 'Dan Rengering',
         'idolPlayed': 'No',
         'titleQuote': '',
         'nudity': 'No',
@@ -746,17 +745,6 @@ var results = [
             'Dan',
             'Mike'
         ]
-=======
-        'reward': '', 
-        'immunity': '', 
-        'eliminated': 'Pat Cusack',
-        'idolFound': 'Dan Rengering',
-        'idolPlayed': 'No',
-        'titleQuote': '',
-        'nudity': 'No',
-        'team_1': [],
-        'team_2': []
->>>>>>> 8250f0490ae04f6685f46134072e02ccc8541d73
     },
     {	'vote': 2,
         'date': '10/3/18',
@@ -767,7 +755,6 @@ var results = [
         'idolFound': '',
         'idolPlayed': '',
         'titleQuote': '',
-<<<<<<< HEAD
         'nudity': '',
         'team_david': [
             'Carl',
@@ -793,10 +780,5 @@ var results = [
             'Dan',
             'Mike'
         ]
-=======
-        'nudity': 'No',
-        'team_1': [],
-        'team_2': []
->>>>>>> 8250f0490ae04f6685f46134072e02ccc8541d73
     }
 ];
