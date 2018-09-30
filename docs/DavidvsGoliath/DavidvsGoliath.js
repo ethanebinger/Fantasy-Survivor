@@ -332,10 +332,20 @@ function init_chart() {
     // Define temp data
     var scores = [];
     var players = [
-        'Walter', 'Vivian', 'Mitch', 
-        'Lucas', 'Josh', 'Ezra', 
-        'Ethan', 'Emily', 'David',
-        'Colin', 'Ben', 'Anastassia', 'Aaron'
+        'Walter', 
+        'Vivian',
+        'Myles',
+        'Mitch', 
+        'Lucas', 
+        'Josh', 
+        'Ezra', 
+        'Ethan', 
+        'Emily', 
+        'David',
+        'Colin', 
+        'Ben', 
+        'Anastassia', 
+        'Aaron'
     ];
     for (var p=0; p<players.length; p++) {
         scores.push({
@@ -358,8 +368,8 @@ function init_chart() {
             'Vote 15': 0,
             'Vote 16': 0,
             'Vote 17': 0,
-            'Final Eight': 0
-            //'Final Three': 0
+            'Final Eight': 0,
+            'Final Three': 0
         });
     };
 
@@ -512,7 +522,9 @@ var inArray = function(x,y) {
 function determineWeek(responses, results_vote) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
-    if (submit_time <= new Date(2018,9,24,20)) {
+    if (submit_time <= new Date(2018,9,26,20)) {
+        cur_vote = 1;
+    } else if (submit_time <= new Date(2018,10,3,20)) {
         cur_vote = 1;
     };
     return cur_vote;
@@ -524,8 +536,8 @@ function calculateScores(scores, results, responses, calcType) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-            var team_1 = results[i].team_1;
-            var team_2 = results[i].team_2;
+            var team_david = results[i].team_david;
+            var team_goliath = results[i].team_goliath;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
@@ -592,21 +604,21 @@ function calculateScores(scores, results, responses, calcType) {
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
                         } else {
                             // Reward
-                            if ((results[i].reward === 'team_1' || results[i].reward2 === 'team_1') && inArray(responses[j].reward, team_1) && responses[j].reward) {
+                            if ((results[i].reward === 'team_david' || results[i].reward2 === 'team_david') && inArray(responses[j].reward, team_david) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; }
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_2' || results[i].reward2 === 'team_2') && inArray(responses[j].reward, team_2) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_goliath' || results[i].reward2 === 'team_goliath') && inArray(responses[j].reward, team_goliath) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
                             };
                             // Immunity
-                            if ((results[i].immunity === 'team_1' || results[i].immunity2 === 'team_1') && inArray(responses[j].immunity, team_1) && responses[j].immunity) {
+                            if ((results[i].immunity === 'team_david' || results[i].immunity2 === 'team_david') && inArray(responses[j].immunity, team_david) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 7.5; }
                                 else { scores[n][val_vote] += 7.5; };
                                 scores[n].total += 7.5;
-                            } else if ((results[i].immunity === 'team_2' || results[i].immunity2 === 'team_2')  && inArray(responses[j].immunity, team_2) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_goliath' || results[i].immunity2 === 'team_goliath')  && inArray(responses[j].immunity, team_goliath) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 7.5; }
                                 else { scores[n][val_vote] += 7.5; };
                                 scores[n].total += 7.5;
@@ -702,6 +714,39 @@ var results = [
     {	'vote': 1,
         'date': '9/26/18',
         'merge': 'No',
+<<<<<<< HEAD
+        'reward': null, 
+        'immunity': 'Goliath', 
+        'eliminated': 'Pat',
+        'idolFound': 'Dan',
+        'idolPlayed': 'No',
+        'titleQuote': '',
+        'nudity': 'No',
+        'team_david': [
+            'Carl',
+            'Pat',
+            'Christian',
+            'Bi',
+            'Elizabeth',
+            'Gabby',
+            'Jessica',
+            'Davie',
+            'Lyrsa',
+            'Nick'
+        ],
+        'team_goliath': [
+            'Natalia',
+            'Natalie',
+            'Jeremy',
+            'John',
+            'Kara',
+            'Angelina',
+            'Alec',
+            'Alison',
+            'Dan',
+            'Mike'
+        ]
+=======
         'reward': '', 
         'immunity': '', 
         'eliminated': 'Pat Cusack',
@@ -711,6 +756,7 @@ var results = [
         'nudity': 'No',
         'team_1': [],
         'team_2': []
+>>>>>>> 8250f0490ae04f6685f46134072e02ccc8541d73
     },
     {	'vote': 2,
         'date': '10/3/18',
@@ -721,8 +767,36 @@ var results = [
         'idolFound': '',
         'idolPlayed': '',
         'titleQuote': '',
+<<<<<<< HEAD
+        'nudity': '',
+        'team_david': [
+            'Carl',
+            'Pat',
+            'Christian',
+            'Bi',
+            'Elizabeth',
+            'Gabby',
+            'Jessica',
+            'Davie',
+            'Lyrsa',
+            'Nick'
+        ],
+        'team_goliath': [
+            'Natalia',
+            'Natalie',
+            'Jeremy',
+            'John',
+            'Kara',
+            'Angelina',
+            'Alec',
+            'Alison',
+            'Dan',
+            'Mike'
+        ]
+=======
         'nudity': 'No',
         'team_1': [],
         'team_2': []
+>>>>>>> 8250f0490ae04f6685f46134072e02ccc8541d73
     }
 ];
