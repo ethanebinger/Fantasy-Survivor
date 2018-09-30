@@ -138,7 +138,7 @@ function PushPullGithub(form_results) {
     $("#loading_results").removeClass("isHidden");
     $.ajax({
         type: "GET",
-        url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/DavidvsGoliath_Responses.json",
+        url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/DavidvsGoliath/DavidvsGoliath_Responses.json",
         dataType: "json",
         success: function(result) {
             // PULL existing data (saved in 'responses' object)
@@ -160,7 +160,7 @@ function PushPullGithub(form_results) {
                     'new input from '+push_user,
                     [{
                         content: responses_str, 
-                        path: 'DavidvsGoliath_Responses.json'
+                        path: 'docs/DavidvsGoliath/DavidvsGoliath_Responses.json'
                     }]
                 ))
                 .then(function() {
@@ -189,7 +189,7 @@ function getPastResponses() {
     function getWeeklyResults(curName, curVote) {
         $.ajax({
             type: "GET",
-            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/DavidvsGoliath_Responses.json",
+            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/DavidvsGoliath/DavidvsGoliath_Responses.json",
             dataType: "json",
             success: function(result) {
                 // Clear existing html
@@ -423,7 +423,7 @@ function init_chart() {
         final3;
     $.when(
         // Get the Weekly Responses
-        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/DavidvsGoliath_Responses.json", function(result) {
+        $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/DavidvsGoliath/DavidvsGoliath_Responses.json", function(result) {
             responses = JSON.parse(atob(result.content));
         }),
         // Get the Final Eight Responses 
