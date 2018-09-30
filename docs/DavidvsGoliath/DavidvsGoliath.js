@@ -525,7 +525,15 @@ function determineWeek(responses, results_vote) {
     if (submit_time <= new Date(2018,9,26,20)) {
         cur_vote = 1;
     } else if (submit_time <= new Date(2018,10,3,20)) {
-        cur_vote = 1;
+        cur_vote = 2;
+    } else if (submit_time <= new Date(2018,10,10,20)) {
+        cur_vote = 3;
+    } else if (submit_time <= new Date(2018,10,17,20)) {
+        cur_vote = 4;
+    } else if (submit_time <= new Date(2018,10,24,20)) {
+        cur_vote = 5;
+    } else if (submit_time <= new Date(2018,10,31,20)) {
+        cur_vote = 6;
     };
     return cur_vote;
 };
@@ -615,13 +623,13 @@ function calculateScores(scores, results, responses, calcType) {
                             };
                             // Immunity
                             if ((results[i].immunity === 'team_david' || results[i].immunity2 === 'team_david') && inArray(responses[j].immunity, team_david) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 7.5; }
-                                else { scores[n][val_vote] += 7.5; };
-                                scores[n].total += 7.5;
+                                if (calcType === "individual") { scores[n].immunity += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
                             } else if ((results[i].immunity === 'team_goliath' || results[i].immunity2 === 'team_goliath')  && inArray(responses[j].immunity, team_goliath) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 7.5; }
-                                else { scores[n][val_vote] += 7.5; };
-                                scores[n].total += 7.5;
+                                if (calcType === "individual") { scores[n].immunity += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
                             };
                             // Eliminated
                             if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
@@ -705,6 +713,23 @@ function final_eight_calc(scores, result) {
         };
         var score = 200 - (3 * sum)
         return (score);
+    };
+    return (scores);
+};
+//*/
+
+// FUNCTION TO CALCULATE SCORES FOR FINAL THREE
+/*
+function final_three_calc(scores, result, responses) {
+    for (var n=0; n<scores.length; n++) {
+        for (var i=0; i<result.length; i++) {
+            if (result[i].name === scores[n].name) && (
+            // MATCH pick_1, pick_2, and pick_3 with results
+            ){
+                scores[n]['Final Three'] += 20;
+                scores[n].total += 20;
+            };
+        };
     };
     return (scores);
 };
