@@ -522,17 +522,17 @@ var inArray = function(x,y) {
 function determineWeek(responses, results_vote) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
-    if (submit_time <= new Date(2018,9,26,20)) {
+    if (submit_time <= new Date(2018,8,26,20)) {
         cur_vote = 1;
-    } else if (submit_time <= new Date(2018,10,3,20)) {
+    } else if (submit_time <= new Date(2018,9,3,20)) {
         cur_vote = 2;
-    } else if (submit_time <= new Date(2018,10,10,20)) {
+    } else if (submit_time <= new Date(2018,9,10,20)) {
         cur_vote = 3;
-    } else if (submit_time <= new Date(2018,10,17,20)) {
+    } else if (submit_time <= new Date(2018,9,17,20)) {
         cur_vote = 4;
-    } else if (submit_time <= new Date(2018,10,24,20)) {
+    } else if (submit_time <= new Date(2018,9,24,20)) {
         cur_vote = 5;
-    } else if (submit_time <= new Date(2018,10,31,20)) {
+    } else if (submit_time <= new Date(2018,9,31,20)) {
         cur_vote = 6;
     };
     return cur_vote;
