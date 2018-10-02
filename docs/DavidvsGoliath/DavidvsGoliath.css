@@ -136,9 +136,12 @@ select,
 .axis path,
 .axis line {
     fill: none;
-    stroke: #000;
+    stroke: #fff;
     shape-rendering: crispEdges;
     stroke-width: 2px;
+}
+.axis text {
+    fill: #fff;
 }
 .d3-tip {
     line-height: 1;
