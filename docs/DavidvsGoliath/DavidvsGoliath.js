@@ -770,40 +770,5 @@ var results = [
             'Dan',
             'Mike'
         ]
-    },
-    {	'vote': 2,
-        'date': '10/3/18',
-        'merge': 'No',
-        'reward': '', 
-        'immunity': '', 
-        'eliminated': '',
-        'idolFound': '',
-        'idolPlayed': '',
-        'titleQuote': '',
-        'nudity': '',
-        'team_david': [
-            'Carl',
-            'Pat',
-            'Christian',
-            'Bi',
-            'Elizabeth',
-            'Gabby',
-            'Jessica',
-            'Davie',
-            'Lyrsa',
-            'Nick'
-        ],
-        'team_goliath': [
-            'Natalia',
-            'Natalie',
-            'Jeremy',
-            'John',
-            'Kara',
-            'Angelina',
-            'Alec',
-            'Alison',
-            'Dan',
-            'Mike'
-        ]
     }
 ];
