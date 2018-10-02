@@ -379,7 +379,7 @@ function init_chart() {
 
     // Define chart elements
     var margin = {top: 20, right: 20, bottom: 30, left: 80},
-        width = $('#survivor_form').width() - margin.left - margin.right,
+        width = $('.graph').width() - margin.left - margin.right,
         height = 480 - margin.top - margin.bottom;
 
     // Define Scales and Axes
