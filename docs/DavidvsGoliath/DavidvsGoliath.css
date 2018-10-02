@@ -140,7 +140,8 @@ select,
     shape-rendering: crispEdges;
     stroke-width: 2px;
 }
-.axis text {
+.axis text,
+g text {
     fill: #fff;
 }
 .d3-tip {
