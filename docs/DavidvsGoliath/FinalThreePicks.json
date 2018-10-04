@@ -1,74 +1,93 @@
 [
   {
     "name":"Ethan",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": ""
+    "pick_1": "Angelina",
+    "pick_2": "Gabby",
+    "pick_3": "Nick",
+    "final_team": "David"
   },
   {
     "name":"Anastassia",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": ""
+    "pick_1": "Angelina",
+    "pick_2": "Bi",
+    "pick_3": "Elizabeth",
+    "final_team": "David"
   },
   {
     "name":"Walter",
     "pick_1": "",
     "pick_2": "",
-    "pick_3": ""
+    "pick_3": "",
+    "final_team": ""
   },
   {
     "name":"Vivian",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": ""
+    "pick_1": "Angelina",
+    "pick_2": "Bi",
+    "pick_3": "Davie",
+    "final_team": "David"
   },
   {
     "name":"Emily",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": ""
+    "pick_1": "Bi",
+    "pick_2": "Gabby",
+    "pick_3": "Alison",
+    "final_team": "David"
   },
   {
     "name":"Colin",
     "pick_1": "",
     "pick_2": "",
-    "pick_3": ""
+    "pick_3": "",
+    "final_team": ""
   },
   {
     "name":"David",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": ""
+    "pick_1": "Jeremy",
+    "pick_2": "Bi",
+    "pick_3": "Mike",
+    "final_team": "David"
   },
   {
     "name":"Ezra",
     "pick_1": "",
     "pick_2": "",
-    "pick_3": ""
+    "pick_3": "",
+    "final_team": ""
   },
   {
     "name":"Aaron",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": ""
+    "pick_1": "Carl",
+    "pick_2": "Alex",
+    "pick_3": "Bi",
+    "final_team": "David"
+  },
+  {
+    "name":"Josh",
+    "pick_1": "Jeremy",
+    "pick_2": "Elizabeth",
+    "pick_3": "Gabby",
+    "final_team": "David"
   },
   {
     "name":"Ben",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": ""
+    "pick_1": "Christian",
+    "pick_2": "Elizabeth",
+    "pick_3": "Dan",
+    "final_team": "David"
   },
   {
     "name":"Myles",
     "pick_1": "",
     "pick_2": "",
-    "pick_3": ""
+    "pick_3": "",
+    "final_team": ""
   },
   {
     "name":"Mitch",
     "pick_1": "",
     "pick_2": "",
-    "pick_3": ""
+    "pick_3": "",
+    "final_team": ""
   }
 ]
