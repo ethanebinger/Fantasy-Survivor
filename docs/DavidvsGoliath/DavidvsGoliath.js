@@ -740,7 +740,7 @@ var results = [
         'date': '9/26/18',
         'merge': 'No',
         'reward': null, 
-        'immunity': 'Goliath', 
+        'immunity': 'team_goliath', 
         'eliminated': 'Pat',
         'idolFound': 'Yes', //Dan
         'idolPlayed': 'No',
@@ -775,7 +775,7 @@ var results = [
         'date': '10/3/18',
         'merge': 'No',
         'reward': null, 
-        'immunity': 'Goliath', 
+        'immunity': 'team_goliath', 
         'eliminated': 'Jessica',
         'idolFound': 'Yes', //Davie
         'idolPlayed': 'No',
