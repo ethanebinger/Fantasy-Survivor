@@ -780,7 +780,7 @@ var results = [
         'idolFound': 'Yes', //Davie
         'idolPlayed': 'No',
         'titleQuote': 'Christian',
-        'nudity': 'No',
+        'nudity': 'Yes',
         'team_david': [
             'Carl',
             'Christian',
