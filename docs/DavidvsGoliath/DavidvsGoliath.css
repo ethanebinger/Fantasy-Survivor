@@ -239,11 +239,22 @@ g text {
     margin: 0 auto;
     color: black;
 }
+/*
 .team_david {
     background-color: rgb(213,107,35);
 }
 .team_goliath {
     background-color: rgb(122,41,107);
+}
+*/
+.team_orange {
+    background-color: rgb(213,107,35);
+}
+.team_purple {
+    background-color: rgb(122,41,107);
+}
+.team_green {
+    background-color: rgb(71,149,80);
 }
 .team_name {
     text-align: right;

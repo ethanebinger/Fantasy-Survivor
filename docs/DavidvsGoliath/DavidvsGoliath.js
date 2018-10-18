@@ -544,8 +544,9 @@ function calculateScores(scores, results, responses, calcType) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-            var team_david = results[i].team_david;
-            var team_goliath = results[i].team_goliath;
+            var team_orange = results[i].team_orange;
+            var team_purple = results[i].team_purple;
+            var team_green = results[i].team_green;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
@@ -612,21 +613,29 @@ function calculateScores(scores, results, responses, calcType) {
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
                         } else {
                             // Reward
-                            if ((results[i].reward === 'team_david' || results[i].reward2 === 'team_david') && inArray(responses[j].reward, team_david) && responses[j].reward) {
+                            if ((results[i].reward === 'team_orange' || results[i].reward2 === 'team_orange') && inArray(responses[j].reward, team_orange) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; }
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_goliath' || results[i].reward2 === 'team_goliath') && inArray(responses[j].reward, team_goliath) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_purple' || results[i].reward2 === 'team_purple') && inArray(responses[j].reward, team_purple) && responses[j].reward) {
+                                if (calcType === "individual") { scores[n].reward += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
+                            } else if ((results[i].reward === 'team_green' || results[i].reward2 === 'team_green') && inArray(responses[j].reward, team_green) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
                             };
                             // Immunity
-                            if ((results[i].immunity === 'team_david' || results[i].immunity2 === 'team_david') && inArray(responses[j].immunity, team_david) && responses[j].immunity) {
+                            if ((results[i].immunity === 'team_orange' || results[i].immunity2 === 'team_orange') && inArray(responses[j].immunity, team_orange) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_goliath' || results[i].immunity2 === 'team_goliath')  && inArray(responses[j].immunity, team_goliath) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_purple' || results[i].immunity2 === 'team_purple')  && inArray(responses[j].immunity, team_purple) && responses[j].immunity) {
+                                if (calcType === "individual") { scores[n].immunity += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
+                            } else if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green')  && inArray(responses[j].immunity, team_green) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -740,13 +749,13 @@ var results = [
         'date': '9/26/18',
         'merge': 'No',
         'reward': null, 
-        'immunity': 'team_goliath', 
+        'immunity': 'team_purple', 
         'eliminated': 'Pat',
         'idolFound': 'Yes', //Dan
         'idolPlayed': 'No',
         'titleQuote': '',
         'nudity': 'No',
-        'team_david': [
+        'team_orange': [
             'Carl',
             'Pat',
             'Christian',
@@ -758,7 +767,7 @@ var results = [
             'Lyrsa',
             'Nick'
         ],
-        'team_goliath': [
+        'team_purple': [
             'Natalia',
             'Natalie',
             'Jeremy',
@@ -775,13 +784,13 @@ var results = [
         'date': '10/3/18',
         'merge': 'No',
         'reward': null, 
-        'immunity': 'team_goliath', 
+        'immunity': 'team_purple', 
         'eliminated': 'Jessica',
         'idolFound': 'Yes', //Davie
         'idolPlayed': 'No',
         'titleQuote': 'Christian',
         'nudity': 'Yes',
-        'team_david': [
+        'team_orange': [
             'Carl',
             'Christian',
             'Bi',
@@ -792,7 +801,7 @@ var results = [
             'Lyrsa',
             'Nick'
         ],
-        'team_goliath': [
+        'team_purple': [
             'Natalia',
             'Natalie',
             'Jeremy',
@@ -809,13 +818,13 @@ var results = [
         'date': '10/10/18',
         'merge': 'No',
         'reward': null, 
-        'immunity': 'team_david', 
+        'immunity': 'team_orange', 
         'eliminated': 'Jeremy',
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Natalie',
         'nudity': 'No',
-        'team_david': [
+        'team_orange': [
             'Carl',
             'Christian',
             'Bi',
@@ -825,7 +834,7 @@ var results = [
             'Lyrsa',
             'Nick'
         ],
-        'team_goliath': [
+        'team_purple': [
             'Natalia',
             'Natalie',
             'Jeremy',
@@ -837,5 +846,40 @@ var results = [
             'Dan',
             'Mike'
         ]
+    },
+	{	'vote': 4,
+        'date': '10/17/18',
+        'merge': 'Swap',	// nothing extra coded in for this
+        'reward': null, 
+        'immunity': 'team_green', 
+		'immunity2': 'team_purple',
+        'eliminated': 'Natalia',
+		//'quit': 'Bi',
+        'idolFound': 'Yes',		//Idol Nullifier for Carl
+		'idolPlayed': 'No',
+        'titleQuote': 'Christian',
+        'nudity': 'No',
+        'team_orange': [
+            //'Carl',	// on exile island this week!
+            'Elizabeth',
+            'Alec',
+            'Davie',
+            'Natalia',
+			'Kara'
+        ],
+        'team_purple': [
+            'Natalie',
+            'Angelina',
+            'Mike',
+			'Lyrsa',
+            'Nick'
+        ],
+		'team_green': [
+			'Christian',
+			'Gabby',
+			'Alison',
+            'Dan',
+			'John'
+		]
     }
 ];
