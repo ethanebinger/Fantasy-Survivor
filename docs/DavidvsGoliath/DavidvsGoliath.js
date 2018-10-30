@@ -881,5 +881,39 @@ var results = [
             'Dan',
 			'John'
 		]
+    },
+	{	'vote': 5,
+        'date': '10/24/18',
+        'merge': 'Swap',	// nothing extra coded in for this
+        'reward': 'team_orange', 
+		'reward2': 'team_purple', 
+        'immunity': 'team_orange', 
+		'immunity2': 'team_green',
+        'eliminated': 'Natalie',
+        'idolFound': 'Yes',		//Dan
+		'idolPlayed': 'No',
+        'titleQuote': 'Jeff Probst',
+        'nudity': 'No',
+        'team_orange': [
+            'Carl',
+            'Elizabeth',
+            'Alec',
+            'Davie',
+			'Kara'
+        ],
+        'team_purple': [
+            'Natalie',
+            'Angelina',
+            'Mike',
+			'Lyrsa',
+            'Nick'
+        ],
+		'team_green': [
+			'Christian',
+			'Gabby',
+			'Alison',
+            'Dan',
+			'John'
+		]
     }
 ];
