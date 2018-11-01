@@ -884,7 +884,7 @@ var results = [
     },
 	{	'vote': 5,
         'date': '10/24/18',
-        'merge': 'Swap',	// nothing extra coded in for this
+        'merge': 'No',
         'reward': 'team_orange', 
 		'reward2': 'team_purple', 
         'immunity': 'team_orange', 
@@ -903,6 +903,39 @@ var results = [
         ],
         'team_purple': [
             'Natalie',
+            'Angelina',
+            'Mike',
+			'Lyrsa',
+            'Nick'
+        ],
+		'team_green': [
+			'Christian',
+			'Gabby',
+			'Alison',
+            'Dan',
+			'John'
+		]
+    },
+	{	'vote': 6,
+        'date': '10/31/18',
+        'merge': 'No',
+        'reward': 'team_green', 
+		'reward2': 'team_purple', 
+        'immunity': 'team_green', 
+		'immunity2': 'team_orange',
+        'eliminated': 'Lyrsa',
+        'idolFound': 'No',
+		'idolPlayed': 'No',
+        'titleQuote': 'Dan',
+        'nudity': 'No',
+        'team_orange': [
+            'Carl',
+            'Elizabeth',
+            'Alec',
+            'Davie',
+			'Kara'
+        ],
+        'team_purple': [
             'Angelina',
             'Mike',
 			'Lyrsa',
