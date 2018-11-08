@@ -609,6 +609,12 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
+							// Does Gabby Cry?
+                            if (results[i].gabbyCry == responses[j].gabbyCry && responses[j].gabbyCry) {
+                                if (calcType === "individual") { scores[n].gabbyCry += 2; }
+                                else { scores[n][val_vote] += 2; };
+                                scores[n].total += 2;
+                            };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
                         } else {
@@ -948,5 +954,18 @@ var results = [
             'Dan',
 			'John'
 		]
+    }
+	,
+	{	'vote': 7,
+        'date': '11/7/18',
+        'merge': 'Yes',				//merge episode!
+        'reward': null,
+        'immunity': 'Alison',
+        'eliminated': 'Elizabeth',
+        'idolFound': 'No',
+		'idolPlayed': 'No',
+        'titleQuote': 'Alec',
+        'nudity': 'No',
+		'gabbyCry': 'Yes'			//new starting next week
     }
 ];
