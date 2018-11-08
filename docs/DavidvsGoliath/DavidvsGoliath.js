@@ -534,6 +534,12 @@ function determineWeek(responses, results_vote) {
         cur_vote = 5;
     } else if (submit_time <= new Date(2018,9,31,20)) {
         cur_vote = 6;
+    } else if (submit_time <= new Date(2018,10,7,20)) {
+        cur_vote = 7;
+    } else if (submit_time <= new Date(2018,10,14,20)) {
+        cur_vote = 8;
+    } else if (submit_time <= new Date(2018,10,21,20)) {
+        cur_vote = 9;
     };
     return cur_vote;
 };
