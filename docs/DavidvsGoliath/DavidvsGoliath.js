@@ -960,8 +960,7 @@ var results = [
             'Dan',
 			'John'
 		]
-    }
-	,
+    },
 	{	'vote': 7,
         'date': '11/7/18',
         'merge': 'Yes',				//merge episode!
@@ -973,5 +972,24 @@ var results = [
         'titleQuote': 'Alec',
         'nudity': 'No',
 		'gabbyCry': 'Yes'			//new starting next week
+    },
+	{	'vote': 8,
+        'date': '11/14/18',
+        'merge': 'Yes',
+        'reward': [					// schoolyard pick
+			'John',
+			'Gabby',
+			'Alison',
+			'Nick',
+			'Christian',
+			'Alec'
+		],
+        'immunity': 'Dan',
+        'eliminated': 'John',
+        'idolFound': 'Yes',			// secret advantage found by Nick
+		'idolPlayed': 'Yes',		// Davie --> Christian, Dan --> Angelina
+        'titleQuote': 'John',
+        'nudity': 'No',
+		'gabbyCry': 'No'
     }
 ];
