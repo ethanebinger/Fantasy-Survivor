@@ -569,9 +569,9 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
                             } else if (results[i].reward !== null && typeof results[i].reward==="object" && inArray(responses[j].reward,results[i].reward) && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward += 10; }
-                                else { scores[n][val_vote] += 10; };
-                                scores[n].total += 10;
+                                if (calcType === "individual") { scores[n].reward += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
                             };
                             // Immunity
                             if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
