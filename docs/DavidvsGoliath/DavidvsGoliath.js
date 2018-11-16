@@ -209,7 +209,8 @@ function getPastResponses() {
                         'titleQuote': 0,
                         'nudity': 0,
                         'idolFound': 0,
-                        'idolPlayed': 0
+                        'idolPlayed': 0,
+						'gabbyCry': 0
                     }
                 ];
                 //scores = calculateScores(scores, results, responses, "individual");
@@ -234,7 +235,8 @@ function getPastResponses() {
                                 "<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
                                 "<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
                                 "<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-                                "<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+                                "<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
+								"<tr><td><strong>Will Gabby Cry?</strong></td><td>" + responses[i].gabbyCry + "</td><td>"+ scores[0].gabbyCry +"</td></tr>"
                             );  
                         };
                     };
