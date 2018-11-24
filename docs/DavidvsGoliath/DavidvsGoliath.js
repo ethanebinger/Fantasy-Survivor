@@ -993,5 +993,23 @@ var results = [
         'titleQuote': 'John',
         'nudity': 'No',
 		'gabbyCry': 'No'
+    },
+	{	'vote': 9,
+        'date': '11/21/18',
+        'merge': 'Yes',
+        'reward': [					// draw sticks
+			'Alec',
+			'Dan',
+			'Davie',
+			'Kara',
+			'Mike'
+		],
+        'immunity': 'Alec',
+        'eliminated': 'Dan',
+        'idolFound': 'Yes',			// idol found by Christian
+		'idolPlayed': 'Yes',		// Dan --> Dan, nullified by Carl + vote stolen from Alison by Nick
+        'titleQuote': 'Christian',
+        'nudity': 'No',
+		'gabbyCry': 'No'
     }
 ];
