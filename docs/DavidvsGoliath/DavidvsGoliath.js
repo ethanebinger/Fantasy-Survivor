@@ -542,6 +542,12 @@ function determineWeek(responses, results_vote) {
         cur_vote = 8;
     } else if (submit_time <= new Date(2018,10,21,20)) {
         cur_vote = 9;
+    } else if (submit_time <= new Date(2018,10,28,20)) {
+        cur_vote = 10;
+    } else if (submit_time <= new Date(2018,10,29,20)) {
+        cur_vote = 11;
+    } else if (submit_time <= new Date(2018,12,5,20)) {
+        cur_vote = 12;
     };
     return cur_vote;
 };
@@ -1010,6 +1016,41 @@ var results = [
 		'idolPlayed': 'Yes',		// Dan --> Dan, nullified by Carl + vote stolen from Alison by Nick
         'titleQuote': 'Christian',
         'nudity': 'No',
+		'gabbyCry': 'No'
+    },
+	{	'vote': 10,
+        'date': '11/28/18',
+        'merge': 'Yes',
+        'reward': [
+			'Alec',
+			'Christian',
+			'Gabby',
+			'Alison',
+			'Mike'
+		],
+        'immunity': 'Christian',
+        'eliminated': 'Alec',
+        'idolFound': 'Yes',			// idol found by Nick
+		'idolPlayed': 'No',
+        'titleQuote': 'Christian',
+        'nudity': 'No',
+		'gabbyCry': 'Yes'
+    },
+	{	'vote': 11,
+        'date': '11/29/18',
+        'merge': 'Yes',
+        'reward': [
+			'Carl',
+			'Davie',
+			'Mike',
+			'Kara'
+		],
+        'immunity': 'Davie',
+        'eliminated': 'Carl',
+        'idolFound': 'No',
+		'idolPlayed': 'No',
+        'titleQuote': null,
+        'nudity': 'Yes',
 		'gabbyCry': 'No'
     }
 ];
