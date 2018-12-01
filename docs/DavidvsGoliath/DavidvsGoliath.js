@@ -178,10 +178,10 @@ function getPastResponses() {
         if (curName.length < 1 || curVote.length < 1) {
             alert("Please select both a name and a vote number");
             $("#past_responses").empty();
-        //} else if (curVote === "FinalEight") {
-           // getFinalEight(curName);
-        //} else if (curVote === "FinalThree") {
-            //getFinalThree(curName);
+        } else if (curVote === "FinalEight") {
+            getFinalEight(curName);
+        } else if (curVote === "FinalThree") {
+            getFinalThree(curName);
         } else {
             getWeeklyResults(curName, +curVote);
         };
@@ -245,7 +245,7 @@ function getPastResponses() {
             }
         });
     };
-    /*
+    
     function getFinalEight(curName) {
         $.ajax({
             type: "GET",
@@ -283,7 +283,7 @@ function getPastResponses() {
         });
     };
     //*/
-    /*
+    
     function getFinalThree(curName) {
         $.ajax({
             type: "GET",
@@ -366,10 +366,7 @@ function init_chart() {
             'Vote 11': 0, 
             'Vote 12': 0,
             'Vote 13': 0,
-            'Vote 14': 0, 
-            'Vote 15': 0,
-            'Vote 16': 0,
-            'Vote 17': 0,
+            'Vote 14': 0,
             'Final Eight': 0,
             'Final Three': 0
         });
@@ -446,7 +443,9 @@ function init_chart() {
         //var BREAK02 = 'break';
         //scores = final_eight_calc(scores, final8);
         //var BREAK03 = 'break';
-
+		//scores = final_three_calc(scores, final3);
+		//var BREAK04 = 'break';
+		
         // Define X-Scale Domain
         x.domain([0,d3.max(scores, function(d) { return d.total; })]);
 
@@ -548,6 +547,8 @@ function determineWeek(responses, results_vote) {
         cur_vote = 11;
     } else if (submit_time <= new Date(2018,12,5,20)) {
         cur_vote = 12;
+    } else if (submit_time <= new Date(2018,12,12,20)) {
+        cur_vote = 13;
     };
     return cur_vote;
 };
@@ -708,7 +709,7 @@ function calculateScores(scores, results, responses, calcType) {
 };
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL EIGHT
-/*
+
 function final_eight_calc(scores, result) {
     for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -720,27 +721,36 @@ function final_eight_calc(scores, result) {
         };
     };
     function which_castaway(castaways){
-        var sum = 0;
+        var sum = 0,
+			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === '') {
-                sum += Math.pow(Math.abs(i-1),1.5)
-            } else if (castaways['place_'+String([i])] === '') {
-                sum += Math.pow(Math.abs(i-2),1.5)
-            } else if (castaways['place_'+String([i])] === '') {
-                sum += Math.pow(Math.abs(i-3),1.5)
-            } else if (castaways['place_'+String([i])] === '') {
-                sum += Math.pow(Math.abs(i-4),1.5)
-            } else if (castaways['place_'+String([i])] === '') {
-                sum += Math.pow(Math.abs(i-5),1.5)
-            } else if (castaways['place_'+String([i])] === '') {
-                sum += Math.pow(Math.abs(i-6),1.5)
-            } else if (castaways['place_'+String([i])] === '') {
-                sum += Math.pow(Math.abs(i-7),1.5)
-            } else if (castaways['place_'+String([i])] === '') {
-                sum += Math.pow(Math.abs(i-8),1.5)
+            if (castaways['place_'+String([i])] === null) {			// sole survivor
+                sum += Math.pow(Math.abs(i-1),2.25);
+				if (i===1) { bonus += 5 };
+            } else if (castaways['place_'+String([i])] === null) {	// runner up
+                sum += Math.pow(Math.abs(i-2),2.25);
+				if (i===1) { bonus += 5 };
+            } else if (castaways['place_'+String([i])] === null) {	// third
+                sum += Math.pow(Math.abs(i-3),2.25);
+				if (i===1) { bonus += 5 };
+            } else if (castaways['place_'+String([i])] === null) {	// fourth
+                sum += Math.pow(Math.abs(i-4),2.25);
+				if (i===1) { bonus += 5 };
+            } else if (castaways['place_'+String([i])] === null) {	// fifth
+                sum += Math.pow(Math.abs(i-5),2.25);
+				if (i===1) { bonus += 5 };
+            } else if (castaways['place_'+String([i])] === null) {	// sixth
+                sum += Math.pow(Math.abs(i-6),2.25);
+				if (i===1) { bonus += 5 };
+            } else if (castaways['place_'+String([i])] === null) {	// seventh
+                sum += Math.pow(Math.abs(i-7),2.25);
+				if (i===1) { bonus += 5 };
+            } else if (castaways['place_'+String([i])] === null) {	// eigth
+                sum += Math.pow(Math.abs(i-8),2.25);
+				if (i===1) { bonus += 5 };
             };
         };
-        var score = 200 - (3 * sum)
+        var score = 100 - (0.75 * sum) + bonus
         return (score);
     };
     return (scores);
@@ -748,15 +758,26 @@ function final_eight_calc(scores, result) {
 //*/
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
-/*
+
 function final_three_calc(scores, result, responses) {
-    for (var n=0; n<scores.length; n++) {
+    var top_three = [null, null, null];
+	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
-            if (result[i].name === scores[n].name) && (
-            // MATCH pick_1, pick_2, and pick_3 with results
-            ){
+            if (result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three)){
                 scores[n]['Final Three'] += 20;
                 scores[n].total += 20;
+            };
+			if (result[i].name === scores[n].name) && (inArray(result[i].pick_2, top_three)){
+                scores[n]['Final Three'] += 20;
+                scores[n].total += 20;
+            };
+			if (result[i].name === scores[n].name) && (inArray(result[i].pick_3, top_three)){
+                scores[n]['Final Three'] += 20;
+                scores[n].total += 20;
+            };
+			if (result[i].name === scores[n].name) && (inArray(result[i].final_team, top_three)){
+                scores[n]['Final Three'] += 10;
+                scores[n].total += 10;
             };
         };
     };

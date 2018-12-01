@@ -14,13 +14,6 @@
     "final_team": "David"
   },
   {
-    "name":"Walter",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": "",
-    "final_team": ""
-  },
-  {
     "name":"Vivian",
     "pick_1": "Angelina",
     "pick_2": "Bi",
@@ -49,13 +42,6 @@
     "final_team": "David"
   },
   {
-    "name":"Ezra",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": "",
-    "final_team": ""
-  },
-  {
     "name":"Aaron",
     "pick_1": "Carl",
     "pick_2": "Alex",
@@ -75,13 +61,6 @@
     "pick_2": "Elizabeth",
     "pick_3": "Dan",
     "final_team": "David"
-  },
-  {
-    "name":"Myles",
-    "pick_1": "",
-    "pick_2": "",
-    "pick_3": "",
-    "final_team": ""
   },
   {
     "name":"Mitch",
