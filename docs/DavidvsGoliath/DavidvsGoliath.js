@@ -759,23 +759,23 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 
-function final_three_calc(scores, result, responses) {
+function final_three_calc(scores, result) {
     var top_three = [null, null, null];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
-            if (result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three)){
+            if ((result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three))){
                 scores[n]['Final Three'] += 20;
                 scores[n].total += 20;
             };
-			if (result[i].name === scores[n].name) && (inArray(result[i].pick_2, top_three)){
+			if ((result[i].name === scores[n].name) && (inArray(result[i].pick_2, top_three))){
                 scores[n]['Final Three'] += 20;
                 scores[n].total += 20;
             };
-			if (result[i].name === scores[n].name) && (inArray(result[i].pick_3, top_three)){
+			if ((result[i].name === scores[n].name) && (inArray(result[i].pick_3, top_three))){
                 scores[n]['Final Three'] += 20;
                 scores[n].total += 20;
             };
-			if (result[i].name === scores[n].name) && (inArray(result[i].final_team, top_three)){
+			if ((result[i].name === scores[n].name) && (inArray(result[i].final_team, top_three))){
                 scores[n]['Final Three'] += 10;
                 scores[n].total += 10;
             };
