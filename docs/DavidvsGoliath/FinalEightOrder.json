@@ -1,25 +1,25 @@
 [
   {
     "name": "Aaron",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
+    "place_1": "Nick",
+    "place_2": "Mike",
+    "place_3": "Alison",
+    "place_4": "Gabby",
+    "place_5": "Davie",
+    "place_6": "Angelina",
+    "place_7": "Christian",
+    "place_8": "Kara"
   },
   {
     "name": "Anastassia",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
+    "place_1": "Nick",
+    "place_2": "Mike",
+    "place_3": "Angelina",
+    "place_4": "Gabby",
+    "place_5": "Davie",
+    "place_6": "Christian",
+    "place_7": "Alison",
+    "place_8": "Kara"
   },
   {
     "name": "Ben",
@@ -45,14 +45,14 @@
   },
   {
     "name": "David",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
+    "place_1": "Davie",
+    "place_2": "Nick",
+    "place_3": "Gabby",
+    "place_4": "Mike",
+    "place_5": "Kara",
+    "place_6": "Angelina",
+    "place_7": "Christian",
+    "place_8": "Alison"
   },
   {
     "name": "Emily",
@@ -67,25 +67,25 @@
   },
   {
     "name": "Ethan",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
+    "place_1": "Nick",
+    "place_2": "Gabby",
+    "place_3": "Angelina",
+    "place_4": "Mike",
+    "place_5": "Christian",
+    "place_6": "Alison",
+    "place_7": "Kara",
+    "place_8": "Davie"
   },
   {
     "name": "Josh",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
+    "place_1": "Nick",
+    "place_2": "Angelina",
+    "place_3": "Mike",
+    "place_4": "Davie",
+    "place_5": "Alison",
+    "place_6": "Kara",
+    "place_7": "Christian",
+    "place_8": "Gabby"
   },
   {
     "name": "Lucas",

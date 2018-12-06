@@ -1073,5 +1073,22 @@ var results = [
         'titleQuote': null,
         'nudity': 'Yes',
 		'gabbyCry': 'No'
+    },
+	{	'vote': 12,
+        'date': '12/5/18',
+        'merge': 'Yes',
+        'reward': [
+			'Angelina',
+			'Davie',
+			'Mike',
+			'Nick'
+		],
+        'immunity': 'Kara',
+        'eliminated': 'Gabby',
+        'idolFound': 'No',
+		'idolPlayed': 'Yes',
+        'titleQuote': 'Nick',
+        'nudity': 'No',
+		'gabbyCry': 'Yes'
     }
 ];
