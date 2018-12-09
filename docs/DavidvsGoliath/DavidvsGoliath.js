@@ -745,12 +745,13 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === null) {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === null) {	// eigth
+            } else if (castaways['place_'+String([i])] === "Gabby") {	// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
 				if (i===1) { bonus += 5 };
             };
         };
-        var score = 100 - (0.75 * sum) + bonus
+        var score = 100 - (0.75 * sum) + bonus;
+		if (score < 0) { score = 0 };
         return (score);
     };
     return (scores);
@@ -760,7 +761,7 @@ function final_eight_calc(scores, result) {
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 
 function final_three_calc(scores, result) {
-    var top_three = [null, null, null];
+    var top_three = [null, null, null];								//top three!
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
             if ((result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three))){

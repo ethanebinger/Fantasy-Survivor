@@ -22,28 +22,6 @@
     "place_8": "Kara"
   },
   {
-    "name": "Ben",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
-  },
-  {
-    "name": "Colin",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
-  },
-  {
     "name": "David",
     "place_1": "Davie",
     "place_2": "Nick",
@@ -53,17 +31,6 @@
     "place_6": "Angelina",
     "place_7": "Christian",
     "place_8": "Alison"
-  },
-  {
-    "name": "Emily",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
   },
   {
     "name": "Ethan",
@@ -88,36 +55,14 @@
     "place_8": "Gabby"
   },
   {
-    "name": "Lucas",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
-  },
-  {
     "name": "Mitch",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
-  },
-  {
-    "name": "Vivian",
-    "place_1": "",
-    "place_2": "",
-    "place_3": "",
-    "place_4": "",
-    "place_5": "",
-    "place_6": "",
-    "place_7": "",
-    "place_8": ""
+    "place_1": "Davie",
+    "place_2": "Christian",
+    "place_3": "Nick",
+    "place_4": "Angelina",
+    "place_5": "Mike",
+    "place_6": "Kara",
+    "place_7": "Alison",
+    "place_8": "Gabby"
   }
 ]
