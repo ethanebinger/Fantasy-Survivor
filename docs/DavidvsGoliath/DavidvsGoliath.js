@@ -742,7 +742,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === null) {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === null) {	// seventh
+            } else if (castaways['place_'+String([i])] === "Christian") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25);
 				if (i===1) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Gabby") {	// eighth
@@ -1091,5 +1091,21 @@ var results = [
         'titleQuote': 'Nick',
         'nudity': 'No',
 		'gabbyCry': 'Yes'
+    },
+	{	'vote': 13,
+        'date': '12/12/18',
+        'merge': 'Yes',
+        'reward': [
+			'Davie',
+			'Kara',
+			'Nick'
+		],
+        'immunity': 'Mike',
+        'eliminated': 'Christian',
+        'idolFound': 'Yes',
+		'idolPlayed': 'Yes',
+        'titleQuote': 'Davie',
+        'nudity': 'No',
+		'gabbyCry': 'No'
     }
 ];
