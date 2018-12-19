@@ -224,20 +224,39 @@ function getPastResponses() {
                                 scores = calculateScores(scores, [results[j]], [responses[i]], "individual");
                             };
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
-                            $("#week_"+String(i)).html("Vote #"+String(cur_vote));
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
-                            $("#json_"+String(i)).html(
-                                "<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-                                "<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-                                "<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
-                                "<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
-                                "<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
-                                "<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
-                                "<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
-                                "<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-                                "<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-								"<tr><td><strong>Will Gabby Cry?</strong></td><td>" + responses[i].gabbyCry + "</td><td>"+ scores[0].gabbyCry +"</td></tr>"
-                            );  
+							if (cur_vote === 14) {
+								$("#week_"+String(i)).html("Finale");
+								$("#json_"+String(i)).html(
+									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + responses[i].fireChallenge + "</td><td>"+ scores[0].fireChallenge +"</td></tr>" +
+									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
+									"<tr><td><strong>Will Gabby Cry?</strong></td><td>" + responses[i].gabbyCry + "</td><td>"+ scores[0].gabbyCry +"</td></tr>" +
+									"<tr><td><strong>Will Natalie wear 'the jacket'?</strong></td><td>" + responses[i].natalieJacket + "</td><td>"+ scores[0].natalieJacket +"</td></tr>" +
+									"<tr><td><strong>What will Jeff wear?</strong></td><td>" + responses[i].probstOutfit + "</td><td>"+ scores[0].probstOutfit +"</td></tr>" +
+									"<tr><td><strong>Will the full cast be at the live reuinon?</strong></td><td>" + responses[i].fullCast + "</td><td>"+ scores[0].fullCast +"</td></tr>" +
+									"<tr><td><strong>Will there be a guest celebrity appearance?</strong></td><td>" + responses[i].guestCeleb + "</td><td>"+ scores[0].guestCeleb +"</td></tr>" +
+									"<tr><td><strong>How many times with Angelina bring up her rice negotiation?</strong></td><td>" + responses[i].angieRice + "</td><td>"+ scores[0].angieRice +"</td></tr>"
+								);
+							} else {
+								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
+								$("#json_"+String(i)).html(
+									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
+									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
+									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
+									"<tr><td><strong>Will Gabby Cry?</strong></td><td>" + responses[i].gabbyCry + "</td><td>"+ scores[0].gabbyCry +"</td></tr>"
+								);
+							};
                         };
                     };
                 };
@@ -549,6 +568,8 @@ function determineWeek(responses, results_vote) {
         cur_vote = 12;
     } else if (submit_time <= new Date(2018,11,12,20)) {
         cur_vote = 13;
+    } else if (submit_time <= new Date(2018,11,19,20)) {
+        cur_vote = 14;
     };
     return cur_vote;
 };
@@ -624,12 +645,51 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
-							// Does Gabby Cry?
+							// Will Gabby Cry?
                             if (results[i].gabbyCry == responses[j].gabbyCry && responses[j].gabbyCry) {
                                 if (calcType === "individual") { scores[n].gabbyCry += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
+							/* Live Reunion Questions //*/
+							if (cur_vote === 14) {
+								// Fire-making challenge winner?
+								if (results[i].fireChallenge == responses[j].fireChallenge && responses[j].fireChallenge) {
+									if (calcType === "individual") { scores[n].fireChallenge += 5; }
+									else { scores[n][val_vote] += 5; };
+									scores[n].total += 5;
+								};
+								// Will Natalie wear 'the jacket'?
+								if (results[i].natalieJacket == responses[j].natalieJacket && responses[j].natalieJacket) {
+									if (calcType === "individual") { scores[n].natalieJacket += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+								// What will Jeff wear?
+								if (results[i].probstOutfit == responses[j].probstOutfit && responses[j].probstOutfit) {
+									if (calcType === "individual") { scores[n].probstOutfit += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+								// Will the full cast be there?
+								if (results[i].fullCast == responses[j].fullCast && responses[j].fullCast) {
+									if (calcType === "individual") { scores[n].fullCast += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+								// Will there be a guest celebrity appearance?
+								if (results[i].guestCeleb == responses[j].guestCeleb && responses[j].guestCeleb) {
+									if (calcType === "individual") { scores[n].guestCeleb += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+								// How many times will Angelina talk about rice?
+								if (results[i].angieRice == responses[j].angieRice && responses[j].angieRice) {
+									if (calcType === "individual") { scores[n].angieRice += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+							};
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
                         } else {
@@ -1107,5 +1167,25 @@ var results = [
         'titleQuote': 'Davie',
         'nudity': 'No',
 		'gabbyCry': 'No'
+    }/*,
+	{	'vote': 14,
+        'date': '12/19/18',
+        'merge': 'Yes',
+		'reward': '',
+        'immunity': '',
+		'fireChallenge': '',
+        'eliminated_1': '',
+		'eliminated_2': '',
+        'idolFound': '',
+		'idolPlayed': '',
+        'titleQuote': '',
+        'nudity': '',
+		'gabbyCry': '',
+		'natalieJacket': '',
+		'probstOutfit': '',
+		'fullCast': '',
+		'guestCeleb': '',
+		'angieRice': ''
     }
+	//*/
 ];

@@ -504,7 +504,10 @@
                         <label class="bonusQ_label" for="idolPlayedNo">No</label>
                     <br>
                 </form>
-				<br><br>
+            </div>
+			<div class="tab">
+                <h1>LIVE REUNION QUESTIONS</h1>
+                <br><br>
                 <h3>Will Gabby cry? (+2)</h3>
                 <form name="gabbyCry">
                     <input name="gabbyCry" id="gabbyCryYes" type="radio" value="Yes" />
@@ -514,8 +517,85 @@
                         <label class="bonusQ_label" for="gabbyCryNo">No</label>
                     <br>
                 </form>
+				<br><br>
+                <h3>Will Natalie wear 'the jacket'? (+2)</h3>
+				<form name="natalieJacket">
+                    <input name="natalieJacket" id="natalieJacketYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="natalieJacketYes">Yes</label>
+                    <br>
+                    <input name="natalieJacket" id="natalieJacketNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="natalieJacketNo">No</label>
+                    <br>
+                </form>
+				<br><br>
+                <h3>What will Jeff Probst wear? (+2)</h3>
+				<form name="probstOutfit">
+                    <select>
+                        <option value="">
+                            Select One
+                        </option>
+                        <option value="tux">
+                            Tuxedo or Suit
+                        </option>
+						<option value="cargo">
+                            Button-down cargo shirt
+                        </option>
+						<option value="sweater">
+                            Sweater
+                        </option>
+						<option value="nothing">
+                            Nothing, as god intended
+                        </option>
+						<option value="other">
+                            Other
+                        </option>
+                    </select>
+                </form>
+				<br><br>
+                <h3>Will the full cast be there? (+2)</h3>
+				<form name="fullCast">
+                    <input name="fullCast" id="fullCastYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="fullCastYes">Yes, all 20 show up for the $$</label>
+                    <br>
+                    <input name="fullCast" id="fullCastNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="fullCastNo">No, we are missing someone...</label>
+                    <br>
+                </form>
+				<br><br>
+                <h3>Will there be a celebrity guest appearance? (+2)</h3>
+				<form name="guestCeleb">
+                    <input name="guestCeleb" id="guestCelebYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="guestCelebYes">Yes</label>
+                    <br>
+                    <input name="guestCeleb" id="guestCelebNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="guestCelebNo">No</label>
+                    <br>
+                </form>
+				<br><br>
+                <h3>How many times will Angelina bring up her rice negotiation? (+2)</h3>
+				<form name="angieRice">
+                    <select>
+                        <option value="">
+                            Select One
+                        </option>
+						<option value="never">
+                            Never
+                        </option>
+                        <option value="once">
+                            Once
+                        </option>
+						<option value="two or three times">
+                            Two or three times
+                        </option>
+						<option value="four or five times">
+                            Four or five times
+                        </option>
+						<option value="six+ times">
+                            Six or more times
+                        </option>
+                    </select>
+                </form>
             </div>
-            <br>
             <div id="advance_form" class="isHidden">
                 <div id="progress_buttons">
                     <div style="display:inline-block">
@@ -525,7 +605,7 @@
                 </div>
                 <br>
                 <div id="progress_bar">
-                    <progress value="0" max="4" color="black"></progress>
+                    <progress value="0" max="5" color="black"></progress>
                     <h3 id="loading_results" class="isHidden">LOADING...</h3>
                 </div>
             </div>
