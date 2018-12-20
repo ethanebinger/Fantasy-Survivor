@@ -216,7 +216,8 @@ function getPastResponses() {
 						'probstOutfit': 0,
 						'fullCast': 0,
 						'guestCeleb': 0,
-						'angieRice': 0
+						'angieRice': 0,
+						'fireChallenge': 0
                     }
                 ];
                 //scores = calculateScores(scores, results, responses, "individual");
@@ -1190,7 +1191,7 @@ var results = [
 		'eliminated_3': 'Kara',
         'idolFound': 'Yes',
 		'idolPlayed': 'Yes',
-        'titleQuote': '',
+        'titleQuote': 'Nick',
         'nudity': 'No',
 		'gabbyCry': 'Yes',
 		'natalieJacket': 'No',
