@@ -654,41 +654,43 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 2;
                             };
 							/* Live Reunion Questions //*/
-							// Fire-making challenge winner?
-							if (results[i].fireChallenge == responses[j].fireChallenge && responses[j].fireChallenge) {
-								if (calcType === "individual") { scores[n].fireChallenge += 10; }
-								else { scores[n][val_vote] += 10; };
-								scores[n].total += 10;
-							};
-							// Will Natalie wear 'the jacket'?
-							if (results[i].natalieJacket == responses[j].natalieJacket && responses[j].natalieJacket) {
-								if (calcType === "individual") { scores[n].natalieJacket += 2; }
-								else { scores[n][val_vote] += 2; };
-								scores[n].total += 2;
-							};
-							// What will Jeff wear?
-							if (results[i].probstOutfit == responses[j].probstOutfit && responses[j].probstOutfit) {
-								if (calcType === "individual") { scores[n].probstOutfit += 2; }
-								else { scores[n][val_vote] += 2; };
-								scores[n].total += 2;
-							};
-							// Will the full cast be there?
-							if (results[i].fullCast == responses[j].fullCast && responses[j].fullCast) {
-								if (calcType === "individual") { scores[n].fullCast += 2; }
-								else { scores[n][val_vote] += 2; };
-								scores[n].total += 2;
-							};
-							// Will there be a guest celebrity appearance?
-							if (results[i].guestCeleb == responses[j].guestCeleb && responses[j].guestCeleb) {
-								if (calcType === "individual") { scores[n].guestCeleb += 2; }
-								else { scores[n][val_vote] += 2; };
-								scores[n].total += 2;
-							};
-							// How many times will Angelina talk about rice?
-							if (results[i].angieRice == responses[j].angieRice && responses[j].angieRice) {
-								if (calcType === "individual") { scores[n].angieRice += 2; }
-								else { scores[n][val_vote] += 2; };
-								scores[n].total += 2;
+							if (cur_vote === 14) {
+								// Fire-making challenge winner?
+								if (results[i].fireChallenge == responses[j].fireChallenge && responses[j].fireChallenge) {
+									if (calcType === "individual") { scores[n].fireChallenge += 10; }
+									else { scores[n][val_vote] += 10; };
+									scores[n].total += 10;
+								};
+								// Will Natalie wear 'the jacket'?
+								if (results[i].natalieJacket == responses[j].natalieJacket && responses[j].natalieJacket) {
+									if (calcType === "individual") { scores[n].natalieJacket += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+								// What will Jeff wear?
+								if (results[i].probstOutfit == responses[j].probstOutfit && responses[j].probstOutfit) {
+									if (calcType === "individual") { scores[n].probstOutfit += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+								// Will the full cast be there?
+								if (results[i].fullCast == responses[j].fullCast && responses[j].fullCast) {
+									if (calcType === "individual") { scores[n].fullCast += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+								// Will there be a guest celebrity appearance?
+								if (results[i].guestCeleb == responses[j].guestCeleb && responses[j].guestCeleb) {
+									if (calcType === "individual") { scores[n].guestCeleb += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
+								// How many times will Angelina talk about rice?
+								if (results[i].angieRice == responses[j].angieRice && responses[j].angieRice) {
+									if (calcType === "individual") { scores[n].angieRice += 2; }
+									else { scores[n][val_vote] += 2; };
+									scores[n].total += 2;
+								};
 							};
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
