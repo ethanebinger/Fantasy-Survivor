@@ -229,6 +229,7 @@ function getPastResponses() {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
 									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
 									"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + responses[i].fireChallenge + "</td><td>"+ scores[0].fireChallenge +"</td></tr>" +
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
@@ -445,13 +446,13 @@ function init_chart() {
             responses = JSON.parse(atob(result.content));
         }),
         // Get the Final Eight Responses 
-        /*
+        
         $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/DavidvsGoliath/FinalEightOrder.json", function(result) {
             final8 = JSON.parse(atob(result.content));
         }),
         //*/
         // Get the Final Three Responses 
-        /*
+        
         $.get("https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/DavidvsGoliath/FinalThreePicks.json", function(result) {
             final3 = JSON.parse(atob(result.content));
         })
@@ -460,9 +461,9 @@ function init_chart() {
         var BREAK01 = 'break';
         scores = calculateScores(scores, results, responses, null);
         //var BREAK02 = 'break';
-        //scores = final_eight_calc(scores, final8);
+        scores = final_eight_calc(scores, final8);
         //var BREAK03 = 'break';
-		//scores = final_three_calc(scores, final3);
+		scores = final_three_calc(scores, final3);
 		//var BREAK04 = 'break';
 		
         // Define X-Scale Domain
@@ -655,9 +656,9 @@ function calculateScores(scores, results, responses, calcType) {
 							if (cur_vote === 14) {
 								// Fire-making challenge winner?
 								if (results[i].fireChallenge == responses[j].fireChallenge && responses[j].fireChallenge) {
-									if (calcType === "individual") { scores[n].fireChallenge += 5; }
-									else { scores[n][val_vote] += 5; };
-									scores[n].total += 5;
+									if (calcType === "individual") { scores[n].fireChallenge += 10; }
+									else { scores[n][val_vote] += 10; };
+									scores[n].total += 10;
 								};
 								// Will Natalie wear 'the jacket'?
 								if (results[i].natalieJacket == responses[j].natalieJacket && responses[j].natalieJacket) {
@@ -784,22 +785,22 @@ function final_eight_calc(scores, result) {
         var sum = 0,
 			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === null) {			// sole survivor
+            if (castaways['place_'+String([i])] === "Nick") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === null) {	// runner up
+            } else if (castaways['place_'+String([i])] === "Mike") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === null) {	// third
+            } else if (castaways['place_'+String([i])] === "Angelina") {	// third
                 sum += Math.pow(Math.abs(i-3),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === null) {	// fourth
+            } else if (castaways['place_'+String([i])] === "Kara") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === null) {	// fifth
+            } else if (castaways['place_'+String([i])] === "Alison") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === null) {	// sixth
+            } else if (castaways['place_'+String([i])] === "Davie") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===1) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Christian") {	// seventh
@@ -821,7 +822,7 @@ function final_eight_calc(scores, result) {
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 
 function final_three_calc(scores, result) {
-    var top_three = [null, null, null];								//top three!
+    var top_three = ["Nick", "Mike", "Angelina"];								//top three!
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
             if ((result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three))){
@@ -1167,25 +1168,29 @@ var results = [
         'titleQuote': 'Davie',
         'nudity': 'No',
 		'gabbyCry': 'No'
-    }/*,
+    },
 	{	'vote': 14,
         'date': '12/19/18',
         'merge': 'Yes',
-		'reward': '',
-        'immunity': '',
-		'fireChallenge': '',
-        'eliminated_1': '',
-		'eliminated_2': '',
-        'idolFound': '',
-		'idolPlayed': '',
+		'reward':[
+			'Nick',
+			'Angelina',
+			'Mike'
+		],
+        'immunity': 'Nick',			// x3!
+		'fireChallenge': 'Mike',
+        'eliminated_1': 'Davie',
+		'eliminated_2': 'Alison',
+		'eliminated_3': 'Kara',
+        'idolFound': 'Yes',
+		'idolPlayed': 'Yes',
         'titleQuote': '',
-        'nudity': '',
-		'gabbyCry': '',
-		'natalieJacket': '',
-		'probstOutfit': '',
-		'fullCast': '',
-		'guestCeleb': '',
+        'nudity': 'No',
+		'gabbyCry': 'Yes',
+		'natalieJacket': 'No',
+		'probstOutfit': 'sweater',
+		'fullCast': 'No',
+		'guestCeleb': 'Yes',
 		'angieRice': ''
     }
-	//*/
 ];
