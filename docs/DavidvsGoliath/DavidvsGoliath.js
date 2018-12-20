@@ -211,7 +211,12 @@ function getPastResponses() {
                         'nudity': 0,
                         'idolFound': 0,
                         'idolPlayed': 0,
-						'gabbyCry': 0
+						'gabbyCry': 0,
+						'natalieJacket': 0,
+						'probstOutfit': 0,
+						'fullCast': 0,
+						'guestCeleb': 0,
+						'angieRice': 0
                     }
                 ];
                 //scores = calculateScores(scores, results, responses, "individual");
