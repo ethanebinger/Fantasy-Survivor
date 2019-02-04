@@ -1,6 +1,6 @@
 ## WELCOME SOMERVILLE SURVIVORS!
 
-![Image](https://en.wikipedia.org/wiki/Survivor:_Edge_of_Extinction#/media/File:Survivor_Edge_of_Extinction_logo.png)
+![Image](https://upload.wikimedia.org/wikipedia/en/5/5a/Survivor_Edge_of_Extinction_logo.png)
 
 Here you can find the rules and the code behind the web form and visualizations used for the Somerville Survivors Fantasy League. 
 
