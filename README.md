@@ -1,6 +1,6 @@
 ## WELCOME SOMERVILLE SURVIVORS!
 
-![Image](https://upload.wikimedia.org/wikipedia/en/0/0d/Survivor_David_vs_Goliath.png)
+![Image](https://en.wikipedia.org/wiki/Survivor:_Edge_of_Extinction#/media/File:Survivor_Edge_of_Extinction_logo.png)
 
 Here you can find the rules and the code behind the web form and visualizations used for the Somerville Survivors Fantasy League. 
 
@@ -15,10 +15,12 @@ Weekly points are given if the player properly guesses the following:
 - Whose quote is the episode title?       (+2)
 - Will an immunity idol or secret advantage be found?         (+2)
 - Will an immunity idol or secret advantage be played?        (+2)
+- Will someone go to Extinction Island this week?             (+1)
+- Will someone return from Extinction Island this week?       (+1)
 
 Before the merge points for reward and immunity will be assessed per tribe, so simply pick any player on the tribe you predict will win that challenge.
 
-Points will double after the merge for all questions.
+Points will double after the merge.
 
 Other questions may be added for weekly challenges or to accomodate for specifics within the season (i.e. who is sent to Ghost Island this week?).
 
