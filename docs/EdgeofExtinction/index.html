@@ -37,632 +37,69 @@
                 <button id="enterBtn">ENTER</button>
             </div>
         </div>
-		<div id="survivor_form" class="isHidden">
+        <div id="survivor_form" class="isHidden">
+            <div class="tab">
+                <h1>What is your name?</h1>
+                <br>
+                <form name="name">
+                    <select>
+                        <option value="">
+                            Select One
+                        </option>
+                        <option value="Aaron">
+                            Aaron
+                        </option>
+                        <option value="Anastassia">
+                            Anastassia
+                        </option>
+                        <option value="Ben">
+                            Ben
+                        </option>
+                        <option value="Colin">
+                            Colin
+                        </option>
+                        <option value="David">
+                            David
+                        </option>
+                        <option value="Emily">
+                            Emily
+                        </option>
+                        <option value="Ethan">
+                            Ethan
+                        </option>
+                        <option value="Ezra">
+                            Ezra
+                        </option>
+                        <option value="Josh">
+                            Josh
+                        </option>
+                        <option value="Lucas">
+                            Lucas
+                        </option>
+                        <option value="Mitch">
+                            Mitch
+                        </option>
+                        <option value="Vivian">
+                            Vivian
+                        </option>
+                        <option value="Walter">
+                            Walter
+                        </option>
+                    </select>
+                </form>
+            </div>
 			<div class="tab">
-				<img src="images/flame2.gif" />
-				<h1>What is your name?</h1>
-				<br>
-				<form name="name">
-					<select>
-						<option value="">
-							Select One
-						</option>
-						<option value="Aaron">
-							Aaron
-						</option>
-						<option value="Anastassia">
-							Anastassia
-						</option>
-						<option value="Ben">
-							Ben
-						</option>
-						<option value="Colin">
-							Colin
-						</option>
-						<option value="David">
-							David
-						</option>
-						<option value="Emily">
-							Emily
-						</option>
-						<option value="Ethan">
-							Ethan
-						</option>
-						<option value="Ezra">
-							Ezra
-						</option>
-						<option value="Josh">
-							Josh
-						</option>
-						<option value="Lucas">
-							Lucas
-						</option>
-						<option value="Mitch">
-							Mitch
-						</option>
-						<option value="Vivian">
-							Vivian
-						</option>
-						<option value="Walter">
-							Walter
-						</option>
-					</select>
-				</form>
-			</div>
-			<div class="tab">
-				<h1>OUTWIT</h1>
-				<h3>Who will win REWARD this week?<br>(+5 if group) (+10 if indivdual)</h3>
-				<form name="reward"> 
-					<div class="contestants">
-						<div class="cc-selector">
-							<p class="name">Aubry</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Aubry_Bracco_reward" type="radio" name="reward" value="Aubry" />
-							<label class="survivor-cc Aubry_Bracco reward" for="Aubry_Bracco_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Aurora</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Aurora_McCreary_reward" type="radio" name="reward" value="Aurora" />
-							<label class="survivor-cc Aurora_McCreary reward" for="Aurora_McCreary_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Chris</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Chris_Underwood_reward" type="radio" name="reward" value="Chris" />
-							<label class="survivor-cc Chris_Underwood reward" for="Chris_Underwood_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Dan the Wardog</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Dan_DaSilva_reward" type="radio" name="reward" value="Dan" />
-							<label class="survivor-cc Dan_DaSilva reward" for="Dan_DaSilva_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">David</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="David_Wright_reward" type="radio" name="reward" value="David" />
-							<label class="survivor-cc David_Wright reward" for="David_Wright"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Eric</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Eric_Hafemann_reward" type="radio" name="reward" value="Eric" />
-							<label class="survivor-cc Eric_Hafemann reward" for="Eric_Hafemann_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Gavin</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Gavin_Whitson_reward" type="radio" name="reward" value="Gavin" />
-							<label class="survivor-cc Gavin_Whitson reward" for="Gavin_Whitson_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Joe</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Joe_Anglim_reward" type="radio" name="reward" value="Joe" />
-							<label class="survivor-cc Joe_Anglim reward" for="Joe_Anglim_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Julia</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Julia_Carter_reward" type="radio" name="reward" value="Julia" />
-							<label class="survivor-cc Julia_Carter reward" for="Julia_Carter_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Julie</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Julie_Rosenberg_reward" type="radio" name="reward" value="Julie" />
-							<label class="survivor-cc Julie_Rosenberg reward" for="Julie_Rosenberg_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Keith</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Keith_Sowell_reward" type="radio" name="reward" value="Keith" />
-							<label class="survivor-cc Keith_Sowell reward" for="Keith_Sowell_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Keith</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Keith_Sowell_reward" type="radio" name="reward" value="Keith" />
-							<label class="survivor-cc Keith_Sowell reward" for="Keith_Sowell_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Kelley</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Kelley_Wentworth_reward" type="radio" name="reward" value="Kelley" />
-							<label class="survivor-cc Kelley_Wentworth reward" for="Kelley_Wentworth_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Lauren</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Lauren_OConnell_reward" type="radio" name="reward" value="Lauren" />
-							<label class="survivor-cc Lauren_OConnell reward" for="Lauren_OConnell_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Reem</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Reem_Daly_reward" type="radio" name="reward" value="Reem" />
-							<label class="survivor-cc Reem_Daly reward" for="Reem_Daly_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Rick</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Rick_Devens_reward" type="radio" name="reward" value="Rick" />
-							<label class="survivor-cc Rick_Devens reward" for="Rick_Devens_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Ron</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Ron_Clark_reward" type="radio" name="reward" value="Ron" />
-							<label class="survivor-cc Ron_Clark reward" for="Ron_Clark_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Victoria</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Victoria_Baamonde_reward" type="radio" name="reward" value="Victoria" />
-							<label class="survivor-cc Victoria_Baamonde reward" for="Victoria_Baamonde_reward"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Wendy</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Wendy_Diaz_reward" type="radio" name="reward" value="Wendy" />
-							<label class="survivor-cc Wendy_Diaz reward" for="Wendy_Diaz_reward"></label>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="tab">
-				<h1>OUTLAST</h1>
-				<h3>Who will win IMMUNITY this week?<br>(+5 if group) (+10 if indivdual)</h3>
-				<!--<h3>Who will win IMMUNITY this week? (+10)</h3>-->
-				<form name="immunity">
-					<div class="contestants">
-						<div class="cc-selector">
-							<p class="name">Aubry</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Aubry_Bracco_immunity" type="radio" name="immunity" value="Aubry" />
-							<label class="survivor-cc Aubry_Bracco immunity" for="Aubry_Bracco_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Aurora</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Aurora_McCreary_immunity" type="radio" name="immunity" value="Aurora" />
-							<label class="survivor-cc Aurora_McCreary immunity" for="Aurora_McCreary_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Chris</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Chris_Underwood_immunity" type="radio" name="immunity" value="Chris" />
-							<label class="survivor-cc Chris_Underwood immunity" for="Chris_Underwood_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Dan the Wardog</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Dan_DaSilva_immunity" type="radio" name="immunity" value="Dan" />
-							<label class="survivor-cc Dan_DaSilva immunity" for="Dan_DaSilva_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">David</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="David_Wright_immunity" type="radio" name="immunity" value="David" />
-							<label class="survivor-cc David_Wright immunity" for="David_Wright"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Eric</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Eric_Hafemann_immunity" type="radio" name="immunity" value="Eric" />
-							<label class="survivor-cc Eric_Hafemann immunity" for="Eric_Hafemann_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Gavin</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Gavin_Whitson_immunity" type="radio" name="immunity" value="Gavin" />
-							<label class="survivor-cc Gavin_Whitson immunity" for="Gavin_Whitson_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Joe</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Joe_Anglim_immunity" type="radio" name="immunity" value="Joe" />
-							<label class="survivor-cc Joe_Anglim immunity" for="Joe_Anglim_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Julia</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Julia_Carter_immunity" type="radio" name="immunity" value="Julia" />
-							<label class="survivor-cc Julia_Carter immunity" for="Julia_Carter_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Julie</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Julie_Rosenberg_immunity" type="radio" name="immunity" value="Julie" />
-							<label class="survivor-cc Julie_Rosenberg immunity" for="Julie_Rosenberg_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Keith</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Keith_Sowell_immunity" type="radio" name="immunity" value="Keith" />
-							<label class="survivor-cc Keith_Sowell immunity" for="Keith_Sowell_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Keith</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Keith_Sowell_immunity" type="radio" name="immunity" value="Keith" />
-							<label class="survivor-cc Keith_Sowell immunity" for="Keith_Sowell_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Kelley</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Kelley_Wentworth_immunity" type="radio" name="immunity" value="Kelley" />
-							<label class="survivor-cc Kelley_Wentworth immunity" for="Kelley_Wentworth_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Lauren</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Lauren_OConnell_immunity" type="radio" name="immunity" value="Lauren" />
-							<label class="survivor-cc Lauren_OConnell immunity" for="Lauren_OConnell_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Reem</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Reem_Daly_immunity" type="radio" name="immunity" value="Reem" />
-							<label class="survivor-cc Reem_Daly immunity" for="Reem_Daly_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Rick</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Rick_Devens_immunity" type="radio" name="immunity" value="Rick" />
-							<label class="survivor-cc Rick_Devens immunity" for="Rick_Devens_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Ron</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Ron_Clark_immunity" type="radio" name="immunity" value="Ron" />
-							<label class="survivor-cc Ron_Clark immunity" for="Ron_Clark_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Victoria</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Victoria_Baamonde_immunity" type="radio" name="immunity" value="Victoria" />
-							<label class="survivor-cc Victoria_Baamonde immunity" for="Victoria_Baamonde_immunity"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Wendy</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Wendy_Diaz_immunity" type="radio" name="immunity" value="Wendy" />
-							<label class="survivor-cc Wendy_Diaz immunity" for="Wendy_Diaz_immunity"></label>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="tab">
-				<h1>OUTPLAY</h1>
-				<h3>Who will be ELIMINATED this week?<br>(+10)</h3>
-				<form name="eliminated">
-					<div class="contestants">
-						<div class="cc-selector">
-							<p class="name">Aubry</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Aubry_Bracco_eliminated" type="radio" name="eliminated" value="Aubry" />
-							<label class="survivor-cc Aubry_Bracco eliminated" for="Aubry_Bracco_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Aurora</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Aurora_McCreary_eliminated" type="radio" name="eliminated" value="Aurora" />
-							<label class="survivor-cc Aurora_McCreary eliminated" for="Aurora_McCreary_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Chris</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Chris_Underwood_eliminated" type="radio" name="eliminated" value="Chris" />
-							<label class="survivor-cc Chris_Underwood eliminated" for="Chris_Underwood_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Dan the Wardog</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Dan_DaSilva_eliminated" type="radio" name="eliminated" value="Dan" />
-							<label class="survivor-cc Dan_DaSilva eliminated" for="Dan_DaSilva_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">David</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="David_Wright_eliminated" type="radio" name="eliminated" value="David" />
-							<label class="survivor-cc David_Wright eliminated" for="David_Wright"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Eric</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Eric_Hafemann_eliminated" type="radio" name="eliminated" value="Eric" />
-							<label class="survivor-cc Eric_Hafemann eliminated" for="Eric_Hafemann_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Gavin</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Gavin_Whitson_eliminated" type="radio" name="eliminated" value="Gavin" />
-							<label class="survivor-cc Gavin_Whitson eliminated" for="Gavin_Whitson_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Joe</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Joe_Anglim_eliminated" type="radio" name="eliminated" value="Joe" />
-							<label class="survivor-cc Joe_Anglim eliminated" for="Joe_Anglim_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Julia</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Julia_Carter_eliminated" type="radio" name="eliminated" value="Julia" />
-							<label class="survivor-cc Julia_Carter eliminated" for="Julia_Carter_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Julie</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Julie_Rosenberg_eliminated" type="radio" name="eliminated" value="Julie" />
-							<label class="survivor-cc Julie_Rosenberg eliminated" for="Julie_Rosenberg_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Keith</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Keith_Sowell_eliminated" type="radio" name="eliminated" value="Keith" />
-							<label class="survivor-cc Keith_Sowell eliminated" for="Keith_Sowell_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Keith</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Keith_Sowell_eliminated" type="radio" name="eliminated" value="Keith" />
-							<label class="survivor-cc Keith_Sowell eliminated" for="Keith_Sowell_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Kelley</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Kelley_Wentworth_eliminated" type="radio" name="eliminated" value="Kelley" />
-							<label class="survivor-cc Kelley_Wentworth eliminated" for="Kelley_Wentworth_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Lauren</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Lauren_OConnell_eliminated" type="radio" name="eliminated" value="Lauren" />
-							<label class="survivor-cc Lauren_OConnell eliminated" for="Lauren_OConnell_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Reem</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Reem_Daly_eliminated" type="radio" name="eliminated" value="Reem" />
-							<label class="survivor-cc Reem_Daly eliminated" for="Reem_Daly_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Rick</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Rick_Devens_eliminated" type="radio" name="eliminated" value="Rick" />
-							<label class="survivor-cc Rick_Devens eliminated" for="Rick_Devens_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Ron</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Ron_Clark_eliminated" type="radio" name="eliminated" value="Ron" />
-							<label class="survivor-cc Ron_Clark eliminated" for="Ron_Clark_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Victoria</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Victoria_Baamonde_eliminated" type="radio" name="eliminated" value="Victoria" />
-							<label class="survivor-cc Victoria_Baamonde eliminated" for="Victoria_Baamonde_eliminated"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Wendy</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Wendy_Diaz_eliminated" type="radio" name="eliminated" value="Wendy" />
-							<label class="survivor-cc Wendy_Diaz eliminated" for="Wendy_Diaz_eliminated"></label>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="tab">
-				<h1>OUTPLAY</h1>
-				<h3>Who will be SAFE this week?<br>(+5)</h3>
-				<form name="safe">
-					<div class="contestants">
-						<div class="cc-selector">
-							<p class="name">Aubry</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Aubry_Bracco_safe" type="radio" name="safe" value="Aubry" />
-							<label class="survivor-cc Aubry_Bracco safe" for="Aubry_Bracco_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Aurora</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Aurora_McCreary_safe" type="radio" name="safe" value="Aurora" />
-							<label class="survivor-cc Aurora_McCreary safe" for="Aurora_McCreary_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Chris</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Chris_Underwood_safe" type="radio" name="safe" value="Chris" />
-							<label class="survivor-cc Chris_Underwood safe" for="Chris_Underwood_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Dan the Wardog</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Dan_DaSilva_safe" type="radio" name="safe" value="Dan" />
-							<label class="survivor-cc Dan_DaSilva safe" for="Dan_DaSilva_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">David</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="David_Wright_safe" type="radio" name="safe" value="David" />
-							<label class="survivor-cc David_Wright safe" for="David_Wright"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Eric</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Eric_Hafemann_safe" type="radio" name="safe" value="Eric" />
-							<label class="survivor-cc Eric_Hafemann safe" for="Eric_Hafemann_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Gavin</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Gavin_Whitson_safe" type="radio" name="safe" value="Gavin" />
-							<label class="survivor-cc Gavin_Whitson safe" for="Gavin_Whitson_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Joe</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Joe_Anglim_safe" type="radio" name="safe" value="Joe" />
-							<label class="survivor-cc Joe_Anglim safe" for="Joe_Anglim_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Julia</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Julia_Carter_safe" type="radio" name="safe" value="Julia" />
-							<label class="survivor-cc Julia_Carter safe" for="Julia_Carter_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Julie</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Julie_Rosenberg_safe" type="radio" name="safe" value="Julie" />
-							<label class="survivor-cc Julie_Rosenberg safe" for="Julie_Rosenberg_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Keith</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Keith_Sowell_safe" type="radio" name="safe" value="Keith" />
-							<label class="survivor-cc Keith_Sowell safe" for="Keith_Sowell_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Keith</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Keith_Sowell_safe" type="radio" name="safe" value="Keith" />
-							<label class="survivor-cc Keith_Sowell safe" for="Keith_Sowell_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Kelley</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Kelley_Wentworth_safe" type="radio" name="safe" value="Kelley" />
-							<label class="survivor-cc Kelley_Wentworth safe" for="Kelley_Wentworth_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Lauren</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Lauren_OConnell_safe" type="radio" name="safe" value="Lauren" />
-							<label class="survivor-cc Lauren_OConnell safe" for="Lauren_OConnell_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Reem</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Reem_Daly_safe" type="radio" name="safe" value="Reem" />
-							<label class="survivor-cc Reem_Daly safe" for="Reem_Daly_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Rick</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Rick_Devens_safe" type="radio" name="safe" value="Rick" />
-							<label class="survivor-cc Rick_Devens safe" for="Rick_Devens_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Ron</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Ron_Clark_safe" type="radio" name="safe" value="Ron" />
-							<label class="survivor-cc Ron_Clark safe" for="Ron_Clark_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Victoria</p>
-							<p class="team_name">Kama Tribe</p>
-							<img src="images/flag_yellow.jpg" />
-							<input id="Victoria_Baamonde_safe" type="radio" name="safe" value="Victoria" />
-							<label class="survivor-cc Victoria_Baamonde safe" for="Victoria_Baamonde_safe"></label>
-						</div>
-						<div class="cc-selector">
-							<p class="name">Wendy</p>
-							<p class="team_name">Manu Tribe</p>
-							<img src="images/flag_blue.jpg" />
-							<input id="Wendy_Diaz_safe" type="radio" name="safe" value="Wendy" />
-							<label class="survivor-cc Wendy_Diaz safe" for="Wendy_Diaz_safe"></label>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="tab">
-				<h1>BONUS QUESTIONS</h1>
-				<br><br>
-				<!-- week 1 -->
-				<h3>This week's episode is titled:<br>""<br>Who said this? (+2)</h3>
-				<form name="titleQuote">
-					<select>
-						<option value="">Select One</option>
-						<option value="Jeff Probst">Jeff Probst</option>
+                <h1>OUTWIT, OUTLAST, OUTPLAY</h1>
+                <h3>Who will be the final 3 survivors?<h3>
+				<h3>
+					Please pick one from each dropdown. Order does not matter.<br>
+					You will get +20 points for each correct pick at the end of the season.<br>
+					The images below show you each contestant. For bios follow this link: 
+					<a href="https://www.cbs.com/shows/survivor/cast">https://www.cbs.com/shows/survivor/cast</a>
+				</h3>
+				<form name="pick_1">
+                    <select>
+                        <option value="">Select One</option>
 						<option value="Aubry"> Aubry</option>
 						<option value="Aurora">Aurora</option>
 						<option value="Chris">Chris</option>
@@ -681,63 +118,792 @@
 						<option value="Ron">Ron</option>
 						<option value="Victoria">Victoria</option>
 						<option value="Wendy">Wendy</option>
-					</select>
-				</form>
-				<br><br>                
-				<h3>Will there be nudity this week? (+2)</h3>
-				<form name="nudity">
-					<input id="nudityYes" name="nudity" type="radio" value="Yes" />
-						<label class="bonusQ_label" for="nudityYes">Yes</label>
-					<br>
-					<input id="nudityNo" name="nudity" type="radio" value="No" />
-						<label class="bonusQ_label" for="nudityNo">No</label>
-					<br>
-				</form>
+                    </select>
+                </form>
+				<br>
+				<form name="pick_2">
+                    <select>
+                        <option value="">Select One</option>
+						<option value="Aubry"> Aubry</option>
+						<option value="Aurora">Aurora</option>
+						<option value="Chris">Chris</option>
+						<option value="Dan">Dan the Wardog</option>
+						<option value="David">David</option>
+						<option value="Eric">Eric</option>
+						<option value="Gavin">Gavin</option>
+						<option value="Joe">Joe</option>
+						<option value="Julia">Julia</option>
+						<option value="Julie">Julie</option>
+						<option value="Keith">Keith</option>
+						<option value="Kelley">Kelley</option>
+						<option value="Lauren">Lauren</option>
+						<option value="Reem">Reem</option>
+						<option value="Rick">Rick</option>
+						<option value="Ron">Ron</option>
+						<option value="Victoria">Victoria</option>
+						<option value="Wendy">Wendy</option>
+                    </select>
+                </form>
+				<br>
+				<form name="pick_3">
+                    <select>
+                        <option value="">Select One</option>
+						<option value="Aubry"> Aubry</option>
+						<option value="Aurora">Aurora</option>
+						<option value="Chris">Chris</option>
+						<option value="Dan">Dan the Wardog</option>
+						<option value="David">David</option>
+						<option value="Eric">Eric</option>
+						<option value="Gavin">Gavin</option>
+						<option value="Joe">Joe</option>
+						<option value="Julia">Julia</option>
+						<option value="Julie">Julie</option>
+						<option value="Keith">Keith</option>
+						<option value="Kelley">Kelley</option>
+						<option value="Lauren">Lauren</option>
+						<option value="Reem">Reem</option>
+						<option value="Rick">Rick</option>
+						<option value="Ron">Ron</option>
+						<option value="Victoria">Victoria</option>
+						<option value="Wendy">Wendy</option>
+                    </select>
+                </form>
 				<br><br>
-				<h3>Will an idol or secret advantage<br>be found this week? (+2)</h3>
-				<form name="idolFound">
-					<input name="idolFound" id="idolFoundYes" type="radio" value="Yes"/>
-						<label class="bonusQ_label" for="idolFoundYes">Yes</label>
-					<br>
-					<input name="idolFound" id="idolFoundNo" type="radio" value="No"/>
-						<label class="bonusQ_label" for="idolFoundNo">No</label>
-					<br>
-				</form>
-				<br><br>
-				<h3>Will an idol or secret advantage<br>be played this week? (+2)</h3>
-				<form name="idolPlayed">
-					<input name="idolPlayed" id="idolPlayedYes" type="radio" value="Yes" />
-						<label class="bonusQ_label" for="idolPlayedYes">Yes</label>
-					<br>
-					<input name="idolPlayed" id="idolPlayedNo" type="radio" value="No" />
-						<label class="bonusQ_label" for="idolPlayedNo">No</label>
-					<br>
-				</form>
-				<br><br>
-				<h3>Will someone return to the game from<br>Extinction Island this week? (+1)</h3>
-				<form name="leaveExIsland">
-					<input name="leaveExIsland" id="leaveExIslandYes" type="radio" value="Yes" />
-						<label class="bonusQ_label" for="leaveExIslandYes">Yes</label>
-					<br>
-					<input name="leaveExIsland" id="leaveExIslandNo" type="radio" value="No" />
-						<label class="bonusQ_label" for="leaveExIslandNo">No</label>
-					<br>
-				</form>
-			</div>
-			<div id="advance_form" class="isHidden">
-				<div id="progress_buttons">
-					<div style="display:inline-block">
-						<button type="button" id="prevBtn">Previous</button>
-						<button type="button" id="nextBtn">Next</button>
+				<div class="contestants">
+					<div class="cc-selector">
+						<p class="name">Aubry</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Aubry_Bracco reward" for="Aubry_Bracco_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Aurora</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Aurora_McCreary reward" for="Aurora_McCreary_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Chris</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc Chris_Underwood reward" for="Chris_Underwood_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Dan the Wardog</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc Dan_DaSilva reward" for="Dan_DaSilva_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">David</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc David_Wright reward" for="David_Wright_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Eric</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Eric_Hafemann reward" for="Eric_Hafemann_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Gavin</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Gavin_Whitson reward" for="Gavin_Whitson_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Joe</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Joe_Anglim reward" for="Joe_Anglim_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Julia</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Julia_Carter reward" for="Julia_Carter_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Julie</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Julie_Rosenberg reward" for="Julie_Rosenberg_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Keith</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc Keith_Sowell reward" for="Keith_Sowell_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Kelley</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc Kelley_Wentworth reward" for="Kelley_Wentworth_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Lauren</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc Lauren_OConnell reward" for="Lauren_OConnell_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Reem</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc Reem_Daly reward" for="Reem_Daly_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Rick</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc Rick_Devens reward" for="Rick_Devens_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Ron</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Ron_Clark reward" for="Ron_Clark_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Victoria</p>
+						<p class="team_name">Kama Tribe</p>
+						<img src="images/flag_yellow.jpg" />
+						<label class="survivor-cc Victoria_Baamonde reward" for="Victoria_Baamonde_reward"></label>
+					</div>
+					<div class="cc-selector">
+						<p class="name">Wendy</p>
+						<p class="team_name">Manu Tribe</p>
+						<img src="images/flag_blue.jpg" />
+						<label class="survivor-cc Wendy_Diaz reward" for="Wendy_Diaz_reward"></label>
 					</div>
 				</div>
-				<br>
-				<div id="progress_bar">
-					<progress value="0" max="6" color="black"></progress>
-					<h3 id="loading_results" class="isHidden">LOADING...</h3>
-				</div>
+            </div>
+			<!--
+            <div class="tab">
+                <h1>OUTWIT</h1>
+                <h3>Who will win REWARD this week?<br>(+5 if group) (+10 if indivdual)</h3>
+                <form name="reward"> 
+                    <div class="contestants">
+                        <div class="cc-selector">
+                            <p class="name">Aubry</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Aubry_Bracco_reward" type="radio" name="reward" value="Aubry" />
+                            <label class="survivor-cc Aubry_Bracco reward" for="Aubry_Bracco_reward"></label>
+                        </div>
+                        <div class="cc-selector">
+                            <p class="name">Aurora</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Aurora_McCreary_reward" type="radio" name="reward" value="Aurora" />
+                            <label class="survivor-cc Aurora_McCreary reward" for="Aurora_McCreary_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Chris</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Chris_Underwood_reward" type="radio" name="reward" value="Chris" />
+                            <label class="survivor-cc Chris_Underwood reward" for="Chris_Underwood_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Dan the Wardog</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Dan_DaSilva_reward" type="radio" name="reward" value="Dan" />
+                            <label class="survivor-cc Dan_DaSilva reward" for="Dan_DaSilva_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">David</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="David_Wright_reward" type="radio" name="reward" value="David" />
+                            <label class="survivor-cc David_Wright reward" for="David_Wright_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Eric</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Eric_Hafemann_reward" type="radio" name="reward" value="Eric" />
+                            <label class="survivor-cc Eric_Hafemann reward" for="Eric_Hafemann_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Gavin</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Gavin_Whitson_reward" type="radio" name="reward" value="Gavin" />
+                            <label class="survivor-cc Gavin_Whitson reward" for="Gavin_Whitson_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Joe</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Joe_Anglim_reward" type="radio" name="reward" value="Joe" />
+                            <label class="survivor-cc Joe_Anglim reward" for="Joe_Anglim_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Julia</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Julia_Carter_reward" type="radio" name="reward" value="Julia" />
+                            <label class="survivor-cc Julia_Carter reward" for="Julia_Carter_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Julie</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Julie_Rosenberg_reward" type="radio" name="reward" value="Julie" />
+                            <label class="survivor-cc Julie_Rosenberg reward" for="Julie_Rosenberg_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Keith</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Keith_Sowell_reward" type="radio" name="reward" value="Keith" />
+                            <label class="survivor-cc Keith_Sowell reward" for="Keith_Sowell_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Kelley</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Kelley_Wentworth_reward" type="radio" name="reward" value="Kelley" />
+                            <label class="survivor-cc Kelley_Wentworth reward" for="Kelley_Wentworth_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Lauren</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Lauren_OConnell_reward" type="radio" name="reward" value="Lauren" />
+                            <label class="survivor-cc Lauren_OConnell reward" for="Lauren_OConnell_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Reem</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Reem_Daly_reward" type="radio" name="reward" value="Reem" />
+                            <label class="survivor-cc Reem_Daly reward" for="Reem_Daly_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Rick</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Rick_Devens_reward" type="radio" name="reward" value="Rick" />
+                            <label class="survivor-cc Rick_Devens reward" for="Rick_Devens_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Ron</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Ron_Clark_reward" type="radio" name="reward" value="Ron" />
+                            <label class="survivor-cc Ron_Clark reward" for="Ron_Clark_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Victoria</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Victoria_Baamonde_reward" type="radio" name="reward" value="Victoria" />
+                            <label class="survivor-cc Victoria_Baamonde reward" for="Victoria_Baamonde_reward"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Wendy</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Wendy_Diaz_reward" type="radio" name="reward" value="Wendy" />
+                            <label class="survivor-cc Wendy_Diaz reward" for="Wendy_Diaz_reward"></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab">
+                <h1>OUTLAST</h1>
+                <h3>Who will win IMMUNITY this week?<br>(+5 if group) (+10 if indivdual)</h3>
+				<form name="immunity">
+                    <div class="contestants">
+                        <div class="cc-selector">
+                            <p class="name">Aubry</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Aubry_Bracco_immunity" type="radio" name="immunity" value="Aubry" />
+                            <label class="survivor-cc Aubry_Bracco immunity" for="Aubry_Bracco_immunity"></label>
+                        </div>
+                        <div class="cc-selector">
+                            <p class="name">Aurora</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Aurora_McCreary_immunity" type="radio" name="immunity" value="Aurora" />
+                            <label class="survivor-cc Aurora_McCreary immunity" for="Aurora_McCreary_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Chris</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Chris_Underwood_immunity" type="radio" name="immunity" value="Chris" />
+                            <label class="survivor-cc Chris_Underwood immunity" for="Chris_Underwood_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Dan the Wardog</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Dan_DaSilva_immunity" type="radio" name="immunity" value="Dan" />
+                            <label class="survivor-cc Dan_DaSilva immunity" for="Dan_DaSilva_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">David</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="David_Wright_immunity" type="radio" name="immunity" value="David" />
+                            <label class="survivor-cc David_Wright immunity" for="David_Wright_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Eric</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Eric_Hafemann_immunity" type="radio" name="immunity" value="Eric" />
+                            <label class="survivor-cc Eric_Hafemann immunity" for="Eric_Hafemann_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Gavin</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Gavin_Whitson_immunity" type="radio" name="immunity" value="Gavin" />
+                            <label class="survivor-cc Gavin_Whitson immunity" for="Gavin_Whitson_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Joe</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Joe_Anglim_immunity" type="radio" name="immunity" value="Joe" />
+                            <label class="survivor-cc Joe_Anglim immunity" for="Joe_Anglim_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Julia</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Julia_Carter_immunity" type="radio" name="immunity" value="Julia" />
+                            <label class="survivor-cc Julia_Carter immunity" for="Julia_Carter_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Julie</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Julie_Rosenberg_immunity" type="radio" name="immunity" value="Julie" />
+                            <label class="survivor-cc Julie_Rosenberg immunity" for="Julie_Rosenberg_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Keith</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Keith_Sowell_immunity" type="radio" name="immunity" value="Keith" />
+                            <label class="survivor-cc Keith_Sowell immunity" for="Keith_Sowell_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Kelley</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Kelley_Wentworth_immunity" type="radio" name="immunity" value="Kelley" />
+                            <label class="survivor-cc Kelley_Wentworth immunity" for="Kelley_Wentworth_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Lauren</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Lauren_OConnell_immunity" type="radio" name="immunity" value="Lauren" />
+                            <label class="survivor-cc Lauren_OConnell immunity" for="Lauren_OConnell_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Reem</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Reem_Daly_immunity" type="radio" name="immunity" value="Reem" />
+                            <label class="survivor-cc Reem_Daly immunity" for="Reem_Daly_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Rick</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Rick_Devens_immunity" type="radio" name="immunity" value="Rick" />
+                            <label class="survivor-cc Rick_Devens immunity" for="Rick_Devens_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Ron</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Ron_Clark_immunity" type="radio" name="immunity" value="Ron" />
+                            <label class="survivor-cc Ron_Clark immunity" for="Ron_Clark_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Victoria</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Victoria_Baamonde_immunity" type="radio" name="immunity" value="Victoria" />
+                            <label class="survivor-cc Victoria_Baamonde immunity" for="Victoria_Baamonde_immunity"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Wendy</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Wendy_Diaz_immunity" type="radio" name="immunity" value="Wendy" />
+                            <label class="survivor-cc Wendy_Diaz immunity" for="Wendy_Diaz_immunity"></label>
+                        </div>
+                    </div>
+                </form>
 			</div>
-		</div>
+			<div class="tab">
+                <h1>OUTPLAY</h1>
+                <h3>Who will be ELIMINATED this week?<br>(+10)</h3>
+				<form name="eliminated">
+                    <div class="contestants">
+                        <div class="cc-selector">
+                            <p class="name">Aubry</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Aubry_Bracco_eliminated" type="radio" name="eliminated" value="Aubry" />
+                            <label class="survivor-cc Aubry_Bracco eliminated" for="Aubry_Bracco_eliminated"></label>
+                        </div>
+                        <div class="cc-selector">
+                            <p class="name">Aurora</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Aurora_McCreary_eliminated" type="radio" name="eliminated" value="Aurora" />
+                            <label class="survivor-cc Aurora_McCreary eliminated" for="Aurora_McCreary_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Chris</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Chris_Underwood_eliminated" type="radio" name="eliminated" value="Chris" />
+                            <label class="survivor-cc Chris_Underwood eliminated" for="Chris_Underwood_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Dan the Wardog</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Dan_DaSilva_eliminated" type="radio" name="eliminated" value="Dan" />
+                            <label class="survivor-cc Dan_DaSilva eliminated" for="Dan_DaSilva_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">David</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="David_Wright_eliminated" type="radio" name="eliminated" value="David" />
+                            <label class="survivor-cc David_Wright eliminated" for="David_Wright_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Eric</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Eric_Hafemann_eliminated" type="radio" name="eliminated" value="Eric" />
+                            <label class="survivor-cc Eric_Hafemann eliminated" for="Eric_Hafemann_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Gavin</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Gavin_Whitson_eliminated" type="radio" name="eliminated" value="Gavin" />
+                            <label class="survivor-cc Gavin_Whitson eliminated" for="Gavin_Whitson_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Joe</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Joe_Anglim_eliminated" type="radio" name="eliminated" value="Joe" />
+                            <label class="survivor-cc Joe_Anglim eliminated" for="Joe_Anglim_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Julia</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Julia_Carter_eliminated" type="radio" name="eliminated" value="Julia" />
+                            <label class="survivor-cc Julia_Carter eliminated" for="Julia_Carter_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Julie</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Julie_Rosenberg_eliminated" type="radio" name="eliminated" value="Julie" />
+                            <label class="survivor-cc Julie_Rosenberg eliminated" for="Julie_Rosenberg_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Keith</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Keith_Sowell_eliminated" type="radio" name="eliminated" value="Keith" />
+                            <label class="survivor-cc Keith_Sowell eliminated" for="Keith_Sowell_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Kelley</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Kelley_Wentworth_eliminated" type="radio" name="eliminated" value="Kelley" />
+                            <label class="survivor-cc Kelley_Wentworth eliminated" for="Kelley_Wentworth_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Lauren</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Lauren_OConnell_eliminated" type="radio" name="eliminated" value="Lauren" />
+                            <label class="survivor-cc Lauren_OConnell eliminated" for="Lauren_OConnell_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Reem</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Reem_Daly_eliminated" type="radio" name="eliminated" value="Reem" />
+                            <label class="survivor-cc Reem_Daly eliminated" for="Reem_Daly_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Rick</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Rick_Devens_eliminated" type="radio" name="eliminated" value="Rick" />
+                            <label class="survivor-cc Rick_Devens eliminated" for="Rick_Devens_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Ron</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Ron_Clark_eliminated" type="radio" name="eliminated" value="Ron" />
+                            <label class="survivor-cc Ron_Clark eliminated" for="Ron_Clark_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Victoria</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Victoria_Baamonde_eliminated" type="radio" name="eliminated" value="Victoria" />
+                            <label class="survivor-cc Victoria_Baamonde eliminated" for="Victoria_Baamonde_eliminated"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Wendy</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Wendy_Diaz_eliminated" type="radio" name="eliminated" value="Wendy" />
+                            <label class="survivor-cc Wendy_Diaz eliminated" for="Wendy_Diaz_eliminated"></label>
+                        </div>
+                    </div>
+                </form>
+			</div>
+			<div class="tab">
+                <h1>OUTPLAY</h1>
+                <h3>Who will be SAFE this week?<br>(+5)</h3>
+				<form name="safe">
+                    <div class="contestants">
+                        <div class="cc-selector">
+                            <p class="name">Aubry</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Aubry_Bracco_safe" type="radio" name="safe" value="Aubry" />
+                            <label class="survivor-cc Aubry_Bracco safe" for="Aubry_Bracco_safe"></label>
+                        </div>
+                        <div class="cc-selector">
+                            <p class="name">Aurora</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Aurora_McCreary_safe" type="radio" name="safe" value="Aurora" />
+                            <label class="survivor-cc Aurora_McCreary safe" for="Aurora_McCreary_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Chris</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Chris_Underwood_safe" type="radio" name="safe" value="Chris" />
+                            <label class="survivor-cc Chris_Underwood safe" for="Chris_Underwood_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Dan the Wardog</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Dan_DaSilva_safe" type="radio" name="safe" value="Dan" />
+                            <label class="survivor-cc Dan_DaSilva safe" for="Dan_DaSilva_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">David</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="David_Wright_safe" type="radio" name="safe" value="David" />
+                            <label class="survivor-cc David_Wright safe" for="David_Wright_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Eric</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Eric_Hafemann_safe" type="radio" name="safe" value="Eric" />
+                            <label class="survivor-cc Eric_Hafemann safe" for="Eric_Hafemann_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Gavin</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Gavin_Whitson_safe" type="radio" name="safe" value="Gavin" />
+                            <label class="survivor-cc Gavin_Whitson safe" for="Gavin_Whitson_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Joe</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Joe_Anglim_safe" type="radio" name="safe" value="Joe" />
+                            <label class="survivor-cc Joe_Anglim safe" for="Joe_Anglim_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Julia</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Julia_Carter_safe" type="radio" name="safe" value="Julia" />
+                            <label class="survivor-cc Julia_Carter safe" for="Julia_Carter_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Julie</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Julie_Rosenberg_safe" type="radio" name="safe" value="Julie" />
+                            <label class="survivor-cc Julie_Rosenberg safe" for="Julie_Rosenberg_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Keith</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Keith_Sowell_safe" type="radio" name="safe" value="Keith" />
+                            <label class="survivor-cc Keith_Sowell safe" for="Keith_Sowell_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Kelley</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Kelley_Wentworth_safe" type="radio" name="safe" value="Kelley" />
+                            <label class="survivor-cc Kelley_Wentworth safe" for="Kelley_Wentworth_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Lauren</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Lauren_OConnell_safe" type="radio" name="safe" value="Lauren" />
+                            <label class="survivor-cc Lauren_OConnell safe" for="Lauren_OConnell_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Reem</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Reem_Daly_safe" type="radio" name="safe" value="Reem" />
+                            <label class="survivor-cc Reem_Daly safe" for="Reem_Daly_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Rick</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Rick_Devens_safe" type="radio" name="safe" value="Rick" />
+                            <label class="survivor-cc Rick_Devens safe" for="Rick_Devens_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Ron</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Ron_Clark_safe" type="radio" name="safe" value="Ron" />
+                            <label class="survivor-cc Ron_Clark safe" for="Ron_Clark_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Victoria</p>
+                            <p class="team_name">Kama Tribe</p>
+                            <img src="images/flag_yellow.jpg" />
+                            <input id="Victoria_Baamonde_safe" type="radio" name="safe" value="Victoria" />
+                            <label class="survivor-cc Victoria_Baamonde safe" for="Victoria_Baamonde_safe"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Wendy</p>
+                            <p class="team_name">Manu Tribe</p>
+                            <img src="images/flag_blue.jpg" />
+                            <input id="Wendy_Diaz_safe" type="radio" name="safe" value="Wendy" />
+                            <label class="survivor-cc Wendy_Diaz safe" for="Wendy_Diaz_safe"></label>
+                        </div>
+                    </div>
+                </form>
+			</div>
+			-->
+            <div class="tab">
+                <h1>BONUS QUESTIONS</h1>
+                <br><br>
+				<!-- week 1 -->
+				<h3>This week's episode is titled:<br>""<br>Who said this? (+2)</h3>
+                <form name="titleQuote">
+                    <select>
+                        <option value="">Select One</option>
+                        <option value="Jeff Probst">Jeff Probst</option>
+						<option value="Aubry"> Aubry</option>
+						<option value="Aurora">Aurora</option>
+						<option value="Chris">Chris</option>
+						<option value="Dan">Dan the Wardog</option>
+						<option value="David">David</option>
+						<option value="Eric">Eric</option>
+						<option value="Gavin">Gavin</option>
+						<option value="Joe">Joe</option>
+						<option value="Julia">Julia</option>
+						<option value="Julie">Julie</option>
+						<option value="Keith">Keith</option>
+						<option value="Kelley">Kelley</option>
+						<option value="Lauren">Lauren</option>
+						<option value="Reem">Reem</option>
+						<option value="Rick">Rick</option>
+						<option value="Ron">Ron</option>
+						<option value="Victoria">Victoria</option>
+						<option value="Wendy">Wendy</option>
+                    </select>
+                </form>
+                <br><br>                
+                <h3>Will there be nudity this week? (+2)</h3>
+                <form name="nudity">
+                    <input id="nudityYes" name="nudity" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="nudityYes">Yes</label>
+                    <br>
+                    <input id="nudityNo" name="nudity" type="radio" value="No" />
+                        <label class="bonusQ_label" for="nudityNo">No</label>
+                    <br>
+                </form>
+                <br><br>
+                <h3>Will an idol or secret advantage<br>be found this week? (+2)</h3>
+                <form name="idolFound">
+                    <input name="idolFound" id="idolFoundYes" type="radio" value="Yes"/>
+                        <label class="bonusQ_label" for="idolFoundYes">Yes</label>
+                    <br>
+                    <input name="idolFound" id="idolFoundNo" type="radio" value="No"/>
+                        <label class="bonusQ_label" for="idolFoundNo">No</label>
+                    <br>
+                </form>
+                <br><br>
+                <h3>Will an idol or secret advantage<br>be played this week? (+2)</h3>
+                <form name="idolPlayed">
+                    <input name="idolPlayed" id="idolPlayedYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="idolPlayedYes">Yes</label>
+                    <br>
+                    <input name="idolPlayed" id="idolPlayedNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="idolPlayedNo">No</label>
+                    <br>
+                </form>
+				<br><br>
+                <h3>Will someone return to the game from Extinction<br>Island this week? (+1)</h3>
+                <form name="leaveExIsland">
+                    <input name="leaveExIsland" id="leaveExIslandYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="leaveExIslandYes">Yes</label>
+                    <br>
+                    <input name="leaveExIsland" id="leaveExIslandNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="leaveExIslandNo">No</label>
+                    <br>
+                </form>
+            </div>
+            <div id="advance_form" class="isHidden">
+                <div id="progress_buttons">
+                    <div style="display:inline-block">
+						<img src="images/torch2.gif" class="torch_gif"/>
+                        <button type="button" id="prevBtn">Previous</button>
+                        <button type="button" id="nextBtn">Next</button>
+						<img src="images/torch2.gif" class="torch_gif"/>
+                    </div>
+                </div>
+                <br>
+                <div id="progress_bar">
+                    <progress value="0" max="3" color="black"></progress>
+                    <h3 id="loading_results" class="isHidden">LOADING...</h3>
+                </div>
+            </div>
+        </div>
     </body>
     
     <script>

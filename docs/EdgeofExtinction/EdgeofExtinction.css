@@ -75,6 +75,9 @@ select,
     padding: 10px 0px;
     margin-top: 50px;
 }
+.torch_gif {
+	height: 30px;
+}
 /*
 #progress_buttons,
 #progress_bar {
