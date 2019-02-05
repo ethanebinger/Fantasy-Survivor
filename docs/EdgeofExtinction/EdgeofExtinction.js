@@ -210,7 +210,6 @@ function getPastResponses() {
                         'nudity': 0,
                         'idolFound': 0,
                         'idolPlayed': 0,
-						'goExIsland': 0,
 						'leaveExIsland': 0
                     }
                 ];
@@ -237,7 +236,6 @@ function getPastResponses() {
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-									"<tr><td><strong>Will someone go to Extinction Island this week?</strong></td><td>" + responses[i].goExIsland + "</td><td>"+ scores[0].goExIsland +"</td></tr>" + 
 									"<tr><td><strong>Will someone leave Extinction Island this week?</strong></td><td>" + responses[i].leaveExIsland + "</td><td>"+ scores[0].leaveExIsland +"</td></tr>"
 								);
 							} else {
@@ -252,7 +250,6 @@ function getPastResponses() {
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-									"<tr><td><strong>Will someone go to Extinction Island this week?</strong></td><td>" + responses[i].goExIsland + "</td><td>"+ scores[0].goExIsland +"</td></tr>" + 
 									"<tr><td><strong>Will someone leave Extinction Island this week?</strong></td><td>" + responses[i].leaveExIsland + "</td><td>"+ scores[0].leaveExIsland +"</td></tr>"
 								);
 							};
@@ -617,13 +614,7 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
-							// Will someone go to Extinction Island this week?
-                            if (results[i].goExIsland == responses[j].goExIsland && responses[j].goExIsland) {
-                                if (calcType === "individual") { scores[n].goExIsland += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-							// Will someone leave Extinction Island this week?
+							// Will someone return to the game from Extinction Island this week?
                             if (results[i].leaveExIsland == responses[j].leaveExIsland && responses[j].leaveExIsland) {
                                 if (calcType === "individual") { scores[n].leaveExIsland += 2; }
                                 else { scores[n][val_vote] += 2; };
@@ -688,13 +679,7 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
-							// Will someone go to Extinction Island this week?
-                            if (results[i].goExIsland == responses[j].goExIsland && responses[j].goExIsland) {
-                                if (calcType === "individual") { scores[n].goExIsland += 1; }
-                                else { scores[n][val_vote] += 1; };
-                                scores[n].total += 1;
-                            };
-							// Will someone leave Extinction Island this week?
+							// Will someone return to the game from Extinction Island this week?
                             if (results[i].leaveExIsland == responses[j].leaveExIsland && responses[j].leaveExIsland) {
                                 if (calcType === "individual") { scores[n].leaveExIsland += 1; }
                                 else { scores[n][val_vote] += 1; };
@@ -800,6 +785,7 @@ var results = [
         'idolPlayed': null,
         'titleQuote': null,
         'nudity': null,
+		'leaveExIsland': null,
         'team_yellow': [
             'Aubry',
 			'Aurora',
