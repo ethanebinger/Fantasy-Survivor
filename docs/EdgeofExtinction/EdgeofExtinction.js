@@ -210,7 +210,7 @@ function getPastResponses() {
                         'nudity': 0,
                         'idolFound': 0,
                         'idolPlayed': 0,
-			'leaveExIsland': 0
+						'leaveExIsland': 0
                     }
                 ];
                 //scores = calculateScores(scores, results, responses, "individual");
@@ -218,7 +218,7 @@ function getPastResponses() {
                 // Filter for only selected name and vote, then add html to page
                 for (var i=0; i<responses.length; i++) {
                     if (responses[i].name === curName) {
-                        var cur_vote = determineWeek(responses[i], 11);
+                        var cur_vote = determineWeek(responses[i]);
                         if (curVote === cur_vote) {
                             for (var j=0; j<results.length; j++) {
                                 scores = calculateScores(scores, [results[j]], [responses[i]], "individual");
@@ -299,7 +299,8 @@ function getPastResponses() {
     function getFinalThree(curName) {
         $.ajax({
             type: "GET",
-            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/EdgeofExtinction/FinalThreePicks.json",
+            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/EdgeofExtinction/EdgeofExtinction_Responses.json",
+			//url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/EdgeofExtinction/FinalThreePicks.json",
             dataType: "json",
             success: function(result) {
                 // Clear existing html
@@ -312,16 +313,19 @@ function getPastResponses() {
                 var curName = $("#past_responses_name option:selected").val();
                 for (var j=0; j<finalThree.length; j++) {
                     if (finalThree[j].name === curName) {
-                        $("#past_responses").append("<h3 id='finalThree_title'></h3>");
-                        $("#finalThree_title").html("Preseason Picks for Final Three Survivors");
-                        $("#past_responses").append("<span id='finalThree_table'></span>");
-                        $("#finalThree_table").html(
-                            "<tr><th>Pick </th><th>Name</th></tr>" +
-                            "<tr><td>1</td><td>"+ finalThree[j].pick_1 +"</td></tr>" +
-                            "<tr><td>2</td><td>"+ finalThree[j].pick_2 +"</td></tr>" +
-                            "<tr><td>3</td><td>"+ finalThree[j].pick_3 +"</td></tr>"
-                        );
-                    };
+						var cur_vote = determineWeek(finalThree[i]);
+                        if (cur_vote === 1) {	// only submited responses to this question during week 1
+							$("#past_responses").append("<h3 id='finalThree_title'></h3>");
+							$("#finalThree_title").html("Preseason Picks for Final Three Survivors");
+							$("#past_responses").append("<span id='finalThree_table'></span>");
+							$("#finalThree_table").html(
+								"<tr><th>Pick </th><th>Name</th></tr>" +
+								"<tr><td>1</td><td>"+ finalThree[j].pick_1 +"</td></tr>" +
+								"<tr><td>2</td><td>"+ finalThree[j].pick_2 +"</td></tr>" +
+								"<tr><td>3</td><td>"+ finalThree[j].pick_3 +"</td></tr>"
+							);
+						};
+					};
                 };
                 ifEmptyHTML();
             }
@@ -531,11 +535,15 @@ var inArray = function(x,y) {
 };
 
 // Function to identify week based on date of vote
-function determineWeek(responses, results_vote) {
+function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
     if (submit_time <= new Date(2019,2,20,20)) {
         cur_vote = 1;
+    } else if (submit_time <= new Date(2019,2,27,20)) {
+        cur_vote = 2;
+    } else if (submit_time <= new Date(2019,3,6,20)) {
+        cur_vote = 3;
     };
     return cur_vote;
 };
@@ -553,7 +561,7 @@ function calculateScores(scores, results, responses, calcType) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
                     // Determine Vote Number/Week (and ignore late sumissions)
-                    var cur_vote = determineWeek(responses[j], results[i].vote);
+                    var cur_vote = determineWeek(responses[j]);
                     // Validate Vote Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Vote ' + String(results[i].vote);
