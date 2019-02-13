@@ -313,7 +313,7 @@ function getPastResponses() {
                 var curName = $("#past_responses_name option:selected").val();
                 for (var j=0; j<finalThree.length; j++) {
                     if (finalThree[j].name === curName) {
-						var cur_vote = determineWeek(finalThree[i]);
+						var cur_vote = determineWeek(finalThree[j]);
                         if (cur_vote === 1) {	// only submited responses to this question during week 1
 							$("#past_responses").append("<h3 id='finalThree_title'></h3>");
 							$("#finalThree_title").html("Preseason Picks for Final Three Survivors");
