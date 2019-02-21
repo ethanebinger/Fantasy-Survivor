@@ -554,9 +554,8 @@ function calculateScores(scores, results, responses, calcType) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-            var team_orange = results[i].team_orange;
-            var team_purple = results[i].team_purple;
-            var team_green = results[i].team_green;
+            var team_yellow = results[i].team_yellow;
+            var team_blue = results[i].team_blue;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
