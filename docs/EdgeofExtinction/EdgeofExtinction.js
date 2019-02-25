@@ -787,7 +787,7 @@ var results = [
         'eliminated': 'Reem',
         'idolFound': 'Yes',
         'idolPlayed': 'No',
-        'titleQuote': null,
+        'titleQuote': 'Joe',
         'nudity': 'No',
 		'JeffSays': 3,
         'team_yellow': [
