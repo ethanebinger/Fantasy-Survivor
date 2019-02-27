@@ -544,6 +544,8 @@ function determineWeek(responses) {
         cur_vote = 2;
     } else if (submit_time <= new Date(2019,3,6,20)) {
         cur_vote = 3;
+    } else if (submit_time <= new Date(2019,3,13,20)) {
+        cur_vote = 4;
     };
     return cur_vote;
 };
