@@ -538,13 +538,13 @@ var inArray = function(x,y) {
 function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
-    if (submit_time <= new Date(2019,2,20,20)) {
+    if (submit_time <= new Date(2019,1,20,20)) {
         cur_vote = 1;
-    } else if (submit_time <= new Date(2019,2,27,20)) {
+    } else if (submit_time <= new Date(2019,1,27,20)) {
         cur_vote = 2;
-    } else if (submit_time <= new Date(2019,3,6,20)) {
+    } else if (submit_time <= new Date(2019,2,6,20)) {
         cur_vote = 3;
-    } else if (submit_time <= new Date(2019,3,13,20)) {
+    } else if (submit_time <= new Date(2019,2,13,20)) {
         cur_vote = 4;
     };
     return cur_vote;
