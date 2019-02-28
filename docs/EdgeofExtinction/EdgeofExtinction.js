@@ -815,7 +815,7 @@ var results = [
         ],
         'team_blue': [
             'Chris',
-			'Dan',
+			'Wardog',
 			'David',
 			'Keith',
 			'Kelley',
@@ -848,7 +848,7 @@ var results = [
         ],
         'team_blue': [
             'Chris',
-			'Dan',
+			'Wardog',
 			'David',
 			'Keith',
 			'Kelley',
