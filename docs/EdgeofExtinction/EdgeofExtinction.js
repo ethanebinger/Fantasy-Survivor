@@ -243,7 +243,8 @@ function getPastResponses() {
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"+
+									"<tr><td><strong>How many times will Jeff say 'Edge of Extinction'</strong></td><td>" + responses[i].JeffSays + "</td><td>n/a</td></tr>"
 								);
 							} else {
 								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
@@ -820,6 +821,38 @@ var results = [
 			'Kelley',
 			'Lauren',
 			'Reem',
+			'Rick',
+			'Wendy'
+        ]
+    },
+	{	'vote': 2,
+        'date': '2/27/19',
+        'merge': 'No',
+        'reward': 'team_yellow', 
+        'immunity': 'team_yellow', 
+        'eliminated': 'Keith',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Kelley',
+        'nudity': 'No',
+        'team_yellow': [
+            'Aubry',
+			'Aurora',
+			'Eric',
+			'Gavin',
+			'Joe',
+			'Julia',
+			'Julie',
+			'Ron',
+			'Victoria'
+        ],
+        'team_blue': [
+            'Chris',
+			'Dan',
+			'David',
+			'Keith',
+			'Kelley',
+			'Lauren',
 			'Rick',
 			'Wendy'
         ]
