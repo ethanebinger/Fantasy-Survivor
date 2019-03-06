@@ -95,6 +95,7 @@ select,
     padding-bottom: 10px;
 }*/
 #enterBtn,
+#resultsBtn,
 #prevBtn, 
 #nextBtn,
 #PastResponses {
@@ -106,11 +107,13 @@ select,
     cursor: pointer;
 }
 #enterBtn:hover,
+#resultsBtn:hover,
 #prevBtn:hover, 
 #nextBtn:hover,
 #PastResponses:hover {
     opacity: 0.8;
 }
+#resultsBtn,
 #prevBtn {
     background-color: #bbbbbb;
 }

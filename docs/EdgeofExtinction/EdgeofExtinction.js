@@ -6,6 +6,11 @@ function init() {
         $('#advance_form').removeClass('isHidden');
     });
     
+	// Move past hero page and go to results on click
+	$('#resultsBtn').click(function(e) {
+		window.location = "https://ethanebinger.com/Fantasy-Survivor/EdgeofExtinction/results";
+    });
+	
     // Input button coloring
     $('input').click(function(e) {
         var cur_tab = $(e.target).attr('name');
