@@ -861,5 +861,36 @@ var results = [
 			'Rick',
 			'Wendy'
         ]
+    },
+	{	'vote': 3,
+        'date': '3/6/19',
+        'merge': 'No',
+        'reward': 'team_blue', 
+        'immunity': 'team_yellow', 
+        'eliminated': 'Chris',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'David',
+        'nudity': 'No',
+        'team_yellow': [
+            'Aubry',
+			'Aurora',
+			'Eric',
+			'Gavin',
+			'Joe',
+			'Julia',
+			'Julie',
+			'Ron',
+			'Victoria'
+        ],
+        'team_blue': [
+            'Chris',
+			'Wardog',
+			'David',
+			'Kelley',
+			'Lauren',
+			'Rick',
+			'Wendy'
+        ]
     }
 ];
