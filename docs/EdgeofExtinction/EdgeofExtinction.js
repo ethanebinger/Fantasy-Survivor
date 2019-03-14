@@ -561,6 +561,10 @@ function determineWeek(responses) {
         cur_vote = 3;
     } else if (submit_time <= new Date(2019,2,13,20)) {
         cur_vote = 4;
+    } else if (submit_time <= new Date(2019,2,20,20)) {
+        cur_vote = 5;
+    } else if (submit_time <= new Date(2019,2,27,20)) {
+        cur_vote = 6;
     };
     return cur_vote;
 };
@@ -573,6 +577,7 @@ function calculateScores(scores, results, responses, calcType) {
         for (var i=0; i<results.length; i++) {
             var team_yellow = results[i].team_yellow;
             var team_blue = results[i].team_blue;
+			var team_green = results[i].team_green;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
@@ -643,13 +648,18 @@ function calculateScores(scores, results, responses, calcType) {
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
-                        } else {
+                        } 
+						else {
                             // Reward
                             if ((results[i].reward === 'team_yellow' || results[i].reward2 === 'team_yellow') && inArray(responses[j].reward, team_yellow) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; }
                                 scores[n].total += 5;
                             } else if ((results[i].reward === 'team_blue' || results[i].reward2 === 'team_blue') && inArray(responses[j].reward, team_blue) && responses[j].reward) {
+                                if (calcType === "individual") { scores[n].reward += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
+                            } else if ((results[i].reward === 'team_green' || results[i].reward2 === 'team_green') && inArray(responses[j].reward, team_green) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -660,6 +670,10 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
                             } else if ((results[i].immunity === 'team_blue' || results[i].immunity2 === 'team_blue')  && inArray(responses[j].immunity, team_blue) && responses[j].immunity) {
+                                if (calcType === "individual") { scores[n].immunity += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
+                            } else if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green')  && inArray(responses[j].immunity, team_green) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -892,5 +906,38 @@ var results = [
 			'Rick',
 			'Wendy'
         ]
+    },
+	{	'vote': 4,
+        'date': '3/13/19',
+        'merge': 'No',
+        'reward': null,
+        'immunity': ['team_yellow', 'team_blue'],
+        'eliminated': 'Rick',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Wardog',
+        'nudity': 'No',
+        'team_yellow': [
+            'Ron',
+			'Aurora',
+			'Joe',
+			'Julia',
+			'Julie',
+
+        ],
+        'team_blue': [
+			'Wendy',
+			'Victoria',
+			'Eric',
+			'Gavin',
+			'Aubry'
+        ],
+		'team_green': [
+			'Rick',
+			'Wardog',
+			'David',
+			'Kelley',
+			'Lauren'
+		]
     }
 ];

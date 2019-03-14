@@ -245,6 +245,9 @@ g text {
 .team_blue {
     background-color: rgb(32,0,203);
 }
+.team_green {
+    background-color: rgb(39,147,75);
+}
 .team_name {
     text-align: right;
 }
@@ -277,7 +280,7 @@ g text {
     top: 5px;
     right: 10px;
 }
-.cc-selector input{
+.cc-selector input {
     margin:0;
     padding:0;
     -webkit-appearance:none;
@@ -290,7 +293,8 @@ g text {
     top: 65px;
     left: 10px;
 }
-.survivor-cc{
+.survivor-cc,
+.survivor-cc-2 {
     cursor:pointer;
     background-size:contain;
     background-repeat:no-repeat;
@@ -304,12 +308,12 @@ g text {
        -moz-filter: none;
             filter: none;
 }
-.survivor-cc:hover{
+.survivor-cc:hover {
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
             filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
-.greyLabel{
+.greyLabel {
     -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
             filter: brightness(1.8) grayscale(1) opacity(.7);
