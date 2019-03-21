@@ -563,8 +563,10 @@ function determineWeek(responses) {
         cur_vote = 4;
     } else if (submit_time <= new Date(2019,2,20,20)) {
         cur_vote = 5;
-    } else if (submit_time <= new Date(2019,2,27,20)) {
+    } else if (submit_time <= new Date(2019,2,21,20)) {
         cur_vote = 6;
+    } else if (submit_time <= new Date(2019,2,27,20)) {
+        cur_vote = 7;
     };
     return cur_vote;
 };
@@ -922,8 +924,7 @@ var results = [
 			'Aurora',
 			'Joe',
 			'Julia',
-			'Julie',
-
+			'Julie'
         ],
         'team_blue': [
 			'Wendy',
@@ -934,6 +935,67 @@ var results = [
         ],
 		'team_green': [
 			'Rick',
+			'Wardog',
+			'David',
+			'Kelley',
+			'Lauren'
+		]
+    },
+	{	'vote': 5,
+        'date': '3/20/19',
+        'merge': 'No',
+        'reward': ['team_yellow', 'team_blue'],
+        'immunity': ['team_yellow', 'team_green'],
+        'eliminated': 'Aubry',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': null,
+        'nudity': 'Yes',
+        'team_yellow': [
+            'Ron',
+			'Aurora',
+			'Joe',
+			'Julia',
+			'Julie'
+        ],
+        'team_blue': [
+			'Wendy',
+			'Victoria',
+			'Eric',
+			'Gavin',
+			'Aubry'
+        ],
+		'team_green': [
+			'Wardog',
+			'David',
+			'Kelley',
+			'Lauren'
+		]
+    },
+	{	'vote': 6,
+        'date': '3/21/19',
+        'merge': 'No',
+        'reward': ['team_yellow', 'team_blue'],
+        'immunity': 'team_yellow',
+        'eliminated': 'Wendy',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'David',
+        'nudity': 'No',
+        'team_yellow': [
+            'Ron',
+			'Aurora',
+			'Joe',
+			'Julia',
+			'Julie'
+        ],
+        'team_blue': [
+			'Wendy',
+			'Victoria',
+			'Eric',
+			'Gavin'
+        ],
+		'team_green': [
 			'Wardog',
 			'David',
 			'Kelley',
