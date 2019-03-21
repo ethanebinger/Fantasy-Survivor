@@ -689,7 +689,7 @@ function calculateScores(scores, results, responses, calcType) {
                             // Safe
 							if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
 								// Aubry voted out ep5 but available for vote ep6 --> skip
-                                if (cur_vote === 6 && results[i].eliminated === 'Aubry') {
+                                if (cur_vote === 6 && responses[j].safe === 'Aubry') {
 									console.log("RIP Aubry - Vote 6 - " + cur_player);
 								} else {
 								// all other scenarios give points
