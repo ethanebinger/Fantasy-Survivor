@@ -262,7 +262,8 @@ function getPastResponses() {
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
+									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].leaveExIsland + "</td><td>"+ scores[0].leaveExIsland +"</td></tr>"
 								);
 							};
                         };
@@ -724,9 +725,9 @@ function calculateScores(scores, results, responses, calcType) {
                             };
 							// Will someone return to the game from Extinction Island this week?
                             if (results[i].leaveExIsland == responses[j].leaveExIsland && responses[j].leaveExIsland) {
-                                if (calcType === "individual") { scores[n].leaveExIsland += 1; }
-                                else { scores[n][val_vote] += 1; };
-                                scores[n].total += 1;
+                                if (calcType === "individual") { scores[n].leaveExIsland += 2; }
+                                else { scores[n][val_vote] += 2; };
+                                scores[n].total += 2;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
@@ -960,6 +961,7 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': null,
         'nudity': 'Yes',
+		'leaveExIsland': 'No',
         'team_yellow': [
             'Ron',
 			'Aurora',
@@ -992,6 +994,7 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'David',
         'nudity': 'No',
+		'leaveExIsland': 'No',
         'team_yellow': [
             'Ron',
 			'Aurora',
