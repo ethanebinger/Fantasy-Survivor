@@ -950,7 +950,7 @@ var results = [
         'immunity': 'team_yellow', 
 		'immunity2': 'team_green',
         'eliminated': 'Aubry',
-        'idolFound': 'No',
+        'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': null,
         'nudity': 'Yes',
