@@ -687,10 +687,16 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 10;
                             };
                             // Safe
-                            if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-                                if (calcType === "individual") { scores[n].safe += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
+							if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
+								// Aubry voted out ep5 but available for vote ep6 --> skip
+                                if (cur_vote === 6 && results[i].eliminated === 'Aubry') {
+									console.log("RIP Aubry - Vote 6 - " + cur_player);
+								} else {
+								// all other scenarios give points
+									if (calcType === "individual") { scores[n].safe += 5; }
+									else { scores[n][val_vote] += 5; };
+									scores[n].total += 5;
+								};
                             };
                             // Title Quote
                             if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
