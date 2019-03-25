@@ -820,6 +820,56 @@
                     </div>
                 </form>
 			</div>
+			<div class="tab">
+                <h1>EDGE OF Extinction</h1>
+                <h3>Who will return from the Edge of Extinction this week?<br>(+5)</h3>
+				<form name="returns"> 
+                    <div class="contestants">
+                        <div class="cc-selector">
+                            <p class="name">Aubry</p>
+                            <p class="team_name">Extinction</p>
+                            <img src="images/flag_black.jpg" />
+                            <input id="Aubry_Bracco_returns" type="radio" name="returns" value="Aubry" />
+                            <label class="survivor-cc Aubry_Bracco returns" for="Aubry_Bracco_returns"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Chris</p>
+                            <p class="team_name">Extinction</p>
+                            <img src="images/flag_black.jpg" />
+                            <input id="Chris_Underwood_returns" type="radio" name="returns" value="Chris" />
+                            <label class="survivor-cc Chris_Underwood returns" for="Chris_Underwood_returns"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Keith</p>
+                            <p class="team_name">Extinction</p>
+                            <img src="images/flag_black.jpg" />
+                            <input id="Keith_Sowell_returns" type="radio" name="returns" value="Keith" />
+                            <label class="survivor-cc Keith_Sowell returns" for="Keith_Sowell_returns"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Reem</p>
+                            <p class="team_name">Extinction</p>
+                            <img src="images/flag_black.jpg" />
+                            <input id="Reem_Daly_returns" type="radio" name="returns" value="Reem" />
+                            <label class="survivor-cc Reem_Daly returns" for="Reem_Daly_returns"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Rick</p>
+                            <p class="team_name">Extinction</p>
+                            <img src="images/flag_black.jpg" />
+                            <input id="Rick_Devens_returns" type="radio" name="returns" value="Rick" />
+                            <label class="survivor-cc Rick_Devens returns" for="Rick_Devens_returns"></label>
+                        </div>
+						<div class="cc-selector">
+                            <p class="name">Wendy</p>
+							<p class="team_name">Extinction</p>
+                            <img src="images/flag_black.jpg" />
+							<input id="Wendy_Diaz_returns" type="radio" name="returns" value="Wendy" />
+                            <label class="survivor-cc Wendy_Diaz returns" for="Wendy_Diaz_returns"></label>
+                        </div>
+                    </div>
+                </form>
+			</div>
             <div class="tab">
                 <h1>BONUS QUESTIONS</h1>
                 <br><br>
@@ -831,10 +881,12 @@
 			<!-- <h3>This week's episode is titled:<br>"Betrayals Are Going to Get Exposed"<br>Who said this? (+2)</h3> -->
 			<!-- week 4 -->
 			<!--<h3>This week's episode is titled:<br>"I Need a Dance Partner"<br>Who said this? (+2)</h3>-->
-			<!-- week 5 -->
+			<!-- week 5/6 -->
 			<!--<h3>This week's episode is titled:<br>"It's Like the Worst Cocktail Party Eve"<br>Who said this? (+2)</h3>-->
-			<!-- week 6 -->
+			<!-- week 7 -->
 			<h3>This week's episode is titled:<br>"There's Always a Twist"<br>Who said this? (+2)</h3>
+			<!-- week 8 -->
+			<!--<h3>This week's episode is titled:<br>"I am the Puppet Master"<br>Who said this? (+2)</h3>-->
                 <form name="titleQuote">
                     <select>
                         <option value="">Select One</option>
@@ -891,12 +943,12 @@
                 </form>
 				<br><br>
                 <h3>Will someone quit Extinction<br>Island this week? (+2)</h3>
-                <form name="leaveExIsland">
-                    <input name="leaveExIsland" id="leaveExIslandYes" type="radio" value="Yes" />
-                        <label class="bonusQ_label" for="leaveExIslandYes">Yes</label>
+                <form name="quitExIsland">
+                    <input name="quitExIsland" id="quitExIslandYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="quitExIslandYes">Yes</label>
                     <br>
-                    <input name="leaveExIsland" id="leaveExIslandNo" type="radio" value="No" />
-                        <label class="bonusQ_label" for="leaveExIslandNo">No</label>
+                    <input name="quitExIsland" id="quitExIslandNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="quitExIslandNo">No</label>
                     <br>
                 </form>
 			<!--
@@ -925,7 +977,7 @@
                 </div>
                 <br>
                 <div id="progress_bar">
-                    <progress value="0" max="6" color="black"></progress>
+                    <progress value="0" max="7" color="black"></progress>
                     <h3 id="loading_results" class="isHidden">LOADING...</h3>
                 </div>
             </div>

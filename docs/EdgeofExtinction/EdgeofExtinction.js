@@ -211,11 +211,12 @@ function getPastResponses() {
                         'immunity': 0,
                         'eliminated': 0,
                         'safe': 0,
+						'returns': 0,
                         'titleQuote': 0,
                         'nudity': 0,
                         'idolFound': 0,
                         'idolPlayed': 0,
-						'leaveExIsland': 0
+						'quitExIsland': 0
                     }
                 ];
                 //scores = calculateScores(scores, results, responses, "individual");
@@ -251,6 +252,21 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"+
 									"<tr><td><strong>How many times will Jeff say 'Edge of Extinction'</strong></td><td>" + responses[i].JeffSays + "</td><td>n/a</td></tr>"
 								);
+							} else if (curVote === 7) {
+								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
+								$("#json_"+String(i)).html(
+									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
+									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
+									"<tr><td><strong>Returns to Game</strong></td><td>" + responses[i].returns + "</td><td>"+ scores[0].returns +"</td></tr>" +
+									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
+									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].quitExIsland + "</td><td>"+ scores[0].quitExIsland +"</td></tr>"
+								);
 							} else {
 								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -263,7 +279,7 @@ function getPastResponses() {
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
-									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].leaveExIsland + "</td><td>"+ scores[0].leaveExIsland +"</td></tr>"
+									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].quitExIsland + "</td><td>"+ scores[0].quitExIsland +"</td></tr>"
 								);
 							};
                         };
@@ -568,6 +584,8 @@ function determineWeek(responses) {
         cur_vote = 6;
     } else if (submit_time <= new Date(2019,2,27,20)) {
         cur_vote = 7;
+    } else if (submit_time <= new Date(2019,3,3,20)) {
+        cur_vote = 8;
     };
     return cur_vote;
 };
@@ -643,11 +661,17 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
-							// Will someone return to the game from Extinction Island this week?
-                            if (results[i].leaveExIsland == responses[j].leaveExIsland && responses[j].leaveExIsland) {
-                                if (calcType === "individual") { scores[n].leaveExIsland += 2; }
+							// Will someone quit the game from Extinction Island this week?
+                            if (results[i].quitExIsland == responses[j].quitExIsland && responses[j].quitExIsland) {
+                                if (calcType === "individual") { scores[n].quitExIsland += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
+                            };
+							// Will someone return to the game from Extinction Island this week?
+                            if (results[i].returns == responses[j].returns && responses[j].returns) {
+                                if (calcType === "individual") { scores[n].returns += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
@@ -723,9 +747,9 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
-							// Will someone return to the game from Extinction Island this week?
-                            if (results[i].leaveExIsland == responses[j].leaveExIsland && responses[j].leaveExIsland) {
-                                if (calcType === "individual") { scores[n].leaveExIsland += 2; }
+							// Will someone quit the game from Extinction Island this week?
+                            if (results[i].quitExIsland == responses[j].quitExIsland && responses[j].quitExIsland) {
+                                if (calcType === "individual") { scores[n].quitExIsland += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
@@ -961,7 +985,7 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': null,
         'nudity': 'Yes',
-		'leaveExIsland': 'No',
+		'quitExIsland': 'No',
         'team_yellow': [
             'Ron',
 			'Aurora',
@@ -994,7 +1018,7 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'David',
         'nudity': 'No',
-		'leaveExIsland': 'No',
+		'quitExIsland': 'No',
         'team_yellow': [
             'Ron',
 			'Aurora',
