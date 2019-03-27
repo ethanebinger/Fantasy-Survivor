@@ -663,9 +663,9 @@ function calculateScores(scores, results, responses, calcType) {
                             };
 							// Will someone quit the game from Extinction Island this week?
                             if (results[i].quitExIsland == responses[j].quitExIsland && responses[j].quitExIsland) {
-                                if (calcType === "individual") { scores[n].quitExIsland += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
+                                if (calcType === "individual") { scores[n].quitExIsland += 4; }
+                                else { scores[n][val_vote] += 4; };
+                                scores[n].total += 4;
                             };
 							// Will someone return to the game from Extinction Island this week?
                             if (results[i].returns == responses[j].returns && responses[j].returns) {
