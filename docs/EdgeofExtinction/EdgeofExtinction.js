@@ -1041,7 +1041,7 @@ var results = [
     },
 	{	'vote': 7,
         'date': '3/27/19',
-        'merge': 'No',
+        'merge': 'Yes',
         'reward': null,
         'immunity': 'Julie',
         'eliminated': 'Joe',
