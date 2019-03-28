@@ -1038,5 +1038,18 @@ var results = [
 			'Kelley',
 			'Lauren'
 		]
+    },
+	{	'vote': 7,
+        'date': '3/27/19',
+        'merge': 'No',
+        'reward': null,
+        'immunity': 'Julie',
+        'eliminated': 'Joe',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Ron',
+        'nudity': 'No',
+		'returns': 'Rick',
+		'quitExIsland': 'Yes'
     }
 ];

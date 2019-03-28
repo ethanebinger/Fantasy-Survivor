@@ -248,6 +248,9 @@ g text {
 .team_green {
     background-color: rgb(39,147,75);
 }
+.team_red {
+    background-color: rgb(231,28,50);
+}
 .team_name {
     text-align: right;
 }
