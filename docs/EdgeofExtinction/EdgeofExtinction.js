@@ -216,7 +216,8 @@ function getPastResponses() {
                         'nudity': 0,
                         'idolFound': 0,
                         'idolPlayed': 0,
-						'quitExIsland': 0
+						'quitExIsland': 0,
+						'feint_vote8': 0
                     }
                 ];
                 //scores = calculateScores(scores, results, responses, "individual");
@@ -241,7 +242,8 @@ function getPastResponses() {
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"								);
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+								);
 							} else if (cur_vote === 1) {
 								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -266,6 +268,21 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
 									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].quitExIsland + "</td><td>"+ scores[0].quitExIsland +"</td></tr>"
+								);
+							} else if (curVote === 8) {
+								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
+								$("#json_"+String(i)).html(
+									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
+									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
+									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
+									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].quitExIsland + "</td><td>"+ scores[0].quitExIsland +"</td></tr>" + 
+									"<tr><td><strong>Who will pass out during the challenge?</strong></td><td>" + responses[i].feint_vote8 + "</td><td>"+ scores[0].feint_vote8 +"</td></tr>"
 								);
 							} else {
 								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
@@ -672,6 +689,12 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].returns += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
+                            };
+							// Who passes out during the challenge during the 4/3/19 episode?
+                            if (results[i].feint_vote8 == responses[j].feint_vote8 && responses[j].feint_vote8) {
+                                if (calcType === "individual") { scores[n].feint_vote8 += 2; }
+                                else { scores[n][val_vote] += 2; };
+                                scores[n].total += 2;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
