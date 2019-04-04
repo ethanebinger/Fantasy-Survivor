@@ -1075,8 +1075,8 @@ var results = [
 		'returns': 'Rick',
 		'quitExIsland': 'Yes'
     },
-	{	'vote': 7,
-        'date': '3/27/19',
+	{	'vote': 8,
+        'date': '4/3/19',
         'merge': 'Yes',
         'reward': ['Eric', 'Wardog', 'Victoria', 'Julia', 'Aurora', 'Rick'],
         'immunity': 'Aurora',
