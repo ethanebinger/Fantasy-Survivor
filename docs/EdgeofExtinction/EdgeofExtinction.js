@@ -1074,5 +1074,18 @@ var results = [
         'nudity': 'No',
 		'returns': 'Rick',
 		'quitExIsland': 'Yes'
+    },
+	{	'vote': 7,
+        'date': '3/27/19',
+        'merge': 'Yes',
+        'reward': ['Eric', 'Wardog', 'Victoria', 'Julia', 'Aurora', 'Rick'],
+        'immunity': 'Aurora',
+        'eliminated': 'Eric',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Ron',
+        'nudity': 'No',
+		'feint_vote8': 'Lauren',
+		'quitExIsland': 'No'
     }
 ];
