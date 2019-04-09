@@ -603,6 +603,10 @@ function determineWeek(responses) {
         cur_vote = 7;
     } else if (submit_time <= new Date(2019,3,3,20)) {
         cur_vote = 8;
+    } else if (submit_time <= new Date(2019,3,10,20)) {
+        cur_vote = 9;
+	} else if (submit_time <= new Date(2019,3,17,20)) {
+        cur_vote = 10;
     };
     return cur_vote;
 };
