@@ -1091,5 +1091,17 @@ var results = [
         'nudity': 'No',
 		'feint_vote8': 'Lauren',
 		'quitExIsland': 'No'
+    },
+	{	'vote': 9,
+        'date': '4/10/19',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Gavin',
+        'eliminated': 'Julia',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Kelley',
+        'nudity': 'No',
+		'quitExIsland': 'No'
     }
 ];
