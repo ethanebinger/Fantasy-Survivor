@@ -284,7 +284,7 @@ function getPastResponses() {
 									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].quitExIsland + "</td><td>"+ scores[0].quitExIsland +"</td></tr>" + 
 									"<tr><td><strong>Who will pass out during the challenge?</strong></td><td>" + responses[i].feint_vote8 + "</td><td>"+ scores[0].feint_vote8 +"</td></tr>"
 								);
-							} } else if (curVote === 11) {
+							} else if (curVote === 11) {
 								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
