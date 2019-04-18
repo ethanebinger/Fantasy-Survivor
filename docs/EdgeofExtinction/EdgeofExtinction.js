@@ -284,6 +284,15 @@ function getPastResponses() {
 									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].quitExIsland + "</td><td>"+ scores[0].quitExIsland +"</td></tr>" + 
 									"<tr><td><strong>Who will pass out during the challenge?</strong></td><td>" + responses[i].feint_vote8 + "</td><td>"+ scores[0].feint_vote8 +"</td></tr>"
 								);
+							} } else if (curVote === 11) {
+								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
+								$("#json_"+String(i)).html(
+									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
+									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+								);
 							} else {
 								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -607,6 +616,10 @@ function determineWeek(responses) {
         cur_vote = 9;
 	} else if (submit_time <= new Date(2019,3,17,20)) {
         cur_vote = 10;
+    } else if (submit_time <= new Date(2019,3,18,20)) {
+        cur_vote = 11;
+    } else if (submit_time <= new Date(2019,3,24,20)) {
+        cur_vote = 12;
     };
     return cur_vote;
 };
@@ -1103,5 +1116,29 @@ var results = [
         'titleQuote': 'Kelley',
         'nudity': 'No',
 		'quitExIsland': 'No'
+    },
+	{	'vote': 10,
+        'date': '4/17/19',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Aurora',
+        'eliminated': 'David',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Ron',
+        'nudity': 'No',
+		'quitExIsland': 'No'
+    },
+	{	'vote': 11,
+        'date': '4/17/19',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Rick',
+        'eliminated': 'Kelley',
+        'idolFound': null,
+        'idolPlayed': 'No',
+        'titleQuote': null,
+        'nudity': null,
+		'quitExIsland': null
     }
 ];
