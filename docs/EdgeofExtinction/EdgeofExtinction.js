@@ -332,7 +332,8 @@ function getPastResponses() {
     function getFinalEight(curName) {
         $.ajax({
             type: "GET",
-            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/EdgeofExtinction/FinalEightOrder.json",
+            url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/EdgeofExtinction/EdgeofExtinction_Responses.json",
+			//url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/EdgeofExtinction/FinalEightOrder.json",
             dataType: "json",
             success: function(result) {
                 // Clear existing html
@@ -456,6 +457,7 @@ function init_chart() {
             'Vote 12': 0,
             'Vote 13': 0,
             'Vote 14': 0,
+			'Vote 15': 0,
             'Final Eight': 0,
             'Final Three': 0
         });
@@ -830,9 +832,12 @@ function final_eight_calc(scores, result) {
     for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
             if (result[i].name === scores[n].name) {
-                var score8 = which_castaway(result[i]);
-                scores[n]['Final Eight'] += score8;
-                scores[n].total += score8;
+				var cur_vote = determineWeek(result[i]);
+                if (cur_vote === 13) {	// only submited responses to this question during week 13
+					var score8 = which_castaway(result[i]);
+					scores[n]['Final Eight'] += score8;
+					scores[n].total += score8;
+				};
             };
         };
     };
@@ -880,18 +885,21 @@ function final_three_calc(scores, result) {
     var top_three = ["", "", ""];									//top three!
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
-            if ((result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three))){
-                scores[n]['Final Three'] += 20;
-                scores[n].total += 20;
-            };
-			if ((result[i].name === scores[n].name) && (inArray(result[i].pick_2, top_three))){
-                scores[n]['Final Three'] += 20;
-                scores[n].total += 20;
-            };
-			if ((result[i].name === scores[n].name) && (inArray(result[i].pick_3, top_three))){
-                scores[n]['Final Three'] += 20;
-                scores[n].total += 20;
-            };
+            var cur_vote = determineWeek(result[i]);
+			if (cur_vote === 1) {	// only submited responses to this question during week 1
+				if ((result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three))){
+					scores[n]['Final Three'] += 20;
+					scores[n].total += 20;
+				};
+				if ((result[i].name === scores[n].name) && (inArray(result[i].pick_2, top_three))){
+					scores[n]['Final Three'] += 20;
+					scores[n].total += 20;
+				};
+				if ((result[i].name === scores[n].name) && (inArray(result[i].pick_3, top_three))){
+					scores[n]['Final Three'] += 20;
+					scores[n].total += 20;
+				};
+			};
         };
     };
     return (scores);
