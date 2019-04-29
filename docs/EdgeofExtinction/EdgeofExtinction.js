@@ -345,20 +345,23 @@ function getPastResponses() {
                 var curName = $("#past_responses_name option:selected").val();
                 for (var j=0; j<finalEight.length; j++) {
                     if (finalEight[j].name === curName) {
-                        $("#past_responses").append("<h3 id='finalEight_title'></h3>");
-                        $("#finalEight_title").html("Order of Final Eight Survivors");
-                        $("#past_responses").append("<span id='finalEight_table'></span>");
-                        $("#finalEight_table").html(
-                            "<tr><th>Rank</th><th>Name</th></tr>" +
-                            "<tr><td>8th</td><td>"+ finalEight[j].place_8 +"</td></tr>" +
-                            "<tr><td>7th</td><td>"+ finalEight[j].place_7 +"</td></tr>" +
-                            "<tr><td>6th</td><td>"+ finalEight[j].place_6 +"</td></tr>" +
-                            "<tr><td>5th</td><td>"+ finalEight[j].place_5 +"</td></tr>" +
-                            "<tr><td>4th</td><td>"+ finalEight[j].place_4 +"</td></tr>" +
-                            "<tr><td>3rd</td><td>"+ finalEight[j].place_3 +"</td></tr>" +
-                            "<tr><td>2nd</td><td>"+ finalEight[j].place_2 +"</td></tr>" +
-                            "<tr><td>1st</td><td>"+ finalEight[j].place_1 +"</td></tr>"
-                        );
+						var cur_vote = determineWeek(finalEight[j]);
+                        if (cur_vote === 13) {	// only submited responses to this question during week 13
+							$("#past_responses").append("<h3 id='finalEight_title'></h3>");
+							$("#finalEight_title").html("Order of Final Eight Survivors");
+							$("#past_responses").append("<span id='finalEight_table'></span>");
+							$("#finalEight_table").html(
+								"<tr><th>Rank</th><th>Name</th></tr>" +
+								"<tr><td>8th</td><td>"+ finalEight[j].place_8 +"</td></tr>" +
+								"<tr><td>7th</td><td>"+ finalEight[j].place_7 +"</td></tr>" +
+								"<tr><td>6th</td><td>"+ finalEight[j].place_6 +"</td></tr>" +
+								"<tr><td>5th</td><td>"+ finalEight[j].place_5 +"</td></tr>" +
+								"<tr><td>4th</td><td>"+ finalEight[j].place_4 +"</td></tr>" +
+								"<tr><td>3rd</td><td>"+ finalEight[j].place_3 +"</td></tr>" +
+								"<tr><td>2nd</td><td>"+ finalEight[j].place_2 +"</td></tr>" +
+								"<tr><td>1st</td><td>"+ finalEight[j].place_1 +"</td></tr>"
+							);
+						};
                     };
                 };
                 ifEmptyHTML();
@@ -888,10 +891,6 @@ function final_three_calc(scores, result) {
 			if ((result[i].name === scores[n].name) && (inArray(result[i].pick_3, top_three))){
                 scores[n]['Final Three'] += 20;
                 scores[n].total += 20;
-            };
-			if ((result[i].name === scores[n].name) && (inArray(result[i].final_team, top_three))){
-                scores[n]['Final Three'] += 10;
-                scores[n].total += 10;
             };
         };
     };
