@@ -866,7 +866,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// eighth
+            } else if (castaways['place_'+String([i])] === "Ron") {	// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
 				if (i===1) { bonus += 5 };
             };
