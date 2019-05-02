@@ -1176,5 +1176,17 @@ var results = [
         'titleQuote': 'Joe',
         'nudity': 'No',
 		'quitExIsland': 'No'
+    },
+	{	'vote': 13,
+        'date': '5/1/19',
+        'merge': 'Yes',
+        'reward': 'Ron',
+        'immunity': 'Gavin',
+        'eliminated': 'Ron',
+        'idolFound': 'Yes',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Rick',
+        'nudity': 'No',
+		'quitExIsland': 'No'
     }
 ];
