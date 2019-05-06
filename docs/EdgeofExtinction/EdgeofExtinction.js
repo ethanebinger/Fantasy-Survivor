@@ -725,9 +725,9 @@ function calculateScores(scores, results, responses, calcType) {
                             };
 							// Will someone return to the game from Extinction Island this week?
                             if (results[i].returns == responses[j].returns && responses[j].returns) {
-                                if (calcType === "individual") { scores[n].returns += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
+                                if (calcType === "individual") { scores[n].returns += 10; }
+                                else { scores[n][val_vote] += 10; };
+                                scores[n].total += 10;
                             };
 							// Who passes out during the challenge during the 4/3/19 episode?
                             if (results[i].feint_vote8 == responses[j].feint_vote8 && responses[j].feint_vote8) {
@@ -1186,7 +1186,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'Yes',
         'titleQuote': 'Rick',
-        'nudity': 'No',
+        'nudity': 'Yes',
 		'quitExIsland': 'No'
     }
 ];

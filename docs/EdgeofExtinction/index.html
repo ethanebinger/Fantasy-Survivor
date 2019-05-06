@@ -284,6 +284,7 @@
 				</div>
             </div>
 			-->
+			<!--
 			<div class="tab">
                 <h1>OUTWIT, OUTLAST, OUTPLAY</h1>
                 <h3>Rank the remaining survivors.<h3>
@@ -519,6 +520,7 @@
 					</div>
 				</div>
             </div>
+			-->
             <div class="tab">
                 <h1>OUTWIT</h1>
                 <h3>Who will win REWARD this week?<br>(+5 if group) (+10 if indivdual)</h3>
@@ -631,10 +633,10 @@
                         </div>
 						<div class="cc-selector">
                             <p class="name">Ron</p>
-                            <p class="team_name">Merge Tribe</p>
-                            <img src="images/flag_red.jpg" />
+                            <p class="team_name">Extinction</p>
+                            <img src="images/flag_black.jpg" />
                             <input id="Ron_Clark_reward" type="radio" name="reward" value="Ron" />
-                            <label class="survivor-cc Ron_Clark reward" for="Ron_Clark_reward"></label>
+                            <label class="survivor-cc-2 Ron_Clark reward greyLabel"></label>
                         </div>
 						<div class="cc-selector">
                             <p class="name">Victoria</p>
@@ -765,10 +767,10 @@
                         </div>
 						<div class="cc-selector">
                             <p class="name">Ron</p>
-                            <p class="team_name">Merge Tribe</p>
-                            <img src="images/flag_red.jpg" />
+                            <p class="team_name">Extinction</p>
+                            <img src="images/flag_black.jpg" />
                             <input id="Ron_Clark_immunity" type="radio" name="immunity" value="Ron" />
-                            <label class="survivor-cc Ron_Clark immunity" for="Ron_Clark_immunity"></label>
+                            <label class="survivor-cc-2 Ron_Clark immunity greyLabel"></label>
                         </div>
 						<div class="cc-selector">
                             <p class="name">Victoria</p>
@@ -1136,9 +1138,9 @@
 				<!-- week 11 -->
 				<!--<h3>This week's episode is titled:<br>"Fasten Your Seatbelts"<br>Who said this? (+4)</h3>-->
 				<!-- week 12 -->
-				<h3>This week's episode is titled:<br>"Awkward"<br>Who said this? (+4)</h3>
+				<!--<h3>This week's episode is titled:<br>"Awkward"<br>Who said this? (+4)</h3>-->
 				<!-- week 13 -->
-				<!--<h3>This week's episode is titled:<br>"Idol or Bust"<br>Who said this? (+4)</h3>-->
+				<h3>This week's episode is titled:<br>"Idol or Bust"<br>Who said this? (+4)</h3>
                 <form name="titleQuote">
                     <select>
                         <option value="">Select One</option>
@@ -1163,7 +1165,24 @@
 						<!--<option value="Wendy">Wendy</option>-->
                     </select>
                 </form>
-                <br><br>                
+                <br><br>
+				<h3>If someone returns from the Edge of Extinction this week, who will it be? (+10)<br>(question will not count if no one returns this week)</h3>
+                <form name="returns">
+                    <select>
+                        <option value="">Select One</option>
+						<option value="Aubry"> Aubry</option>
+						<option value="Chris">Chris</option>
+						<option value="Wardog">Wardog</option>
+						<option value="David">David</option>
+						<option value="Eric">Eric</option>
+						<option value="Joe">Joe</option>
+						<option value="Julia">Julia</option>
+						<option value="Kelley">Kelley</option>
+						<option value="Reem">Reem</option>
+						<option value="Ron">Ron</option>
+                    </select>
+                </form>
+				<br><br>
                 <h3>Will there be nudity this week? (+4)</h3>
                 <form name="nudity">
                     <input id="nudityYes" name="nudity" type="radio" value="Yes" />
