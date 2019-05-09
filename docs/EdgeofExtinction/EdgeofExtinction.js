@@ -642,6 +642,8 @@ function determineWeek(responses) {
         cur_vote = 13;
     } else if (submit_time <= new Date(2019,4,8,20)) {
         cur_vote = 14;
+    } else if (submit_time <= new Date(2019,4,15,20)) {
+        cur_vote = 15;
     };
     return cur_vote;
 };
@@ -1187,6 +1189,18 @@ var results = [
         'idolPlayed': 'Yes',
         'titleQuote': 'Rick',
         'nudity': 'Yes',
+		'quitExIsland': 'No'
+    },
+	{	'vote': 14,
+        'date': '5/8/19',
+        'merge': 'Yes',
+        'reward': 'Gavin',
+        'immunity': 'Rick',
+        'eliminated': 'Aurora',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Rick',
+        'nudity': 'No',
 		'quitExIsland': 'No'
     }
 ];
