@@ -231,7 +231,11 @@ g text {
 .Wendy_Diaz { 
 	background-image: url("https://wwwimage-secure.cbsstatic.com/thumbnails/photos/w170-h215/cast/a01daf66d72af081_svr_cast_wdiaz_800x1000.jpg")
 }
-
+.EoE_Returnee {
+	background-image: url("https://dumielauxepices.net/sites/default/files/anonymous-clipart-mystery-girl-839300-9035192.jpg");
+	/*width: 800px;
+	height: 1000px;*/
+}
 .contestants{
     width: 75%;
     height: 100%;
