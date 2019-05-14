@@ -217,7 +217,11 @@ function getPastResponses() {
                         'idolFound': 0,
                         'idolPlayed': 0,
 						'quitExIsland': 0,
-						'feint_vote8': 0
+						'feint_vote8': 0,
+						'immunity1': 0,
+						'immunity2': 0,
+						'fireChallenge': 0,
+						'celebGuest': 0
                     }
                 ];
                 //scores = calculateScores(scores, results, responses, "individual");
@@ -297,14 +301,18 @@ function getPastResponses() {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Returns to Game</strong></td><td>" + responses[i].returns + "</td><td>"+ scores[0].returns +"</td></tr>" +
 									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Wins 2nd Immunity Challenge</strong></td><td>" + responses[i].immunity1 + "</td><td>"+ scores[0].immunity1 +"</td></tr>" +
+									"<tr><td><strong>Wins 3rd Immunity Challenge</strong></td><td>" + responses[i].immunity2 + "</td><td>"+ scores[0].immunity2 +"</td></tr>" +
 									"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + responses[i].fireChallenge + "</td><td>"+ scores[0].fireChallenge +"</td></tr>" +
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
-									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].quitExIsland + "</td><td>"+ scores[0].quitExIsland +"</td></tr>"
+									"<tr><td><strong>Will someone quit from Extinction Island?</strong></td><td>" + responses[i].quitExIsland + "</td><td>"+ scores[0].quitExIsland +"</td></tr>" + 
+									"<tr><td><strong>Celebrity Guest at Reunion?</strong></td><td>" + responses[i].celebGuest + "</td><td>"+ scores[0].celebGuest +"</td></tr>"
 								);
 							} else {
 								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
@@ -737,6 +745,30 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
+							// Finale Immunity - 5 left
+                            if (results[i].immunity1 == responses[j].immunity1 && responses[j].immunity1) {
+                                if (calcType === "individual") { scores[n].immunity1 += 10; }
+                                else { scores[n][val_vote] += 10; };
+                                scores[n].total += 10;
+                            };
+							// Finale Immunity - 4 left
+                            if (results[i].immunity2 == responses[j].immunity2 && responses[j].immunity2) {
+                                if (calcType === "individual") { scores[n].immunity2 += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
+                            };
+							// Finale Fire Making Challenge
+                            if (results[i].fireChallenge == responses[j].fireChallenge && responses[j].fireChallenge) {
+                                if (calcType === "individual") { scores[n].fireChallenge += 10; }
+                                else { scores[n][val_vote] += 10; };
+                                scores[n].total += 10;
+                            };
+							// Live Reunion Celebrity Guest
+                            if (results[i].celebGuest == responses[j].celebGuest && responses[j].celebGuest) {
+                                if (calcType === "individual") { scores[n].celebGuest += 4; }
+                                else { scores[n][val_vote] += 4; };
+                                scores[n].total += 4;
+                            };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
                         } 
@@ -865,7 +897,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// seventh
+            } else if (castaways['place_'+String([i])] === "Aurora") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25);
 				if (i===1) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Ron") {	// eighth
