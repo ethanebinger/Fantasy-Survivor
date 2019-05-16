@@ -879,7 +879,7 @@ function final_eight_calc(scores, result) {
         var sum = 0,
 			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === "EoE_Returnee") {			// sole survivor
+            if (castaways['place_'+String([i])] === "EoE Returnee") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Gavin") {	// runner up
@@ -916,7 +916,7 @@ function final_eight_calc(scores, result) {
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 
 function final_three_calc(scores, result) {
-    var top_three = ["EoE_Returnee", "Gavin", "Julie"];									//top three!
+    var top_three = ["Chris", "Gavin", "Julie"];									//top three!
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
             var cur_vote = determineWeek(result[i]);
@@ -1242,8 +1242,8 @@ var results = [
 		'returns': 'Chris',
         'immunity': 'Julie',
 		'immunity1': 'Rick',
-        'immunity2': 'Chris',
-		'fireChallenge': 'Chris',
+        'immunity2': 'EoE Returnee',
+		'fireChallenge': 'EoE Returnee',
         'idolFound': 'Yes',
         'idolPlayed': 'Yes',
         'titleQuote': 'Rick',
