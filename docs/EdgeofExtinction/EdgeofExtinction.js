@@ -8,7 +8,7 @@ function init() {
     
 	// Move past hero page and go to results on click
 	$('#resultsBtn').click(function(e) {
-		window.location = "https://ethanebinger.com/Fantasy-Survivor/EdgeofExtinction/results";
+		window.location = "https://ethanebinger.com/Fantasy-Survivor/EdgeofExtinction/results.html";
     });
 	
     // Input button coloring
