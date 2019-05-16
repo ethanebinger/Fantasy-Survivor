@@ -433,17 +433,17 @@ function init_chart() {
     // Define temp data
     var scores = [];
     var players = [
-        'Walter', 
+        //'Walter', 
         'Vivian',
         'Mitch', 
-        'Lucas', 
+        //'Lucas', 
         'Josh', 
-        'Ezra', 
+        //'Ezra', 
         'Ethan', 
         'Emily', 
         'David',
         'Colin', 
-        'Ben', 
+        //'Ben', 
         'Anastassia', 
         'Aaron'
     ];
@@ -884,25 +884,25 @@ function final_eight_calc(scores, result) {
 				if (i===1) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Gavin") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
-				if (i===1) { bonus += 5 };
+				if (i===2) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Julie") {	// third
                 sum += Math.pow(Math.abs(i-3),2.25);
-				if (i===1) { bonus += 5 };
+				if (i===3) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Rick") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
-				if (i===1) { bonus += 5 };
+				if (i===4) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Lauren") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
-				if (i===1) { bonus += 5 };
+				if (i===5) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Victoria") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
-				if (i===1) { bonus += 5 };
+				if (i===6) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Aurora") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25);
-				if (i===1) { bonus += 5 };
+				if (i===7) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Ron") {	// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
-				if (i===1) { bonus += 5 };
+				if (i===8) { bonus += 5 };
             };
         };
         var score = 100 - (0.75 * sum) + bonus;
