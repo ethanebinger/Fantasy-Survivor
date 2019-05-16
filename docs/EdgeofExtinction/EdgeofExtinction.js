@@ -905,9 +905,9 @@ function final_eight_calc(scores, result) {
 				if (i===8) { bonus += 5 };
             };
         };
-        var score = 100 - (0.75 * sum) + bonus;
+        var score = 100 - (0.75 * sum);
 		if (score < 0) { score = 0 };
-        return (score);
+        return (score + bonus);
     };
     return (scores);
 };
