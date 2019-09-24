@@ -165,7 +165,7 @@ function PushPullGithub(form_results) {
                     'new input from '+push_user,
                     [{
                         content: responses_str, 
-                        path: 'docs/EIslandoftheIdols/IslandoftheIdols_Responses.json'
+                        path: 'docs/IslandoftheIdols/IslandoftheIdols_Responses.json'
                     }]
                 ))
                 .then(function() {
