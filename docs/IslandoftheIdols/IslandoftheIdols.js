@@ -567,8 +567,8 @@ function calculateScores(scores, results, responses, calcType) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-            var team_yellow = results[i].team_yellow;
-            var team_blue = results[i].team_blue;
+            var team_orange = results[i].team_orange;
+            var team_purple = results[i].team_purple;
 			var team_green = results[i].team_green;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
@@ -661,11 +661,11 @@ function calculateScores(scores, results, responses, calcType) {
                         } 
 						else {
                             // Reward
-                            if ((results[i].reward === 'team_yellow' || results[i].reward2 === 'team_yellow') && inArray(responses[j].reward, team_yellow) && responses[j].reward) {
+                            if ((results[i].reward === 'team_orange' || results[i].reward2 === 'team_orange') && inArray(responses[j].reward, team_orange) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; }
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_blue' || results[i].reward2 === 'team_blue') && inArray(responses[j].reward, team_blue) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_purple' || results[i].reward2 === 'team_purple') && inArray(responses[j].reward, team_purple) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -675,11 +675,11 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 5;
                             };
                             // Immunity
-                            if ((results[i].immunity === 'team_yellow' || results[i].immunity2 === 'team_yellow') && inArray(responses[j].immunity, team_yellow) && responses[j].immunity) {
+                            if ((results[i].immunity === 'team_orange' || results[i].immunity2 === 'team_orange') && inArray(responses[j].immunity, team_orange) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_blue' || results[i].immunity2 === 'team_blue')  && inArray(responses[j].immunity, team_blue) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_purple' || results[i].immunity2 === 'team_purple')  && inArray(responses[j].immunity, team_purple) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -696,15 +696,9 @@ function calculateScores(scores, results, responses, calcType) {
                             };
                             // Safe
 							if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-								// Aubry voted out ep5 but available for vote ep6 --> skip
-                                if (cur_vote === 6 && responses[j].safe === 'Aubry') {
-									console.log("RIP Aubry - Vote 6 - " + cur_player);
-								} else {
-								// all other scenarios give points
-									if (calcType === "individual") { scores[n].safe += 5; }
-									else { scores[n][val_vote] += 5; };
-									scores[n].total += 5;
-								};
+								if (calcType === "individual") { scores[n].safe += 5; }
+								else { scores[n][val_vote] += 5; };
+								scores[n].total += 5;
                             };
                             // Title Quote
                             if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
