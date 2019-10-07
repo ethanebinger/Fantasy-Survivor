@@ -217,6 +217,7 @@ function getPastResponses() {
                         'idolFound': 0,
                         'idolPlayed': 0,
 						'idolIsland': 0,
+						'idolWon': 0,
 						'immunity1': 0,
 						'immunity2': 0,
 						'fireChallenge': 0
@@ -262,7 +263,8 @@ function getPastResponses() {
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
-									"<tr><td><strong>Who will go to the Island of the Idols this week?</strong></td><td>" + responses[i].idolIsland + "</td><td>"+ scores[0].idolIsland +"</td></tr>"
+									"<tr><td><strong>Who will go to the Island of the Idols this week?</strong></td><td>" + responses[i].idolIsland + "</td><td>"+ scores[0].idolIsland +"</td></tr>" + 
+									"<tr><td><strong>Will an idol/advantage be won on the Island of the Idols?</strong></td><td>" + responses[i].idolWon + "</td><td>"+ scores[0].idolWon +"</td></tr>"
 								);
 							};
                         };
@@ -632,9 +634,15 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
-							// Island of the Idols
+							// Island of the Idols - COntestant
                             if (results[i].idolIsland == responses[j].idolIsland && responses[j].idolIsland) {
                                 if (calcType === "individual") { scores[n].idolIsland += 4; }
+                                else { scores[n][val_vote] += 4; };
+                                scores[n].total += 4;
+                            };
+							// Island of the Idols - Challenge Winner
+                            if (results[i].idolWon == responses[j].idolWon && responses[j].idolWon) {
+                                if (calcType === "individual") { scores[n].idolWon += 2; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
@@ -724,9 +732,15 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
-							// Island of the Idols
+							// Island of the Idols - Contestant
                             if (results[i].idolIsland == responses[j].idolIsland && responses[j].idolIsland) {
                                 if (calcType === "individual") { scores[n].idolIsland += 2; }
+                                else { scores[n][val_vote] += 2; };
+                                scores[n].total += 2;
+                            };
+							// Island of the Idols - Challenge Winner
+                            if (results[i].idolWon == responses[j].idolWon && responses[j].idolWon) {
+                                if (calcType === "individual") { scores[n].idolWon += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
@@ -833,6 +847,7 @@ var results = [
         'titleQuote': 'Sandra',
         'nudity': 'No',
 		'idolIsland': 'Elizabeth',
+		'idolWon': 'No',
         'team_orange': [
             'Aaron',
 			'Chelsea',
@@ -842,6 +857,42 @@ var results = [
 			'Karishma',
 			'Missy',
 			'Ronnie',
+			'Tom',
+			'Vince'
+        ],
+        'team_purple': [
+            'Dan',
+			'Jack',
+			'Jamal',
+			'Janet',
+			'Jason',
+			'Kellee',
+			'Lauren',
+			'Molly',
+			'Noura',
+			'Tommy'
+        ]
+    },
+	{	'vote': 2,
+        'date': '10/02/19',
+        'merge': 'No',
+        'reward': null, 
+        'immunity': 'team_orange', 
+        'eliminated': 'Molly',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Kellee',
+        'nudity': 'No',
+		'idolIsland': 'Kellee',
+		'idolWon': 'Yes',
+        'team_orange': [
+            'Aaron',
+			'Chelsea',
+			'Dean',
+			'Elaine',
+			'Elizabeth',
+			'Karishma',
+			'Missy',
 			'Tom',
 			'Vince'
         ],

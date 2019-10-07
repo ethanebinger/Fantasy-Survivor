@@ -545,13 +545,13 @@
 							<input id="Missy_Byrd_reward" type="radio" name="reward" value="Missy" />
 							<label class="survivor-cc Missy_Byrd reward" for="Missy_Byrd_reward"></label>
 						</div>
-						<div class="cc-selector">
+						<!--<div class="cc-selector">
 							<p class="name">Molly</p>
 							<p class="team_name">Vokai Tribe</p>
 							<img src="images/flag_purple.jpg" />
 							<input id="Molly_Byman_reward" type="radio" name="reward" value="Molly" />
 							<label class="survivor-cc Molly_Byman reward" for="Molly_Byman_reward"></label>
-						</div>
+						</div>-->
 						<div class="cc-selector">
 							<p class="name">Noura</p>
 							<p class="team_name">Vokai Tribe</p>
@@ -845,13 +845,13 @@
 							<input id="Missy_Byrd_immunity" type="radio" name="immunity" value="Missy" />
 							<label class="survivor-cc Missy_Byrd immunity" for="Missy_Byrd_immunity"></label>
 						</div>
-						<div class="cc-selector">
+						<!--<div class="cc-selector">
 							<p class="name">Molly</p>
 							<p class="team_name">Vokai Tribe</p>
 							<img src="images/flag_purple.jpg" />
 							<input id="Molly_Byman_immunity" type="radio" name="immunity" value="Molly" />
 							<label class="survivor-cc Molly_Byman immunity" for="Molly_Byman_immunity"></label>
-						</div>
+						</div>-->
 						<div class="cc-selector">
 							<p class="name">Noura</p>
 							<p class="team_name">Vokai Tribe</p>
@@ -994,13 +994,13 @@
 							<input id="Missy_Byrd_eliminated" type="radio" name="eliminated" value="Missy" />
 							<label class="survivor-cc Missy_Byrd eliminated" for="Missy_Byrd_eliminated"></label>
 						</div>
-						<div class="cc-selector">
+						<!--<div class="cc-selector">
 							<p class="name">Molly</p>
 							<p class="team_name">Vokai Tribe</p>
 							<img src="images/flag_purple.jpg" />
 							<input id="Molly_Byman_eliminated" type="radio" name="eliminated" value="Molly" />
 							<label class="survivor-cc Molly_Byman eliminated" for="Molly_Byman_eliminated"></label>
-						</div>
+						</div>-->
 						<div class="cc-selector">
 							<p class="name">Noura</p>
 							<p class="team_name">Vokai Tribe</p>
@@ -1143,13 +1143,13 @@
 							<input id="Missy_Byrd_safe" type="radio" name="safe" value="Missy" />
 							<label class="survivor-cc Missy_Byrd safe" for="Missy_Byrd_safe"></label>
 						</div>
-						<div class="cc-selector">
+						<!--<div class="cc-selector">
 							<p class="name">Molly</p>
 							<p class="team_name">Vokai Tribe</p>
 							<img src="images/flag_purple.jpg" />
 							<input id="Molly_Byman_safe" type="radio" name="safe" value="Molly" />
 							<label class="survivor-cc Molly_Byman safe" for="Molly_Byman_safe"></label>
-						</div>
+						</div>-->
 						<div class="cc-selector">
 							<p class="name">Noura</p>
 							<p class="team_name">Vokai Tribe</p>
@@ -1246,7 +1246,9 @@
 				<!-- week 1 -->
 				<!--<h3>This week's episode is titled:<br>"I Vote You Out and That's It"<br>Who said this? (+2)</h3>-->
 				<!-- week 2 -->
-				<h3>This week's episode is titled:<br>"YOLO, Let's Play"<br>Who said this? (+2)</h3>
+				<!--<h3>This week's episode is titled:<br>"YOLO, Let's Play"<br>Who said this? (+2)</h3>-->
+				<!-- week 3 -->
+				<h3>This week's episode is titled:<br>"______"<br>Who said this? (+2)</h3>
                 <form name="titleQuote">
                     <select>
                         <option value="">Select One</option>
@@ -1267,7 +1269,7 @@
 						<option value="Kellee">Kellee</option>
 						<option value="Lauren">Lauren</option>
 						<option value="Missy">Missy</option>
-						<option value="Molly">Molly</option>
+						<!--<option value="Molly">Molly</option>-->
 						<option value="Noura">Noura</option>
 						<!--<option value="Ronnie">Ronnie</option>-->
 						<option value="Tom">Tom</option>
@@ -1286,7 +1288,7 @@
                     <br>
                 </form>
                 <br><br>
-                <h3>Will an idol or secret advantage<br>be found this week? (+2)</h3>
+                <h3>Will an idol or secret advantage<br>be found (not on Idol Island) this week? (+2)</h3>
                 <form name="idolFound">
                     <input name="idolFound" id="idolFoundYes" type="radio" value="Yes"/>
                         <label class="bonusQ_label" for="idolFoundYes">Yes</label>
@@ -1325,13 +1327,23 @@
 						<option value="Kellee">Kellee</option>
 						<option value="Lauren">Lauren</option>
 						<option value="Missy">Missy</option>
-						<option value="Molly">Molly</option>
+						<!--<option value="Molly">Molly</option>-->
 						<option value="Noura">Noura</option>
 						<!--<option value="Ronnie">Ronnie</option>-->
 						<option value="Tom">Tom</option>
 						<option value="Tommy">Tommy</option>
 						<option value="Vince">Vince</option>
                     </select>
+                </form>
+				<br><br>
+				<h3>On the Island of the Idols, will an <br>idol/advantage be won? (+2)</h3>
+                <form name="idolWon">
+                    <input name="idolWon" id="idolWonYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="idolWonYes">Yes</label>
+                    <br>
+                    <input name="idolWon" id="idolWonNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="idolWonNo">No</label>
+                    <br>
                 </form>
 				<br><br>
             </div>
