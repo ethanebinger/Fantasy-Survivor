@@ -371,6 +371,7 @@ function init_chart() {
     var players = [
         'Walter', 
         'Vivian',
+		'Orlando',
         'Mitch', 
         'Lucas',
 		'Kevin',
