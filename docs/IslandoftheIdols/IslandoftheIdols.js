@@ -909,7 +909,7 @@ var results = [
 			'Tommy'
         ]
     },
-	{	'vote': ,3
+	{	'vote': 3,
         'date': '10/09/19',
         'merge': 'No',
         'reward': null, 
