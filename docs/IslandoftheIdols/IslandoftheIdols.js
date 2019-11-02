@@ -560,6 +560,12 @@ function determineWeek(responses) {
         cur_vote = 5;
     } else if (submit_time <= new Date(2019,9,30,20)) {
         cur_vote = 6;
+    } else if (submit_time <= new Date(2019,10,6,20)) {
+        cur_vote = 7;
+    } else if (submit_time <= new Date(2019,10,13,20)) {
+        cur_vote = 8;
+    } else if (submit_time <= new Date(2019,10,20,20)) {
+        cur_vote = 9;
     };
     return cur_vote;
 };
@@ -1000,6 +1006,38 @@ var results = [
 			'Kellee',
 			'Noura',
 			'Tom'
+        ],
+        'team_purple': [
+            'Aaron',
+			'Dan',
+			'Elaine',
+			'Elizabeth',		
+			'Jason',
+			'Lauren',
+			'Missy',
+			'Tommy'
+        ]
+    },
+	{	'vote': 6,
+        'date': '10/30/19',
+        'merge': 'No',
+        'reward': 'team_purple', 
+        'immunity': 'team_orange', 
+        'eliminated': 'Jason',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': null,
+        'nudity': 'No',
+		'idolIsland': 'Elaine',
+		'idolWon': 'Yes',
+        'team_orange': [
+			'Dean',
+			'Jack',
+			'Jamal',
+			'Janet',
+			'Karishma',
+			'Kellee',
+			'Noura'
         ],
         'team_purple': [
             'Aaron',
