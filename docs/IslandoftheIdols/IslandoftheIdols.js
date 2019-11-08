@@ -1026,7 +1026,7 @@ var results = [
         'eliminated': 'Jason',
         'idolFound': 'No',
         'idolPlayed': 'No',
-        'titleQuote': null,
+        'titleQuote': 'Elaine',
         'nudity': 'No',
 		'idolIsland': 'Elaine',
 		'idolWon': 'Yes',
