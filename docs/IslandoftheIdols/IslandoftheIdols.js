@@ -564,8 +564,12 @@ function determineWeek(responses) {
         cur_vote = 7;
     } else if (submit_time <= new Date(2019,10,13,20)) {
         cur_vote = 8;
-    } else if (submit_time <= new Date(2019,10,20,20)) {
+	} else if (submit_time <= new Date(2019,10,14,20)) {
         cur_vote = 9;
+    } else if (submit_time <= new Date(2019,10,20,20)) {
+        cur_vote = 10;
+    } else if (submit_time <= new Date(2019,10,21,20)) {
+        cur_vote = 11;
     };
     return cur_vote;
 };
@@ -600,8 +604,12 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 5;
                             };
                             // Immunity
-                            if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 15; }
+							if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
+                                if (calcType === "individual") { scores[n].immunity += 10; }
+                                else { scores[n][val_vote] += 15; };
+                                scores[n].total += 15;
+                            } else if (results[i].immunity !== null && typeof results[i].immunity==="object" && inArray(responses[j].immunity,results[i].immunity) && responses[j].immunity) {
+                                if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 15; };
                                 scores[n].total += 15;
                             };
@@ -1080,5 +1088,31 @@ var results = [
 			'Missy',
 			'Tommy'
         ]
+    },
+	{	'vote': 8,
+        'date': '11/13/19',
+        'merge': 'Yes',
+        'reward': null, 
+        'immunity': 'Aaron', 
+        'eliminated': 'Kellee',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Jamal',
+        'nudity': 'No',
+		'idolIsland': 'No One',
+		'idolWon': null
+    },
+	{	'vote': 9,
+        'date': '11/13/19',
+        'merge': 'Yes',
+        'reward': null, 
+        'immunity': ['Aaron', 'Missy'], 
+        'eliminated': 'Jamal',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': null,
+        'nudity': 'No',
+		'idolIsland': 'Jamal',
+		'idolWon': 'No'
     }
 ];
