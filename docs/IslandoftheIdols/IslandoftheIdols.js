@@ -605,11 +605,11 @@ function calculateScores(scores, results, responses, calcType) {
                             };
                             // Immunity
 							if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 10; }
+                                if (calcType === "individual") { scores[n].immunity += 15; }
                                 else { scores[n][val_vote] += 15; };
                                 scores[n].total += 15;
                             } else if (results[i].immunity !== null && typeof results[i].immunity==="object" && inArray(responses[j].immunity,results[i].immunity) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 5; }
+                                if (calcType === "individual") { scores[n].immunity += 15; }
                                 else { scores[n][val_vote] += 15; };
                                 scores[n].total += 15;
                             };
