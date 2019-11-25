@@ -1114,5 +1114,18 @@ var results = [
         'nudity': 'No',
 		'idolIsland': 'Jamal',
 		'idolWon': 'No'
+    },
+	{	'vote': 10,
+        'date': '11/20/19',
+        'merge': 'Yes',
+        'reward': ['Elaine', 'Missy', 'Tommy', 'Karishma', 'Elizabeth'], 
+        'immunity': ['Elaine', 'Noura'], 
+        'eliminated': ['Aaron', 'Missy'],
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': null,
+        'nudity': 'No',
+		'idolIsland': null,
+		'idolWon': null
     }
 ];
