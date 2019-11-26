@@ -564,12 +564,12 @@ function determineWeek(responses) {
         cur_vote = 7;
     } else if (submit_time <= new Date(2019,10,13,20)) {
         cur_vote = 8;
-	} else if (submit_time <= new Date(2019,10,15,20)) {
+	} else if (submit_time <= new Date(2019,10,14,20)) {
         cur_vote = 9;
     } else if (submit_time <= new Date(2019,10,20,20)) {
         cur_vote = 10;
-    } else if (submit_time <= new Date(2019,10,21,20)) {
-        cur_vote = 11;
+    } else if (submit_time <= new Date(2019,10,27,20)) {
+        cur_vote = 12;
     };
     return cur_vote;
 };
@@ -1127,7 +1127,7 @@ var results = [
         'eliminated': ['Aaron', 'Missy'],
         'idolFound': 'Yes',
         'idolPlayed': 'No',
-        'titleQuote': null,
+        'titleQuote': 'Aaron',
         'nudity': 'No',
 		'idolIsland': null,
 		'idolWon': null
