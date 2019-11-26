@@ -604,15 +604,15 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 5;
                             };
                             // Immunity
-							if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
+							if (results[i].immunity !== null && typeof results[i].immunity==="object" && inArray(responses[j].immunity,results[i].immunity) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 15; }
                                 else { scores[n][val_vote] += 15; };
                                 scores[n].total += 15;
-                            } else if (results[i].immunity !== null && typeof results[i].immunity==="object" && inArray(responses[j].immunity,results[i].immunity) && responses[j].immunity) {
+                            } else if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 15; }
                                 else { scores[n][val_vote] += 15; };
                                 scores[n].total += 15;
-                            };
+                            }; 
                             // Eliminated
                             if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
                                 if (calcType === "individual") { scores[n].eliminated += 20; }
@@ -1103,7 +1103,7 @@ var results = [
 		'idolWon': null
     },
 	{	'vote': 9,
-        'date': '11/13/19',
+        'date': '11/14/19',
         'merge': 'Yes',
         'reward': null, 
         'immunity': ['Aaron', 'Missy'], 
