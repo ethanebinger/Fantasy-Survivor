@@ -615,7 +615,7 @@ function calculateScores(scores, results, responses, calcType) {
                             }; 
                             // Eliminated
                             if (results[i].eliminated !== null && typeof results[i].eliminated==="object" && inArray(responses[j].eliminated,results[i].eliminated) && responses[j].eliminated) {
-                                if (calcType === "individual") { scores[n].immunity += 20; }
+                                if (calcType === "individual") { scores[n].eliminated += 20; }
                                 else { scores[n][val_vote] += 20; };
                                 scores[n].total += 20;
                             } else if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
