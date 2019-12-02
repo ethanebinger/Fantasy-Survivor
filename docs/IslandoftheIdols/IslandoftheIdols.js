@@ -235,7 +235,7 @@ function getPastResponses() {
                             };
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
-							if (cur_vote === 15) {
+							if (cur_vote === 13) {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -292,7 +292,7 @@ function getPastResponses() {
                 for (var j=0; j<finalEight.length; j++) {
                     if (finalEight[j].name === curName) {
 						var cur_vote = determineWeek(finalEight[j]);
-                        if (cur_vote === 13) {	// only submited responses to this question during week 13
+                        if (cur_vote === 11) {	// only submited responses to this question for episode 11
 							$("#past_responses").append("<h3 id='finalEight_title'></h3>");
 							$("#finalEight_title").html("Order of Final Eight Survivors");
 							$("#past_responses").append("<span id='finalEight_table'></span>");
@@ -314,7 +314,6 @@ function getPastResponses() {
             }
         });
     };
-    //*/
     
     function getFinalThree(curName) {
         $.ajax({
@@ -333,7 +332,7 @@ function getPastResponses() {
                 for (var j=0; j<finalThree.length; j++) {
                     if (finalThree[j].name === curName) {
 						var cur_vote = determineWeek(finalThree[j]);
-                        if (cur_vote === 1) {	// only submited responses to this question during week 1
+                        if (cur_vote === 1) {	// only submited responses to this question during episode 1
 							$("#past_responses").append("<h3 id='finalThree_title'></h3>");
 							$("#finalThree_title").html("Preseason Picks for Final Three Survivors");
 							$("#past_responses").append("<span id='finalThree_table'></span>");
@@ -350,7 +349,7 @@ function getPastResponses() {
             }
         });
     };
-    //*/
+    
     function ifEmptyHTML() {
         var html_length = $("#past_responses").children().length;
         if (html_length === 0) {
@@ -399,12 +398,12 @@ function init_chart() {
             'Episode 8a': 0, 
 			'Episode 8b': 0, 
             'Episode 9': 0,
-            'Episode 10': 0, 
-            'Episode 11': 0, 
-            'Episode 12': 0,
-            'Episode 13': 0,
-            'Final Eight': 0,
-            'Final Three': 0
+            'Episode 10': 0//, 
+            //'Episode 11': 0, 
+            //'Episode 12': 0,
+            //'Episode 13': 0,
+            //'Final Eight': 0,
+            //'Final Three': 0
         });
     };
 
@@ -462,13 +461,9 @@ function init_chart() {
             responses = JSON.parse(atob(result.content));
         })
     ).then(function() {
-        var BREAK01 = 'break';
         scores = calculateScores(scores, results, responses, null);
-        //var BREAK02 = 'break';
         //scores = final_eight_calc(scores, responses);
-        //var BREAK03 = 'break';
 		//scores = final_three_calc(scores, responses);
-		//var BREAK04 = 'break';
 		
         // Define X-Scale Domain
         x.domain([0,d3.max(scores, function(d) { return d.total; })]);
