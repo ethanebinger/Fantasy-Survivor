@@ -389,21 +389,20 @@ function init_chart() {
         scores.push({
             'name': players[p], 
             'total': 0, 
-            'Vote 1': 0, 
-            'Vote 2': 0, 
-            'Vote 3': 0,
-            'Vote 4': 0, 
-            'Vote 5': 0, 
-            'Vote 6': 0,
-            'Vote 7': 0, 
-            'Vote 8': 0, 
-            'Vote 9': 0,
-            'Vote 10': 0, 
-            'Vote 11': 0, 
-            'Vote 12': 0,
-            'Vote 13': 0,
-            'Vote 14': 0,
-			'Vote 15': 0,
+            'Episode 1': 0, 
+            'Episode 2': 0, 
+            'Episode 3': 0,
+            'Episode 4': 0, 
+            'Episode 5': 0, 
+            'Episode 6': 0,
+            'Episode 7': 0, 
+            'Episode 8a': 0, 
+			'Episode 8b': 0, 
+            'Episode 9': 0,
+            'Episode 10': 0, 
+            'Episode 11': 0, 
+            'Episode 12': 0,
+            'Episode 13': 0,
             'Final Eight': 0,
             'Final Three': 0
         });
@@ -563,13 +562,13 @@ function determineWeek(responses) {
     } else if (submit_time <= new Date(2019,10,6,20)) {
         cur_vote = 7;
     } else if (submit_time <= new Date(2019,10,13,20)) {
-        cur_vote = 8;
+        cur_vote = "8a";
 	} else if (submit_time <= new Date(2019,10,14,20)) {
-        cur_vote = 9;
+        cur_vote = "8b";
     } else if (submit_time <= new Date(2019,10,20,20)) {
-        cur_vote = 10;
+        cur_vote = 9;
     } else if (submit_time <= new Date(2019,10,27,20)) {
-        cur_vote = 12;
+        cur_vote = 10;
     };
     return cur_vote;
 };
@@ -586,11 +585,11 @@ function calculateScores(scores, results, responses, calcType) {
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
-                    // Determine Vote Number/Week (and ignore late sumissions)
+                    // Determine Episode Number/Week (and ignore late sumissions)
                     var cur_vote = determineWeek(responses[j]);
-                    // Validate Vote Number/Week
+                    // Validate Episode Number/Week
                     if (results[i].vote === cur_vote) {
-                        var val_vote = 'Vote ' + String(results[i].vote);
+                        var val_vote = 'Episode ' + String(results[i].vote);
                         // Determine by team if before merge but no swap:
                         if (results[i].merge === 'Yes' /*|| results[i].merge === 'Swap'*/) {
                             // Reward
@@ -1093,7 +1092,7 @@ var results = [
 			'Tommy'
         ]
     },
-	{	'vote': 8,
+	{	'vote': "8a",
         'date': '11/13/19',
         'merge': 'Yes',
         'reward': null, 
@@ -1106,8 +1105,8 @@ var results = [
 		'idolIsland': 'No One',
 		'idolWon': null
     },
-	{	'vote': 9,
-        'date': '11/14/19',
+	{	'vote': "8b",
+        'date': '11/13/19',
         'merge': 'Yes',
         'reward': null, 
         'immunity': ['Aaron', 'Missy'], 
@@ -1119,7 +1118,7 @@ var results = [
 		'idolIsland': 'Jamal',
 		'idolWon': 'No'
     },
-	{	'vote': 10,
+	{	'vote': 9,
         'date': '11/20/19',
         'merge': 'Yes',
         'reward': ['Elaine', 'Missy', 'Tommy', 'Karishma', 'Elizabeth'], 
@@ -1132,7 +1131,7 @@ var results = [
 		'idolIsland': 'No One',
 		'idolWon': null
     },
-	{	'vote': 11,
+	{	'vote': 10,
         'date': '11/27/19',
         'merge': 'Yes',
         'reward': null, //['Elaine', 'Tommy', 'Lauren', 'Dan', 'Janet', 'Dean'], 
