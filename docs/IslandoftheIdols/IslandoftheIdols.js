@@ -661,7 +661,7 @@ function calculateScores(scores, results, responses, calcType) {
                             };
 							// Island of the Idols - Challenge Winner
                             if (results[i].idolWon == responses[j].idolWon && responses[j].idolWon) {
-                                if (calcType === "individual") { scores[n].idolWon += 2; }
+                                if (calcType === "individual") { scores[n].idolWon += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
@@ -1129,7 +1129,20 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Aaron',
         'nudity': 'No',
-		'idolIsland': null,
+		'idolIsland': 'No One',
 		'idolWon': null
+    },
+	{	'vote': 11,
+        'date': '11/27/19',
+        'merge': 'Yes',
+        'reward': null, //['Elaine', 'Tommy', 'Lauren', 'Dan', 'Janet', 'Dean'], 
+        'immunity': 'Noura', 
+        'eliminated': 'Elizabeth',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': null,
+        'nudity': 'No',
+		'idolIsland': 'Lauren',
+		'idolWon': 'Yes'
     }
 ];
