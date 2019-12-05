@@ -251,6 +251,19 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
 									"<tr><td><strong>Celebrity Guest at Reunion?</strong></td><td>" + responses[i].celebGuest + "</td><td>"+ scores[0].celebGuest +"</td></tr>"
 								);
+							} else if (cur_vote === 11 || cur_vote === 12) {
+								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
+								$("#json_"+String(i)).html(
+									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
+									"<tr><td><strong>Who will go to the Island of the Idols this week?</strong></td><td>" + responses[i].idolIsland + "</td><td>"+ scores[0].idolIsland +"</td></tr>" + 
+									"<tr><td><strong>Will an idol/advantage be won on the Island of the Idols?</strong></td><td>" + responses[i].idolWon + "</td><td>"+ scores[0].idolWon +"</td></tr>"
+								);
 							} else {
 								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -398,8 +411,8 @@ function init_chart() {
             'Episode 8a': 0, 
 			'Episode 8b': 0, 
             'Episode 9': 0,
-            'Episode 10': 0//, 
-            //'Episode 11': 0, 
+            'Episode 10': 0, 
+            'Episode 11': 0, 
             //'Episode 12': 0,
             //'Episode 13': 0,
             //'Final Eight': 0,
@@ -808,7 +821,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25);
 				if (i===7) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// eighth
+            } else if (castaways['place_'+String([i])] === "Karishma") {	// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
 				if (i===8) { bonus += 5 };
             };
@@ -1138,5 +1151,18 @@ var results = [
         'nudity': 'No',
 		'idolIsland': 'Lauren',
 		'idolWon': 'Yes'
+    },
+	{	'vote': 11,
+        'date': '12/04/19',
+        'merge': 'Yes',
+        'reward': ['Tommy', 'Lauren', 'Dan', 'Janet'], 
+        'immunity': 'Lauren', 
+        'eliminated': 'Karishma',
+        'idolFound': 'Yes',
+        'idolPlayed': 'Yes',
+        'titleQuote': null,
+        'nudity': 'No',
+		'idolIsland': null,
+		'idolWon': null
     }
 ];
