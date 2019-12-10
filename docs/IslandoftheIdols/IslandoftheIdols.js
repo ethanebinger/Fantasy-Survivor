@@ -1151,7 +1151,7 @@ var results = [
         'eliminated': 'Elizabeth',
         'idolFound': 'No',
         'idolPlayed': 'Yes',
-        'titleQuote': null,
+        'titleQuote': 'Lauren',
         'nudity': 'No',
 		'idolIsland': 'Lauren',
 		'idolWon': 'Yes'
@@ -1164,7 +1164,7 @@ var results = [
         'eliminated': 'Karishma',
         'idolFound': 'Yes',
         'idolPlayed': 'Yes',
-        'titleQuote': null,
+        'titleQuote': 'Dean',
         'nudity': 'No',
 		'idolIsland': null,
 		'idolWon': null
