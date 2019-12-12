@@ -412,8 +412,8 @@ function init_chart() {
 			'Episode 8b': 0, 
             'Episode 9': 0,
             'Episode 10': 0, 
-            'Episode 11': 0//, 
-            //'Episode 12': 0,
+            'Episode 11': 0, 
+            'Episode 12': 0,
             //'Episode 13': 0,
             //'Final Eight': 0,
             //'Final Three': 0
@@ -819,10 +819,10 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// sixth
+            } else if (castaways['place_'+String([i])] === "Dan") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// seventh
+            } else if (castaways['place_'+String([i])] === "Elaine") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25);
 				if (i===7) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Karishma") {	// eighth
