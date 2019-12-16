@@ -220,7 +220,8 @@ function getPastResponses() {
 						'idolWon': 0,
 						'immunity1': 0,
 						'immunity2': 0,
-						'fireChallenge': 0
+						'fireChallenge': 0,
+						'celebGuest': 0
                     }
                 ];
                 //scores = calculateScores(scores, results, responses, "individual");
@@ -239,11 +240,9 @@ function getPastResponses() {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-									"<tr><td><strong>Returns to Game</strong></td><td>" + responses[i].returns + "</td><td>"+ scores[0].returns +"</td></tr>" +
 									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
 									"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
 									"<tr><td><strong>Wins 2nd Immunity Challenge</strong></td><td>" + responses[i].immunity1 + "</td><td>"+ scores[0].immunity1 +"</td></tr>" +
-									"<tr><td><strong>Wins 3rd Immunity Challenge</strong></td><td>" + responses[i].immunity2 + "</td><td>"+ scores[0].immunity2 +"</td></tr>" +
 									"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + responses[i].fireChallenge + "</td><td>"+ scores[0].fireChallenge +"</td></tr>" +
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
@@ -414,7 +413,7 @@ function init_chart() {
             'Episode 10': 0, 
             'Episode 11': 0, 
             'Episode 12': 0,
-            //'Episode 13': 0,
+            'Episode 13': 0//,
             //'Final Eight': 0,
             //'Final Three': 0
         });
@@ -581,6 +580,8 @@ function determineWeek(responses) {
         cur_vote = 11;
     } else if (submit_time <= new Date(2019,11,11,20)) {
         cur_vote = 12;
+    } else if (submit_time <= new Date(2019,11,18,20)) {
+        cur_vote = 13;
     };
     return cur_vote;
 };
@@ -676,23 +677,23 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
-							// Finale Immunity - 5 left
+							// Finale Immunity - 4 left
                             if (results[i].immunity1 == responses[j].immunity1 && responses[j].immunity1) {
                                 if (calcType === "individual") { scores[n].immunity1 += 10; }
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
-                            };
-							// Finale Immunity - 4 left
-                            if (results[i].immunity2 == responses[j].immunity2 && responses[j].immunity2) {
-                                if (calcType === "individual") { scores[n].immunity2 += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
                             };
 							// Finale Fire Making Challenge
                             if (results[i].fireChallenge == responses[j].fireChallenge && responses[j].fireChallenge) {
                                 if (calcType === "individual") { scores[n].fireChallenge += 10; }
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
+                            };
+							// Finale Celeb Guest
+                            if (results[i].celebGuest == responses[j].celebGuest && responses[j].celebGuest) {
+                                if (calcType === "individual") { scores[n].celebGuest += 4; }
+                                else { scores[n][val_vote] += 4; };
+                                scores[n].total += 4;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
@@ -1177,7 +1178,7 @@ var results = [
         'eliminated': 'Elaine',
         'idolFound': 'Yes',
         'idolPlayed': 'No',
-        'titleQuote': null,
+        'titleQuote': 'Elaine',
         'nudity': 'No',
 		'idolIsland': 'Dean',
 		'idolWon': 'Yes'
