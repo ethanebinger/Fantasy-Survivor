@@ -474,7 +474,7 @@ function init_chart() {
         })
     ).then(function() {
         scores = calculateScores(scores, results, responses, null);
-        scores = final_eight_calc(scores, responses);
+		scores = final_eight_calc(scores, responses);
 		scores = final_three_calc(scores, responses);
 		
         // Define X-Scale Domain
@@ -1188,7 +1188,7 @@ var results = [
         'merge': 'Yes',
         'reward': null, 
         'immunity': 'Dean', 
-		'immunity1', 'Tommy',
+		'immunity1': 'Tommy',
         //'eliminated': 'Janet',
         'idolFound': 'Yes',
         'idolPlayed': 'Yes',
