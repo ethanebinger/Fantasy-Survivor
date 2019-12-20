@@ -474,8 +474,8 @@ function init_chart() {
         })
     ).then(function() {
         scores = calculateScores(scores, results, responses, null);
-        //scores = final_eight_calc(scores, responses);
-		//scores = final_three_calc(scores, responses);
+        scores = final_eight_calc(scores, responses);
+		scores = final_three_calc(scores, responses);
 		
         // Define X-Scale Domain
         x.domain([0,d3.max(scores, function(d) { return d.total; })]);
@@ -805,19 +805,19 @@ function final_eight_calc(scores, result) {
         var sum = 0,
 			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === "") {			// sole survivor
+            if (castaways['place_'+String([i])] === "Tommy") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// runner up
+            } else if (castaways['place_'+String([i])] === "Dean") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
 				if (i===2) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// third
+            } else if (castaways['place_'+String([i])] === "Noura") {	// third
                 sum += Math.pow(Math.abs(i-3),2.25);
 				if (i===3) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fourth
+            } else if (castaways['place_'+String([i])] === "Lauren") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
 				if (i===4) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fifth
+            } else if (castaways['place_'+String([i])] === "Janet") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Dan") {	// sixth
@@ -842,7 +842,7 @@ function final_eight_calc(scores, result) {
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 
 function final_three_calc(scores, result) {
-    var top_three = ["", "", ""];									//top three!
+    var top_three = ["Tommy", "Dean", "Noura"];									//top three!
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
             var cur_vote = determineWeek(result[i]);
@@ -1182,5 +1182,21 @@ var results = [
         'nudity': 'No',
 		'idolIsland': 'Dean',
 		'idolWon': 'Yes'
+    },
+	{	'vote': 13,
+        'date': '12/18/19',
+        'merge': 'Yes',
+        'reward': null, 
+        'immunity': 'Dean', 
+		'immunity1', 'Tommy',
+        //'eliminated': 'Janet',
+        'idolFound': 'Yes',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Dean',
+        'nudity': 'No',
+		'idolIsland': null,
+		'idolWon': null,
+		'fireChallenge': 'Dean',
+		'celebGuest': 'No'
     }
 ];
