@@ -413,9 +413,9 @@ function init_chart() {
             'Episode 10': 0, 
             'Episode 11': 0, 
             'Episode 12': 0,
-            'Episode 13': 0//,
-            //'Final Eight': 0,
-            //'Final Three': 0
+            'Episode 13': 0,
+            'Final Eight': 0,
+			'Final Three': 0
         });
     };
 
