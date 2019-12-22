@@ -793,7 +793,7 @@ function final_eight_calc(scores, result) {
         for (var i=0; i<result.length; i++) {
             if (result[i].name === scores[n].name) {
 				var cur_vote = determineWeek(result[i]);
-                if (cur_vote === 13) {	// only submited responses to this question during week 13
+                if (cur_vote === 11) {	// only submited responses to this question during week 13
 					var score8 = which_castaway(result[i]);
 					scores[n]['Final Eight'] += score8;
 					scores[n].total += score8;
