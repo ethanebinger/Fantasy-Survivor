@@ -11,7 +11,15 @@ html, body {
     position: relative;
 }
 .title_img {
-    background-image: url("images/survivor-winners-at-war-header.jpg");
+    background-image: url("https://survivingtribal.com/files/image-exchange/2017/07/ie_38326.jpeg");
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.title_img_alt {
+    background-image: url("https://survivingtribal.com/files/image-exchange/2017/07/ie_38327.jpeg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;
@@ -22,7 +30,7 @@ html, body {
     position: absolute;
     /*width: 100%;*/
     margin: 0 auto;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -58,7 +66,8 @@ h1 {
 }
 h3 {
     font-size: 36px;
-    margin: 10px;
+    margin-bottom: 10px;
+	margin-top: 0px;
 }
 select,
 .bonusQ_label {
@@ -123,6 +132,15 @@ select,
 /****************/
 .results_title {
     text-align: center;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+	background-image: url("https://survivingtribal.com/files/image-exchange/2017/07/ie_38375.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.responses_title {
+    text-align: center;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 #PastResponses {
     padding: 5px;
@@ -144,7 +162,7 @@ select,
     fill: none;
     stroke: #fff;
     shape-rendering: crispEdges;
-    stroke-width: 2px;
+    stroke-width: 4px;
 }
 .axis text,
 g text {
