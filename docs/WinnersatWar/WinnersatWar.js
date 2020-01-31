@@ -378,6 +378,7 @@ function init_chart() {
         'Walter', 
         'Vivian',
 		'Orlando',
+		'Morgan',
         'Mitch', 
         'Lucas',
 		'Kevin',
