@@ -793,8 +793,8 @@ function final_three_calc(scores, result) {
 //*/
 
 var results = [
-    {	'vote': 1,
-        'date': '1/12/12',
+    /*{	'vote': 1,
+        'date': '2/12/20',
         'merge': 'No',
         'reward': null, 
         'immunity': null,
@@ -809,5 +809,5 @@ var results = [
         'team_blue': [
             
         ]
-    }
+    }*/
 ];
