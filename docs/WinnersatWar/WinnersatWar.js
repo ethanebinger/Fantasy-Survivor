@@ -828,7 +828,7 @@ var results = [
 			'Rob'
         ]
     },
-    {	'vote': 1,
+    {	'vote': 2,
         'date': '2/12/20',
         'merge': 'No',
         'reward': null, 
