@@ -793,21 +793,73 @@ function final_three_calc(scores, result) {
 //*/
 
 var results = [
-    /*{	'vote': 1,
+    {	'vote': 1,
+        'date': '2/12/20',
+        'merge': 'No',
+        'reward': 'team_red', 
+        'immunity': 'team_red',
+        'eliminated': 'Natalie',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': null,
+        'nudity': 'No',
+        'team_red': [
+			'Amber',
+			'Kim',
+			'Nick',
+			'Sandra',
+			'Sarah',
+			'Sophie',
+			'Tony',
+			'Tyson',
+			'Wendell',
+			'Yul'
+        ],
+        'team_blue': [
+            'Adam',
+			'Ben',
+			'Danni',
+			'Denise',
+			'Ethan',
+			'Jeremy',
+			'Michele',
+			'Natalie',
+			'Parvati',
+			'Rob'
+        ]
+    },
+    {	'vote': 1,
         'date': '2/12/20',
         'merge': 'No',
         'reward': null, 
-        'immunity': null,
-        'eliminated': null,
-        'idolFound': null,
-        'idolPlayed': null,
+        'immunity': 'team_blue',
+        'eliminated': 'Amber',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
         'titleQuote': null,
-        'nudity': null,
+        'nudity': 'Yes',
         'team_red': [
-            
+			'Amber',
+			'Kim',
+			'Nick',
+			'Sandra',
+			'Sarah',
+			'Sophie',
+			'Tony',
+			'Tyson',
+			'Wendell',
+			'Yul'
         ],
         'team_blue': [
-            
+            'Adam',
+			'Ben',
+			'Danni',
+			'Denise',
+			'Ethan',
+			'Jeremy',
+			'Michele',
+			'Parvati',
+			'Rob'
         ]
-    }*/
+    }
 ];
