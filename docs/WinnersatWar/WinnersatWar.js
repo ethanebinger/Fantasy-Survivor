@@ -188,7 +188,7 @@ function getPastResponses() {
         } else if (curVote === "FinalThree") {
             getFinalThree(curName);
         } else {
-            getWeeklyResults(curName, +curVote);
+            getWeeklyResults(curName, curVote);
         };
     });
     function getWeeklyResults(curName, curVote) {
@@ -248,7 +248,7 @@ function getPastResponses() {
 									"<tr><td><strong>Celebrity Guest at Reunion?</strong></td><td>" + responses[i].celebGuest + "</td><td>"+ scores[0].celebGuest +"</td></tr>"
 								);
 							} else if (cur_vote === 11 || cur_vote === 12) {
-								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
+								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
 									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
@@ -256,12 +256,17 @@ function getPastResponses() {
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
-									"<tr><td><strong>Who will go to the Island of the Idols this week?</strong></td><td>" + responses[i].idolIsland + "</td><td>"+ scores[0].idolIsland +"</td></tr>" + 
-									"<tr><td><strong>Will an idol/advantage be won on the Island of the Idols?</strong></td><td>" + responses[i].idolWon + "</td><td>"+ scores[0].idolWon +"</td></tr>"
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+								);
+							} else if (cur_vote === "1b") {
+								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
+								$("#json_"+String(i)).html(
+									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
+									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>"
 								);
 							} else {
-								$("#week_"+String(i)).html("Vote #"+String(cur_vote));
+								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
 									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
@@ -339,7 +344,7 @@ function getPastResponses() {
                 for (var j=0; j<finalThree.length; j++) {
                     if (finalThree[j].name === curName) {
 						var cur_vote = determineWeek(finalThree[j]);
-                        if (cur_vote === 1) {	// only submited responses to this question during episode 1
+                        if (cur_vote === "1a") {	// only submited responses to this question during episode 1a
 							$("#past_responses").append("<h3 id='finalThree_title'></h3>");
 							$("#finalThree_title").html("Preseason Picks for Final Three Survivors");
 							$("#past_responses").append("<span id='finalThree_table'></span>");
@@ -396,9 +401,9 @@ function init_chart() {
         scores.push({
             'name': players[p], 
             'total': 0, 
-            'Episode 1': 0, 
-            'Episode 2': 0, 
-            'Episode 3': 0
+            'Episode 1a': 0, 
+            'Episode 1b': 0, 
+            'Episode 2': 0
             //'Final Eight': 0,
 			//'Final Three': 0
         });
@@ -540,7 +545,9 @@ function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
     if (submit_time <= new Date(2020,1,12,20)) {
-        cur_vote = 1;
+        cur_vote = "1a";
+    } else if (submit_time <= new Date(2020,1,13,20)) {
+        cur_vote = "1b";
     } else if (submit_time <= new Date(2020,1,19,20)) {
         cur_vote = 2;
     };
@@ -793,7 +800,7 @@ function final_three_calc(scores, result) {
 //*/
 
 var results = [
-    {	'vote': 1,
+    {	'vote': "1a",
         'date': '2/12/20',
         'merge': 'No',
         'reward': 'team_red', 
@@ -803,32 +810,10 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': null,
         'nudity': 'No',
-        'team_red': [
-			'Amber',
-			'Kim',
-			'Nick',
-			'Sandra',
-			'Sarah',
-			'Sophie',
-			'Tony',
-			'Tyson',
-			'Wendell',
-			'Yul'
-        ],
-        'team_blue': [
-            'Adam',
-			'Ben',
-			'Danni',
-			'Denise',
-			'Ethan',
-			'Jeremy',
-			'Michele',
-			'Natalie',
-			'Parvati',
-			'Rob'
-        ]
+        'team_red': ['Amber', 'Kim', 'Nick', 'Sandra', 'Sarah', 'Sophie', 'Tony', 'Tyson', 'Wendell', 'Yul'],
+        'team_blue': ['Adam', 'Ben', 'Danni', 'Denise', 'Ethan', 'Jeremy', 'Michele', 'Natalie', 'Parvati', 'Rob']
     },
-    {	'vote': 2,
+    {	'vote': "1b",
         'date': '2/12/20',
         'merge': 'No',
         'reward': null, 
@@ -838,28 +823,7 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': null,
         'nudity': 'Yes',
-        'team_red': [
-			'Amber',
-			'Kim',
-			'Nick',
-			'Sandra',
-			'Sarah',
-			'Sophie',
-			'Tony',
-			'Tyson',
-			'Wendell',
-			'Yul'
-        ],
-        'team_blue': [
-            'Adam',
-			'Ben',
-			'Danni',
-			'Denise',
-			'Ethan',
-			'Jeremy',
-			'Michele',
-			'Parvati',
-			'Rob'
-        ]
+        'team_red': ['Amber', 'Kim', 'Nick', 'Sandra', 'Sarah', 'Sophie', 'Tony', 'Tyson', 'Wendell', 'Yul'],
+        'team_blue': ['Adam', 'Ben', 'Danni', 'Denise', 'Ethan', 'Jeremy', 'Michele', 'Parvati', 'Rob']
     }
 ];
