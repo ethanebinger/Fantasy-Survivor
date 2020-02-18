@@ -808,7 +808,7 @@ var results = [
         'eliminated': 'Natalie',
         'idolFound': 'No',
         'idolPlayed': 'No',
-        'titleQuote': null,
+        'titleQuote': 'Ben',
         'nudity': 'No',
         'team_red': ['Amber', 'Kim', 'Nick', 'Sandra', 'Sarah', 'Sophie', 'Tony', 'Tyson', 'Wendell', 'Yul'],
         'team_blue': ['Adam', 'Ben', 'Danni', 'Denise', 'Ethan', 'Jeremy', 'Michele', 'Natalie', 'Parvati', 'Rob']
