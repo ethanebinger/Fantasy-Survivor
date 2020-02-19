@@ -809,7 +809,7 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Ben',
-        'nudity': 'No',
+        'nudity': 'Yes',	/* really should be no but gotta give points for 2 part ep */
         'team_red': ['Amber', 'Kim', 'Nick', 'Sandra', 'Sarah', 'Sophie', 'Tony', 'Tyson', 'Wendell', 'Yul'],
         'team_blue': ['Adam', 'Ben', 'Danni', 'Denise', 'Ethan', 'Jeremy', 'Michele', 'Natalie', 'Parvati', 'Rob']
     },
