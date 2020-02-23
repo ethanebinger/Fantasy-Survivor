@@ -403,7 +403,8 @@ function init_chart() {
             'total': 0, 
             'Episode 1a': 0, 
             'Episode 1b': 0, 
-            'Episode 2': 0
+            'Episode 2': 0,
+            'Episode 3': 0
             //'Final Eight': 0,
 			//'Final Three': 0
         });
@@ -550,6 +551,10 @@ function determineWeek(responses) {
         cur_vote = "1b";
     } else if (submit_time <= new Date(2020,1,19,20)) {
         cur_vote = 2;
+    } else if (submit_time <= new Date(2020,1,26,20)) {
+        cur_vote = 3;
+    } else if (submit_time <= new Date(2020,2,4,20)) {
+        cur_vote = 4;
     };
     return cur_vote;
 };
