@@ -380,7 +380,7 @@ function init_chart() {
     // Define temp data
     var scores = [];
     var players = [
-        'Walter', 
+        //'Walter', 
         'Vivian',
 		'Orlando',
 		'Morgan',
@@ -390,10 +390,10 @@ function init_chart() {
         'Josh', 
         'Ezra', 
         'Ethan', 
-        'Emily', 
-        'David',
-        'Colin', 
-        'Ben', 
+        //'Emily', 
+        //'David',
+        //'Colin', 
+        //'Ben', 
         'Anastassia', 
         'Aaron'
     ];
@@ -404,7 +404,8 @@ function init_chart() {
             'Episode 1a': 0, 
             'Episode 1b': 0, 
             'Episode 2': 0,
-            'Episode 3': 0
+            'Episode 3': 0,
+            'Episode 4': 0
             //'Final Eight': 0,
 			//'Final Three': 0
         });
@@ -856,5 +857,18 @@ var results = [
         'nudity': 'No',
         'team_red': ['Kim', 'Nick', 'Sandra', 'Sarah', 'Sophie', 'Tony', 'Tyson', 'Wendell', 'Yul'],
         'team_blue': ['Adam', 'Ben', 'Denise', 'Ethan', 'Jeremy', 'Michele', 'Parvati', 'Rob']
+    },
+    {	'vote': 4,
+        'date': '3/4/20',
+        'merge': 'No',
+        'reward': null, 
+        'immunity': 'team_blue',
+        'eliminated': 'Tyson',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Sandra',
+        'nudity': 'Yes',
+        'team_red': ['Kim', 'Nick', 'Sandra', 'Sarah', 'Sophie', 'Tony', 'Tyson', 'Wendell', 'Yul'],
+        'team_blue': ['Adam', 'Ben', 'Denise', 'Jeremy', 'Michele', 'Parvati', 'Rob']
     }
 ];
