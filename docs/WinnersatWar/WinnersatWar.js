@@ -392,7 +392,8 @@ function init_chart() {
         'Ethan', 
         //'Emily', 
         //'David',
-        //'Colin', 
+        //'Colin',
+        'Claire', 
         //'Ben', 
         'Anastassia', 
         'Aaron'
