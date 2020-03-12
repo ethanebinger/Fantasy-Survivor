@@ -407,8 +407,8 @@ function init_chart() {
             'Episode 2': 0,
             'Episode 3': 0,
             'Episode 4': 0,
-            'Episode 5': 0
-            //'Episode 6': 0,
+            'Episode 5': 0,
+            'Episode 6': 0
             //'Episode 7': 0,
             //'Final Eight': 0,
 			//'Final Three': 0
@@ -678,6 +678,10 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
+                            } else if ((results[i].reward === 'team_green' || results[i].reward2 === 'team_green') && inArray(responses[j].reward, team_blue) && responses[j].reward) {
+                                if (calcType === "individual") { scores[n].reward += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
                             };
                             // Immunity
                             if ((results[i].immunity === 'team_red' || results[i].immunity2 === 'team_red') && inArray(responses[j].immunity, team_red) && responses[j].immunity) {
@@ -685,6 +689,10 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
                             } else if ((results[i].immunity === 'team_blue' || results[i].immunity2 === 'team_blue')  && inArray(responses[j].immunity, team_blue) && responses[j].immunity) {
+                                if (calcType === "individual") { scores[n].immunity += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
+                            } else if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green')  && inArray(responses[j].immunity, team_blue) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -878,5 +886,20 @@ var results = [
         'nudity': 'Yes',
         'team_red': ['Kim', 'Nick', 'Sandra', 'Sarah', 'Sophie', 'Tony', 'Tyson', 'Wendell', 'Yul'],
         'team_blue': ['Adam', 'Ben', 'Denise', 'Jeremy', 'Michele', 'Parvati', 'Rob']
+    },
+    {	'vote': 5,
+        'date': '3/11/20',
+        'merge': 'No',
+        'reward': null, 
+        'immunity': 'team_blue', 
+        'immunity2': 'team_red',
+        'eliminated': 'Rob',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Sandra',
+        'nudity': 'No',
+        'team_red': ['Denise', 'Jeremy', 'Sandra', 'Tony', 'Kim'],
+        'team_blue': ['Nick', 'Michele', 'Parvati', 'Wendell', 'Yul'],
+        'team_green': ['Sarah', 'Sophie', 'Rob', 'Ben', 'Adam']
     }
 ];
