@@ -913,7 +913,7 @@ var results = [
         'merge': 'No',
         'reward': null, 
         'immunity': 'team_green', 
-        'eliminated': ['Parvati, 'Sandra'],
+        'eliminated': ['Parvati', 'Sandra'],
         'idolFound': 'No',
         'idolPlayed': 'Yes',
         'titleQuote': 'Jeremy',
