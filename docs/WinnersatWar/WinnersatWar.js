@@ -680,7 +680,7 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_green' || results[i].reward2 === 'team_green') && inArray(responses[j].reward, team_blue) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_green' || results[i].reward2 === 'team_green') && inArray(responses[j].reward, team_green) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -694,7 +694,7 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green')  && inArray(responses[j].immunity, team_blue) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green')  && inArray(responses[j].immunity, team_green) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -914,7 +914,7 @@ var results = [
         'reward': null, 
         'immunity': 'team_green', 
         'eliminated': ['Parvati', 'Sandra'],
-        'idolFound': 'No',
+        'idolFound': 'Yes',
         'idolPlayed': 'Yes',
         'titleQuote': 'Jeremy',
         'nudity': 'No',
