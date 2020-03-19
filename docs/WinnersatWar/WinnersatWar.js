@@ -564,6 +564,8 @@ function determineWeek(responses) {
         cur_vote = 5;
     } else if (submit_time <= new Date(2020,2,18,20)) {
         cur_vote = 6;
+    } else if (submit_time <= new Date(2020,2,25,20)) {
+        cur_vote = 7;
     };
     return cur_vote;
 };
@@ -698,7 +700,11 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 5;
                             };
                             // Eliminated
-                            if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
+                            if (results[i].eliminated !== null && typeof results[i].eliminated==="object" && inArray(responses[j].eliminated,results[i].eliminated) && responses[j].eliminated) {
+                                if (calcType === "individual") { scores[n].eliminated += 10; }
+                                else { scores[n][val_vote] += 10; };
+                                scores[n].total += 10;
+                            } else if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
                                 if (calcType === "individual") { scores[n].eliminated += 10; }
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
@@ -897,6 +903,20 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Sandra',
+        'nudity': 'No',
+        'team_red': ['Denise', 'Jeremy', 'Sandra', 'Tony', 'Kim'],
+        'team_blue': ['Nick', 'Michele', 'Parvati', 'Wendell', 'Yul'],
+        'team_green': ['Sarah', 'Sophie', 'Rob', 'Ben', 'Adam']
+    },
+    {	'vote': 6,
+        'date': '3/18/20',
+        'merge': 'No',
+        'reward': null, 
+        'immunity': 'team_green', 
+        'eliminated': ['Parvati, 'Sandra'],
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Jeremy',
         'nudity': 'No',
         'team_red': ['Denise', 'Jeremy', 'Sandra', 'Tony', 'Kim'],
         'team_blue': ['Nick', 'Michele', 'Parvati', 'Wendell', 'Yul'],
