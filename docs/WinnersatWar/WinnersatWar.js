@@ -920,6 +920,21 @@ var results = [
         'nudity': 'No',
         'team_red': ['Denise', 'Jeremy', 'Sandra', 'Tony', 'Kim'],
         'team_blue': ['Nick', 'Michele', 'Parvati', 'Wendell', 'Yul'],
-        'team_green': ['Sarah', 'Sophie', 'Rob', 'Ben', 'Adam']
+        'team_green': ['Sarah', 'Sophie', 'Ben', 'Adam']
+    },
+    {	'vote': 7,
+        'date': '3/25/20',
+        'merge': 'No',
+        'reward': null, 
+        'immunity': 'team_green',
+        'immunity2': 'team_red',
+        'eliminated': 'Yul', //and Sandra
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Rob',
+        'nudity': 'No',
+        'team_red': ['Denise', 'Jeremy', 'Tony', 'Kim'],
+        'team_blue': ['Nick', 'Michele', 'Wendell', 'Yul'],
+        'team_green': ['Sarah', 'Sophie', 'Ben', 'Adam']
     }
 ];
