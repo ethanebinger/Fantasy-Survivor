@@ -652,6 +652,12 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
+                            // Return from the Edge of Extinction
+                            if (results[i].edgeReturn == responses[j].edgeReturn && responses[j].edgeReturn) {
+                            	if (calcType === "individual") { scores[n].edgeReturn += 4; }
+                                else { scores[n][val_vote] += 4; };
+                                scores[n].total += 4;
+                            };
 							// Finale Immunity - 4 left
                             if (results[i].immunity1 == responses[j].immunity1 && responses[j].immunity1) {
                                 if (calcType === "individual") { scores[n].immunity1 += 10; }
