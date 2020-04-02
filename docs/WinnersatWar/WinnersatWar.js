@@ -604,14 +604,18 @@ function calculateScores(scores, results, responses, calcType) {
                             };
                             // Immunity
 							if (results[i].immunity !== null && typeof results[i].immunity==="object" && inArray(responses[j].immunity,results[i].immunity) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 15; }
-                                else { scores[n][val_vote] += 15; };
-                                scores[n].total += 15;
+                                if (calcType === "individual") { scores[n].immunity += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
                             } else if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 15; }
                                 else { scores[n][val_vote] += 15; };
                                 scores[n].total += 15;
-                            }; 
+                            } else if (results[i].immunity2 == responses[j].immunity && responses[j].immunity) {
+                                if (calcType === "individual") { scores[n].immunity += 15; }
+                                else { scores[n][val_vote] += 15; };
+                                scores[n].total += 15;
+                            };
                             // Eliminated
                             if (results[i].eliminated !== null && typeof results[i].eliminated==="object" && inArray(responses[j].eliminated,results[i].eliminated) && responses[j].eliminated) {
                                 if (calcType === "individual") { scores[n].eliminated += 20; }
@@ -945,5 +949,18 @@ var results = [
         'team_red': ['Denise', 'Jeremy', 'Tony', 'Kim'],
         'team_blue': ['Nick', 'Michele', 'Wendell', 'Yul'],
         'team_green': ['Sarah', 'Sophie', 'Ben', 'Adam']
+    },
+    {	'vote': 8,
+        'date': '4/1/20',
+        'merge': 'Yes',
+        'reward': null, 
+        'immunity': 'Denise',
+        'immunity2': 'Jeremy'
+        'eliminated': 'Wendell',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Ben',
+        'nudity': 'No',
+        'edgeReturn': 'Tyson'
     }
 ];
