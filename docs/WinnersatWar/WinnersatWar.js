@@ -955,7 +955,7 @@ var results = [
         'merge': 'Yes',
         'reward': null, 
         'immunity': 'Denise',
-        'immunity2': 'Jeremy'
+        'immunity2': 'Jeremy',
         'eliminated': 'Wendell',
         'idolFound': 'Yes',
         'idolPlayed': 'No',
