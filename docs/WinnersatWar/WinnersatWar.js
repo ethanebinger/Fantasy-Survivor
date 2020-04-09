@@ -980,5 +980,16 @@ var results = [
         'titleQuote': 'Ben',
         'nudity': 'No',
         'edgeReturn': 'Tyson'
+    },
+    {	'vote': 9,
+        'date': '4/8/20',
+        'merge': 'Yes',
+        'reward': ['Nick', 'Sophie', 'Kim', 'Michele', 'Ben'], 
+        'immunity': 'Kim',
+        'eliminated': 'Adam',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Jeff Probst',
+        'nudity': 'No'
     }
 ];
