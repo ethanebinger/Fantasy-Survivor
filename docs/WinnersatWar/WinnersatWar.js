@@ -426,7 +426,8 @@ function init_chart() {
             'Episode 6': 0,
             'Episode 7': 0,
             'Episode 8': 0,
-         	'Episode 9': 0
+         	'Episode 9': 0,
+         	'Episode 10': 0
             //'Final Eight': 0,
 			//'Final Three': 0
         });
@@ -587,6 +588,8 @@ function determineWeek(responses) {
         cur_vote = 8;
     } else if (submit_time <= new Date(2020,3,8,20)) {
         cur_vote = 9;
+    } else if (submit_time <= new Date(2020,3,15,20)) {
+        cur_vote = 10;
     };
     return cur_vote;
 };
