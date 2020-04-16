@@ -987,11 +987,22 @@ var results = [
     {	'vote': 9,
         'date': '4/8/20',
         'merge': 'Yes',
-        'reward': ['Nick', 'Sophie', 'Kim', 'Michele', 'Ben'], 
+        'reward': ['Sarah', 'Sophie', 'Kim', 'Michele', 'Ben'], //Nick took Sarah's place after winning
         'immunity': 'Kim',
         'eliminated': 'Adam',
         'idolFound': 'Yes',
         'idolPlayed': 'No',
+        'titleQuote': 'Jeff Probst',
+        'nudity': 'No'
+    },
+    {	'vote': 10,
+        'date': '4/15/20',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Tony',
+        'eliminated': 'Tyson',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
         'titleQuote': 'Jeff Probst',
         'nudity': 'No'
     }
