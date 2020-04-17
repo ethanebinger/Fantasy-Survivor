@@ -234,7 +234,7 @@ function getPastResponses() {
                             };
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
-							if (cur_vote === 13) {
+							if (cur_vote === 14) {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -248,7 +248,7 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
 									"<tr><td><strong>Celebrity Guest at Reunion?</strong></td><td>" + responses[i].celebGuest + "</td><td>"+ scores[0].celebGuest +"</td></tr>"
 								);
-							} else if (cur_vote === 11 || cur_vote === 12) {
+							} else if (cur_vote === 12 || cur_vote === "13a" || cur_vote === "13b") {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -408,7 +408,7 @@ function init_chart() {
         //'Emily', 
         //'David',
         //'Colin',
-        'Claire', 
+        //'Claire', 
         //'Ben', 
         'Anastassia', 
         'Aaron'
@@ -427,7 +427,12 @@ function init_chart() {
             'Episode 7': 0,
             'Episode 8': 0,
          	'Episode 9': 0,
-         	'Episode 10': 0
+         	'Episode 10': 0,
+         	'Episode 11': 0
+         	//'Episode 12': 0,
+         	//'Episode 13a': 0,
+         	//'Episode 13b': 0,
+         	//'Episode 14': 0,
             //'Final Eight': 0,
 			//'Final Three': 0
         });
@@ -590,6 +595,16 @@ function determineWeek(responses) {
         cur_vote = 9;
     } else if (submit_time <= new Date(2020,3,15,20)) {
         cur_vote = 10;
+    } else if (submit_time <= new Date(2020,3,22,20)) {
+        cur_vote = 11;
+    } else if (submit_time <= new Date(2020,3,29,20)) {
+        cur_vote = 12;
+    } else if (submit_time <= new Date(2020,4,6,20)) {
+        cur_vote = "13a";
+    } else if (submit_time <= new Date(2020,4,6,20)) {
+        cur_vote = "13b";
+    } else if (submit_time <= new Date(2020,4,13,20)) {
+        cur_vote = 14;
     };
     return cur_vote;
 };
