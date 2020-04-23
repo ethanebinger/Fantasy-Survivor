@@ -1020,5 +1020,16 @@ var results = [
         'idolPlayed': 'Yes',
         'titleQuote': 'Jeff Probst',
         'nudity': 'No'
+    },
+    {	'vote': 11,
+        'date': '4/22/20',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Tony',
+        'eliminated': 'Sophie',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Tony',
+        'nudity': 'No'
     }
 ];
