@@ -428,8 +428,8 @@ function init_chart() {
             'Episode 8': 0,
          	'Episode 9': 0,
          	'Episode 10': 0,
-         	'Episode 11': 0
-         	//'Episode 12': 0,
+         	'Episode 11': 0,
+         	'Episode 12': 0
          	//'Episode 13a': 0,
          	//'Episode 13b': 0,
          	//'Episode 14': 0,
@@ -805,7 +805,7 @@ function final_eight_calc(scores, result) {
         for (var i=0; i<result.length; i++) {
             if (result[i].name === scores[n].name) {
 				var cur_vote = determineWeek(result[i]);
-                if (cur_vote === 13) {	// only submited responses to this question during week 13
+                if (cur_vote === 12) {	// only submited responses to this question during week 12
 					var score8 = which_castaway(result[i]);
 					scores[n]['Final Eight'] += score8;
 					scores[n].total += score8;
