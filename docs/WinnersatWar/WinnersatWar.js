@@ -1031,5 +1031,17 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Tony',
         'nudity': 'No'
+    },
+    {	'vote': 12,
+        'date': '4/29/20',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Denise',
+        'immunity2': 'Tony',
+        'eliminated': 'Kim',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Jeremy',
+        'nudity': 'No'
     }
 ];
