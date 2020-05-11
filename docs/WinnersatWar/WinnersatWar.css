@@ -11,7 +11,7 @@ html, body {
     position: relative;
 }
 .title_img {
-    background-image: url("https://survivingtribal.com/files/image-exchange/2017/07/ie_47050.jpeg");
+    background-image: url("https://survivingtribal.com/files/image-exchange/2017/07/ie_47057.jpeg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;
@@ -254,6 +254,11 @@ g text {
 }
 .Ethan_Zohn {
 	background-image: url("https://wwwimage-secure.cbsstatic.com/base/files/cast/svr_cast_ethan_zohn_800x1000.jpg")
+}
+.EoE_Returnee {
+    background-image: url("https://dumielauxepices.net/sites/default/files/anonymous-clipart-mystery-girl-839300-9035192.jpg");
+    width: 800px;
+    height: 1000px;
 }
 
 .contestants{

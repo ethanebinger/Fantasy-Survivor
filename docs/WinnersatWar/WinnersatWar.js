@@ -8,7 +8,7 @@ function init() {
     
 	// Move past hero page and go to results on click
 	$('#resultsBtn').click(function(e) {
-		window.location = "https://ethanebinger.com/Fantasy-Survivor/WinnersatWar/results.html";
+		window.location = "results.html";
     });
 	
     // Input button coloring
@@ -177,6 +177,9 @@ function PushPullGithub(form_results) {
 };
 
 function getPastResponses() {
+    $('#resultsBtn').click(function(e) {
+		window.location = "results.html";
+    });
     $("#past_responses_button").click(function() {
         var curName = $("#past_responses_name option:selected").val();
         var curVote = $("#past_responses_vote option:selected").val();
@@ -219,6 +222,8 @@ function getPastResponses() {
 						'immunity1': 0,
 						'immunity2': 0,
 						'edgeReturn': 0,
+						'immunity_5': 0,
+						'immunity_4': 0,
 						'fireChallenge': 0
                     }
                 ];
@@ -238,16 +243,15 @@ function getPastResponses() {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+									"<tr><td><strong>Returns from the Edge</strong></td><td>" + responses[i].edgeReturn + "</td><td>"+ scores[0].edgeReturn +"</td></tr>" + 
 									"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
-									"<tr><td><strong>Wins 2nd Immunity Challenge</strong></td><td>" + responses[i].immunity1 + "</td><td>"+ scores[0].immunity1 +"</td></tr>" +
+									"<tr><td><strong>Wins 2nd Immunity Challenge</strong></td><td>" + responses[i].immunity_5 + "</td><td>"+ scores[0].immunity_5 +"</td></tr>" +
+									"<tr><td><strong>Wins 3rd Immunity Challenge</strong></td><td>" + responses[i].immunity_4 + "</td><td>"+ scores[0].immunity_4 +"</td></tr>" +
 									"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + responses[i].fireChallenge + "</td><td>"+ scores[0].fireChallenge +"</td></tr>" +
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
-									"<tr><td><strong>Celebrity Guest at Reunion?</strong></td><td>" + responses[i].celebGuest + "</td><td>"+ scores[0].celebGuest +"</td></tr>"
-								);
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"								);
 							} else if (cur_vote === 13) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -319,7 +323,7 @@ function getPastResponses() {
                 for (var j=0; j<finalEight.length; j++) {
                     if (finalEight[j].name === curName) {
 						var cur_vote = determineWeek(finalEight[j]);
-                        if (cur_vote === 11) {	// only submited responses to this question for episode 11
+                        if (cur_vote === 13) {	// only submited responses to this question for episode 13
 							$("#past_responses").append("<h3 id='finalEight_title'></h3>");
 							$("#finalEight_title").html("Order of Final Eight Survivors");
 							$("#past_responses").append("<span id='finalEight_table'></span>");
@@ -389,7 +393,7 @@ function getPastResponses() {
 
 function init_chart() {
     $('#PastResponses').click(function() {
-        window.location = "http://ethanebinger.com/Fantasy-Survivor/WinnersatWar/responses.html";
+        window.location = "responses.html";
     });
     
     // Define temp data
@@ -430,8 +434,8 @@ function init_chart() {
          	'Episode 10': 0,
          	'Episode 11': 0,
          	'Episode 12': 0,
-         	'Episode 13': 0
-         	//'Episode 14': 0,
+         	'Episode 13': 0,
+         	'Episode 14': 0
             //'Final Eight': 0,
 			//'Final Three': 0
         });
@@ -1061,7 +1065,7 @@ var results = [
     //     'edgeReturn': '',
     //     'immunity': '',
     //     'immunity_5': '',
-    //     'immunity_6': '',
+    //     'immunity_4': '',
     //     'fireChallenge': '',
     //     'idolFound': '',
     //     'idolPlayed': '',
