@@ -248,7 +248,7 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
 									"<tr><td><strong>Celebrity Guest at Reunion?</strong></td><td>" + responses[i].celebGuest + "</td><td>"+ scores[0].celebGuest +"</td></tr>"
 								);
-							} else if (cur_vote === "13a" || cur_vote === "13b") {
+							} else if (cur_vote === 13) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -257,8 +257,7 @@ function getPastResponses() {
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
-									"<tr><td><strong>Who Returns from the Edge?</strong></td><td>" + responses[i].edgeReturn + "</td><td>"+ scores[0].edgeReturn +"</td></tr>"
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);
 							} else if (cur_vote === 8) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
@@ -431,8 +430,7 @@ function init_chart() {
          	'Episode 10': 0,
          	'Episode 11': 0,
          	'Episode 12': 0,
-         	'Episode 13a': 0
-         	//'Episode 13b': 0,
+         	'Episode 13': 0
          	//'Episode 14': 0,
             //'Final Eight': 0,
 			//'Final Three': 0
@@ -601,9 +599,7 @@ function determineWeek(responses) {
     } else if (submit_time <= new Date(2020,3,29,20)) {
         cur_vote = 12;
     } else if (submit_time <= new Date(2020,4,6,20)) {
-        cur_vote = "13a";
-    } else if (submit_time <= new Date(2020,4,7,20)) {
-        cur_vote = "13b";
+        cur_vote = 13;
     } else if (submit_time <= new Date(2020,4,13,20)) {
         cur_vote = 14;
     };
@@ -699,9 +695,15 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
+                            // Finale Immunity - 5 left
+                            if (results[i].immunity_5 == responses[j].immunity_5 && responses[j].immunity_5) {
+                                if (calcType === "individual") { scores[n].immunity_5 += 10; }
+                                else { scores[n][val_vote] += 10; };
+                                scores[n].total += 10;
+                            };
 							// Finale Immunity - 4 left
-                            if (results[i].immunity1 == responses[j].immunity1 && responses[j].immunity1) {
-                                if (calcType === "individual") { scores[n].immunity1 += 10; }
+                            if (results[i].immunity_4 == responses[j].immunity_4 && responses[j].immunity_4) {
+                                if (calcType === "individual") { scores[n].immunity_4 += 10; }
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
                             };
@@ -710,12 +712,6 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].fireChallenge += 10; }
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
-                            };
-							// Finale Celeb Guest
-                            if (results[i].celebGuest == responses[j].celebGuest && responses[j].celebGuest) {
-                                if (calcType === "individual") { scores[n].celebGuest += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
                             };
                             name_ep_count.push(cur_player+"_"+String(cur_vote));
                             console.log(responses[j].name, val_vote, scores[n][val_vote]);
@@ -806,7 +802,7 @@ function final_eight_calc(scores, result) {
         for (var i=0; i<result.length; i++) {
             if (result[i].name === scores[n].name) {
 				var cur_vote = determineWeek(result[i]);
-                if (cur_vote === "13a") {	// only submited responses to this question during week 13a
+                if (cur_vote === 13) {	// only submited responses to this question during week 13a
 					var score8 = which_castaway(result[i]);
 					scores[n]['Final Eight'] += score8;
 					scores[n].total += score8;
@@ -836,10 +832,10 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// seventh
+            } else if (castaways['place_'+String([i])] === "Nick") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25);
 				if (i===7) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// eighth
+            } else if (castaways['place_'+String([i])] === "Jeremy") {	// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
 				if (i===8) { bonus += 5 };
             };
@@ -1044,5 +1040,32 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Jeremy',
         'nudity': 'No'
+    },
+    {	'vote': 13,
+        'date': '5/6/20',
+        'merge': 'Yes',
+        'reward': null,
+        'immunity': 'Nick',
+        'immunity2': 'Michele',
+        'eliminated': 'Jeremy',
+        'eliminated2': 'Nick',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Jeremy',
+        'nudity': 'No'
+    // },
+    // {	'vote': 14,
+    //     'date': '5/13/20',
+    //     'merge': 'Yes',
+    //     'reward': null,
+    //     'edgeReturn': '',
+    //     'immunity': '',
+    //     'immunity_5': '',
+    //     'immunity_6': '',
+    //     'fireChallenge': '',
+    //     'idolFound': '',
+    //     'idolPlayed': '',
+    //     'titleQuote': '',
+    //     'nudity': ''
     }
 ];
