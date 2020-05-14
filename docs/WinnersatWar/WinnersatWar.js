@@ -435,9 +435,9 @@ function init_chart() {
          	'Episode 11': 0,
          	'Episode 12': 0,
          	'Episode 13': 0,
-         	'Episode 14': 0
-            //'Final Eight': 0,
-			//'Final Three': 0
+         	'Episode 14': 0,
+            'Final Eight': 0,
+			'Final Three': 0
         });
     };
 
@@ -496,8 +496,8 @@ function init_chart() {
         })
     ).then(function() {
         scores = calculateScores(scores, results, responses, null);
-		//scores = final_eight_calc(scores, responses);
-		//scores = final_three_calc(scores, responses);
+		scores = final_eight_calc(scores, responses);
+		scores = final_three_calc(scores, responses);
 		
         // Define X-Scale Domain
         x.domain([0,d3.max(scores, function(d) { return d.total; })]);
@@ -818,19 +818,19 @@ function final_eight_calc(scores, result) {
         var sum = 0,
 			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === "") {			// sole survivor
+            if (castaways['place_'+String([i])] === "Tony") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// runner up
+            } else if (castaways['place_'+String([i])] === "Natalie") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
 				if (i===2) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// third
+            } else if (castaways['place_'+String([i])] === "Michele") {	// third
                 sum += Math.pow(Math.abs(i-3),2.25);
 				if (i===3) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fourth
+            } else if (castaways['place_'+String([i])] === "Sarah") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
 				if (i===4) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fifth
+            } else if (castaways['place_'+String([i])] === "Ben") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Denise") {	// sixth
@@ -853,7 +853,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ["", "", ""];									//top three!
+    var top_three = ["Tony", "Natalie", "Michele"];									//top three!
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
             var cur_vote = determineWeek(result[i]);
@@ -1057,19 +1057,19 @@ var results = [
         'idolPlayed': 'Yes',
         'titleQuote': 'Jeremy',
         'nudity': 'No'
-    // },
-    // {	'vote': 14,
-    //     'date': '5/13/20',
-    //     'merge': 'Yes',
-    //     'reward': null,
-    //     'edgeReturn': 'Natalie',
-    //     'immunity': 'Michele',
-    //     'immunity_5': '',
-    //     'immunity_4': '',
-    //     'fireChallenge': '',
-    //     'idolFound': '',
-    //     'idolPlayed': '',
-    //     'titleQuote': '',
-    //     'nudity': ''
+    },
+    {	'vote': 14,
+        'date': '5/13/20',
+        'merge': 'Yes',
+        'reward': null,
+        'edgeReturn': 'Natalie',
+        'immunity': 'Michele',
+        'immunity_5': 'Tony',
+        'immunity_4': 'Natalie',
+        'fireChallenge': 'Tony',
+        'idolFound': 'Yes',
+        'idolPlayed': 'Yes',
+        'titleQuote': '',
+        'nudity': 'Yes'
     }
 ];
