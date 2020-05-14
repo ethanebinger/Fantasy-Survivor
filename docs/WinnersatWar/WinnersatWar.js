@@ -857,7 +857,7 @@ function final_three_calc(scores, result) {
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
             var cur_vote = determineWeek(result[i]);
-			if (cur_vote === 1) {	// only submited responses to this question during week 1
+			if (cur_vote === "1a") {	// only submited responses to this question during week 1
 				if ((result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three))){
 					scores[n]['Final Three'] += 20;
 					scores[n].total += 20;
