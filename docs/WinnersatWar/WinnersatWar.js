@@ -833,7 +833,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// sixth
+            } else if (castaways['place_'+String([i])] === "Denise") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Nick") {	// seventh
@@ -1062,8 +1062,8 @@ var results = [
     //     'date': '5/13/20',
     //     'merge': 'Yes',
     //     'reward': null,
-    //     'edgeReturn': '',
-    //     'immunity': '',
+    //     'edgeReturn': 'Natalie',
+    //     'immunity': 'Michele',
     //     'immunity_5': '',
     //     'immunity_4': '',
     //     'fireChallenge': '',
