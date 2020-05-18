@@ -1069,7 +1069,7 @@ var results = [
         'fireChallenge': 'Tony',
         'idolFound': 'Yes',
         'idolPlayed': 'Yes',
-        'titleQuote': '',
+        'titleQuote': null,
         'nudity': 'Yes'
     }
 ];
