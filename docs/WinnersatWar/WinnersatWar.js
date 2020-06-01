@@ -821,7 +821,7 @@ function final_eight_calc(scores, result) {
             if (castaways['place_'+String([i])] === "Tony") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Natalie") {	// runner up
+            } else if (castaways['place_'+String([i])] === "Edge of Extinction Returnee") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
 				if (i===2) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Michele") {	// third
