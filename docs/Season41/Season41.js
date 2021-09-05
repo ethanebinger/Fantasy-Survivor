@@ -53,7 +53,7 @@ function init() {
         nextPrev(1);
     });
 
-    function showTab(n) {
+    function showTab(var n;) {
         var x = $(".tab");
         x[n].style.display = "inline-block";
         if (n === 0) {
@@ -153,8 +153,8 @@ function PushPullGithub(form_results) {
             // PUSH new data (only following index.html submission)
             responses.push(form_results);
             var responses_str = JSON.stringify(responses);
-            var t_a = 'Mzk2Njc0YjdlYWQxMjZhMTFl',
-                t_b = 'NWFmNmVmZTFhMmZjZDA1NDZjZjU0NA==',
+            var t_a = 'bad330ea986810f5d6a4',
+                t_b = '5358ac240be0eecabe08',
                 user = 'ethanebinger',
                 repo = 'Fantasy-Survivor';
             var push_user = form_results.name;
