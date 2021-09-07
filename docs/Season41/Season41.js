@@ -53,20 +53,22 @@ function init() {
         nextPrev(1);
     });
 
-    function showTab(var n;) {
+    function showTab(n) {
         var x = $(".tab");
-        x[n].style.display = "inline-block";
-        if (n === 0) {
-            $("#prevBtn").addClass("isHidden");
-        } else {
-            $("#prevBtn").removeClass("isHidden");
-        };
-        if (n === (x.length - 1)) {
-            $("#nextBtn").html("Submit");
-        } else {
-            $("#nextBtn").html("Next");
-        };
-        fixStepIndicator(n);
+		if (x[n]) {
+			x[n].style.display = "inline-block";
+			if (n === 0) {
+				$("#prevBtn").addClass("isHidden");
+			} else {
+				$("#prevBtn").removeClass("isHidden");
+			};
+			if (n === (x.length - 1)) {
+				$("#nextBtn").html("Submit");
+			} else {
+				$("#nextBtn").html("Next");
+			};
+			fixStepIndicator(n);
+		};
         window.scrollTo(0,0);
         document.body.scrollTop=0;
     };
@@ -153,12 +155,11 @@ function PushPullGithub(form_results) {
             // PUSH new data (only following index.html submission)
             responses.push(form_results);
             var responses_str = JSON.stringify(responses);
-            var t_a = 'bad330ea986810f5d6a4',
-                t_b = '5358ac240be0eecabe08',
+            var token = "Z2hvXzZRUUJaWkxsamdqeHJSTVNCbmhjYWpobFVyREpOdTM0WUFDMg==",
                 user = 'ethanebinger',
                 repo = 'Fantasy-Survivor';
             var push_user = form_results.name;
-            let api = new GithubAPI({token: atob(t_a)+atob(t_b)});
+            let api = new GithubAPI({token: atob(token)});
             api.setRepo(user, repo);
             api.setBranch('master')
                 .then( () => api.pushFiles(
@@ -424,20 +425,20 @@ function init_chart() {
             'name': players[p], 
             'total': 0, 
             'Episode 1': 0, 
-            'Episode 2': 0,
-            'Episode 3': 0,
-            'Episode 4': 0,
-            'Episode 5': 0,
-            'Episode 6': 0,
-            'Episode 7': 0,
-            'Episode 8': 0,
-         	'Episode 9': 0,
-         	'Episode 10': 0,
-         	'Episode 11': 0,
-         	'Episode 12': 0,
-         	'Episode 13': 0,
-         	'Episode 14': 0,
-            'Final Eight': 0,
+            //'Episode 2': 0,
+            //'Episode 3': 0,
+            //'Episode 4': 0,
+            //'Episode 5': 0,
+            //'Episode 6': 0,
+            //'Episode 7': 0,
+            //'Episode 8': 0,
+         	//'Episode 9': 0,
+         	//'Episode 10': 0,
+         	//'Episode 11': 0,
+         	//'Episode 12': 0,
+         	//'Episode 13': 0,
+         	//'Episode 14': 0,
+            //'Final Eight': 0,
 			'Final Three': 0
         });
     };
