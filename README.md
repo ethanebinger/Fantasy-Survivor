@@ -1,6 +1,6 @@
 ## WELCOME SOMERVILLE SURVIVORS!
 
-![Image](https://upload.wikimedia.org/wikipedia/en/f/f4/Survivor_Winners_at_War_logo.png)
+![Image](https://upload.wikimedia.org/wikipedia/en/5/54/Survivor_41_Logo.png)
 
 Here you can find the rules and the code behind the web form and visualizations used for the Somerville Survivors Fantasy League. 
 

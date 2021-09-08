@@ -860,7 +860,7 @@ function final_three_calc(scores, result) {
 //*/
 
 var results = [
-    {	'vote': 1,
+    /*{	'vote': 1,
         'date': '9/22/21',
         'merge': 'No',
         'reward': '', 
@@ -873,5 +873,5 @@ var results = [
         'team_yellow': ['David', 'Eric', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
 		'team_green': ['Brad', 'Genie', 'Jairus', 'Ricard', 'Sara', 'Shantel']
-    }
+    }*/
 ];
