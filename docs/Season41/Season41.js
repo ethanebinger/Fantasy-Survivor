@@ -155,12 +155,14 @@ function PushPullGithub(form_results) {
             // PUSH new data (only following index.html submission)
             responses.push(form_results);
             var responses_str = JSON.stringify(responses);
-            var token = "Z2hvXzZRUUJaWkxsamdqeHJSTVNCbmhjYWpobFVyREpOdTM0WUFDMg==",
-                user = 'ethanebinger',
-                repo = 'Fantasy-Survivor';
+			// make sure to follow oauth steps here: https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps
+            var token = "Z2hvX0g3dllhbmlNclZ4cnJXS05pd0FLYkhROWNEaWwzMzJSSnRJcQ==",
+                username = 'ethanebinger',
+                reponame = 'Fantasy-Survivor';
             var push_user = form_results.name;
+			// method from: https://gist.github.com/iktash/31ccc1d8582bd9dcb15ee468c7326f2d
             let api = new GithubAPI({token: atob(token)});
-            api.setRepo(user, repo);
+            api.setRepo(username, reponame);
             api.setBranch('master')
                 .then( () => api.pushFiles(
                     'new input from '+push_user,
@@ -173,8 +175,8 @@ function PushPullGithub(form_results) {
                     console.log('Files committed!');
                     window.location = "http://ethanebinger.com/Fantasy-Survivor/Season41/results.html"
                 });
-        }
-    });
+		}
+	});
 };
 
 function getPastResponses() {
@@ -228,10 +230,10 @@ function getPastResponses() {
 						'fireChallenge': 0
                     }
                 ];
-                //scores = calculateScores(scores, results, responses, "individual");
                 
                 // Filter for only selected name and vote, then add html to page
-                for (var i=0; i<responses.length; i++) {
+				// Looping backwards to select most recent submission, then break on success
+                for (var i=responses.length-1; i>=0; i--) {
                     if (responses[i].name === curName) {
                         var cur_vote = determineWeek(responses[i]);
                         if (curVote == cur_vote) {
@@ -299,6 +301,7 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);
 							};
+						break;
                         };
                     };
                 };
@@ -364,7 +367,7 @@ function getPastResponses() {
                 for (var j=0; j<finalThree.length; j++) {
                     if (finalThree[j].name === curName) {
 						var cur_vote = determineWeek(finalThree[j]);
-                        if (cur_vote === "1a") {	// only submited responses to this question during episode 1a
+                        if (cur_vote === 1) {	// only submited responses to this question during episode 1
 							$("#past_responses").append("<h3 id='finalThree_title'></h3>");
 							$("#finalThree_title").html("Preseason Picks for Final Three Survivors");
 							$("#past_responses").append("<span id='finalThree_table'></span>");
@@ -563,7 +566,7 @@ function init_chart() {
     });
 };
 
-// Function to check if x in array
+// Function to check if x in array y
 var inArray = function(x,y) {
     var i;
     for (i=0; i < y.length; i++) {
@@ -601,7 +604,12 @@ function calculateScores(scores, results, responses, calcType) {
                     // Validate Episode Number/Week
                     if (results[i].vote === cur_vote) {
                         var val_vote = 'Episode ' + String(results[i].vote);
-                        // Determine by team if before merge:
+						// zero out contestant score if they have multiple submissions, this will only count the most recent one
+						if (inArray(cur_player+"_"+String(cur_vote), name_ep_count)) {
+							scores[n].total -= scores[n][val_vote];
+							scores[n][val_vote] = 0;
+						};
+                        // Determine by team if before merge (where 'Yes' is after merge):
                         if (results[i].merge === 'Yes') {
                             // Reward
                             if (results[i].reward == responses[j].reward && responses[j].reward) {
@@ -831,7 +839,7 @@ function final_three_calc(scores, result) {
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
             var cur_vote = determineWeek(result[i]);
-			if (cur_vote === "1a") {	// only submited responses to this question during week 1
+			if (cur_vote === 1) {	// only submited responses to this question during week 1
 				if ((result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three))){
 					scores[n]['Final Three'] += 20;
 					scores[n].total += 20;
