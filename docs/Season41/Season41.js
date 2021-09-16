@@ -279,14 +279,15 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
 									"<tr><td><strong>Who Returns from the Edge?</strong></td><td>" + responses[i].edgeReturn + "</td><td>"+ scores[0].edgeReturn +"</td></tr>"
-								);
-							} else if (cur_vote === "1b") {
+								);*/
+							} else if (cur_vote === 1) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
-									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
-									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>"
-								);*/
+									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+								);
 							} else {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -406,21 +407,22 @@ function init_chart() {
     // Define temp data
     var scores = [];
     var players = [
+		'Wilson',
         'Vivian',
 		'Orlando',
-		'Morgan',
         'Mitch', 
         'Lucas',
 		'Kevin',
-        'Josh', 
+        'Jacob', 
 		'Greg',
         'Ezra', 
         'Ethan', 
         'Esmé',
-        'Claire', 
+		'David',
         'Ben', 
         'Anastassia', 
 		'Alexis',
+		'Adam',
         'Aaron'
     ];
     for (var p=0; p<players.length; p++) {

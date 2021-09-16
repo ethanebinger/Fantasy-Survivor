@@ -11,7 +11,7 @@ html, body {
     position: relative;
 }
 .title_img {
-    background-image: url("https://www.goldderby.com/wp-content/uploads/2021/06/survivor-41-logo.jpg");
+    background-image: url("https://www.usmagazine.com/wp-content/uploads/2021/08/Jeff-Probst-Survivor-Season-41-Cast-Revealed.jpg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@ html, body {
     height: 100%;
 }
 .title_img_alt {
-    background-image: url("https://pbs.twimg.com/media/E3IkPqXX0AAiSQb?format=jpg");
+    background-image: url("https://variety.com/wp-content/uploads/2019/12/s39_ep11_sg_31b.jpg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;
@@ -135,7 +135,7 @@ select,
 .results_title {
     text-align: center;
 	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-	background-image: url("https://pbs.twimg.com/media/E3IkPqXX0AAiSQb?format=jpg");
+	background-image: url("https://inside-survivor.ams3.digitaloceanspaces.com/wp-content/uploads/2017/07/FijiNew2017.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
