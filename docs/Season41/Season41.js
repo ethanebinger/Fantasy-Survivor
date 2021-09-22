@@ -414,6 +414,7 @@ function init_chart() {
         'Mitch', 
         'Lucas',
 		'Kevin',
+		'Josh',
 		'Joshua',
 		'Jonathan',
         'Jacob', 
