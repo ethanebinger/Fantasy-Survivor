@@ -421,7 +421,7 @@ function init_chart() {
 		'Greg',
         'Ezra', 
         'Ethan', 
-        'Esmé',
+        'Esme',
 		'David',
         'Ben', 
         'Anastassia', 
