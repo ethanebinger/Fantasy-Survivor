@@ -434,7 +434,7 @@ function init_chart() {
             'name': players[p], 
             'total': 0, 
             'Episode 1': 0, 
-            //'Episode 2': 0,
+            'Episode 2': 0,
             //'Episode 3': 0,
             //'Episode 4': 0,
             //'Episode 5': 0,
@@ -587,8 +587,10 @@ var inArray = function(x,y) {
 function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
-    if (submit_time <= new Date(2021,9,22,20)) {
+    if (submit_time <= new Date(2021,9,23,0)) {
         cur_vote = 1;
+    } else if (submit_time <= new Date(2021,9,30,0)) {
+        cur_vote = 2;
     };
     return cur_vote;
 };
@@ -866,18 +868,18 @@ function final_three_calc(scores, result) {
 //*/
 
 var results = [
-    /*{	'vote': 1,
+    {	'vote': 1,
         'date': '9/22/21',
         'merge': 'No',
         'reward': '', 
-        'immunity': '',
-        'eliminated': '',
-        'idolFound': '',
-        'idolPlayed': '',
-        'titleQuote': '',
-        'nudity': '',
+        'immunity': 'team_blue',
+        'eliminated': ['Eric', 'Sara'],
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Shantel',
+        'nudity': 'No',
         'team_yellow': ['David', 'Eric', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
 		'team_green': ['Brad', 'Genie', 'Jairus', 'Ricard', 'Sara', 'Shantel']
-    }*/
+    }
 ];
