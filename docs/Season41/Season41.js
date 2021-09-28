@@ -424,6 +424,7 @@ function init_chart() {
         'Esme',
 		'David',
         'Ben', 
+		'Andres',
         'Anastassia', 
 		'Alexis',
 		'Adam',
@@ -877,6 +878,6 @@ var results = [
         'nudity': 'No',
         'team_yellow': ['David', 'Eric', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
-		'team_green': ['Brad', 'Genie', 'Jairus', 'Ricard', 'Sara', 'Shantel']
+		'team_green': ['Brad', 'Genie', 'JD', 'Ricard', 'Sara', 'Shantel']
     }
 ];
