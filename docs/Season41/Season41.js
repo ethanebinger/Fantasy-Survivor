@@ -586,9 +586,10 @@ var inArray = function(x,y) {
 function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
-    if (submit_time <= new Date(2021,9,23,0)) {
+	// datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
+    if (submit_time <= new Date(2021,8,23,0)) {
         cur_vote = 1;
-    } else if (submit_time <= new Date(2021,9,30,0)) {
+    } else if (submit_time <= new Date(2021,8,30,0)) {
         cur_vote = 2;
     };
     return cur_vote;
