@@ -881,5 +881,21 @@ var results = [
         'team_yellow': ['David', 'Eric', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
 		'team_green': ['Brad', 'Genie', 'JD', 'Ricard', 'Sara', 'Shantel']
+    },
+	{	'vote': 2,
+        'date': '9/29/21',
+        'merge': 'No',
+        'reward': 'team_blue',
+		'reward2': 'team_green',
+        'immunity': 'team_blue',
+		'immunity2': 'team_green',
+        'eliminated': 'Voce',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Xander',
+        'nudity': 'No',
+        'team_yellow': ['David', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
+        'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
+		'team_green': ['Brad', 'Genie', 'JD', 'Ricard', 'Shantel']
     }
 ];
