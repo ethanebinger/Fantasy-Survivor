@@ -437,7 +437,7 @@ function init_chart() {
             'total': 0, 
             'Episode 1': 0, 
             'Episode 2': 0,
-            //'Episode 3': 0,
+            'Episode 3': 0,
             //'Episode 4': 0,
             //'Episode 5': 0,
             //'Episode 6': 0,
@@ -591,6 +591,14 @@ function determineWeek(responses) {
         cur_vote = 1;
     } else if (submit_time <= new Date(2021,8,30,0)) {
         cur_vote = 2;
+    } else if (submit_time <= new Date(2021,9,7,0)) {
+        cur_vote = 3;
+    } else if (submit_time <= new Date(2021,9,14,0)) {
+        cur_vote = 4;
+    } else if (submit_time <= new Date(2021,9,21,0)) {
+        cur_vote = 5;
+    } else if (submit_time <= new Date(2021,9,28,0)) {
+        cur_vote = 6;
     };
     return cur_vote;
 };
