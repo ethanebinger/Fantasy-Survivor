@@ -901,7 +901,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Xander',
-        'nudity': 'No',
+        'nudity': 'Yes',
         'team_yellow': ['David', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
 		'team_green': ['Brad', 'Genie', 'JD', 'Ricard', 'Shantel']
