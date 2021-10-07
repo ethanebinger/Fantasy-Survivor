@@ -886,7 +886,7 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Shantel',
         'nudity': 'No',
-        'team_yellow': ['David', 'Eric', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
+        'team_yellow': ['Voce', 'Eric', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
 		'team_green': ['Brad', 'Genie', 'JD', 'Ricard', 'Sara', 'Shantel']
     },
@@ -902,7 +902,23 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Xander',
         'nudity': 'Yes',
-        'team_yellow': ['David', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
+        'team_yellow': ['Voce', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
+        'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
+		'team_green': ['Brad', 'Genie', 'JD', 'Ricard', 'Shantel']
+    },
+	{	'vote': 3,
+        'date': '10/6/21',
+        'merge': 'No',
+        'reward': 'team_blue',
+		'reward2': 'team_yellow',
+        'immunity': 'team_blue',
+		'immunity2': 'team_yellow',
+        'eliminated': 'Brad',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Liana',
+        'nudity': 'Yes',
+        'team_yellow': ['Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
 		'team_green': ['Brad', 'Genie', 'JD', 'Ricard', 'Shantel']
     }
