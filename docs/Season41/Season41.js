@@ -219,6 +219,7 @@ function getPastResponses() {
                         'safe': 0,
 						'returns': 0,
                         'titleQuote': 0,
+						'summit': 0,
                         'nudity': 0,
                         'idolFound': 0,
                         'idolPlayed': 0,
@@ -242,7 +243,7 @@ function getPastResponses() {
                             };
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
-							if (cur_vote === 14) {
+							if (cur_vote === 11) {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -265,8 +266,8 @@ function getPastResponses() {
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
-								);
-							} else if (cur_vote === 8) {
+								);*/
+							} else if (cur_vote >= 4) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -275,11 +276,11 @@ function getPastResponses() {
 									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
 									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Risk/Reward</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" + 
-									"<tr><td><strong>Who Returns from the Edge?</strong></td><td>" + responses[i].edgeReturn + "</td><td>"+ scores[0].edgeReturn +"</td></tr>"
-								);*/
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+								);
 							} else if (cur_vote === 1) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -769,6 +770,16 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
                             };
+							// Risk/Reward
+                            if (results[i].summit !== null && typeof results[i].summit==="object" && inArray(responses[j].summit,results[i].summit) && responses[j].summit) {
+                                if (calcType === "individual") { scores[n].summit += 2; }
+                                else { scores[n][val_vote] += 2; };
+                                scores[n].total += 2;
+                            } else if (results[i].summit == responses[j].summit && responses[j].summit) {
+                                if (calcType === "individual") { scores[n].summit += 2; }
+                                else { scores[n][val_vote] += 2; };
+                                scores[n].total += 2;
+                            };
                             // Nudity
                             if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
                                 if (calcType === "individual") { scores[n].nudity += 2; }
@@ -885,6 +896,7 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Shantel',
+		'summit': ['Danny', 'JD', 'Xander'],
         'nudity': 'No',
         'team_yellow': ['Voce', 'Eric', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
@@ -901,6 +913,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Xander',
+		'summit': ['Deshawn', 'Evvie'],
         'nudity': 'Yes',
         'team_yellow': ['Voce', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
@@ -917,6 +930,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Liana',
+		'summit': ['Brad', 'Sydney', 'Tiffany'],
         'nudity': 'Yes',
         'team_yellow': ['Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
