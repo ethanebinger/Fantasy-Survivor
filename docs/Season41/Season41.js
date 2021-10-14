@@ -439,7 +439,7 @@ function init_chart() {
             'Episode 1': 0, 
             'Episode 2': 0,
             'Episode 3': 0,
-            //'Episode 4': 0,
+            'Episode 4': 0,
             //'Episode 5': 0,
             //'Episode 6': 0,
             //'Episode 7': 0,
@@ -594,7 +594,7 @@ function determineWeek(responses) {
         cur_vote = 2;
     } else if (submit_time <= new Date(2021,9,7,0)) {
         cur_vote = 3;
-    } else if (submit_time <= new Date(2021,9,14,0)) {
+    } else if (submit_time <= new Date(2021,9,15,0)) {
         cur_vote = 4;
     } else if (submit_time <= new Date(2021,9,21,0)) {
         cur_vote = 5;
@@ -935,5 +935,22 @@ var results = [
         'team_yellow': ['Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
 		'team_green': ['Brad', 'Genie', 'JD', 'Ricard', 'Shantel']
+    },
+	{	'vote': 4,
+        'date': '10/13/21',
+        'merge': 'No',
+        'reward': 'team_green',
+		'reward2': 'team_yellow',
+        'immunity': 'team_blue',
+		'immunity2': 'team_yellow',
+        'eliminated': 'JD',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Sydney',
+		'summit': false,
+        'nudity': 'No',
+        'team_yellow': ['Evvie', 'Liana', 'Tiffany', 'Xander'],
+        'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
+		'team_green': ['Genie', 'JD', 'Ricard', 'Shantel']
     }
 ];
