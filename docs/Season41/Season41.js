@@ -441,7 +441,7 @@ function init_chart() {
             'Episode 3': 0,
             'Episode 4': 0,
             'Episode 5': 0,
-            //'Episode 6': 0,
+            'Episode 6': 0,
             //'Episode 7': 0,
             //'Episode 8': 0,
          	//'Episode 9': 0,
