@@ -598,8 +598,10 @@ function determineWeek(responses) {
         cur_vote = 4;
     } else if (submit_time <= new Date(2021,9,21,0)) {
         cur_vote = 5;
-    } else if (submit_time <= new Date(2021,9,28,0)) {
+    } else if (submit_time <= new Date(2021,9,30,0)) {
         cur_vote = 6;
+    } else if (submit_time <= new Date(2021,10,5,0)) {
+        cur_vote = 7;
     };
     return cur_vote;
 };
@@ -969,5 +971,17 @@ var results = [
         'team_yellow': ['Evvie', 'Liana', 'Tiffany', 'Xander'],
         'team_blue': ['Danny', 'Deshawn', 'Erika', 'Heather', 'Naseer', 'Sydney'],
 		'team_green': ['Genie', 'Ricard', 'Shantel']
+    },
+	{	'vote': 6,
+        'date': '10/27/21',
+        'merge': 'Yes',
+        'reward': ['Danny', 'Deshawn', 'Evvie', 'Ricard', 'Sydney'],
+        'immunity': [],
+        'eliminated': 'Genie',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Shantel',
+		'summit': ['Erika'],
+        'nudity': 'No'
     }
 ];
