@@ -601,7 +601,7 @@ function determineWeek(responses) {
     } else if (submit_time <= new Date(2021,9,30,0)) {
         cur_vote = 6;
     } else if (submit_time <= new Date(2021,10,5,0)) {
-        cur_vote = 7;
+        cur_vote = 7 ;
     };
     return cur_vote;
 };
@@ -673,6 +673,16 @@ function calculateScores(scores, results, responses, calcType) {
                             // Title Quote
                             if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
                                 if (calcType === "individual") { scores[n].titleQuote += 4; }
+                                else { scores[n][val_vote] += 4; };
+                                scores[n].total += 4;
+                            };
+							// Risk/Reward
+                            if (results[i].summit !== null && typeof results[i].summit==="object" && inArray(responses[j].summit,results[i].summit) && responses[j].summit) {
+                                if (calcType === "individual") { scores[n].summit += 4; }
+                                else { scores[n][val_vote] += 4; };
+                                scores[n].total += 4;
+                            } else if (results[i].summit == responses[j].summit && responses[j].summit) {
+                                if (calcType === "individual") { scores[n].summit += 4; }
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
@@ -980,7 +990,7 @@ var results = [
         'eliminated': 'Genie',
         'idolFound': 'Yes',
         'idolPlayed': 'No',
-        'titleQuote': 'Shantel',
+        'titleQuote': '',
 		'summit': ['Erika'],
         'nudity': 'No'
     }
