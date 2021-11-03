@@ -990,7 +990,7 @@ var results = [
         'eliminated': 'Genie',
         'idolFound': 'Yes',
         'idolPlayed': 'No',
-        'titleQuote': '',
+        'titleQuote': 'Erika',
 		'summit': ['Erika'],
         'nudity': 'No'
     }
