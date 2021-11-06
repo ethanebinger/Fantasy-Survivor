@@ -1015,5 +1015,18 @@ var results = [
         'titleQuote': 'Erika',
 		'summit': ['Erika'],
         'nudity': 'No'
+    },
+	{	'vote': 7,
+        'date': '11/3/21',
+        'merge': 'Yes',
+        'reward': [],
+        'immunity': 'Ricard',
+        'eliminated': 'Sydney',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Shantel',
+		'hourglass': 'Yes',
+		'summit': [],
+        'nudity': 'No'
     }
 ];
