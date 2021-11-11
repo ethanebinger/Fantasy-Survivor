@@ -703,7 +703,6 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 4; };
                                 scores[n].total += 4;
                             };
-							
                             // Erika's hourglass smash
                             if (results[i].hourglass == responses[j].hourglass && responses[j].hourglass) {
                                 if (calcType === "individual") { scores[n].hourglass += 5; }
@@ -805,6 +804,12 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].titleQuote += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
+                            };							
+                            // Erika's hourglass smash
+                            if (results[i].hourglass == responses[j].hourglass && responses[j].hourglass) {
+                                if (calcType === "individual") { scores[n].hourglass += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
                             };
 							// Risk/Reward
                             if (results[i].summit !== null && typeof results[i].summit==="object" && inArray(responses[j].summit,results[i].summit) && responses[j].summit) {
@@ -932,6 +937,7 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Shantel',
+		'hourglass': '',
 		'summit': ['Danny', 'JD', 'Xander'],
         'nudity': 'No',
         'team_yellow': ['Voce', 'Eric', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
@@ -949,6 +955,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Xander',
+		'hourglass': '',
 		'summit': ['Deshawn', 'Evvie'],
         'nudity': 'Yes',
         'team_yellow': ['Voce', 'Evvie', 'Liana', 'Tiffany', 'Xander'],
@@ -966,6 +973,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Liana',
+		'hourglass': '',
 		'summit': ['Brad', 'Sydney', 'Tiffany'],
         'nudity': 'Yes',
         'team_yellow': ['Evvie', 'Liana', 'Tiffany', 'Xander'],
@@ -983,6 +991,7 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Sydney',
+		'hourglass': '',
 		'summit': false,
         'nudity': 'No',
         'team_yellow': ['Evvie', 'Liana', 'Tiffany', 'Xander'],
@@ -1000,6 +1009,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Shantel',
+		'hourglass': '',
 		'summit': ['Shantel', 'Liana'],
         'nudity': 'No',
         'team_yellow': ['Evvie', 'Liana', 'Tiffany', 'Xander'],
@@ -1015,6 +1025,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Erika',
+		'hourglass': '',
 		'summit': ['Erika'],
         'nudity': 'No'
     },
@@ -1028,6 +1039,19 @@ var results = [
         'idolPlayed': 'Yes',
         'titleQuote': 'Shantel',
 		'hourglass': 'Yes',
+		'summit': [],
+        'nudity': 'No'
+    },
+	{	'vote': 8,
+        'date': '11/10/21',
+        'merge': 'Yes',
+        'reward': ['Danny', 'Evvie', 'Ricard', 'Deshawn', 'Erika'],
+        'immunity': 'Evvie',
+        'eliminated': 'Tiffany',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Xander',
+		'hourglass': '',
 		'summit': [],
         'nudity': 'No'
     }
