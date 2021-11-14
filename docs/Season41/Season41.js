@@ -228,7 +228,8 @@ function getPastResponses() {
 						'edgeReturn': 0,
 						'immunity_5': 0,
 						'immunity_4': 0,
-						'fireChallenge': 0
+						'fireChallenge': 0,
+						'hourglass': 0
                     }
                 ];
                 
@@ -619,6 +620,10 @@ function determineWeek(responses) {
         cur_vote = 7 ;
     } else if (submit_time <= new Date(2021,10,12,0)) {
         cur_vote = 8 ;
+    } else if (submit_time <= new Date(2021,10,19,0)) {
+        cur_vote = 9 ;
+    } else if (submit_time <= new Date(2021,10,26,0)) {
+        cur_vote = 10 ;
     };
     return cur_vote;
 };
