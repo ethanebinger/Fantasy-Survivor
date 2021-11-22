@@ -11,7 +11,8 @@ html, body {
     position: relative;
 }
 .title_img {
-    background-image: url("https://www.usmagazine.com/wp-content/uploads/2021/08/Jeff-Probst-Survivor-Season-41-Cast-Revealed.jpg");
+    /* background-image: url("https://www.usmagazine.com/wp-content/uploads/2021/08/Jeff-Probst-Survivor-Season-41-Cast-Revealed.jpg"); */
+	background-image: url("https://otakukart.com/wp-content/uploads/2021/11/Survivor-season-41-episode-10-1-1.jpg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;

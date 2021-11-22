@@ -268,6 +268,15 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);*/
+							} else if (cur_vote == 10) {
+								"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+								"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+								"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+								"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+								"<tr><td><strong>Risk/Reward</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
+								"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+								"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+								"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 							} else if (cur_vote == 7) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -460,10 +469,10 @@ function init_chart() {
             'Episode 6': 0,
             'Episode 7': 0,
             'Episode 8': 0,
-         	//'Episode 9': 0,
-         	//'Episode 10': 0,
+         	'Episode 9': 0,
+         	'Episode 10': 0,
          	//'Episode 11': 0
-            //'Final Eight': 0,
+            'Final Eight': 0,
 			'Final Three': 0
         });
     };
@@ -620,7 +629,7 @@ function determineWeek(responses) {
         cur_vote = 7 ;
     } else if (submit_time <= new Date(2021,10,12,0)) {
         cur_vote = 8 ;
-    } else if (submit_time <= new Date(2021,10,19,0)) {
+    } else if (submit_time <= new Date(2021,10,20,0)) {
         cur_vote = 9 ;
     } else if (submit_time <= new Date(2021,10,26,0)) {
         cur_vote = 10 ;
@@ -687,7 +696,15 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 20;
                             };
                             // Safe
-                            if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
+							if (results[i].safe !== null && typeof results[i].eliminated==="object" && responses[j].safe) {
+								if (inArray(responses[i].safe, results[j].eliminated)) {
+									continue;
+								} else {
+									if (calcType === "individual") { scores[n].safe += 10; }
+									else { scores[n][val_vote] += 10; };
+									scores[n].total += 10;
+								}
+                            } else if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
                                 if (calcType === "individual") { scores[n].safe += 10; }
                                 else { scores[n][val_vote] += 10; };
                                 scores[n].total += 10;
@@ -1056,6 +1073,19 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Xander',
+		'hourglass': '',
+		'summit': [],
+        'nudity': 'No'
+    },
+	{	'vote': 9,
+        'date': '11/17/21',
+        'merge': 'Yes',
+        'reward': ['Danny', 'Evvie', 'Xander', 'Deshawn', 'Liana'],
+        'immunity': ['Erika', 'Xander'],
+        'eliminated': ['Naseer', 'Evvie'],
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Deshawn',
 		'hourglass': '',
 		'summit': [],
         'nudity': 'No'
