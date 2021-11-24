@@ -355,7 +355,7 @@ function getPastResponses() {
                 for (var j=0; j<finalEight.length; j++) {
                     if (finalEight[j].name === curName) {
 						var cur_vote = determineWeek(finalEight[j]);
-                        if (cur_vote === 13) {	// only submited responses to this question for episode 13
+                        if (cur_vote === 10) {	// only submited responses to this question for episode 13
 							$("#past_responses").append("<h3 id='finalEight_title'></h3>");
 							$("#finalEight_title").html("Order of Final Eight Survivors");
 							$("#past_responses").append("<span id='finalEight_table'></span>");
@@ -697,7 +697,7 @@ function calculateScores(scores, results, responses, calcType) {
                             };
                             // Safe
 							if (results[i].safe !== null && typeof results[i].eliminated==="object" && responses[j].safe) {
-								if (inArray(responses[i].safe, results[j].eliminated)) {
+								if (inArray(responses[j].safe, results[i].eliminated)) {
 									continue;
 								} else {
 									if (calcType === "individual") { scores[n].safe += 10; }
