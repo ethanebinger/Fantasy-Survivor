@@ -1089,5 +1089,18 @@ var results = [
 		'hourglass': '',
 		'summit': [],
         'nudity': 'No'
+    },
+	{	'vote': 10,
+        'date': '11/24/21',
+        'merge': 'Yes',
+        'reward': ['Ricard', 'Shantel', 'Xander', 'Heather'],
+        'immunity': 'Ricard',
+        'eliminated': 'Shantel',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Erika',
+		'hourglass': '',
+		'summit': [],
+        'nudity': 'No'
     }
 ];
