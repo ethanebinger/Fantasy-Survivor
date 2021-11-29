@@ -244,7 +244,7 @@ function getPastResponses() {
                             };
                             $("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
                             $("#past_responses").append("<span id='json_"+String(i)+"'></span>");
-							if (cur_vote === 11) {
+							if (cur_vote == 12) {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -268,7 +268,7 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);*/
-							} else if (cur_vote == 10) {
+							} else if (cur_vote >= 10) {
 								"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
 								"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
 								"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
@@ -306,7 +306,7 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);
-							} else if (cur_vote === 1) {
+							} else if (cur_vote == 1) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -471,7 +471,7 @@ function init_chart() {
             'Episode 8': 0,
          	'Episode 9': 0,
          	'Episode 10': 0,
-         	//'Episode 11': 0
+         	'Episode 11': 0,
             'Final Eight': 0,
 			'Final Three': 0
         });
@@ -633,6 +633,8 @@ function determineWeek(responses) {
         cur_vote = 9 ;
     } else if (submit_time <= new Date(2021,10,26,0)) {
         cur_vote = 10 ;
+    } else if (submit_time <= new Date(2021,11,4,0)) {
+        cur_vote = 11 ;
     };
     return cur_vote;
 };
@@ -911,7 +913,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25)
 				if (i===7) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// eighth
+            } else if (castaways['place_'+String([i])] === "Shantel") {	// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
 				if (i===8) { bonus += 5 };
             };
