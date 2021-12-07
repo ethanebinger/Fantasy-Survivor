@@ -880,7 +880,7 @@ function final_eight_calc(scores, result) {
         for (var i=0; i<result.length; i++) {
             if (result[i].name === scores[n].name) {
 				var cur_vote = determineWeek(result[i]);
-                if (cur_vote === 13) {	// only submited responses to this question during week 13a
+                if (cur_vote === 10) {	// only submited responses to this question during week 10
 					var score8 = which_castaway(result[i]);
 					scores[n]['Final Eight'] += score8;
 					scores[n].total += score8;
@@ -927,22 +927,31 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = [];									//top three!
+    var top_three = ['Danny', 'Deshawn', 'Xander', 'Ricard', 'Heather', 'Erika'];									//top three!
+	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
-            var cur_vote = determineWeek(result[i]);
-			if (cur_vote === 1) {	// only submited responses to this question during week 1
-				if ((result[i].name === scores[n].name) && (inArray(result[i].pick_1, top_three))){
-					scores[n]['Final Three'] += 20;
-					scores[n].total += 20;
-				};
-				if ((result[i].name === scores[n].name) && (inArray(result[i].pick_2, top_three))){
-					scores[n]['Final Three'] += 20;
-					scores[n].total += 20;
-				};
-				if ((result[i].name === scores[n].name) && (inArray(result[i].pick_3, top_three))){
-					scores[n]['Final Three'] += 20;
-					scores[n].total += 20;
+			if (result[i].name === scores[n].name) {
+				var cur_vote = determineWeek(result[i]);
+				if (cur_vote === 1) {	// only submited responses to this question during week 1
+					if (inArray(result[i].name, name_ep_count)) {
+						console.log("duplicate final three -",result[i].name, cur_vote);
+						scores[n].total -= scores[n]['Final Three'];
+						scores[n]['Final Three'] = 0;						
+					};
+					if (inArray(result[i].pick_1, top_three)){
+						scores[n]['Final Three'] += 20;
+						scores[n].total += 20;
+					};
+					if (inArray(result[i].pick_2, top_three)){
+						scores[n]['Final Three'] += 20;
+						scores[n].total += 20;
+					};
+					if (inArray(result[i].pick_3, top_three)){
+						scores[n]['Final Three'] += 20;
+						scores[n].total += 20;
+					};
+					name_ep_count.push(result[i].name);
 				};
 			};
         };
