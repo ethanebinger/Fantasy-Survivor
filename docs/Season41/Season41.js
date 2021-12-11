@@ -907,7 +907,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// sixth
+            } else if (castaways['place_'+String([i])] === "Danny") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Liana") {	// seventh
@@ -927,7 +927,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['Danny', 'Deshawn', 'Xander', 'Ricard', 'Heather', 'Erika'];									//top three!
+    var top_three = ['Deshawn', 'Xander', 'Ricard', 'Heather', 'Erika'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1123,6 +1123,19 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Jeff Probst',
+		'hourglass': '',
+		'summit': [],
+        'nudity': 'No'
+    },
+	{	'vote': 12,
+        'date': '12/8/21',
+        'merge': 'Yes',
+        'reward': ['Erika', 'Ricard', 'Xander'],
+        'immunity': 'Ricard',
+        'eliminated': 'Danny',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Xander',
 		'hourglass': '',
 		'summit': [],
         'nudity': 'No'
