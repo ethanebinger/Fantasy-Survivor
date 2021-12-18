@@ -892,19 +892,19 @@ function final_eight_calc(scores, result) {
         var sum = 0,
 			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === "") {			// sole survivor
+            if (castaways['place_'+String([i])] === "Erika") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// runner up
+            } else if (castaways['place_'+String([i])] === "Deshawn") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
 				if (i===2) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// third
+            } else if (castaways['place_'+String([i])] === "Xander") {	// third
                 sum += Math.pow(Math.abs(i-3),2.25);
 				if (i===3) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fourth
+            } else if (castaways['place_'+String([i])] === "Heather") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
 				if (i===4) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fifth
+            } else if (castaways['place_'+String([i])] === "Ricard") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Danny") {	// sixth
@@ -927,7 +927,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['Deshawn', 'Xander', 'Ricard', 'Heather', 'Erika'];  //top three!
+    var top_three = ['Deshawn', 'Xander', 'Erika'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1136,6 +1136,20 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Xander',
+		'hourglass': '',
+		'summit': [],
+        'nudity': 'No'
+    },
+	{	'vote': 13,
+        'date': '12/15/21',
+        'merge': 'Yes',
+        'reward': 'Erika',
+        'immunity5': 'Erika',
+		'immunity4': 'Xander',
+		'fireChallenge': 'Deshawn',
+        'idolFound': 'Yes',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Jeff Probst',
 		'hourglass': '',
 		'summit': [],
         'nudity': 'No'
