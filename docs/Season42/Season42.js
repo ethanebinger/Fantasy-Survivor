@@ -445,6 +445,7 @@ function init_chart() {
         'Esme',
 		'David',
         'Ben', 
+		'Avi',
 		'Andres',
         'Anastassia', 
 		'Alexis',
