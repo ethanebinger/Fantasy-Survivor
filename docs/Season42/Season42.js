@@ -286,20 +286,6 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);
-							} else if (cur_vote >= 4) {
-								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
-								$("#json_"+String(i)).html(
-									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
-									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
-									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
-									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
-									"<tr><td><strong>Risk/Reward</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
-									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
-								);
 							} else if (cur_vote == 1) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -318,6 +304,7 @@ function getPastResponses() {
 									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
 									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
 									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Risk/Reward</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
@@ -457,7 +444,7 @@ function init_chart() {
             'name': players[p], 
             'total': 0, 
             'Episode 1': 0, 
-            //'Episode 2': 0,
+            'Episode 2': 0,
             //'Episode 3': 0,
             //'Episode 4': 0,
             //'Episode 5': 0,
@@ -610,8 +597,10 @@ function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
 	// datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
-    if (submit_time <= new Date(2021,2,9,0)) {
+    if (submit_time <= new Date(2021,2,13,0)) {
         cur_vote = 1;
+    } else if (submit_time <= new Date(2021,2,20,0)) {
+        cur_vote = 2;
     };
     return cur_vote;
 };
@@ -942,14 +931,13 @@ var results = [
         'date': '3/9/22',
         'merge': 'No',
         'reward': '', 
-        'immunity': '',
-        'eliminated': '',
-        'idolFound': '',
-        'idolPlayed': '',
+        'immunity': 'team_green',
+        'eliminated': ['Jackson', 'Zach'],
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
         'titleQuote': '',
-		'hourglass': '',
-		'summit': [],
-        'nudity': '',
+		'summit': ['Maryanne', 'Drea', 'Jenny'],
+        'nudity': 'No',
         'team_yellow': ['Jackson', 'Jonathan', 'Lindsay', 'Marya', 'Maryanne', 'Omar'],
         'team_blue': ['Drea', 'Rocksroy', 'Romeo', 'Swati', 'Tori', 'Zach'],
 		'team_green': ['Chanelle', 'Daniel', 'Hai', 'Jenny', 'Lydia', 'Mike']
