@@ -597,9 +597,9 @@ function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
 	// datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
-    if (submit_time <= new Date(2021,2,13,0)) {
+    if (submit_time <= new Date(2022,2,13,0)) {
         cur_vote = 1;
-    } else if (submit_time <= new Date(2021,2,20,0)) {
+    } else if (submit_time <= new Date(2022,2,20,0)) {
         cur_vote = 2;
     };
     return cur_vote;
