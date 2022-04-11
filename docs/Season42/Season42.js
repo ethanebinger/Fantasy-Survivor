@@ -448,8 +448,8 @@ function init_chart() {
             'Episode 2': 0,
             'Episode 3': 0,
             'Episode 4': 0,
-            //'Episode 5': 0,
-            //'Episode 6': 0,
+            'Episode 5': 0,
+            'Episode 6': 0,
             //'Episode 7': 0,
             //'Episode 8': 0,
          	//'Episode 9': 0,
@@ -608,6 +608,8 @@ function determineWeek(responses) {
         cur_vote = 4;
     } else if (submit_time <= new Date(2022,3,10,0)) {
         cur_vote = 5;
+    } else if (submit_time <= new Date(2022,3,17,0)) {
+        cur_vote = 6;
     };
     return cur_vote;
 };
@@ -1010,6 +1012,24 @@ var results = [
         'nudity': 'No',
         'team_yellow': ['Jonathan', 'Lindsay', 'Maryanne', 'Omar'],
         'team_blue': ['Drea', 'Rocksroy', 'Romeo', 'Swati', 'Tori'],
+		'team_green': ['Chanelle', 'Daniel', 'Hai', 'Lydia', 'Mike']
+    },
+	{	'vote': 5,
+        'date': '4/6/22',
+        'merge': 'No',
+        'reward': 'team_blue',
+		'reward2': 'team_yellow', 
+        'immunity': 'team_blue', 
+		'immunity2': 'team_yellow', 
+        'eliminated': 'Daniel',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Drea',
+		'summit': ['Rocksroy', 'Lydia'],
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Jonathan', 'Lindsay', 'Maryanne', 'Omar'],
+        'team_blue': ['Drea', 'Rocksroy', 'Romeo', 'Tori'],
 		'team_green': ['Chanelle', 'Daniel', 'Hai', 'Lydia', 'Mike']
     }
 ];
