@@ -1031,5 +1031,20 @@ var results = [
         'team_yellow': ['Jonathan', 'Lindsay', 'Maryanne', 'Omar'],
         'team_blue': ['Drea', 'Rocksroy', 'Romeo', 'Tori'],
 		'team_green': ['Chanelle', 'Daniel', 'Hai', 'Lydia', 'Mike']
+    },
+	{	'vote': 6,
+        'date': '4/13/22',
+        'merge': 'No',
+        'reward': 'team_blue',
+        'immunity': 'team_yellow',
+        'eliminated': 'Lydia',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': '',
+		'summit': 'Rocksroy',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_blue': ['Jonathan', 'Maryanne', 'Hai', 'Lydia', 'Tori'],
+        'team_yellow': ['Drea', 'Romeo', 'Omar', 'Chanelle',  'Mike', 'Rocksroy']
     }
 ];
