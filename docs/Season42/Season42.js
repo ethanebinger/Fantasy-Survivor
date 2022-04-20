@@ -451,7 +451,7 @@ function init_chart() {
             'Episode 5': 0,
             'Episode 6': 0,
             //'Episode 7': 0,
-            //'Episode 8': 0,
+            'Episode 8': 0,
          	//'Episode 9': 0,
          	//'Episode 10': 0,
          	//'Episode 11': 0,
@@ -610,6 +610,8 @@ function determineWeek(responses) {
         cur_vote = 5;
     } else if (submit_time <= new Date(2022,3,17,0)) {
         cur_vote = 6;
+    } else if (submit_time <= new Date(2022,3,24,0)) {
+        cur_vote = 8;
     };
     return cur_vote;
 };
