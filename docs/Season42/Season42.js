@@ -452,7 +452,7 @@ function init_chart() {
             'Episode 6': 0,
             //'Episode 7': 0,
             'Episode 8': 0,
-         	//'Episode 9': 0,
+         	'Episode 9': 0,
          	//'Episode 10': 0,
          	//'Episode 11': 0,
 			//'Episode 12': 0,
@@ -612,6 +612,8 @@ function determineWeek(responses) {
         cur_vote = 6;
     } else if (submit_time <= new Date(2022,3,24,0)) {
         cur_vote = 8;
+    } else if (submit_time <= new Date(2022,3,31,0)) {
+        cur_vote = 9;
     };
     return cur_vote;
 };
@@ -1051,7 +1053,7 @@ var results = [
     },
 	{	'vote': 8,
         'date': '4/20/22',
-        'merge': 'No',
+        'merge': 'Yes',
         'reward': 'team_blue',
         'immunity': 'Tori',
         'eliminated': 'Chanelle',
@@ -1062,5 +1064,9 @@ var results = [
         'nudity': 'No',
 		'shotInTheDark': 'No',
         'team_blue': ['Jonathan', 'Mike', 'Chanelle', 'Rocksroy', 'Tori']
+    },
+	{	'vote': 9,
+        'date': '4/27/22',
+        'merge': 'Yes'
     }
 ];
