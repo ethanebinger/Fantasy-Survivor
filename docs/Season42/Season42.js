@@ -1054,7 +1054,7 @@ var results = [
 	{	'vote': 8,
         'date': '4/20/22',
         'merge': 'Yes',
-        'reward': 'team_blue',
+        'reward': ['Jonathan', 'Mike', 'Chanelle', 'Rocksroy', 'Tori'],
         'immunity': 'Tori',
         'eliminated': 'Chanelle',
         'idolFound': 'Yes',
@@ -1062,11 +1062,20 @@ var results = [
         'titleQuote': 'Hai',
 		'summit': '',
         'nudity': 'No',
-		'shotInTheDark': 'No',
-        'team_blue': ['Jonathan', 'Mike', 'Chanelle', 'Rocksroy', 'Tori']
+		'shotInTheDark': 'No'
     },
 	{	'vote': 9,
         'date': '4/27/22',
-        'merge': 'Yes'
+        'merge': 'Yes',
+		'reward': ['Jonathan', 'Drea', 'Maryanne', 'Lindsay', 'Tori'],
+        'immunity': 'Hai',
+		'immunity2': 'Jonathan',
+        'eliminated': ['Rocksroy', 'Tori'],
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Jeff Probst',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'Yes'
     }
 ];
