@@ -270,7 +270,8 @@ function getPastResponses() {
 									"<tr><td><strong>Risk/Reward</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
 									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
+									"<tr><td><strong>Shot-in-the-Dark Played?</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>"
 								);
 							} else if (cur_vote == 1) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
@@ -453,11 +454,11 @@ function init_chart() {
             //'Episode 7': 0,
             'Episode 8': 0,
          	'Episode 9': 0,
-         	//'Episode 10': 0,
+         	'Episode 10': 0,
          	//'Episode 11': 0,
 			//'Episode 12': 0,
 			//'Episode 13': 0,
-            //'Final Eight': 0,
+            'Final Eight': 0,
 			'Final Three': 0
         });
     };
@@ -614,6 +615,8 @@ function determineWeek(responses) {
         cur_vote = 8;
     } else if (submit_time <= new Date(2022,3,31,0)) {
         cur_vote = 9;
+	} else if (submit_time <= new Date(2022,4,7,0)) {
+        cur_vote = 10;
     };
     return cur_vote;
 };
