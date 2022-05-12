@@ -260,6 +260,19 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);
+							} else if (cur_vote == 11) {
+								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
+								$("#json_"+String(i)).html(
+									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
+									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
+									"<tr><td><strong>Do or Die</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
+									"<tr><td><strong>Survives Do or Die?</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>" + 
+									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
+									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
+								);
 							} else if (cur_vote >= 10) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -419,25 +432,25 @@ function init_chart() {
     var players = [
 		'Wilson',
         'Vivian',
-		'Orlando',
-		'Molly',
+		//'Orlando',
+		//'Molly',
         'Mitch', 
-        'Lucas',
+        //'Lucas',
 		'Kevin',
 		'Josh S',
-		'Joshua P',
-		'Jonathan',
-        'Jacob', 
+		//'Joshua P',
+		//'Jonathan',
+        //'Jacob', 
 		'Greg',
         'Ezra', 
         'Ethan', 
         'Esme',
-		'David',
-        'Ben', 
+		//'David',
+        //'Ben', 
 		'Avi',
 		'Andres',
         'Anastassia', 
-		'Alexis',
+		//'Alexis',
 		'Adam',
         'Aaron'
     ];
@@ -908,10 +921,10 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// seventh
+            } else if (castaways['place_'+String([i])] === "Drea") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25)
 				if (i===7) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Hai") {	// eighth
+            } else if (castaways['place_'+String([i])] === "Hai") {		// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
 				if (i===8) { bonus += 5 };
             };
@@ -925,7 +938,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['', '', ''];  //top three!
+    var top_three = ['Jonathan', 'Maryanne', 'Omar', 'Lindsay', 'Mike', 'Romeo'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1107,8 +1120,8 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'Yes',
         'titleQuote': '',
-		'summit': 'Lindsay',
+		'summit': 'Lindsay', // Do or Die this episode
         'nudity': 'No',
-		'shotInTheDark': 'Yes'
+		'shotInTheDark': 'Yes'  // Survives Do or Die this episode
     }
 ];
