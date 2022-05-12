@@ -1097,5 +1097,18 @@ var results = [
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No'
+    },
+	{	'vote': 11,
+        'date': '5/11/22',
+        'merge': 'Yes',
+		'reward': '',
+        'immunity': 'Jonathan',
+        'eliminated': 'Drea',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': '',
+		'summit': 'Lindsay',
+        'nudity': 'No',
+		'shotInTheDark': 'Yes'
     }
 ];
