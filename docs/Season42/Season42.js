@@ -469,7 +469,7 @@ function init_chart() {
          	'Episode 9': 0,
          	'Episode 10': 0,
          	'Episode 11': 0,
-			//'Episode 12': 0,
+			'Episode 12': 0,
 			//'Episode 13': 0,
             'Final Eight': 0,
 			'Final Three': 0
@@ -1119,7 +1119,7 @@ var results = [
         'eliminated': 'Drea',
         'idolFound': 'No',
         'idolPlayed': 'Yes',
-        'titleQuote': '',
+        'titleQuote': 'Lindsay',
 		'summit': 'Lindsay', // Do or Die this episode
         'nudity': 'No',
 		'shotInTheDark': 'Yes'  // Survives Do or Die this episode
