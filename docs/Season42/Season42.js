@@ -249,8 +249,6 @@ function getPastResponses() {
 								$("#week_"+String(i)).html("Finale");
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-									//"<tr><td><strong>Returns from the Edge</strong></td><td>" + responses[i].edgeReturn + "</td><td>"+ scores[0].edgeReturn +"</td></tr>" + 
-									//"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
 									"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + responses[i].immunity_5 + "</td><td>"+ scores[0].immunity_5 +"</td></tr>" +
 									"<tr><td><strong>Wins 2nd Immunity Challenge</strong></td><td>" + responses[i].immunity_4 + "</td><td>"+ scores[0].immunity_4 +"</td></tr>" +
 									"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + responses[i].fireChallenge + "</td><td>"+ scores[0].fireChallenge +"</td></tr>" +
@@ -1125,7 +1123,7 @@ var results = [
 		'shotInTheDark': 'Yes'  // Survives Do or Die this episode
     },
 	{	'vote': 12,
-        'date': '5/11/22',
+        'date': '5/18/22',
         'merge': 'Yes',
 		'reward': 'Omar',
         'immunity': 'Lindsay',
@@ -1136,5 +1134,18 @@ var results = [
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No'
+    // },
+	// {	'vote': 13,
+        // 'date': '5/25/22',
+        // 'merge': 'Yes',
+		// 'reward': '',
+        // 'immunity_5': '',
+		// 'immunity_4: '',
+		// 'fireChallenge': '',
+        // 'idolFound': '',
+        // 'idolPlayed': '',
+        // 'titleQuote': '',
+		// 'summit': '',
+        // 'nudity': ''
     }
 ];
