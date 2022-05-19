@@ -918,7 +918,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// sixth
+            } else if (castaways['place_'+String([i])] === "Omar") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Drea") {	// seventh
@@ -938,7 +938,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['Jonathan', 'Maryanne', 'Omar', 'Lindsay', 'Mike', 'Romeo'];  //top three!
+    var top_three = ['Jonathan', 'Maryanne', 'Lindsay', 'Mike', 'Romeo'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1123,5 +1123,18 @@ var results = [
 		'summit': 'Lindsay', // Do or Die this episode
         'nudity': 'No',
 		'shotInTheDark': 'Yes'  // Survives Do or Die this episode
+    },
+	{	'vote': 12,
+        'date': '5/11/22',
+        'merge': 'Yes',
+		'reward': 'Omar',
+        'immunity': 'Lindsay',
+        'eliminated': 'Omar',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Maryanne',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No'
     }
 ];
