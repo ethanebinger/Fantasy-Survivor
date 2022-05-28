@@ -901,19 +901,19 @@ function final_eight_calc(scores, result) {
         var sum = 0,
 			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === "") {			// sole survivor
+            if (castaways['place_'+String([i])] === "Maryanne") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// runner up
+            } else if (castaways['place_'+String([i])] === "Mike") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
 				if (i===2) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// third
+            } else if (castaways['place_'+String([i])] === "Romeo") {	// third
                 sum += Math.pow(Math.abs(i-3),2.25);
 				if (i===3) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fourth
+            } else if (castaways['place_'+String([i])] === "Jonathan") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
 				if (i===4) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fifth
+            } else if (castaways['place_'+String([i])] === "Lindsay") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Omar") {	// sixth
@@ -936,7 +936,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['Jonathan', 'Maryanne', 'Lindsay', 'Mike', 'Romeo'];  //top three!
+    var top_three = ['Maryanne', 'Mike', 'Romeo'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1134,18 +1134,18 @@ var results = [
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No'
-    // },
-	// {	'vote': 13,
-        // 'date': '5/25/22',
-        // 'merge': 'Yes',
-		// 'reward': '',
-        // 'immunity_5': '',
-		// 'immunity_4: '',
-		// 'fireChallenge': '',
-        // 'idolFound': '',
-        // 'idolPlayed': '',
-        // 'titleQuote': '',
-		// 'summit': '',
-        // 'nudity': ''
+     },
+	 {	'vote': 13,
+         'date': '5/25/22',
+         'merge': 'Yes',
+		 'reward': 'Mike',
+         'immunity_5': 'Mike',
+		 'immunity_4': 'Romeo',
+		 'fireChallenge': 'Mike',
+         'idolFound': 'Yes',
+         'idolPlayed': 'Yes',
+         'titleQuote': '',
+		 'summit': 'No',
+         'nudity': 'No'
     }
 ];
