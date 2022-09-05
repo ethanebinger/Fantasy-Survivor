@@ -1,0 +1,350 @@
+@font-face {
+    font-family: survivor;
+    src: url(Survivor_Font.ttf);
+}
+html, body {
+    font-family: "survivor", "Sans Serif";
+    background-color: black;
+    color: white;
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+.title_img {
+    background-image: url("https://static.wikia.nocookie.net/survivor/images/1/1e/S43_Logo.jpg/revision/latest?cb=20220713175838");
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.title_img_alt {
+    background-image: url("https://static.wikia.nocookie.net/survivor/images/1/1e/S43_Logo.jpg/revision/latest?cb=20220713175838");
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.title_text {
+    position: absolute;
+    /*width: 100%;*/
+    margin: 0 auto;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.title_text p {
+    padding: 10px 20px;
+    color: white;
+    background-color: black;
+    font-size: 40px;
+    letter-spacing: 10px;
+}
+
+#survivor_form {
+    margin: 0 auto;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+}
+.isHidden {
+    display: none;            
+}
+.tab {
+    display: none;
+    /*height: 100%;*/
+    min-height: 100%;
+    margin-bottom: -100px;
+    padding-bottom: 100px;
+}
+h1 {
+    font-size: 72px;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+h3 {
+    font-size: 36px;
+    margin-bottom: 10px;
+	margin-top: 0px;
+}
+select,
+.bonusQ_label {
+    font-size: 24px;
+}
+#advance_form {
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    left: 0;
+    background-color: #000;
+    padding: 10px 0px;
+    margin-top: 50px;
+}
+.torch_gif {
+	height: 30px;
+}
+/*
+#progress_buttons,
+#progress_bar {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}*/
+/*
+#progress_buttons {
+    padding-bottom: 40px;
+}
+#progress_bar {
+    padding-bottom: 10px;
+}*/
+#enterBtn,
+#resultsBtn,
+#prevBtn, 
+#nextBtn,
+#PastResponses, 
+#LandingPage {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+#enterBtn:hover,
+#resultsBtn:hover,
+#prevBtn:hover, 
+#nextBtn:hover,
+#PastResponses:hover,
+#LandingPage {
+    opacity: 0.8;
+}
+#resultsBtn,
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+/****************/
+/* RESULTS.HTML */
+/****************/
+.results_title {
+    text-align: center;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+	background-image: url("https://inside-survivor.ams3.digitaloceanspaces.com/wp-content/uploads/2017/07/FijiNew2017.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.responses_title {
+    text-align: center;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+#PastResponses, 
+#LandingPage {
+    padding: 5px;
+    font-size: 18px;
+    background-color: #bbbbbb;
+}
+#PastResponsesText, 
+#LandingPageText {
+    font-size: 28px;
+}
+#chart {
+    display: table;
+    margin: 0 auto;		
+}
+.graph {
+    display: block;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+    stroke-width: 4px;
+}
+.axis text,
+g text {
+    fill: #fff;
+}
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    text-align: left;
+    position: absolute;
+    z-index: 40;
+    font: 12px verdana, sans-serif;
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Contestant Input Buttons */
+.Cassidy {
+	background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-91-01052022.jpg")
+}
+.Cody {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-92-01052022.jpg")
+}
+.James {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-00-01052022.jpg")
+}
+.Dwight {
+	background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-93-01052022.jpg")
+}
+.Elie {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-94-01052022.jpg")
+}
+.Geo {
+	background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-95-01052022.jpg")
+}
+.Nneka {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-08-01052022.jpg")
+}
+.Jeanine {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-01-01052022.jpg")
+}
+.Jesse {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-02-01052022.jpg")
+}
+.Justine {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-03-01052022.jpg")
+}
+.Karla {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-04-01052022.jpg")
+}
+.Lindsay {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-05-01052022.jpg")
+}
+.Gabler {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-06-01052022.jpg")
+}
+.Morriah {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-07-01052022.jpg")
+}
+.Noelle {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-09-01052022.jpg")
+}
+.Owen {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-10-01052022.jpg")
+}
+.Ryan {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-11-01052022.jpg")
+}
+.Sami {
+    background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F08%2F29%2Fsurvivor-43-gallery-12-01052022.jpg")
+}
+.EoE_Returnee {
+    background-image: url("https://dumielauxepices.net/sites/default/files/anonymous-clipart-mystery-girl-839300-9035192.jpg");
+    width: 800px;
+    height: 1000px;
+}
+
+.contestants{
+    width: 75%;
+    height: 100%;
+    margin: 0 auto;
+    color: black;
+}
+
+.team_yellow {
+    background-color: rgb(251,225,5);
+}
+.team_blue {
+    background-color: rgb(32,0,203);
+}
+.team_green {
+    background-color: rgb(39,147,75);
+}
+.team_red {
+    background-color: rgb(231,28,50);
+}
+.team_name {
+    text-align: right;
+}
+.cc-selector {
+    position: relative;
+    width: 210px;
+    margin-bottom: 10px;
+    margin-right: 12px;
+    float: left;
+    padding-bottom: 10px;
+    height: 305px;
+    background-image: url(images/patternBG.jpg);
+    background-repeat: repeat;
+    background-position: center top;
+}
+.cc-selector p {
+    font-size: 24px;
+    position: absolute;
+    text-align: left;
+    margin: 0 0 0 10px;
+}
+.cc-selector .name {
+    top: 10px;
+}
+.cc-selector .team_name {
+    top: 30px;
+}
+.cc-selector img {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.cc-selector input {
+    margin:0;
+    padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+.cc-selector label {
+    margin-bottom: 2px;
+    position: absolute;
+    top: 65px;
+    left: 10px;
+}
+.survivor-cc,
+.survivor-cc-2 {
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:200px;
+    height:240px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.survivor-cc:hover {
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+.greyLabel {
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
