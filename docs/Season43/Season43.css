@@ -11,7 +11,7 @@ html, body {
     position: relative;
 }
 .title_img {
-    background-image: url("https://static.wikia.nocookie.net/survivor/images/1/1e/S43_Logo.jpg/revision/latest?cb=20220713175838");
+    background-image: url("https://cdn.mos.cms.futurecdn.net/yfqUbjdPnTDR9bFbRTJUcG.jpg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@ html, body {
     height: 100%;
 }
 .title_img_alt {
-    background-image: url("https://static.wikia.nocookie.net/survivor/images/1/1e/S43_Logo.jpg/revision/latest?cb=20220713175838");
+    background-image: url("https://cdn.mos.cms.futurecdn.net/yfqUbjdPnTDR9bFbRTJUcG.jpg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;
