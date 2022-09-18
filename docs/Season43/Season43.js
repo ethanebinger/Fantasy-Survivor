@@ -284,7 +284,7 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
 									"<tr><td><strong>Shot-in-the-Dark Played?</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>"
 								);
-							} else if (cur_vote == 1) {
+							} else if (cur_vote == -1) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -430,25 +430,27 @@ function init_chart() {
     var players = [
 		'Wilson',
         'Vivian',
-		//'Orlando',
-		//'Molly',
+		'Orlando',
+		'Molly',
         'Mitch', 
-        //'Lucas',
+        'Lucas',
 		'Kevin',
 		'Josh S',
-		//'Joshua P',
-		//'Jonathan',
-        //'Jacob', 
+		'Joshua P',
+		'Jonathan',
+        'Jacob', 
 		'Greg',
         'Ezra', 
         'Ethan', 
         'Esme',
-		//'David',
-        //'Ben', 
+		'Erika',
+		'David',
+		'Betsy',
+        'Ben', 
 		'Avi',
 		'Andres',
         'Anastassia', 
-		//'Alexis',
+		'Alexis',
 		'Adam',
         'Aaron'
     ];
