@@ -954,7 +954,7 @@ function final_three_calc(scores, result) {
 //*/
 
 var results = [
-    {	'vote': 1,
+    {	'vote': 0,
         'date': '9/21/22',
         'merge': '',
         'reward': '', 
