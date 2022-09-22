@@ -614,9 +614,9 @@ function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
 	// datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
-    if (submit_time <= new Date(2022,8,21,0)) {
+    if (submit_time <= new Date(2022,8,24,0)) { // September 21, 2022
         cur_vote = 1;
-    } else if (submit_time <= new Date(2022,8,28,0)) {
+    } else if (submit_time <= new Date(2022,9,1,0)) { // September 28, 2022
         cur_vote = 2;
     };
     return cur_vote;
@@ -966,7 +966,7 @@ var results = [
         'idolFound': 'Yes',
         'idolPlayed': 'No',
         'titleQuote': 'Cody',
-		'summit': '',
+		'summit': ['Karla', 'Dwight', 'Gabler'],
         'nudity': 'No',
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Morriah', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
