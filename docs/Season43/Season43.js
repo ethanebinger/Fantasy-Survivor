@@ -438,6 +438,7 @@ function init_chart() {
 		'Josh S',
 		'Joshua P',
 		'Jonathan',
+		'John R',
         'Jacob', 
 		'Greg',
         'Ezra', 
@@ -445,6 +446,7 @@ function init_chart() {
         'Esme',
 		'Erika',
 		'David',
+		'Dan',
 		'Betsy',
         'Ben', 
 		'Avi',
@@ -628,7 +630,7 @@ function calculateScores(scores, results, responses, calcType) {
         for (var i=0; i<results.length; i++) {
             var team_yellow = results[i].team_yellow;
             var team_blue = results[i].team_blue;
-			var team_green = results[i].team_green;
+			var team_red = results[i].team_red;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
@@ -775,7 +777,7 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_green' || results[i].reward2 === 'team_green') && inArray(responses[j].reward, team_green) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_red' || results[i].reward2 === 'team_red') && inArray(responses[j].reward, team_red) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -789,7 +791,7 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green')  && inArray(responses[j].immunity, team_green) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_red' || results[i].immunity2 === 'team_red')  && inArray(responses[j].immunity, team_red) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -954,20 +956,20 @@ function final_three_calc(scores, result) {
 //*/
 
 var results = [
-    {	'vote': 0,
+    {	'vote': 1,
         'date': '9/21/22',
-        'merge': '',
-        'reward': '', 
-        'immunity': '', 
-		'immunity2': '',
-        'eliminated': '',
-        'idolFound': '',
-        'idolPlayed': '',
-        'titleQuote': '',
+        'merge': 'No',
+        'reward': 'team_red', 
+        'immunity': 'team_red',
+		'immunity2': 'team_blue',
+        'eliminated': 'Morriah',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Cody',
 		'summit': '',
-        'nudity': '',
-        'team_yellow': [],
-        'team_blue': [],
-		'team_green': []
+        'nudity': 'No',
+        'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Morriah', 'Sami', 'Owen'],
+        'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
+		'team_red': ['Cody', 'Dwight', 'Jesse', 'Justine', 'Noelle', 'Nneka']
     }
 ];
