@@ -1,6 +1,6 @@
 ## WELCOME SOMERVILLE SURVIVORS!
 
-![Image](https://upload.wikimedia.org/wikipedia/en/5/54/Survivor_41_Logo.png)
+![Image](https://static.wikia.nocookie.net/survivor/images/4/4b/Survivor_43_logo.png)
 
 Here you can find the rules and the code behind the web form and visualizations used for the Somerville Survivors Fantasy League. 
 
@@ -22,6 +22,6 @@ Points will double after the merge.
 
 Other questions may be added for weekly challenges or to accomodate for specifics within the season (i.e. who is sent to Ghost Island this week?).
 
-Players will pick a Final Three after the first episode. For each survivor chosen that makes it to the Final Three they will recieve +20 points (max 60).
+Players will pick a Final Three after the first episode. For each survivor chosen that makes it to the Final Three they will recieve +30 points (max 90).
 
-When there are 8 Survivors left, weekly points will no longer be assigned for the main questions (bonus questions still count). Instead, players will rank the remaining players in the order they go home. Based on these picks, points will be assigned using a regression algorithm that determines how close each pick was to the actual order. (Thanks David for putting this part together!)
+When there are 8 Survivors left, weekly points will no longer be assigned for the main questions (bonus questions still count). Instead, players will rank the remaining players in the order they go home. Based on these picks, points will be assigned using a regression algorithm that determines how close each pick was to the actual order. (Thanks David for putting this part together!) A perfect prediction for the Final Eight recieves +140 points.

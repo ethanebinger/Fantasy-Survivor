@@ -284,16 +284,7 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
 									"<tr><td><strong>Shot-in-the-Dark Played?</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>"
 								);
-							} else if (cur_vote == -1) {
-								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
-								$("#json_"+String(i)).html(
-									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
-									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
-								);
-							} else if (cur_vote >= 5) {
+							} else {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
 									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
@@ -307,20 +298,6 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
 									"<tr><td><strong>Shot-in-the-Dark Played?</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>"
-								);
-							} else {
-								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
-								$("#json_"+String(i)).html(
-									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
-									"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
-									"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
-									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
-									"<tr><td><strong>Risk/Reward</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
-									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);
 							};
 						break;
@@ -389,7 +366,7 @@ function getPastResponses() {
                 for (var j=0; j<finalThree.length; j++) {
                     if (finalThree[j].name === curName) {
 						var cur_vote = determineWeek(finalThree[j]);
-                        if (cur_vote === 1) {	// only submited responses to this question during episode 1
+                        if (cur_vote === 2) {	// submited responses to this question during episode 2
 							$("#past_responses").append("<h3 id='finalThree_title'></h3>");
 							$("#finalThree_title").html("Preseason Picks for Final Three Survivors");
 							$("#past_responses").append("<span id='finalThree_table'></span>");
@@ -928,23 +905,23 @@ function final_three_calc(scores, result) {
         for (var i=0; i<result.length; i++) {
 			if (result[i].name === scores[n].name) {
 				var cur_vote = determineWeek(result[i]);
-				if (cur_vote === 1) {	// only submited responses to this question during week 1
+				if (cur_vote === 2) {	// submited responses to this question during week 2
 					if (inArray(result[i].name, name_ep_count)) {
 						console.log("duplicate final three -",result[i].name, cur_vote);
 						scores[n].total -= scores[n]['Final Three'];
 						scores[n]['Final Three'] = 0;						
 					};
 					if (inArray(result[i].pick_1, top_three)){
-						scores[n]['Final Three'] += 20;
-						scores[n].total += 20;
+						scores[n]['Final Three'] += 30;
+						scores[n].total += 30;
 					};
 					if (inArray(result[i].pick_2, top_three)){
-						scores[n]['Final Three'] += 20;
-						scores[n].total += 20;
+						scores[n]['Final Three'] += 30;
+						scores[n].total += 30;
 					};
 					if (inArray(result[i].pick_3, top_three)){
-						scores[n]['Final Three'] += 20;
-						scores[n].total += 20;
+						scores[n]['Final Three'] += 30;
+						scores[n].total += 30;
 					};
 					name_ep_count.push(result[i].name);
 				};
