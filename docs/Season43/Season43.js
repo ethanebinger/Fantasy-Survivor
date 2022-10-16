@@ -402,103 +402,47 @@ function init_chart() {
         window.location = "index.html";
     });
     
-    // Define temp data
-    var scores = [];
-    var players = [
-		'Wilson',
-        'Vivian',
-		'Orlando',
-		'Molly',
-        'Mitch', 
-        'Lucas',
-		'Leslie',
-		'Kevin',
-		'Josh S',
-		'Joshua P',
-		'Jonathan',
-		'John R',
-        'Jacob', 
-		'Greg',
-        'Ezra', 
-        'Ethan', 
-        'Esme',
-		'Erika',
-		'David',
-		'Dan M',
-		'Betsy',
-        'Ben', 
-		'Avi',
-		'Andres',
-        'Anastassia', 
-		'Alexis',
-		'Adam',
-        'Aaron'
-    ];
-    for (var p=0; p<players.length; p++) {
-        scores.push({
-            'name': players[p], 
-            'total': 0, 
-            'Episode 1': 0, 
-            'Episode 2': 0,
-            'Episode 3': 0,
-            'Episode 4': 0,
-            //'Episode 5': 0,
-            //'Episode 6': 0,
-            //'Episode 7': 0,
-            //'Episode 8': 0,
-         	//'Episode 9': 0,
-         	//'Episode 10': 0,
-         	//'Episode 11': 0,
-			//'Episode 12': 0,
-			//'Episode 13': 0,
-            'Final Eight': 0,
-			'Final Three': 0
-        });
-    };
-
-    // Create arrays for players, keys (votes)
-    //var players = scores.map(function(d) { return d.name; });
-    var keys = Object.keys(scores[0]).splice(2,)
-
-    // Define chart elements
-    var margin = {top: 20, right: 20, bottom: 30, left: 80},
-        width = $('.graph').width() - margin.left - margin.right,
-        height = 480 - margin.top - margin.bottom;
-
-    // Define Scales and Axes
-    var x = d3.scaleLinear()
-        .range([0, width-100]);
-    var y = d3.scaleBand()
-        .domain(players)
-        .rangeRound([height, 0], 0.3);
-    var color = d3.scaleOrdinal()
-        .domain(keys)
-        .range(["#8dd3c7", "#ffffb3", "#bebada", 
-                "#fb8072", "#80b1d3", "#fdb462", 
-                "#b3de69", "#fccde5", "#d9d9d9", 
-                "#bc80bd", "#ccebc5", "#ffed6f",
-                "#1f78b4", "#33a02c", "#6a3d9a"]);
-    var xAxis = d3.axisBottom(x);
-    var yAxis = d3.axisLeft(y);
-
-    // Define tooltip
-    var tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([-5, 0])
-        .html(function(d) {
-            return 	"<strong>" + d.data.name + "</strong>" +
-                    "<br><span>Weekly Score = " + parseFloat(d[1]-d[0]).toFixed(1) + "</span>" +
-                    "<br><span>Total Score = " + parseFloat(d.data.total).toFixed(1) + "</span>"
-        });
-
-    // Define SVG and associated elements
-    var svg = d3.select("#chart")
-        .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-    var chart = svg.append("g")
-        .attr("transform",  "translate(" + margin.left + "," + margin.top + ")")
-        .call(tip);	
+	// Function to get players
+	function getActivePlayers(r) {
+		var players = [];
+		var i;
+		for (i=0; i < r.length; i++) {
+			players.push(r[i].name)
+		};
+		function onlyUnique(value, index, self) {
+			return self.indexOf(value) === index;
+		}
+		var players = players.filter(onlyUnique).sort().reverse();
+		return players;
+	};
+	
+	// Function to create score array from players
+	function createScoreArray(players) {
+		var scores = [];
+		for (var p=0; p<players.length; p++) {
+			scores.push({
+				'name': players[p], 
+				'total': 0, 
+				'Episode 1': 0, 
+				'Episode 2': 0,
+				'Episode 3': 0,
+				'Episode 4': 0,
+				'Episode 5': 0,
+				//'Episode 6': 0,
+				//'Episode 7': 0,
+				//'Episode 8': 0,
+				//'Episode 9': 0,
+				//'Episode 10': 0,
+				//'Episode 11': 0,
+				//'Episode 12': 0,
+				//'Episode 13': 0,
+				'Final Eight': 0,
+				'Final Three': 0
+			});
+		};
+		return scores;
+	};
+	
 
     // Calculate scores
     var responses,
@@ -510,9 +454,58 @@ function init_chart() {
             responses = JSON.parse(atob(result.content));
         })
     ).then(function() {
-        scores = calculateScores(scores, results, responses, null);
+		// Create an array of active players from the people who have submitted a response
+        players = getActivePlayers(responses);
+		scores = createScoreArray(players);
+		
+		// Calculate scores
+		scores = calculateScores(scores, results, responses, null);
 		scores = final_eight_calc(scores, responses);
 		scores = final_three_calc(scores, responses);
+
+		// Create arrays for players, keys (votes)
+		//var players = scores.map(function(d) { return d.name; });
+		var keys = Object.keys(scores[0]).splice(2,)
+
+		// Define chart elements
+		var margin = {top: 20, right: 20, bottom: 30, left: 80},
+			width = $('.graph').width() - margin.left - margin.right,
+			height = 480 - margin.top - margin.bottom;
+
+		// Define Scales and Axes
+		var x = d3.scaleLinear()
+			.range([0, width-100]);
+		var y = d3.scaleBand()
+			.domain(players)
+			.rangeRound([height, 0], 0.3);
+		var color = d3.scaleOrdinal()
+			.domain(keys)
+			.range(["#8dd3c7", "#ffffb3", "#bebada", 
+					"#fb8072", "#80b1d3", "#fdb462", 
+					"#b3de69", "#fccde5", "#d9d9d9", 
+					"#bc80bd", "#ccebc5", "#ffed6f",
+					"#1f78b4", "#33a02c", "#6a3d9a"]);
+		var xAxis = d3.axisBottom(x);
+		var yAxis = d3.axisLeft(y);
+
+		// Define tooltip
+		var tip = d3.tip()
+			.attr('class', 'd3-tip')
+			.offset([-5, 0])
+			.html(function(d) {
+				return 	"<strong>" + d.data.name + "</strong>" +
+						"<br><span>Weekly Score = " + parseFloat(d[1]-d[0]).toFixed(1) + "</span>" +
+						"<br><span>Total Score = " + parseFloat(d.data.total).toFixed(1) + "</span>"
+			});
+
+		// Define SVG and associated elements
+		var svg = d3.select("#chart")
+			.append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+		var chart = svg.append("g")
+			.attr("transform",  "translate(" + margin.left + "," + margin.top + ")")
+			.call(tip);	
 		
         // Define X-Scale Domain
         x.domain([0,d3.max(scores, function(d) { return d.total; })]);
@@ -600,6 +593,8 @@ function determineWeek(responses) {
         cur_vote = 3;
     } else if (submit_time <= new Date(2022,9,16,0)) { // October 12, 2022
         cur_vote = 4;
+    } else if (submit_time <= new Date(2022,9,23,0)) { // October 19, 2022
+        cur_vote = 5;
     };
     return cur_vote;
 };
@@ -987,5 +982,21 @@ var results = [
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
 		'team_red': ['Cody', 'Dwight', 'Jesse', 'Noelle', 'Nneka']
+    },
+	{	'vote': 4,
+        'date': '10/12/22',
+        'merge': 'No',
+        'reward': 'team_red',
+        'immunity': 'team_red',
+		'immunity2': 'team_yellow',
+        'eliminated': 'Lindsay',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Cody',
+		'summit': [],
+        'nudity': 'No',
+        'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
+        'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
+		'team_red': ['Cody', 'Dwight', 'Jesse', 'Noelle']
     }
 ];
