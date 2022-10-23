@@ -595,6 +595,10 @@ function determineWeek(responses) {
         cur_vote = 4;
     } else if (submit_time <= new Date(2022,9,23,0)) { // October 19, 2022
         cur_vote = 5;
+    } else if (submit_time <= new Date(2022,9,30,0)) { // October 26, 2022
+        cur_vote = 6;
+    } else if (submit_time <= new Date(2022,10,5,0)) { // November 2, 2022
+        cur_vote = 7;
     };
     return cur_vote;
 };
@@ -997,6 +1001,22 @@ var results = [
         'nudity': 'No',
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
+		'team_red': ['Cody', 'Dwight', 'Jesse', 'Noelle']
+    },
+	{	'vote': 5,
+        'date': '10/19/22',
+        'merge': 'No',
+        'reward': 'team_red',
+        'immunity': 'team_red',
+		'immunity2': 'team_yellow',
+        'eliminated': 'Geo',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': '',
+		'summit': ['Geo', 'Jesse', 'Jeanine'],
+        'nudity': 'No',
+        'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
+        'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Cassidy'],
 		'team_red': ['Cody', 'Dwight', 'Jesse', 'Noelle']
     }
 ];
