@@ -430,7 +430,7 @@ function init_chart() {
 				'Episode 5': 0,
 				'Episode 6': 0,
 				'Episode 7': 0,
-				//'Episode 8': 0,
+				'Episode 8': 0,
 				//'Episode 9': 0,
 				//'Episode 10': 0,
 				//'Episode 11': 0,
@@ -599,6 +599,8 @@ function determineWeek(responses) {
         cur_vote = 6;
     } else if (submit_time <= new Date(2022,10,5,0)) { // November 2, 2022
         cur_vote = 7;
+    } else if (submit_time <= new Date(2022,10,12,0)) { // November 9, 2022
+        cur_vote = 8;
     };
     return cur_vote;
 };
@@ -1018,5 +1020,29 @@ var results = [
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Cassidy'],
 		'team_red': ['Cody', 'Dwight', 'Jesse', 'Noelle']
+    },
+	{	'vote': 6,
+        'date': '10/26/22',
+        'merge': 'Yes',
+        'reward': ['Gabler', 'Dwight', 'Noelle', 'Karla', 'Ryan', 'Jesse', 'Jeanine'],
+        'immunity': ['Gabler', 'Dwight', 'Noelle', 'Karla', 'Ryan', 'Jesse', 'Jeanine'],
+        'eliminated': 'Elie',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Cassidy',
+		'summit': '',
+        'nudity': 'No'
+    },
+	{	'vote': 7,
+        'date': '11/2/22',
+        'merge': 'Yes',
+        'reward': '',
+        'immunity': 'Gabler',
+        'eliminated': 'Dwight',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Cassidy',
+		'summit': '',
+        'nudity': 'Yes'
     }
 ];
