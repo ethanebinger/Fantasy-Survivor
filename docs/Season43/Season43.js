@@ -905,7 +905,8 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = [];  //top three!
+    //var top_three = ['Gabler', 'Jeanine', 'Sami', 'Owen', 'James', 'Karla', 'Ryan', 'Cassidy', 'Cody', 'Jesse', 'Noelle'];  //top three!
+	var top_three = [];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1044,5 +1045,17 @@ var results = [
         'titleQuote': 'Cassidy',
 		'summit': '',
         'nudity': 'Yes'
+    },
+	{	'vote': 8,
+        'date': '11/9/22',
+        'merge': 'Yes',
+        'reward': '',
+        'immunity': 'Owen',
+        'eliminated': 'Jeanine',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Cody',
+		'summit': '',
+        'nudity': 'No'
     }
 ];
