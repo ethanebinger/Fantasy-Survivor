@@ -952,6 +952,7 @@ var results = [
         'titleQuote': 'Cody',
 		'summit': ['Karla', 'Dwight', 'Gabler'],
         'nudity': 'No',
+		'shotInTheDark': 'No',
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Morriah', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
 		'team_red': ['Cody', 'Dwight', 'Jesse', 'Justine', 'Noelle', 'Nneka']
@@ -969,6 +970,7 @@ var results = [
         'titleQuote': 'Owen',
 		'summit': [],
         'nudity': 'No',
+		'shotInTheDark': 'No',
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
 		'team_red': ['Cody', 'Dwight', 'Jesse', 'Justine', 'Noelle', 'Nneka']
@@ -986,6 +988,7 @@ var results = [
         'titleQuote': 'Jesse',
 		'summit': ['Noelle', 'James', 'Owen'],
         'nudity': 'No',
+		'shotInTheDark': 'No',
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
 		'team_red': ['Cody', 'Dwight', 'Jesse', 'Noelle', 'Nneka']
@@ -1002,6 +1005,7 @@ var results = [
         'titleQuote': 'Cody',
 		'summit': [],
         'nudity': 'No',
+		'shotInTheDark': 'No',
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Lindsay', 'Cassidy'],
 		'team_red': ['Cody', 'Dwight', 'Jesse', 'Noelle']
@@ -1018,6 +1022,7 @@ var results = [
         'titleQuote': '',
 		'summit': ['Geo', 'Jesse', 'Jeanine'],
         'nudity': 'No',
+		'shotInTheDark': 'No',
         'team_yellow': ['Elie', 'Gabler', 'Jeanine', 'Sami', 'Owen'],
         'team_blue': ['James', 'Geo', 'Karla', 'Ryan', 'Cassidy'],
 		'team_red': ['Cody', 'Dwight', 'Jesse', 'Noelle']
@@ -1032,7 +1037,8 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Cassidy',
 		'summit': '',
-        'nudity': 'No'
+        'nudity': 'No',
+		'shotInTheDark': 'No'
     },
 	{	'vote': 7,
         'date': '11/2/22',
@@ -1044,7 +1050,8 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Cassidy',
 		'summit': '',
-        'nudity': 'Yes'
+        'nudity': 'Yes',
+		'shotInTheDark': 'No'
     },
 	{	'vote': 8,
         'date': '11/9/22',
@@ -1056,6 +1063,7 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Cody',
 		'summit': '',
-        'nudity': 'No'
+        'nudity': 'No',
+		'shotInTheDark': 'No'
     }
 ];
