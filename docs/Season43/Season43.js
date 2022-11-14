@@ -431,7 +431,7 @@ function init_chart() {
 				'Episode 6': 0,
 				'Episode 7': 0,
 				'Episode 8': 0,
-				//'Episode 9': 0,
+				'Episode 9': 0,
 				//'Episode 10': 0,
 				//'Episode 11': 0,
 				//'Episode 12': 0,
@@ -601,6 +601,8 @@ function determineWeek(responses) {
         cur_vote = 7;
     } else if (submit_time <= new Date(2022,10,12,0)) { // November 9, 2022
         cur_vote = 8;
+    } else if (submit_time <= new Date(2022,10,19,0)) { // November 16, 2022
+        cur_vote = 9;
     };
     return cur_vote;
 };
@@ -905,7 +907,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    //var top_three = ['Gabler', 'Jeanine', 'Sami', 'Owen', 'James', 'Karla', 'Ryan', 'Cassidy', 'Cody', 'Jesse', 'Noelle'];  //top three!
+    //var top_three = ['Gabler', 'Sami', 'Owen', 'James', 'Karla', 'Ryan', 'Cassidy', 'Cody', 'Jesse', 'Noelle'];  //top three!
 	var top_three = [];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -1065,5 +1067,19 @@ var results = [
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No'
+    //},
+	//{	'vote': 9,
+    //    'date': '11/16/22',
+    //    'merge': 'Yes',
+    //    'reward': '',
+    //    'immunity': '',
+	//	'immunity2': '',
+    //    'eliminated': ['', ''],
+    //    'idolFound': '',
+    //    'idolPlayed': '',
+    //    'titleQuote': '',
+	//	'summit': '',
+    //    'nudity': '',
+	//	'shotInTheDark': ''
     }
 ];
