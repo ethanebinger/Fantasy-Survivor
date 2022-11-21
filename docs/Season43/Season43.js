@@ -432,7 +432,7 @@ function init_chart() {
 				'Episode 7': 0,
 				'Episode 8': 0,
 				'Episode 9': 0,
-				//'Episode 10': 0,
+				'Episode 10': 0,
 				//'Episode 11': 0,
 				//'Episode 12': 0,
 				//'Episode 13': 0,
@@ -460,7 +460,7 @@ function init_chart() {
 		
 		// Calculate scores
 		scores = calculateScores(scores, results, responses, null);
-		scores = final_eight_calc(scores, responses);
+		//scores = final_eight_calc(scores, responses);
 		scores = final_three_calc(scores, responses);
 
 		// Create arrays for players, keys (votes)
@@ -601,8 +601,10 @@ function determineWeek(responses) {
         cur_vote = 7;
     } else if (submit_time <= new Date(2022,10,12,0)) { // November 9, 2022
         cur_vote = 8;
-    } else if (submit_time <= new Date(2022,10,19,0)) { // November 16, 2022
+    } else if (submit_time <= new Date(2022,10,20,10)) { // November 16, 2022
         cur_vote = 9;
+    } else if (submit_time <= new Date(2022,10,26,0)) { // November 23, 2022
+        cur_vote = 10;
     };
     return cur_vote;
 };
@@ -907,7 +909,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    //var top_three = ['Gabler', 'Sami', 'Owen', 'James', 'Karla', 'Ryan', 'Cassidy', 'Cody', 'Jesse', 'Noelle'];  //top three!
+    //var top_three = ['Gabler', 'Sami', 'Owen', 'Karla', 'Cassidy', 'Cody', 'Jesse', 'Noelle'];  //top three!
 	var top_three = [];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -1067,19 +1069,19 @@ var results = [
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No'
-    //},
-	//{	'vote': 9,
-    //    'date': '11/16/22',
-    //    'merge': 'Yes',
-    //    'reward': '',
-    //    'immunity': '',
-	//	'immunity2': '',
-    //    'eliminated': ['', ''],
-    //    'idolFound': '',
-    //    'idolPlayed': '',
-    //    'titleQuote': '',
-	//	'summit': '',
-    //    'nudity': '',
-	//	'shotInTheDark': ''
+    },
+	{	'vote': 9,
+        'date': '11/16/22',
+        'merge': 'Yes',
+        'reward': ['Gabler', 'Ryan', 'Cody', 'Jesse', 'Cassidy'],
+        'immunity': 'Karla',
+		'immunity2': 'Cody',
+        'eliminated': ['James', 'Ryan'],
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Karla',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No'
     }
 ];
