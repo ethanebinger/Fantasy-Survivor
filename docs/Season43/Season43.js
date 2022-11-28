@@ -258,19 +258,6 @@ function getPastResponses() {
 									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
 								);
-							} else if (cur_vote == 11) {
-								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
-								$("#json_"+String(i)).html(
-									"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-									"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-									"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
-									"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
-									"<tr><td><strong>Do or Die</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
-									"<tr><td><strong>Survives Do or Die?</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>" + 
-									"<tr><td><strong>Nudity?</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Found?</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-									"<tr><td><strong>Idol or Secret Advantage Played?</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>"
-								);
 							} else if (cur_vote >= 10) {
 								$("#week_"+String(i)).html("Episode #"+String(cur_vote));
 								$("#json_"+String(i)).html(
@@ -605,6 +592,8 @@ function determineWeek(responses) {
         cur_vote = 9;
     } else if (submit_time <= new Date(2022,10,26,0)) { // November 23, 2022
         cur_vote = 10;
+    } else if (submit_time <= new Date(2022,11,3,0)) { // November 30, 2022
+        cur_vote = 11;
     };
     return cur_vote;
 };
@@ -895,7 +884,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25)
 				if (i===7) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {		// eighth
+            } else if (castaways['place_'+String([i])] === "Noelle") {		// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
 				if (i===8) { bonus += 5 };
             };
@@ -909,7 +898,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    //var top_three = ['Gabler', 'Sami', 'Owen', 'Karla', 'Cassidy', 'Cody', 'Jesse', 'Noelle'];  //top three!
+    //var top_three = ['Gabler', 'Sami', 'Owen', 'Karla', 'Cassidy', 'Cody', 'Jesse'];  //top three!
 	var top_three = [];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -1080,6 +1069,19 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'Yes',
         'titleQuote': 'Karla',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No'
+    },
+	{	'vote': 10,
+        'date': '11/23/22',
+        'merge': 'Yes',
+        'reward': 'Noelle',
+        'immunity': 'Cassidy',
+        'eliminated': 'Noelle',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Jesse',
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No'
