@@ -594,6 +594,10 @@ function determineWeek(responses) {
         cur_vote = 10;
     } else if (submit_time <= new Date(2022,11,3,0)) { // November 30, 2022
         cur_vote = 11;
+    } else if (submit_time <= new Date(2022,11,10,0)) { // December 7, 2022
+        cur_vote = 12;
+    } else if (submit_time <= new Date(2022,11,20,0)) { // December 14, 2022
+        cur_vote = 13;
     };
     return cur_vote;
 };
@@ -642,6 +646,10 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 15; };
                                 scores[n].total += 15;
                             } else if (results[i].immunity2 == responses[j].immunity && responses[j].immunity) {
+                                if (calcType === "individual") { scores[n].immunity += 15; }
+                                else { scores[n][val_vote] += 15; };
+                                scores[n].total += 15;
+                            } else if (results[i].immunity3 == responses[j].immunity && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 15; }
                                 else { scores[n][val_vote] += 15; };
                                 scores[n].total += 15;
@@ -881,7 +889,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// seventh
+            } else if (castaways['place_'+String([i])] === "Sami") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25)
 				if (i===7) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Noelle") {		// eighth
@@ -898,7 +906,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    //var top_three = ['Gabler', 'Sami', 'Owen', 'Karla', 'Cassidy', 'Cody', 'Jesse'];  //top three!
+    //var top_three = ['Gabler', 'Owen', 'Karla', 'Cassidy', 'Cody', 'Jesse'];  //top three!
 	var top_three = [];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -1085,5 +1093,20 @@ var results = [
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No'
+    },
+	{	'vote': 11,
+        'date': '11/30/22',
+        'merge': 'Yes',
+        'reward': '',
+        'immunity': 'Owen',
+		'immunity2': 'Karla',
+		'immunity3': 'Cody',
+        'eliminated': 'Sami',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Gabler',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'Yes'
     }
 ];
