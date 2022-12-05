@@ -420,9 +420,9 @@ function init_chart() {
 				'Episode 8': 0,
 				'Episode 9': 0,
 				'Episode 10': 0,
-				//'Episode 11': 0,
-				//'Episode 12': 0,
-				//'Episode 13': 0,
+				'Episode 11': 0,
+				'Episode 12': 0,
+				'Episode 13': 0,
 				'Final Eight': 0,
 				'Final Three': 0
 			});
@@ -447,7 +447,7 @@ function init_chart() {
 		
 		// Calculate scores
 		scores = calculateScores(scores, results, responses, null);
-		//scores = final_eight_calc(scores, responses);
+		scores = final_eight_calc(scores, responses);
 		scores = final_three_calc(scores, responses);
 
 		// Create arrays for players, keys (votes)
@@ -592,7 +592,7 @@ function determineWeek(responses) {
         cur_vote = 9;
     } else if (submit_time <= new Date(2022,10,26,0)) { // November 23, 2022
         cur_vote = 10;
-    } else if (submit_time <= new Date(2022,11,3,0)) { // November 30, 2022
+    } else if (submit_time <= new Date(2022,11,5,10)) { // November 30, 2022
         cur_vote = 11;
     } else if (submit_time <= new Date(2022,11,10,0)) { // December 7, 2022
         cur_vote = 12;
@@ -906,8 +906,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    //var top_three = ['Gabler', 'Owen', 'Karla', 'Cassidy', 'Cody', 'Jesse'];  //top three!
-	var top_three = [];  //top three!
+    var top_three = ['Gabler', 'Owen', 'Karla', 'Cassidy', 'Cody', 'Jesse'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
