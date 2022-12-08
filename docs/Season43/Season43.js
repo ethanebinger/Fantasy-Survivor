@@ -886,7 +886,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// sixth
+            } else if (castaways['place_'+String([i])] === "Cody") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Sami") {	// seventh
@@ -906,7 +906,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['Gabler', 'Owen', 'Karla', 'Cassidy', 'Cody', 'Jesse'];  //top three!
+    var top_three = ['Gabler', 'Owen', 'Karla', 'Cassidy', 'Jesse'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1107,5 +1107,18 @@ var results = [
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'Yes'
+    },
+	{	'vote': 12,
+        'date': '12/7/22',
+        'merge': 'Yes',
+        'reward': ['Cody', 'Owen', 'Karla'],
+        'immunity': 'Cassidy',
+        'eliminated': 'Cody',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Karla',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No'
     }
 ];
