@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/torch.gif">
+        <title>Survivor - Season 44</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- D3 -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="d3-tip.js"></script>
+        
+        <!-- Stylesheet and Javascript -->
+        <link rel="stylesheet" href="Season44.css">
+        <script src="Season44.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <div class="survivor_form">
+            <div class="results_title">
+                <h3>SOMERVILLE SURVIVORS FANTASY LEAGUE</h3>
+                <h3>SEASON 44</h3>
+                <h1>RESULTS</h1>
+                <!--<br>-->
+                <p id="PastResponsesText"><button id="PastResponses">Click Here</button> to see past responses and point breakdown</p>
+				<p id="LandingPageText"><button id="LandingPage">Click Here</button> to return to main page</p>
+				<br>
+            </div>
+            <div class="graph">
+                <div id="chart"></div>
+            </div>       
+        </div>
+        
+    </body>
+    
+    <script>
+        $(document).ready(function(){
+            init_chart();
+        });
+    </script>
+    
+</html>
