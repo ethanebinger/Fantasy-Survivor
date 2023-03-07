@@ -891,7 +891,7 @@ function final_three_calc(scores, result) {
         for (var i=0; i<result.length; i++) {
 			if (result[i].name === scores[n].name) {
 				var cur_vote = determineWeek(result[i]);
-				if (cur_vote === 2) {	// submited responses to this question during week 2
+				if (cur_vote === 1) {	// submited responses to this question during week 1
 					if (inArray(result[i].name, name_ep_count)) {
 						console.log("duplicate final three -",result[i].name, cur_vote);
 						scores[n].total -= scores[n]['Final Three'];
@@ -928,8 +928,8 @@ var results = [
         'eliminated': ['Bruce', 'Maddy'],
         'idolFound': 'Yes',
         'idolPlayed': 'Yes',
-        'titleQuote': '',
-		'summit': ['Lauren', 'Matthew_B', 'Sarah'],
+        'titleQuote': 'Yam Yam',
+		'summit': ['Lauren', 'Matthew B', 'Sarah'],
         'nudity': 'No',
 		'shotInTheDark': 'Yes',
         'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren', 'Maddy'],
