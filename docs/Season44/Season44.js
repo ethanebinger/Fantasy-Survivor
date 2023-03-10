@@ -414,7 +414,7 @@ function init_chart() {
 				'Final Three': 0,
 				//'Final Eight',
 				'Episode 1': 0, 
-				//'Episode 2': 0,
+				'Episode 2': 0,
 				//'Episode 3': 0,
 				//'Episode 4': 0,
 				//'Episode 5': 0,
@@ -934,6 +934,23 @@ var results = [
 		'shotInTheDark': 'Yes',
         'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren', 'Maddy'],
         'team_purple': ['Carolyn', 'Helen', 'Sarah', 'Bruce', 'Carson', 'Yam_Yam'],
+		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew_B']
+    },
+	{	'vote': 2,
+        'date': '3/8/23',
+        'merge': 'No',
+        'reward': 'team_green', 
+        'immunity': 'team_green',
+		'immunity2': 'team_yellow',
+        'eliminated': 'Helen',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Frannie',
+		'summit': 'No',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren'],
+        'team_purple': ['Carolyn', 'Helen', 'Sarah', 'Carson', 'Yam_Yam'],
 		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew_B']
     }
 ];
