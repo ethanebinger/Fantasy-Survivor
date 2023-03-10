@@ -940,6 +940,7 @@ var results = [
         'date': '3/8/23',
         'merge': 'No',
         'reward': 'team_green', 
+		'reward2': 'team_yellow', 
         'immunity': 'team_green',
 		'immunity2': 'team_yellow',
         'eliminated': 'Helen',
