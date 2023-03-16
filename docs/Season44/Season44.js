@@ -578,7 +578,7 @@ function determineWeek(responses) {
     } else if (submit_time <= new Date(2023,2,11,0)) { // March 8, 2023
         cur_vote = 2;
     } else if (submit_time <= new Date(2023,2,18,0)) { // March 15, 2023
-        cur_vote = 2;
+        cur_vote = 3;
     };
     return cur_vote;
 };
