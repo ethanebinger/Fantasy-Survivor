@@ -416,7 +416,7 @@ function init_chart() {
 				'Episode 1': 0, 
 				'Episode 2': 0,
 				'Episode 3': 0,
-				//'Episode 4': 0,
+				'Episode 4': 0,
 				//'Episode 5': 0,
 				//'Episode 6': 0,
 				//'Episode 7': 0,
@@ -579,6 +579,12 @@ function determineWeek(responses) {
         cur_vote = 2;
     } else if (submit_time <= new Date(2023,2,18,0)) { // March 15, 2023
         cur_vote = 3;
+    } else if (submit_time <= new Date(2023,2,25,0)) { // March 22, 2023
+        cur_vote = 4;
+    } else if (submit_time <= new Date(2023,3,1,0)) { // March 29, 2023
+        cur_vote = 5;
+    } else if (submit_time <= new Date(2023,3,7,0)) { // April 5, 2023
+        cur_vote = 6;
     };
     return cur_vote;
 };
@@ -806,7 +812,11 @@ function calculateScores(scores, results, responses, calcType) {
                                 scores[n].total += 2;
                             };
                             // Idol Found
-                            if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
+							if (cur_vote == 3) { // hard code yes to all for vote 3 because of the poor editing where Matt GM found idol
+								if (calcType === "individual") { scores[n].idolFound += 2; }
+                                else { scores[n][val_vote] += 2; };
+                                scores[n].total += 2;
+                            } else if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
                                 if (calcType === "individual") { scores[n].idolFound += 2; }
                                 else { scores[n][val_vote] += 2; };
                                 scores[n].total += 2;
@@ -964,7 +974,7 @@ var results = [
         'immunity': 'team_purple',
 		'immunity2': 'team_yellow',
         'eliminated': 'Claire',
-        'idolFound': 'No',
+        'idolFound': 'Yes', // but also no he found it in week 2
         'idolPlayed': 'No',
         'titleQuote': 'Danny',
 		'summit': 'No',
