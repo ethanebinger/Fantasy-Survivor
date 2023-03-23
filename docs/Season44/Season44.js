@@ -598,6 +598,7 @@ function calculateScores(scores, results, responses, calcType) {
             var team_yellow = results[i].team_yellow;
             var team_purple = results[i].team_purple;
 			var team_green = results[i].team_green;
+			var swapped_ep_4 = results[i].team_swap_win;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
                 if (responses[j].name === cur_player) {
@@ -763,6 +764,10 @@ function calculateScores(scores, results, responses, calcType) {
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
                             } else if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green')  && inArray(responses[j].immunity, team_green) && responses[j].immunity) {
+                                if (calcType === "individual") { scores[n].immunity += 5; }
+                                else { scores[n][val_vote] += 5; };
+                                scores[n].total += 5;
+                            } else if ((results[i].immunity === 'team_swap_win')  && inArray(responses[j].immunity, swapped_ep_4) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -983,5 +988,25 @@ var results = [
         'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren'],
         'team_purple': ['Carolyn', 'Sarah', 'Carson', 'Yam_Yam'],
 		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew_B']
+    },
+	{	'vote': 4,
+        'date': '3/22/23',
+        'merge': 'No',
+        'reward': 'team_green', 
+		'reward2': 'team_yellow', 
+        'immunity': 'team_swap_win', // green and yellow, but swapped to had to do something new for this scoring
+        'eliminated': 'Sarah',
+        'idolFound': 'Yes',
+        'idolPlayed': 'Yes',
+        'titleQuote': '',
+		'summit': ['Josh', 'Carson', 'Jamie'],
+        'nudity': 'No',
+		'shotInTheDark': 'Yes',
+		// old teams
+        'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren'],
+        'team_purple': ['Carolyn', 'Sarah', 'Carson', 'Yam_Yam'],
+		'team_green': ['Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew_B'],
+		// swapped teams
+        'team_swap_win': ['Brandon', 'Kane', 'Matthew_GM', 'Carson', 'Lauren', 'Frannie', 'Heidi', 'Danny', 'Jamie', 'Matthew_B']
     }
 ];
