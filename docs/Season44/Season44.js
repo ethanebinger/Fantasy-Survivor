@@ -949,9 +949,9 @@ var results = [
 		'summit': ['Lauren', 'Matthew B', 'Sarah'],
         'nudity': 'No',
 		'shotInTheDark': 'Yes',
-        'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren', 'Maddy'],
-        'team_purple': ['Carolyn', 'Helen', 'Sarah', 'Bruce', 'Carson', 'Yam_Yam'],
-		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew_B']
+        'team_yellow': ['Brandon', 'Kane', 'Matthew G-M', 'Jamie', 'Lauren', 'Maddy'],
+        'team_purple': ['Carolyn', 'Helen', 'Sarah', 'Bruce', 'Carson', 'Yam Yam'],
+		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew B']
     },
 	{	'vote': 2,
         'date': '3/8/23',
@@ -967,9 +967,9 @@ var results = [
 		'summit': 'No',
         'nudity': 'No',
 		'shotInTheDark': 'No',
-        'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren'],
-        'team_purple': ['Carolyn', 'Helen', 'Sarah', 'Carson', 'Yam_Yam'],
-		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew_B']
+        'team_yellow': ['Brandon', 'Kane', 'Matthew G-M', 'Jamie', 'Lauren'],
+        'team_purple': ['Carolyn', 'Helen', 'Sarah', 'Carson', 'Yam Yam'],
+		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew B']
     },
 	{	'vote': 3,
         'date': '3/15/23',
@@ -985,9 +985,9 @@ var results = [
 		'summit': 'No',
         'nudity': 'No',
 		'shotInTheDark': 'Yes',
-        'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren'],
-        'team_purple': ['Carolyn', 'Sarah', 'Carson', 'Yam_Yam'],
-		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew_B']
+        'team_yellow': ['Brandon', 'Kane', 'Matthew G-M', 'Jamie', 'Lauren'],
+        'team_purple': ['Carolyn', 'Sarah', 'Carson', 'Yam Yam'],
+		'team_green': ['Claire', 'Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew B']
     },
 	{	'vote': 4,
         'date': '3/22/23',
@@ -998,15 +998,15 @@ var results = [
         'eliminated': 'Sarah',
         'idolFound': 'Yes',
         'idolPlayed': 'Yes',
-        'titleQuote': '',
+        'titleQuote': 'Carolyn',
 		'summit': ['Josh', 'Carson', 'Jamie'],
         'nudity': 'No',
-		'shotInTheDark': 'Yes',
+		'shotInTheDark': 'No',
 		// old teams
-        'team_yellow': ['Brandon', 'Kane', 'Matthew_GM', 'Jamie', 'Lauren'],
-        'team_purple': ['Carolyn', 'Sarah', 'Carson', 'Yam_Yam'],
-		'team_green': ['Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew_B'],
+        'team_yellow': ['Brandon', 'Kane', 'Matthew G-M', 'Jamie', 'Lauren'],
+        'team_purple': ['Carolyn', 'Sarah', 'Carson', 'Yam Yam'],
+		'team_green': ['Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew B'],
 		// swapped teams
-        'team_swap_win': ['Brandon', 'Kane', 'Matthew_GM', 'Carson', 'Lauren', 'Frannie', 'Heidi', 'Danny', 'Jamie', 'Matthew_B']
+        'team_swap_win': ['Brandon', 'Kane', 'Matthew G-M', 'Carson', 'Lauren', 'Frannie', 'Heidi', 'Danny', 'Jamie', 'Matthew B']
     }
 ];
