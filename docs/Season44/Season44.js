@@ -417,7 +417,7 @@ function init_chart() {
 				'Episode 2': 0,
 				'Episode 3': 0,
 				'Episode 4': 0,
-				//'Episode 5': 0,
+				'Episode 5': 0,
 				//'Episode 6': 0,
 				//'Episode 7': 0,
 				//'Episode 8': 0,
@@ -1008,5 +1008,23 @@ var results = [
 		'team_green': ['Frannie', 'Heidi', 'Danny', 'Josh', 'Matthew B'],
 		// swapped teams
         'team_swap_win': ['Brandon', 'Kane', 'Matthew G-M', 'Carson', 'Lauren', 'Frannie', 'Heidi', 'Danny', 'Jamie', 'Matthew B']
+    },
+	{	'vote': 5,
+        'date': '3/29/23',
+        'merge': 'No',
+        'reward': 'team_green', 
+		'reward2': 'team_yellow', 
+        'immunity': 'team_green',
+		'immunity2': 'team_yellow',
+        'eliminated': 'Matthew G-M', // medical evac but still counts because no vote
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Carolyn',
+		'summit': ['Carolyn', 'Danny', 'Brandon'],
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Brandon', 'Kane', 'Matthew G-M', 'Carson', 'Lauren'],
+        'team_purple': ['Carolyn', 'Josh', 'Yam Yam'],
+		'team_green': ['Frannie', 'Heidi', 'Danny', 'Jamie', 'Matthew B']
     }
 ];
