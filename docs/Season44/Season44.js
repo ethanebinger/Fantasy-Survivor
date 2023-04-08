@@ -583,8 +583,12 @@ function determineWeek(responses) {
         cur_vote = 4;
     } else if (submit_time <= new Date(2023,3,1,0)) { // March 29, 2023
         cur_vote = 5;
-    } else if (submit_time <= new Date(2023,3,7,0)) { // April 5, 2023
+    } else if (submit_time <= new Date(2023,3,9,0)) { // April 5, 2023
         cur_vote = 6;
+    } else if (submit_time <= new Date(2023,3,16,0)) { // April 12, 2023
+        cur_vote = 7;
+	} else if (submit_time <= new Date(2023,3,23,0)) { // April 19, 2023
+        cur_vote = 8;
     };
     return cur_vote;
 };
