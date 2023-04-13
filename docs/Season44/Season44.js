@@ -1049,7 +1049,7 @@ var results = [
 	{	'vote': 7,
         'date': '4/12/23',
         'merge': 'Yes',
-        'reward': 'team_purple',
+        'reward': ['Carolyn', 'Heidi', 'Danny', 'Frannie', 'Carson', 'Kane'],
         'immunity': 'Frannie',
 		'immunity2': 'Brandon',
         'eliminated': 'Matthew B', 
