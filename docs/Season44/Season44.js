@@ -419,7 +419,7 @@ function init_chart() {
 				'Episode 4': 0,
 				'Episode 5': 0,
 				'Episode 6': 0,
-				//'Episode 7': 0,
+				'Episode 7': 0,
 				//'Episode 8': 0,
 				//'Episode 9': 0,
 				//'Episode 10': 0,
@@ -1045,5 +1045,21 @@ var results = [
 		'shotInTheDark': 'No',
         'team_yellow': ['Kane', 'Heidi', 'Danny', 'Josh', 'Yam Yam', 'Lauren'],
         'team_purple': ['Carolyn', 'Brandon', 'Frannie', 'Carson', 'Matthew B', 'Jamie']
+    },
+	{	'vote': 7,
+        'date': '4/12/23',
+        'merge': 'Yes',
+        'reward': 'team_purple',
+        'immunity': 'Frannie',
+		'immunity2': 'Brandon',
+        'eliminated': 'Matthew B', 
+        'idolFound': 'Yes',
+        'idolPlayed': 'Yes',
+        'titleQuote': '',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Carolyn', 'Heidi', 'Danny', 'Frannie', 'Carson', 'Kane'],
+        'team_purple': ['Lauren', 'Brandon', 'Yam Yam', 'Matthew B', 'Jamie']
     }
 ];
