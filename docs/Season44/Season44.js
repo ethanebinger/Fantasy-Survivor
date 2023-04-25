@@ -420,7 +420,7 @@ function init_chart() {
 				'Episode 5': 0,
 				'Episode 6': 0,
 				'Episode 7': 0,
-				//'Episode 8': 0,
+				'Episode 8': 0,
 				//'Episode 9': 0,
 				//'Episode 10': 0,
 				//'Episode 11': 0,
@@ -589,6 +589,8 @@ function determineWeek(responses) {
         cur_vote = 7;
 	} else if (submit_time <= new Date(2023,3,23,0)) { // April 19, 2023
         cur_vote = 8;
+    } else if (submit_time <= new Date(2023,3,30,0)) { // April 26, 2023
+        cur_vote = 9;
     };
     return cur_vote;
 };
@@ -1061,5 +1063,18 @@ var results = [
 		'shotInTheDark': 'No',
         'team_yellow': ['Carolyn', 'Heidi', 'Danny', 'Frannie', 'Carson', 'Kane'],
         'team_purple': ['Lauren', 'Brandon', 'Yam Yam', 'Matthew B', 'Jamie']
+    },
+	{	'vote': 8,
+        'date': '4/19/23',
+        'merge': 'Yes',
+        'reward': '',
+        'immunity': 'Lauren',
+        'eliminated': 'Brandon', 
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Kane',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No'
     }
 ];
