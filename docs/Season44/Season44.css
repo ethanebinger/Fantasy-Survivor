@@ -11,7 +11,8 @@ html, body {
     position: relative;
 }
 .title_img {
-	background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2023%2F01%2F25%2FSurvivor_44_012523_19.jpg");
+	/*background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2023%2F01%2F25%2FSurvivor_44_012523_19.jpg");*/
+	background-image: url("https://pbs.twimg.com/media/Fr3bCezXwAAeETO.jpg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;
@@ -19,7 +20,8 @@ html, body {
     height: 100%;
 }
 .title_img_alt {
-    background-image: url("https://www.goldderby.com/wp-content/uploads/2022/05/survivor-43-host-jeff-probst.jpg");
+    /*background-image: url("https://www.goldderby.com/wp-content/uploads/2022/05/survivor-43-host-jeff-probst.jpg");*/
+	background-image: url("https://pbs.twimg.com/media/Fr418PYXoAAB_xJ.jpg");
     position: relative;
     background-position: top;
     background-repeat: no-repeat;
@@ -135,8 +137,9 @@ select,
 .results_title {
     text-align: center;
 	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-	background-image: url("https://inside-survivor.ams3.digitaloceanspaces.com/wp-content/uploads/2017/07/FijiNew2017.png");
-    background-position: center;
+	/*background-image: url("https://inside-survivor.ams3.digitaloceanspaces.com/wp-content/uploads/2017/07/FijiNew2017.png");*/
+	background-image: url("https://inside-survivor.ams3.digitaloceanspaces.com/wp-content/uploads/2023/04/yam.png");
+    background-position: 0 -50px;
     background-repeat: no-repeat;
     background-size: cover;
 }
