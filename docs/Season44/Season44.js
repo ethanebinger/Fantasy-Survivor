@@ -412,7 +412,7 @@ function init_chart() {
 				'name': players[p], 
 				'total': 0, 
 				'Final Three': 0,
-				//'Final Eight',
+				'Final Eight': 0,
 				'Episode 1': 0, 
 				'Episode 2': 0,
 				'Episode 3': 0,
@@ -422,7 +422,7 @@ function init_chart() {
 				'Episode 7': 0,
 				'Episode 8': 0,
 				'Episode 9': 0,
-				//'Episode 10': 0,
+				'Episode 10': 0,
 				//'Episode 11': 0,
 				//'Episode 12': 0,
 				//'Episode 13': 0
@@ -591,6 +591,8 @@ function determineWeek(responses) {
         cur_vote = 8;
     } else if (submit_time <= new Date(2023,3,30,0)) { // April 26, 2023
         cur_vote = 9;
+    } else if (submit_time <= new Date(2023,4,7,0)) { // May 3, 2023
+        cur_vote = 10;
     };
     return cur_vote;
 };
@@ -1081,7 +1083,7 @@ var results = [
         'date': '4/26/23',
         'merge': 'Yes',
         'reward': '',
-        'immunity': 'Heidi',
+        'immunity': 'Frannie',
         'eliminated': 'Kane', 
         'idolFound': 'Yes',
         'idolPlayed': 'No',
