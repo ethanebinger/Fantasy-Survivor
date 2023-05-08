@@ -314,7 +314,7 @@ function getPastResponses() {
                 for (var j=0; j<finalEight.length; j++) {
                     if (finalEight[j].name === curName) {
 						var cur_vote = determineWeek(finalEight[j]);
-                        if (cur_vote === 10) {	// only submited responses to this question for episode 13
+                        if (cur_vote === 10) {	// only submited responses to this question for episode 10
 							$("#past_responses").append("<h3 id='finalEight_title'></h3>");
 							$("#finalEight_title").html("Order of Final Eight Survivors");
 							$("#past_responses").append("<span id='finalEight_table'></span>");
@@ -411,8 +411,6 @@ function init_chart() {
 			scores.push({
 				'name': players[p], 
 				'total': 0, 
-				'Final Three': 0,
-				'Final Eight': 0,
 				'Episode 1': 0, 
 				'Episode 2': 0,
 				'Episode 3': 0,
@@ -425,7 +423,9 @@ function init_chart() {
 				'Episode 10': 0,
 				//'Episode 11': 0,
 				//'Episode 12': 0,
-				//'Episode 13': 0
+				//'Episode 13': 0,
+				'Final Eight': 0,
+				'Final Three': 0
 			});
 		};
 		return scores;
@@ -593,6 +593,8 @@ function determineWeek(responses) {
         cur_vote = 9;
     } else if (submit_time <= new Date(2023,4,7,0)) { // May 3, 2023
         cur_vote = 10;
+    } else if (submit_time <= new Date(2023,4,14,0)) { // May 10, 2023
+        cur_vote = 11;
     };
     return cur_vote;
 };
@@ -910,7 +912,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['TBD','TBD','TBD'];  //top three!
+    var top_three = ['Carolyn', 'Carson', 'Yam Yam', 'Heidi', 'Danny', 'Jamie', 'Lauren'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
