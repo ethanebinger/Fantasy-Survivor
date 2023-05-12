@@ -421,7 +421,7 @@ function init_chart() {
 				'Episode 8': 0,
 				'Episode 9': 0,
 				'Episode 10': 0,
-				//'Episode 11': 0,
+				'Episode 11': 0,
 				//'Episode 12': 0,
 				//'Episode 13': 0,
 				'Final Eight': 0,
@@ -895,7 +895,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// seventh
+            } else if (castaways['place_'+String([i])] === "Danny") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25)
 				if (i===7) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Frannie") {		// eighth
@@ -912,7 +912,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['Carolyn', 'Carson', 'Yam Yam', 'Heidi', 'Danny', 'Jamie', 'Lauren'];  //top three!
+    var top_three = ['Carolyn', 'Carson', 'Yam Yam', 'Heidi', 'Jamie', 'Lauren'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1103,6 +1103,19 @@ var results = [
         'idolFound': 'No',
         'idolPlayed': 'No',
         'titleQuote': 'Jeff Probst',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No'
+    },
+	{	'vote': 11,
+        'date': '5/10/23',
+        'merge': 'Yes',
+        'reward': '',
+        'immunity': 'Yam Yam',
+        'eliminated': 'Danny', 
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Carolyn',
 		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No'
