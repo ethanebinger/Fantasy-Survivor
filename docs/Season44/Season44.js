@@ -422,8 +422,8 @@ function init_chart() {
 				'Episode 9': 0,
 				'Episode 10': 0,
 				'Episode 11': 0,
-				//'Episode 12': 0,
-				//'Episode 13': 0,
+				'Episode 12': 0,
+				'Episode 13': 0,
 				'Final Eight': 0,
 				'Final Three': 0
 			});
@@ -595,6 +595,10 @@ function determineWeek(responses) {
         cur_vote = 10;
     } else if (submit_time <= new Date(2023,4,14,0)) { // May 10, 2023
         cur_vote = 11;
+    } else if (submit_time <= new Date(2023,4,21,0)) { // May 17, 2023
+        cur_vote = 12;
+    } else if (submit_time <= new Date(2023,4,28,0)) { // May 24, 2023
+        cur_vote = 13;
     };
     return cur_vote;
 };
@@ -892,7 +896,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// sixth
+            } else if (castaways['place_'+String([i])] === "Jamie") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Danny") {	// seventh
@@ -912,7 +916,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['Carolyn', 'Carson', 'Yam Yam', 'Heidi', 'Jamie', 'Lauren'];  //top three!
+    var top_three = ['Carolyn', 'Carson', 'Yam Yam', 'Heidi', 'Lauren'];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
@@ -1115,6 +1119,19 @@ var results = [
         'eliminated': 'Danny', 
         'idolFound': 'No',
         'idolPlayed': 'Yes',
+        'titleQuote': 'Carolyn',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No'
+    },
+	{	'vote': 12,
+        'date': '5/17/23',
+        'merge': 'Yes',
+        'reward': ['Yam Yam', 'Lauren', 'Carson'],
+        'immunity': 'Lauren',
+        'eliminated': 'Jamie', 
+        'idolFound': 'No',
+        'idolPlayed': 'No',
         'titleQuote': 'Carolyn',
 		'summit': '',
         'nudity': 'No',
