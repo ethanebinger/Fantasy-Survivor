@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--<meta http-equiv="X-Merge-Compatible" content="IE=edge">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/torch.gif">
+        <title>Survivor - Season 45</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- D3 -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="d3-tip.js"></script>
+        
+        <!-- Github API -->
+        <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
+        <script src="../GithubAPIPush.js"></script>
+		<script src="../octokat.js"></script>
+        
+        <!-- Stylesheet and Javascript -->
+        <link rel="stylesheet" href="Season45.css">
+        <script src="Season45.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <div class="title_img">
+            <div class="title_text">
+                <p>SOMERVILLE SURVIVORS<br>FANTASY LEAGUE</p>
+                <p>SEASON 45<br></p>
+                <br>
+                <button id="enterBtn">SUBMIT PICKS</button>
+				<br><br>
+                <button id="resultsBtn">SEE RESULTS</button>
+            </div>
+        </div>
+        <div id="survivor_form" class="isHidden">
+            <div class="tab">
+				<h1>You are currently voting for the episode airing on 9/27/23</h1>
+                <br>
+                <h1>What is your name?</h1>
+                <br>
+                <form name="name">
+                    <select>
+                        <option value="">Select One</option>
+                        <option value="Aaron">Aaron</option>
+						<option value="Abby">Abby</option>
+						<option value="Adam">Adam</option>
+                        <option value="Alexis">Alexis</option>
+                        <option value="Anastassia">Anastassia</option>
+						<option value="Andres">Andres</option>
+						<option value="Avi">Avi</option>
+                        <option value="Ben">Ben</option>
+						<option value="Betsy">Betsy</option>
+						<option value="Dan M">Dan M</option>
+						<option value="David">David</option>
+						<option value="Esme">Esme</option>
+						<option value="Erika">Erika</option>
+						<option value="Ethan">Ethan</option>
+						<option value="Ezra">Ezra</option>
+						<option value="Greg">Greg</option>
+						<option value="Jacob">Jacob</option>
+						<option value="Joe">Joe</option>
+						<option value="John R">John R</option>
+						<option value="Jonathan">Jonathan</option>
+						<option value="Josh S">Josh S</option>
+						<option value="Joshua P">Joshua P</option>
+						<option value="Kevin">Kevin</option>
+						<option value="Leslie">Leslie</option>
+						<option value="Liz">Liz</option>
+						<option value="Lucas">Lucas</option>
+						<option value="Marcy">Marcy</option>
+						<option value="Mitch">Mitch</option>
+						<option value="Morgan">Molly</option>
+						<option value="Orlando">Orlando</option>
+						<option value="Vivian">Vivian</option>
+						<option value="Wilson">Wilson</option>
+                    </select>
+                </form>
+            </div>
+			<!--
+			<div class="tab">
+                <h1>Who will be the final 3 survivors?<h1>
+				<h3>
+					Please pick one from each dropdown. Order does not matter.<br>
+					You will get +30 points for each correct pick at the end of the season.
+				</h3>
+				<form name="pick_1">
+                    <select>
+                        <option value="">Select One</option>
+						<option value="Austin">Austin</option>
+						<option value="Brandon">Brandon</option>
+						<option value="Brando">Brando</option>
+						<option value="Bruce">Bruce</option>
+						<option value="Dee">Dee</option>
+						<option value="Drew">Drew</option>
+						<option value="Emily">Emily</option>
+						<option value="Hannah">Hannah</option>
+						<option value="Jake">Jake</option>
+						<option value="J Maya">J Maya</option>
+						<option value="Julie">Julie</option>
+						<option value="Kaleb">Kaleb</option>
+						<option value="Katurah">Katurah</option>
+						<option value="Kellie">Kellie</option>
+						<option value="Kendra">Kendra</option>
+						<option value="Sifu">Sifu</option>
+						<option value="Sabiyah">Sabiyah</option>
+						<option value="Sean">Sean</option>
+                    </select>
+                </form>
+				<br>
+				<form name="pick_2">
+                    <select>
+                        <option value="">Select One</option>
+						<option value="Austin">Austin</option>
+						<option value="Brandon">Brandon</option>
+						<option value="Brando">Brando</option>
+						<option value="Bruce">Bruce</option>
+						<option value="Dee">Dee</option>
+						<option value="Drew">Drew</option>
+						<option value="Emily">Emily</option>
+						<option value="Hannah">Hannah</option>
+						<option value="Jake">Jake</option>
+						<option value="J Maya">J Maya</option>
+						<option value="Julie">Julie</option>
+						<option value="Kaleb">Kaleb</option>
+						<option value="Katurah">Katurah</option>
+						<option value="Kellie">Kellie</option>
+						<option value="Kendra">Kendra</option>
+						<option value="Sifu">Sifu</option>
+						<option value="Sabiyah">Sabiyah</option>
+						<option value="Sean">Sean</option>
+                    </select>
+                </form>
+				<br>
+				<form name="pick_3">
+                    <select>
+                        <option value="">Select One</option>
+						<option value="Austin">Austin</option>
+						<option value="Brandon">Brandon</option>
+						<option value="Brando">Brando</option>
+						<option value="Bruce">Bruce</option>
+						<option value="Dee">Dee</option>
+						<option value="Drew">Drew</option>
+						<option value="Emily">Emily</option>
+						<option value="Hannah">Hannah</option>
+						<option value="Jake">Jake</option>
+						<option value="J Maya">J Maya</option>
+						<option value="Julie">Julie</option>
+						<option value="Kaleb">Kaleb</option>
+						<option value="Katurah">Katurah</option>
+						<option value="Kellie">Kellie</option>
+						<option value="Kendra">Kendra</option>
+						<option value="Sifu">Sifu</option>
+						<option value="Sabiyah">Sabiyah</option>
+						<option value="Sean">Sean</option>
+                    </select>
+                </form>
+			-->
+				<!--
+				<h1>Take a look at the new contestants!<h1>
+				<h3>
+					You will select who you think will make it to Final Tribal <br>
+					(top 3 contestants) next week. For now, take a look at the new <br>
+					survivors and their tribes.
+				</h3>
+				-->
+			<!--
+				<br><br>
+				<h3>
+					The images below show you each contestant.<br>
+					For bios follow this link: 
+					<a href="https://ew.com/tv/survivor-45-cast-photos-bios-revealed/">https://ew.com/tv/survivor-45-cast-photos-bios-revealed/</a>
+				</h3>
+				<div class="contestants">
+					<div class="cc-selector">
+						<p class='name'>Austin</p>
+						<img src='images/flag_red.jpg'/>
+						<label class='survivor-cc-2 Austin'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Brandon</p>
+						<img src='images/flag_yellow.jpg'/>
+						<label class='survivor-cc-2 Brandon'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Brando</p>
+						<img src='images/flag_blue.jpg'/>
+						<label class='survivor-cc-2 Brando'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Bruce</p>
+						<img src='images/flag_blue.jpg'/>
+						<label class='survivor-cc-2 Bruce'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Dee</p>
+						<img src='images/flag_red.jpg'/>
+						<label class='survivor-cc-2 Drew'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Drew</p>
+						<img src='images/flag_red.jpg'/>
+						<label class='survivor-cc-2 Drew'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Emily</p>
+						<img src='images/flag_yellow.jpg'/>
+						<label class='survivor-cc-2 Emily'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Hannah</p>
+						<img src='images/flag_yellow.jpg'/>
+						<label class='survivor-cc-2 Hannah'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Jake</p>
+						<img src='images/flag_blue.jpg'/>
+						<label class='survivor-cc-2 Jake'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>J Maya</p>
+						<img src='images/flag_red.jpg'/>
+						<label class='survivor-cc-2 Janani'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Julie</p>
+						<img src='images/flag_red.jpg'/>
+						<label class='survivor-cc-2 Julie'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Kaleb</p>
+						<img src='images/flag_yellow.jpg'/>
+						<label class='survivor-cc-2 Kaleb'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Katurah</p>
+						<img src='images/flag_blue.jpg'/>
+						<label class='survivor-cc-2 Katurah'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Kellie</p>
+						<img src='images/flag_blue.jpg'/>
+						<label class='survivor-cc-2 Kellie'></label>
+					</div>					
+					<div class="cc-selector">
+						<p class='name'>Kendra</p>
+						<img src='images/flag_blue.jpg'/>
+						<label class='survivor-cc-2 Kendra'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Sifu</p>
+						<img src='images/flag_red.jpg'/>
+						<label class='survivor-cc-2 Sifu'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Sabiyah</p>
+						<img src='images/flag_yellow.jpg'/>
+						<label class='survivor-cc-2 Sabiyah'></label>
+					</div>
+					<div class="cc-selector">
+						<p class='name'>Sean</p>
+						<img src='images/flag_yellow.jpg'/>
+						<label class='survivor-cc-2 Sean'></label>
+					</div>
+				</div>
+            </div>
+		-->
+		<!--
+			<div class="tab">
+                <h1>OUTLAST</h1>
+                <h3>Rank the remaining survivors.<h3>
+				<h3>
+					Please pick one from each dropdown. Order DOES matter.<br>
+					Do not repeat your picks. All eight options should be used once.
+				</h3>
+				<h3>
+					You will get points for each pick based on the deviation from their final placement.<br>
+					The images below show you each contestant still in the game with their original tribe color.
+				</h3>
+				<h3>8th Place:</h3>
+				<form name="place_8">
+                    <select>
+                        <option value="">Select One</option>
+                    </select>
+                </form>
+				<br>
+				<h3>7th Place:</h3>
+				<form name="place_7">
+                    <select>
+                        <option value="">Select One</option>'
+                    </select>
+                </form>
+				<br>
+				<h3>6th Place:</h3>
+				<form name="place_6">
+                    <select>
+                        <option value="">Select One</option>
+                    </select>
+                </form>
+				<br>
+				<h3>5th Place:</h3>
+				<form name="place_5">
+                    <select>
+                        <option value="">Select One</option>
+                    </select>
+                </form>
+				<br>
+				<h3>4th Place:</h3>
+				<form name="place_4">
+                    <select>
+                        <option value="">Select One</option>
+                    </select>
+                </form>
+				<br>
+				<h3>3rd Place:</h3>
+				<form name="place_3">
+                    <select>
+                        <option value="">Select One</option>
+                    </select>
+                </form>
+				<br>
+				<h3>2nd Place:</h3>
+				<form name="place_2">
+                    <select>
+                        <option value="">Select One</option>
+                    </select>
+                </form>
+				<br>
+				<h3>1st Place:</h3>
+				<form name="place_1">
+                    <select>
+                        <option value="">Select One</option>
+                    </select>
+                </form>
+				<br><br>
+				<div class="contestants">
+					<div class="cc-selector">
+						<p class='name'>NAME</p>
+						<img src='images/flag_purple.jpg'/>
+						<label class="survivor-cc-2 NAME"></label>
+					</div>
+				</div>
+            </div>
+		-->
+			<div class="tab">
+                <h1>OUTWIT</h1>
+                <h3>Who will win REWARD this week?<br>(select one)<br>(+5 if group) (+10 if individual)</h3>
+                <form name="reward"> 
+                    <div class="contestants">
+						<div class="cc-selector">
+							<p class='name'>Austin</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Austin_reward" type="radio" name="reward" value="Austin" />
+							<label class="survivor-cc Austin reward" for="Austin_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Brandon</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Brandon_reward" type="radio" name="reward" value="Brandon" />
+							<label class="survivor-cc Brandon reward" for="Brandon_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Brando</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Brando_reward" type="radio" name="reward" value="Brando" />
+							<label class="survivor-cc Brando reward" for="Brando_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Bruce</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Bruce_reward" type="radio" name="reward" value="Bruce" />
+							<label class="survivor-cc Bruce reward" for="Bruce_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Dee</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Dee_reward" type="radio" name="reward" value="Dee" />
+							<label class="survivor-cc Dee reward" for="Dee_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Drew</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Drew_reward" type="radio" name="reward" value="Drew" />
+							<label class="survivor-cc Drew reward" for="Drew_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Emily</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Emily_reward" type="radio" name="reward" value="Emily" />
+							<label class="survivor-cc Emily reward" for="Emily_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Hannah</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Hannah_reward" type="radio" name="reward" value="Hannah" />
+							<label class="survivor-cc Hannah reward" for="Hannah_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Jake</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Jake_reward" type="radio" name="reward" value="Jake" />
+							<label class="survivor-cc Jake reward" for="Jake_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>J Maya</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Janani_reward" type="radio" name="reward" value="Janani" />
+							<label class="survivor-cc Janani reward" for="Janani_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Julie</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Julie_reward" type="radio" name="reward" value="Julie" />
+							<label class="survivor-cc Julie reward" for="Julie_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kaleb</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Kaleb_reward" type="radio" name="reward" value="Kaleb" />
+							<label class="survivor-cc Kaleb reward" for="Kaleb_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Katurah</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Katurah_reward" type="radio" name="reward" value="Katurah" />
+							<label class="survivor-cc Katurah reward" for="Katurah_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kellie</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Kellie_reward" type="radio" name="reward" value="Kellie" />
+							<label class="survivor-cc Kellie reward" for="Kellie_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kendra</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Kendra_reward" type="radio" name="reward" value="Kendra" />
+							<label class="survivor-cc Kendra reward" for="Kendra_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sifu</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Sifu_reward" type="radio" name="reward" value="Sifu" />
+							<label class="survivor-cc Sifu reward" for="Sifu_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sabiyah</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Sabiyah_reward" type="radio" name="reward" value="Sabiyah" />
+							<label class="survivor-cc Sabiyah reward" for="Sabiyah_reward"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sean</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Sean_reward" type="radio" name="reward" value="Sean" />
+							<label class="survivor-cc Sean reward" for="Sean_reward"></label>
+						</div>
+                    </div>
+                </form>
+            </div>
+		<!--	
+			<div class="tab">
+                <h1>OUTLAST I</h1>
+                <h3>Who will win the 1st immunity challenge this week?<br>(with 5 people left in game) (+10)</h3>
+				<form name="immunity_5"> 
+                    <div class="contestants">
+						<div class="cc-selector">
+							<p class='name'>NAME</p>
+							<img src='images/flag_black.jpg'/>
+							<input id="NAME_immunity_5" type="radio" name="immunity_5" value="NAME" />
+							<label class="survivor-cc NAME immunity_5" for="NAME_immunity_5"></label>
+						</div>
+                    </div>
+                </form>
+			</div>
+			<div class="tab">
+                <h1>OUTLAST II</h1>
+                <h3>Who will win the 2nd immunity challenge this week?<br>(with 4 people left in game) (+10)</h3>
+				<form name="immunity_4"> 
+                    <div class="contestants">
+						<div class="cc-selector">
+							<p class='name'>NAME</p>
+							<img src='images/flag_black.jpg'/>
+							<input id="NAME_immunity_4" type="radio" name="immunity_4" value="NAME" />
+							<label class="survivor-cc NAME immunity_4" for="NAME_immunity_4"></label>
+						</div>
+                    </div>
+                </form>
+			</div>
+			<div class="tab">
+                <h1>OUTPLAY.</h1>
+                <h3>Who will win the fire making challenge this week?<br>(with 4 people left in game) (+10)</h3>
+				<form name="fireChallenge"> 
+					<div class="contestants">
+						<div class="cc-selector">
+							<p class='name'>NAME</p>
+							<img src='images/flag_black.jpg'/>
+							<input id="NAME_fireChallenge" type="radio" name="fireChallenge" value="NAME" />
+							<label class="survivor-cc NAME fireChallenge" for="NAME_fireChallenge"></label>
+						</div>
+                    </div>
+                </form>
+			</div>
+		-->
+			<div class="tab">
+                <h1>OUTPLAY</h1>
+                <h3>Who will win IMMUNITY this week?<br>(select one)<br>(+5 if group) (+15 if individual)</h3>
+				<form name="immunity"> 
+					<div class="contestants">
+						<div class="cc-selector">
+							<p class='name'>Austin</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Austin_immunity" type="radio" name="immunity" value="Austin" />
+							<label class="survivor-cc Austin immunity" for="Austin_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Brandon</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Brandon_immunity" type="radio" name="immunity" value="Brandon" />
+							<label class="survivor-cc Brandon immunity" for="Brandon_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Brando</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Brando_immunity" type="radio" name="immunity" value="Brando" />
+							<label class="survivor-cc Brando immunity" for="Brando_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Bruce</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Bruce_immunity" type="radio" name="immunity" value="Bruce" />
+							<label class="survivor-cc Bruce immunity" for="Bruce_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Dee</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Dee_immunity" type="radio" name="immunity" value="Dee" />
+							<label class="survivor-cc Dee immunity" for="Dee_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Drew</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Drew_immunity" type="radio" name="immunity" value="Drew" />
+							<label class="survivor-cc Drew immunity" for="Drew_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Emily</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Emily_immunity" type="radio" name="immunity" value="Emily" />
+							<label class="survivor-cc Emily immunity" for="Emily_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Hannah</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Hannah_immunity" type="radio" name="immunity" value="Hannah" />
+							<label class="survivor-cc Hannah immunity" for="Hannah_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Jake</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Jake_immunity" type="radio" name="immunity" value="Jake" />
+							<label class="survivor-cc Jake immunity" for="Jake_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>J Maya</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Janani_immunity" type="radio" name="immunity" value="Janani" />
+							<label class="survivor-cc Janani immunity" for="Janani_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Julie</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Julie_immunity" type="radio" name="immunity" value="Julie" />
+							<label class="survivor-cc Julie immunity" for="Julie_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kaleb</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Kaleb_immunity" type="radio" name="immunity" value="Kaleb" />
+							<label class="survivor-cc Kaleb immunity" for="Kaleb_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Katurah</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Katurah_immunity" type="radio" name="immunity" value="Katurah" />
+							<label class="survivor-cc Katurah immunity" for="Katurah_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kellie</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Kellie_immunity" type="radio" name="immunity" value="Kellie" />
+							<label class="survivor-cc Kellie immunity" for="Kellie_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kendra</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Kendra_immunity" type="radio" name="immunity" value="Kendra" />
+							<label class="survivor-cc Kendra immunity" for="Kendra_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sifu</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Sifu_immunity" type="radio" name="immunity" value="Sifu" />
+							<label class="survivor-cc Sifu immunity" for="Sifu_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sabiyah</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Sabiyah_immunity" type="radio" name="immunity" value="Sabiyah" />
+							<label class="survivor-cc Sabiyah immunity" for="Sabiyah_immunity"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sean</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Sean_immunity" type="radio" name="immunity" value="Sean" />
+							<label class="survivor-cc Sean immunity" for="Sean_immunity"></label>
+						</div>
+                    </div>
+                </form>
+			</div>
+			
+			<div class="tab">
+                <h1>OUTLAST pt. I</h1>
+                <h3>Who will be ELIMINATED this week?<br>(select one)<br>(+10 if group) (+20 if individual)</h3>
+				<form name="eliminated"> 
+					<div class="contestants">
+						<div class="cc-selector">
+							<p class='name'>Austin</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Austin_eliminated" type="radio" name="eliminated" value="Austin" />
+							<label class="survivor-cc Austin eliminated" for="Austin_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Brandon</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Brandon_eliminated" type="radio" name="eliminated" value="Brandon" />
+							<label class="survivor-cc Brandon eliminated" for="Brandon_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Brando</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Brando_eliminated" type="radio" name="eliminated" value="Brando" />
+							<label class="survivor-cc Brando eliminated" for="Brando_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Bruce</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Bruce_eliminated" type="radio" name="eliminated" value="Bruce" />
+							<label class="survivor-cc Bruce eliminated" for="Bruce_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Dee</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Dee_eliminated" type="radio" name="eliminated" value="Dee" />
+							<label class="survivor-cc Dee eliminated" for="Dee_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Drew</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Drew_eliminated" type="radio" name="eliminated" value="Drew" />
+							<label class="survivor-cc Drew eliminated" for="Drew_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Emily</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Emily_eliminated" type="radio" name="eliminated" value="Emily" />
+							<label class="survivor-cc Emily eliminated" for="Emily_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Hannah</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Hannah_eliminated" type="radio" name="eliminated" value="Hannah" />
+							<label class="survivor-cc Hannah eliminated" for="Hannah_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Jake</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Jake_eliminated" type="radio" name="eliminated" value="Jake" />
+							<label class="survivor-cc Jake eliminated" for="Jake_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>J Maya</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Janani_eliminated" type="radio" name="eliminated" value="Janani" />
+							<label class="survivor-cc Janani eliminated" for="Janani_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Julie</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Julie_eliminated" type="radio" name="eliminated" value="Julie" />
+							<label class="survivor-cc Julie eliminated" for="Julie_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kaleb</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Kaleb_eliminated" type="radio" name="eliminated" value="Kaleb" />
+							<label class="survivor-cc Kaleb eliminated" for="Kaleb_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Katurah</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Katurah_eliminated" type="radio" name="eliminated" value="Katurah" />
+							<label class="survivor-cc Katurah eliminated" for="Katurah_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kellie</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Kellie_eliminated" type="radio" name="eliminated" value="Kellie" />
+							<label class="survivor-cc Kellie eliminated" for="Kellie_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kendra</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Kendra_eliminated" type="radio" name="eliminated" value="Kendra" />
+							<label class="survivor-cc Kendra eliminated" for="Kendra_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sifu</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Sifu_eliminated" type="radio" name="eliminated" value="Sifu" />
+							<label class="survivor-cc Sifu eliminated" for="Sifu_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sabiyah</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Sabiyah_eliminated" type="radio" name="eliminated" value="Sabiyah" />
+							<label class="survivor-cc Sabiyah eliminated" for="Sabiyah_eliminated"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sean</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Sean_eliminated" type="radio" name="eliminated" value="Sean" />
+							<label class="survivor-cc Sean eliminated" for="Sean_eliminated"></label>
+						</div>
+                    </div>
+                </form>
+			</div>
+			
+			<div class="tab">
+                <h1>OUTLAST pt. II</h1>
+                <h3>Who will be SAFE this week?<br>(select one)<br>(+10)</h3>
+				<form name="safe"> 
+					<div class="contestants">
+						<div class="cc-selector">
+							<p class='name'>Austin</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Austin_safe" type="radio" name="safe" value="Austin" />
+							<label class="survivor-cc Austin safe" for="Austin_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Brandon</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Brandon_safe" type="radio" name="safe" value="Brandon" />
+							<label class="survivor-cc Brandon safe" for="Brandon_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Brando</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Brando_safe" type="radio" name="safe" value="Brando" />
+							<label class="survivor-cc Brando safe" for="Brando_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Bruce</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Bruce_safe" type="radio" name="safe" value="Bruce" />
+							<label class="survivor-cc Bruce safe" for="Bruce_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Dee</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Dee_safe" type="radio" name="safe" value="Dee" />
+							<label class="survivor-cc Dee safe" for="Dee_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Drew</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Drew_safe" type="radio" name="safe" value="Drew" />
+							<label class="survivor-cc Drew safe" for="Drew_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Emily</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Emily_safe" type="radio" name="safe" value="Emily" />
+							<label class="survivor-cc Emily safe" for="Emily_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Hannah</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Hannah_safe" type="radio" name="safe" value="Hannah" />
+							<label class="survivor-cc Hannah safe" for="Hannah_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Jake</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Jake_safe" type="radio" name="safe" value="Jake" />
+							<label class="survivor-cc Jake safe" for="Jake_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>J Maya</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Janani_safe" type="radio" name="safe" value="Janani" />
+							<label class="survivor-cc Janani safe" for="Janani_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Julie</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Julie_safe" type="radio" name="safe" value="Julie" />
+							<label class="survivor-cc Julie safe" for="Julie_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kaleb</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Kaleb_safe" type="radio" name="safe" value="Kaleb" />
+							<label class="survivor-cc Kaleb safe" for="Kaleb_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Katurah</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Katurah_safe" type="radio" name="safe" value="Katurah" />
+							<label class="survivor-cc Katurah safe" for="Katurah_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kellie</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Kellie_safe" type="radio" name="safe" value="Kellie" />
+							<label class="survivor-cc Kellie safe" for="Kellie_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Kendra</p>
+							<img src='images/flag_blue.jpg'/>
+							<input id="Kendra_safe" type="radio" name="safe" value="Kendra" />
+							<label class="survivor-cc Kendra safe" for="Kendra_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sifu</p>
+							<img src='images/flag_red.jpg'/>
+							<input id="Sifu_safe" type="radio" name="safe" value="Sifu" />
+							<label class="survivor-cc Sifu safe" for="Sifu_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sabiyah</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Sabiyah_safe" type="radio" name="safe" value="Sabiyah" />
+							<label class="survivor-cc Sabiyah safe" for="Sabiyah_safe"></label>
+						</div>
+						<div class="cc-selector">
+							<p class='name'>Sean</p>
+							<img src='images/flag_yellow.jpg'/>
+							<input id="Sean_safe" type="radio" name="safe" value="Sean" />
+							<label class="survivor-cc Sean safe" for="Sean_safe"></label>
+						</div>
+                    </div>
+                </form>
+			</div>
+			
+            <div class="tab">
+                <h1>BONUS QUESTIONS</h1>
+                <br><br>
+				<h3>This episode is titled:<br>"We Can Do Hard Things"<br>Who said this? (+2)</h3>
+                <form name="titleQuote">
+                    <select>
+                        <option value="">Select One</option>
+						<option value="Jeff Probst">Jeff Probst</option>
+						<option value="Austin">Austin</option>
+						<option value="Brandon">Brandon</option>
+						<option value="Brando">Brando</option>
+						<option value="Bruce">Bruce</option>
+						<option value="Dee">Dee</option>
+						<option value="Drew">Drew</option>
+						<option value="Emily">Emily</option>
+						<option value="Hannah">Hannah</option>
+						<option value="Jake">Jake</option>
+						<option value="J Maya">J Maya</option>
+						<option value="Julie">Julie</option>
+						<option value="Kaleb">Kaleb</option>
+						<option value="Katurah">Katurah</option>
+						<option value="Kellie">Kellie</option>
+						<option value="Kendra">Kendra</option>
+						<option value="Sifu">Sifu</option>
+						<option value="Sabiyah">Sabiyah</option>
+						<option value="Sean">Sean</option>
+                    </select>
+                </form>
+				<br><br>
+				<h3>If someone is selected to go away on a journey for<br>an adventure, who will it be? (+2)</h3>
+                <form name="summit">
+                    <select>
+                        <option value="">Select One</option>
+						<option value="Austin">Austin</option>
+						<option value="Brandon">Brandon</option>
+						<option value="Brando">Brando</option>
+						<option value="Bruce">Bruce</option>
+						<option value="Dee">Dee</option>
+						<option value="Drew">Drew</option>
+						<option value="Emily">Emily</option>
+						<option value="Hannah">Hannah</option>
+						<option value="Jake">Jake</option>
+						<option value="J Maya">J Maya</option>
+						<option value="Julie">Julie</option>
+						<option value="Kaleb">Kaleb</option>
+						<option value="Katurah">Katurah</option>
+						<option value="Kellie">Kellie</option>
+						<option value="Kendra">Kendra</option>
+						<option value="Sifu">Sifu</option>
+						<option value="Sabiyah">Sabiyah</option>
+						<option value="Sean">Sean</option>
+                    </select>
+                </form>
+				<br><br>
+                <h3>Will there be nudity this week? (+2)</h3>
+                <form name="nudity">
+                    <input id="nudityYes" name="nudity" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="nudityYes">Yes</label>
+                    <br>
+                    <input id="nudityNo" name="nudity" type="radio" value="No" />
+                        <label class="bonusQ_label" for="nudityNo">No</label>
+                    <br>
+                </form>
+                <br><br>
+                <h3>Will an idol or secret advantage<br>be found/bought this week? (+2)</h3>
+                <form name="idolFound">
+                    <input name="idolFound" id="idolFoundYes" type="radio" value="Yes"/>
+                        <label class="bonusQ_label" for="idolFoundYes">Yes</label>
+                    <br>
+                    <input name="idolFound" id="idolFoundNo" type="radio" value="No"/>
+                        <label class="bonusQ_label" for="idolFoundNo">No</label>
+                    <br>
+                </form>
+                <br><br>
+                <h3>Will an idol or secret advantage<br>be played this week? (+2)</h3>
+                <form name="idolPlayed">
+                    <input name="idolPlayed" id="idolPlayedYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="idolPlayedYes">Yes</label>
+                    <br>
+                    <input name="idolPlayed" id="idolPlayedNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="idolPlayedNo">No</label>
+                    <br>
+                </form>
+				<br><br>
+				<h3>Will someone play their shot-in-the-dark? (+2)</h3>
+                <form name="shotInTheDark">
+                    <input name="shotInTheDark" id="shotInTheDarkYes" type="radio" value="Yes" />
+                        <label class="bonusQ_label" for="shotInTheDarkYes">Yes</label>
+                    <br>
+                    <input name="shotInTheDark" id="shotInTheDarkNo" type="radio" value="No" />
+                        <label class="bonusQ_label" for="shotInTheDarkNo">No</label>
+                    <br>
+                </form>
+				<br><br>
+            </div>
+            <div id="advance_form" class="isHidden">
+                <div id="progress_buttons">
+                    <div style="display:inline-block">
+						<img src="images/torch2.gif" class="torch_gif"/>
+                        <button type="button" id="prevBtn">Previous</button>
+                        <button type="button" id="nextBtn">Next</button>
+						<img src="images/torch2.gif" class="torch_gif"/>
+                    </div>
+                </div>
+                <br>
+                <div id="progress_bar">
+                    <progress value="0" max="6" color="black"></progress>
+                    <h3 id="loading_results" class="isHidden">LOADING...</h3>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    <script>
+        $(document).ready(function(){
+            init();
+        });
+    </script>
+    
+</html>
