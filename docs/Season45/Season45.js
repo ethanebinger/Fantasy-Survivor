@@ -156,7 +156,7 @@ function PushPullGithub(form_results) {
             responses.push(form_results);
             var responses_str = JSON.stringify(responses);
 			// make sure to follow oauth steps here: https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps
-            var token = "Z2hwXzlXeVQwWEFQTU1nYWJQMDUybnlFZmp6Wm5RVG5CTzMxVThvZg==",
+			var token = "Z2l0aHViX3BhdF8xMUFGSVZIVUEwSGpGclUzMWNIRnFqX1BQTTgxMXN4WEZVbjR3bmV2OURVRXZGMU5ieTJrTEZuclZzUUc2cG52b3g0Q0dQWU9aS0Q5QmhDRnBZ",
                 username = 'ethanebinger',
                 reponame = 'Fantasy-Survivor';
             var push_user = form_results.name;
