@@ -1,9 +1,10 @@
 function init() {
     // Move past hero page and enter form on click
     $('#enterBtn').click(function(e) {
-		$('.title_img').addClass('isHidden');
-        $('#survivor_form').removeClass('isHidden');
-        $('#advance_form').removeClass('isHidden');
+		window.location = "https://forms.gle/qo7zAxLx1kZ9B7HK9";
+		//$('.title_img').addClass('isHidden');
+        //$('#survivor_form').removeClass('isHidden');
+        //$('#advance_form').removeClass('isHidden');
     });
     
 	// Move past hero page and go to results on click
@@ -156,7 +157,9 @@ function PushPullGithub(form_results) {
             responses.push(form_results);
             var responses_str = JSON.stringify(responses);
 			// make sure to follow oauth steps here: https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps
-			var token = "Z2l0aHViX3BhdF8xMUFGSVZIVUEwSGpGclUzMWNIRnFqX1BQTTgxMXN4WEZVbjR3bmV2OURVRXZGMU5ieTJrTEZuclZzUUc2cG52b3g0Q0dQWU9aS0Q5QmhDRnBZ",
+            // var token = "Z2hvX0g3dllhbmlNclZ4cnJXS05pd0FLYkhROWNEaWwzMzJSSnRJcQ==",
+			var token = "YmI2YWQ4NjJjOWExZTVlZGYwNjUzNmU1NzhjZGM2MDVjMTVmOTMzZQ==",
+			//var token = "Z2l0aHViX3BhdF8xMUFGSVZIVUEwSGpGclUzMWNIRnFqX1BQTTgxMXN4WEZVbjR3bmV2OURVRXZGMU5ieTJrTEZuclZzUUc2cG52b3g0Q0dQWU9aS0Q5QmhDRnBZ",
                 username = 'ethanebinger',
                 reponame = 'Fantasy-Survivor';
             var push_user = form_results.name;
@@ -929,18 +932,18 @@ var results = [
     {	'vote': 1,
         'date': '9/27/23',
         'merge': 'No',
-        'reward': 'team_green', 
-        'immunity': 'team_green',
-		'immunity2': 'team_green',
-        'eliminated': ['NAME'],
-        'idolFound': 'NAME',
-        'idolPlayed': 'NAME',
-        'titleQuote': 'NAME',
-		'summit': ['NAME'],
-        'nudity': 'NAME',
-		'shotInTheDark': 'NAME',
-        'team_yellow': ['NAME'],
-        'team_blue': ['NAME'],
-		'team_red': ['NAME']
+        'reward': 'team_blue', 
+        'immunity': 'team_blue',
+		'immunity2': 'team_yellow',
+        'eliminated': 'Hannah',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Hannah',
+		'summit': 'NONE',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Brandon', 'Emily', 'Hannah', 'Kaleb', 'Sabiyah', 'Sean'],
+        'team_blue': ['Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra'],
+		'team_red': ['Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu']
     },
 ];
