@@ -578,7 +578,16 @@ function determineWeek(responses) {
 	// datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
     if (submit_time <= new Date(2023,9,2,0)) { // Sep 27, 2023
         cur_vote = 1;
-    };
+    }
+	else if (submit_time <= new Date(2023,9,9,0)) { // Oct 4, 2023
+        cur_vote = 2;
+    }
+	else if (submit_time <= new Date(2023,9,16,0)) { // Oct 11, 2023
+        cur_vote = 3;
+    }
+	else if (submit_time <= new Date(2023,9,23,0)) { // Oct 18, 2023
+        cur_vote = 4;
+    }
     return cur_vote;
 };
 
