@@ -895,13 +895,17 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = ['NAME'];  //top three!
+    var top_three = [
+		'Brandon', 'Emily', 'Kaleb', 'Sabiyah', 'Sean', 
+		'Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra',
+		'Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu'
+	];  //top three!
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
         for (var i=0; i<result.length; i++) {
 			if (result[i].name === scores[n].name) {
 				var cur_vote = determineWeek(result[i]);
-				if (cur_vote === 1) {	// submited responses to this question during week 1
+				if (cur_vote === 2) {	// submited responses to this question during week 2
 					if (inArray(result[i].name, name_ep_count)) {
 						console.log("duplicate final three -",result[i].name, cur_vote);
 						scores[n].total -= scores[n]['Final Three'];
@@ -946,4 +950,22 @@ var results = [
         'team_blue': ['Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra'],
 		'team_red': ['Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu']
     },
+	{	'vote': 2,
+        'date': '10/04/23',
+        'merge': 'No',
+        'reward': 'team_blue', 
+		'reward2': 'team_red', 
+        'immunity': 'team_blue',
+		'immunity2': 'team_red',
+        'eliminated': 'Brandon',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Emily',
+		'summit': ['Bruce', 'Drew', 'Brandon'],
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Brandon', 'Emily', 'Kaleb', 'Sabiyah', 'Sean'],
+        'team_blue': ['Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra'],
+		'team_red': ['Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu']
+    }
 ];
