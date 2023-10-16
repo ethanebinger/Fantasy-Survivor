@@ -587,7 +587,7 @@ function determineWeek(responses) {
     }
 	else if (submit_time <= new Date(2023,9,23,0)) { // Oct 18, 2023
         cur_vote = 4;
-    }
+    };
     return cur_vote;
 };
 
