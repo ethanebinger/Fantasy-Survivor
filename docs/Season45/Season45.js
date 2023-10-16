@@ -905,7 +905,7 @@ function final_eight_calc(scores, result) {
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
     var top_three = [
-		'Brandon', 'Emily', 'Kaleb', 'Sabiyah', 'Sean', 
+		'Emily', 'Kaleb', 'Sean', 
 		'Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra',
 		'Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu'
 	];  //top three!
