@@ -976,5 +976,23 @@ var results = [
         'team_yellow': ['Brandon', 'Emily', 'Kaleb', 'Sabiyah', 'Sean'],
         'team_blue': ['Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra'],
 		'team_red': ['Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu']
+    },
+	{	'vote': 3,
+        'date': '10/11/23',
+        'merge': 'No',
+        'reward': 'team_yellow', 
+		'reward2': 'team_red', 
+        'immunity': 'team_blue',
+		'immunity2': 'team_red',
+        'eliminated': 'Sabiyah',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Sabiyah',
+		'summit': 'NONE',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Emily', 'Kaleb', 'Sabiyah', 'Sean'],
+        'team_blue': ['Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra'],
+		'team_red': ['Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu']
     }
 ];
