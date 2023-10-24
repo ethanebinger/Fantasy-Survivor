@@ -587,6 +587,9 @@ function determineWeek(responses) {
     }
 	else if (submit_time <= new Date(2023,9,23,0)) { // Oct 18, 2023
         cur_vote = 4;
+    }
+	else if (submit_time <= new Date(2023,9,30,0)) { // Oct 25, 2023
+        cur_vote = 5;
     };
     return cur_vote;
 };
@@ -905,7 +908,7 @@ function final_eight_calc(scores, result) {
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
     var top_three = [
-		'Emily', 'Kaleb', 'Sean', 
+		'Emily', 'Kaleb',
 		'Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra',
 		'Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu'
 	];  //top three!
@@ -994,5 +997,23 @@ var results = [
         'team_yellow': ['Emily', 'Kaleb', 'Sabiyah', 'Sean'],
         'team_blue': ['Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra'],
 		'team_red': ['Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu']
+    },
+	{	'vote': 4,
+        'date': '10/11/23',
+        'merge': 'No',
+        'reward': '', 
+		'reward2': '', 
+        'immunity': 'team_yellow',
+		'immunity2': 'team_blue',
+        'eliminated': 'Sean',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Emily',
+		'summit': 'NONE',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Kaleb', 'Bruce', 'Jake', 'Katurah', 'Kellie'],
+        'team_blue': ['Emily', 'Austin', 'Drew', 'Brando', 'Kendra'],
+		'team_red': ['Dee', 'J', 'Julie', 'Sifu', 'Sean']
     }
 ];
