@@ -590,6 +590,9 @@ function determineWeek(responses) {
     }
 	else if (submit_time <= new Date(2023,9,30,0)) { // Oct 25, 2023
         cur_vote = 5;
+    }
+	else if (submit_time <= new Date(2023,10,6,0)) { // Nov 1, 2023
+        cur_vote = 6;
     };
     return cur_vote;
 };
@@ -656,9 +659,9 @@ function calculateScores(scores, results, responses, calcType) {
                                 if (calcType === "individual") { scores[n].eliminated += 20; }
                                 else { scores[n][val_vote] += 20; };
                                 scores[n].total += 20;
+							if (results[i].safe !== null && typeof results[i].eliminated==="object" && responses[j].safe) {
                             };
                             // Safe
-							if (results[i].safe !== null && typeof results[i].eliminated==="object" && responses[j].safe) {
 								if (inArray(responses[j].safe, results[i].eliminated)) {
 									continue;
 								} else {
@@ -909,7 +912,7 @@ function final_eight_calc(scores, result) {
 function final_three_calc(scores, result) {
     var top_three = [
 		'Emily', 'Kaleb',
-		'Brando', 'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra',
+		'Bruce', 'Jake', 'Katurah', 'Kellie', 'Kendra',
 		'Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu'
 	];  //top three!
 	var name_ep_count = [0];
@@ -999,7 +1002,7 @@ var results = [
 		'team_red': ['Austin', 'Dee', 'Drew', 'J', 'Julie', 'Sifu']
     },
 	{	'vote': 4,
-        'date': '10/11/23',
+        'date': '10/18/23',
         'merge': 'No',
         'reward': '', 
 		'reward2': '', 
@@ -1015,5 +1018,23 @@ var results = [
         'team_yellow': ['Kaleb', 'Bruce', 'Jake', 'Katurah', 'Kellie'],
         'team_blue': ['Emily', 'Austin', 'Drew', 'Brando', 'Kendra'],
 		'team_red': ['Dee', 'J', 'Julie', 'Sifu', 'Sean']
+    },
+	{	'vote': 5,
+        'date': '10/25/23',
+        'merge': 'No',
+        'reward': 'team_red', 
+		'reward2': 'team_yellow', 
+        'immunity': 'team_red',
+		'immunity2': 'team_yellow',
+        'eliminated': 'Brando',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Kendra',
+		'summit': ['J', 'Kellie', 'Austin'],
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Kaleb', 'Bruce', 'Jake', 'Katurah', 'Kellie'],
+        'team_blue': ['Emily', 'Austin', 'Drew', 'Brando', 'Kendra'],
+		'team_red': ['Dee', 'J', 'Julie', 'Sifu']
     }
 ];
