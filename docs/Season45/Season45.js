@@ -998,7 +998,7 @@ var results = [
 		'immunity2': 'team_yellow',
         'eliminated': 'Brando',
         'idolFound': 'Yes',
-        'idolPlayed': 'No',
+        'idolPlayed': 'Yes',
         'titleQuote': 'Kendra',
 		'summit': ['J', 'Kellie', 'Austin'],
         'nudity': 'No',
@@ -1006,6 +1006,21 @@ var results = [
         'team_yellow': ['Kaleb', 'Bruce', 'Jake', 'Katurah', 'Kellie'],
         'team_blue': ['Emily', 'Austin', 'Drew', 'Brando', 'Kendra'],
 		'team_red': ['Dee', 'J', 'Julie', 'Sifu']
+    },
+	{	'vote': 6,
+        'date': '11/1/23',
+        'merge': 'Yes',
+        'reward': 'team_blue', 
+        'immunity': 'team_blue',
+        'eliminated': 'J',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Kaleb',
+		'summit': 'NONE',
+        'nudity': 'No',
+		'shotInTheDark': 'Yes',
+        'team_blue': ['Sifu', 'Austin', 'Drew', 'Julie', 'Kendra', 'Katurah', 'Bruce'],
+		'team_red': ['Kaleb', 'Emily', 'Dee', 'J', 'Jake', 'Kellie']
     }
 ];
 
@@ -1065,5 +1080,18 @@ var saved_responses = [
 	{'name':'Marcy', 'reward':'Bruce', 'immunity':'Bruce', 'eliminated':'Sifu', 'safe':'Emily', 'titleQuote':'Kendra', 'summit':'J', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-10-26T20:02:00.000Z'},
 	{'name':'Joe', 'reward':'Kaleb', 'immunity':'Kaleb', 'eliminated':'Sifu', 'safe':'Kaleb', 'titleQuote':'Sifu', 'summit':'Dee', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'Yes', 'submit_time':'2023-10-26T21:35:00.000Z'},
 	{'name':'Anastassia', 'reward':'Kaleb', 'immunity':'Kaleb', 'eliminated':'Sifu', 'safe':'Drew', 'titleQuote':'Drew', 'summit':'Kendra', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-10-26T23:38:00.000Z'},
-	{'name':'Ethan', 'reward':'Kaleb', 'immunity':'Kaleb', 'eliminated':'Sifu', 'safe':'Kaleb', 'titleQuote':'Dee', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-10-26T23:40:00.000Z'}
+	{'name':'Ethan', 'reward':'Kaleb', 'immunity':'Kaleb', 'eliminated':'Sifu', 'safe':'Kaleb', 'titleQuote':'Dee', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-10-26T23:40:00.000Z'},
+	// WEEK 6
+	{'name':'Betsy', 'reward':'Austin', 'immunity':'Austin', 'eliminated':'Bruce', 'safe':'Austin', 'titleQuote':'Kaleb', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'Yes', 'submit_time':'2023-10-31T20:23:00.000Z'},
+	{'name':'Erika', 'reward':'Kaleb', 'immunity':'Julie', 'eliminated':'J', 'safe':'Kellie', 'titleQuote':'Kaleb', 'summit':'Kaleb', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-01T19:06:00.000Z'},
+	{'name':'Mitch', 'reward':'Sifu', 'immunity':'Sifu', 'eliminated':'J', 'safe':'Sifu', 'titleQuote':'Kaleb', 'summit':'Bruce', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'Yes', 'submit_time':'2023-11-01T19:09:00.000Z'},
+	{'name':'Abby', 'reward':'Katurah', 'immunity':'Kaleb', 'eliminated':'Sifu', 'safe':'Drew', 'titleQuote':'Drew', 'summit':'J', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'Yes', 'submit_time':'2023-11-01T19:38:00.000Z'},
+	{'name':'Christy', 'reward':'Kaleb', 'immunity':'Jake', 'eliminated':'Kendra', 'safe':'Kellie', 'titleQuote':'Kaleb', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-01T19:44:00.000Z'},
+	{'name':'Esme', 'reward':'Austin', 'immunity':'Emily', 'eliminated':'Sifu', 'safe':'Julie', 'titleQuote':'Kaleb', 'summit':'Kaleb', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-01T19:58:00.000Z'},
+	{'name':'Wilson', 'reward':'Kellie', 'immunity':'Austin', 'eliminated':'Emily', 'safe':'Kendra', 'titleQuote':'J', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-01T20:02:00.000Z'},
+	{'name':'Joe', 'reward':'Kaleb', 'immunity':'Austin', 'eliminated':'J', 'safe':'Austin', 'titleQuote':'Kaleb', 'summit':'Dee', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-01T21:06:00.000Z'},
+	{'name':'Greg', 'reward':'Dee', 'immunity':'Austin', 'eliminated':'Drew', 'safe':'Julie', 'titleQuote':'Drew', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-02T00:30:00.000Z'},
+	{'name':'Marcy', 'reward':'J', 'immunity':'Kellie', 'eliminated':'Sifu', 'safe':'Emily', 'titleQuote':'Kaleb', 'summit':'Emily', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-05T12:00:00.000Z'},
+	{'name':'Ethan', 'reward':'Kaleb', 'immunity':'Kaleb', 'eliminated':'Bruce', 'safe':'Kaleb', 'titleQuote':'Kaleb', 'summit':'Julie', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-02T00:30:00.000Z'},
+	{'name':'Anastassia', 'reward':'Kaleb', 'immunity':'Kaleb', 'eliminated':'Bruce', 'safe':'Kaleb', 'titleQuote':'Kaleb', 'summit':'Julie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-02T00:30:00.000Z'}
 ];
