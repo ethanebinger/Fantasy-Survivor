@@ -1047,14 +1047,14 @@ var results = [
 		'team_red': ['Austin', 'Dee', 'Jake', 'Julie', 'Kaleb', 'Katurah']
     },
 	{	'vote': 8,
-        'date': '11/8/23',
+        'date': '11/15/23',
         'merge': 'Yes',
         'reward': ['Drew', 'Emily', 'Kellie', 'Kendra', 'Sifu', 'Austin', 'Dee', 'Jake', 'Julie', 'Kaleb', 'Katurah'], 
         'immunity': 'Bruce',
         'eliminated': 'Kellie',
         'idolFound': 'No',
         'idolPlayed': 'No',
-        'titleQuote': '',
+        'titleQuote': 'Bruce',
 		'summit': 'NONE',
         'nudity': 'No',
 		'shotInTheDark': 'Yes'
@@ -1154,5 +1154,8 @@ var saved_responses = [
 	{'name':'Betsy', 'reward':'Kellie', 'immunity':'Kendra', 'eliminated':'Jake', 'safe':'Drew', 'titleQuote':'Emily', 'summit':'Jake', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-15T20:40:00.000Z'},
 	{'name':'Greg', 'reward':'Kellie', 'immunity':'Kellie', 'eliminated':'Jake', 'safe':'Dee', 'titleQuote':'Drew', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-15T20:41:00.000Z'},
 	{'name':'Anastassia', 'reward':'Austin', 'immunity':'Dee', 'eliminated':'Bruce', 'safe':'Austin', 'titleQuote':'Jake', 'summit':'Kendra', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-15T21:03:00.000Z'},
-	{'name':'Joe', 'reward':'Austin', 'immunity':'Drew', 'eliminated':'Jake', 'safe':'Austin', 'titleQuote':'Jeff Probst', 'summit':'Jake', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'Yes', 'submit_time':'2023-11-15T20:41:00.000Z'}
+	{'name':'Joe', 'reward':'Austin', 'immunity':'Drew', 'eliminated':'Jake', 'safe':'Austin', 'titleQuote':'Jeff Probst', 'summit':'Jake', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'Yes', 'submit_time':'2023-11-15T20:41:00.000Z'},
+	{'name':'Abby', 'reward':'Drew', 'immunity':'Katurah', 'eliminated':'Bruce', 'safe':'Drew', 'titleQuote':'Drew', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'Yes', 'submit_time':'2023-11-16T18:17:00.000Z'},
+	{'name':'Marcy', 'reward':'Jake', 'immunity':'Dee', 'eliminated':'Drew', 'safe':'Emily', 'titleQuote':'Drew', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-16T19:42:00.000Z'}
+	// WEEK 9
 ];
