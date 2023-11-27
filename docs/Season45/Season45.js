@@ -1182,5 +1182,6 @@ var saved_responses = [
 	{'name':'Erika', 'reward':'Kendra', 'immunity':'Katurah', 'eliminated':'Julie', 'safe':'Kendra', 'titleQuote':'Bruce', 'summit':'Drew', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-24T14:50:00.000Z'},
 	{'name':'Christy', 'reward':'Dee', 'immunity':'Austin', 'eliminated':'Jake', 'safe':'Austin', 'titleQuote':'Drew', 'summit':'Dee', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-24T15:35:00.000Z'},
 	{'name':'Anastassia ', 'reward':'Austin', 'immunity':'Austin', 'eliminated':'Jake', 'safe':'Austin', 'titleQuote':'Bruce', 'summit':'Katurah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-24T18:21:00.000Z'},
-	{'name':'Ethan', 'reward':'Austin', 'immunity':'Austin', 'eliminated':'Jake', 'safe':'Austin', 'titleQuote':'Drew', 'summit':'Julie', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-24T18:21:00.000Z'}
+	{'name':'Ethan', 'reward':'Austin', 'immunity':'Austin', 'eliminated':'Jake', 'safe':'Austin', 'titleQuote':'Drew', 'summit':'Julie', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-24T18:21:00.000Z'},
+	{'name':'Marcy', 'reward':'Jake', 'immunity':'Kendra', 'eliminated':'Julie', 'safe':'Emily', 'titleQuote':'Drew', 'summit':'Drew', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-24T18:21:00.000Z'}
 ];
