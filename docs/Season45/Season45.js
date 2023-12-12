@@ -577,6 +577,9 @@ function determineWeek(responses) {
     }
 	else if (submit_time <= new Date(2023,11,4,0)) { // Nov 29, 2023
         cur_vote = 10;
+    }
+	else if (submit_time <= new Date(2023,11,11,0)) { // Dec 6, 2023
+        cur_vote = 11;
     };
     return cur_vote;
 };
@@ -879,7 +882,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// seventh
+            } else if (castaways['place_'+String([i])] === "Emily") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25)
 				if (i===7) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Bruce") {	// eighth
@@ -896,8 +899,7 @@ function final_eight_calc(scores, result) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, result) {
-    var top_three = [
-		'Emily', 
+    var top_three = [ 
 		'Jake', 'Katurah',
 		'Austin', 'Dee', 'Drew', 'Julie',
 	];  //top three!
@@ -1092,6 +1094,19 @@ var results = [
 		'summit': 'NONE',
         'nudity': 'No',
 		'shotInTheDark': 'No'
+    },
+	{	'vote': 11,
+        'date': '12/06/23',
+        'merge': 'Yes',
+        'reward': 'Drew', 
+        'immunity': 'Drew',
+        'eliminated': 'Emily',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Emily',
+		'summit': 'Emily',
+        'nudity': 'No',
+		'shotInTheDark': 'No'
     }
 ];
 
@@ -1214,5 +1229,18 @@ var saved_responses = [
 	{'name':'Greg', 'reward':'Dee', 'immunity':'Dee', 'titleQuote':'Jake', 'summit':'Bruce', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-29T23:42:00.000Z', 'place_1':'Dee', 'place_2':'Julie', 'place_3':'Katurah', 'place_4':'Drew', 'place_5':'Bruce', 'place_6':'Austin', 'place_7':'Jake', 'place_8':'Emily'},
 	{'name':'Anastassia', 'reward':'Bruce', 'immunity':'Bruce', 'titleQuote':'Jake', 'summit':'Jake', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-30T13:16:00.000Z', 'place_1':'Dee', 'place_2':'Julie', 'place_3':'Bruce', 'place_4':'Austin', 'place_5':'Drew', 'place_6':'Katurah', 'place_7':'Emily', 'place_8':'Jake'},
 	{'name':'Ethan', 'reward':'Julie', 'immunity':'Julie', 'titleQuote':'Jake', 'summit':'Julie', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-11-30T13:16:00.000Z', 'place_1':'Dee', 'place_2':'Julie', 'place_3':'Austin', 'place_4':'Drew', 'place_5':'Bruce', 'place_6':'Katurah', 'place_7':'Emily', 'place_8':'Jake'},
-	{'name':'Marcy', 'reward':'Julie', 'immunity':'Dee', 'titleQuote':'Jake', 'summit':'Katurah', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-30T13:16:00.000Z', 'place_1':'Austin', 'place_2':'Emily', 'place_3':'Julie', 'place_4':'Dee', 'place_5':'Drew', 'place_6':'Jake', 'place_7':'Katurah', 'place_8':'Bruce'}
+	{'name':'Marcy', 'reward':'Julie', 'immunity':'Dee', 'titleQuote':'Jake', 'summit':'Katurah', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-11-30T13:16:00.000Z', 'place_1':'Austin', 'place_2':'Emily', 'place_3':'Julie', 'place_4':'Dee', 'place_5':'Drew', 'place_6':'Jake', 'place_7':'Katurah', 'place_8':'Bruce'},
+	// WEEK 11
+	{'name':'Mitch', 'reward':'Julie', 'immunity':'Drew', 'titleQuote':'Julie', 'summit':'Jake', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-12-06T18:32:00.000Z'},
+	{'name':'Erika', 'reward':'Emily', 'immunity':'Katurah', 'titleQuote':'Austin', 'summit':'Emily', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-12-06T19:16:00.000Z'},
+	{'name':'Esme', 'reward':'Dee', 'immunity':'Drew', 'titleQuote':'Emily', 'summit':'Dee', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-12-06T19:37:00.000Z'},
+	{'name':'Wilson', 'reward':'Dee', 'immunity':'Emily', 'titleQuote':'Julie', 'summit':'Jake', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-12-06T19:59:00.000Z'},
+	{'name':'Christy', 'reward':'Austin', 'immunity':'Austin', 'titleQuote':'Drew', 'summit':'Emily', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-12-06T20:00:00.000Z'},
+	{'name':'Greg', 'reward':'Dee', 'immunity':'Dee', 'titleQuote':'Drew', 'summit':'Jake', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-12-06T20:01:00.000Z'},
+	{'name':'Betsy', 'reward':'Austin', 'immunity':'Austin', 'titleQuote':'Julie', 'summit':'Katurah', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-12-06T20:02:00.000Z'},
+	{'name':'Joe', 'reward':'Katurah', 'immunity':'Dee', 'titleQuote':'Dee', 'summit':'Katurah', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-12-06T20:30:00.000Z'},
+	{'name':'Abby', 'reward':'Drew', 'immunity':'Drew', 'titleQuote':'Jake', 'summit':'Emily', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'Yes', 'submit_time':'2023-12-06T21:02:00.000Z'},
+	{'name':'Anastassia', 'reward':'Emily', 'immunity':'Dee', 'titleQuote':'Austin', 'summit':'Emily', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-12-08T20:54:00.000Z'},
+	{'name':'Ethan', 'reward':'Austin', 'immunity':'Austin', 'titleQuote':'Julie', 'summit':'Julie', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2023-12-08T20:56:00.000Z'},
+	{'name':'Marcy', 'reward':'Austin', 'immunity':'Dee', 'titleQuote':'Julie', 'summit':'Drew', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2023-12-08T21:50:00.000Z'}
 ];
