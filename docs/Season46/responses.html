@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/torch.gif">
+        <title>Survivor - Season 46</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- Stylesheet and Javascript -->
+        <link rel="stylesheet" href="Season46.css">
+        <script src="Season46.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+		<div class="title_img_alt">
+			<div class="responses_title">
+				<h3>SOMERVILLE SURVIVORS FANTASY LEAGUE</h3>
+                <h3>SEASON 46</h3>
+                <h1>RESPONSES</h1>
+                <!--<br>-->
+				<div class="graph">
+					<br>
+					<h3>Select name and vote number to see past responses</h3>
+					<select id="past_responses_name" style="font-size: 18px;">
+						<option value="">Select One</option>
+						<option value="Abby">Abby</option>
+						<option value="Anastassia">Anastassia</option>
+						<option value="Betsy">Betsy</option>
+						<option value="Dan">Dan</option>
+						<option value="Erika">Erika</option>
+						<option value="Esme">Esme</option>
+						<option value="Ethan">Ethan</option>
+						<option value="Greg">Greg</option>
+						<option value="Joe">Joe</option>
+						<option value="Jonathan">Jonathan</option>
+						<option value="Josh">Josh</option>
+						<option value="Marcy">Marcy</option>
+						<option value="Mitch">Mitch</option>
+						<option value="Wilson">Wilson</option>
+					</select>
+					<select id="past_responses_vote"  style="font-size: 18px;">
+						<option value="">
+							Select One
+						</option>
+						<option value="1">
+							Episode 1 (Feb 28, 2023)
+						</option>
+						<!--<option value="2">
+							Episode 2 (Mar 6, 2023)
+						</option>
+						<option value="3">
+							Episode 3 (Mar 13, 2023)
+						</option>
+						<option value="4">
+							Episode 4 (Mar 20, 2023)
+						</option>
+						<option value="5">
+							Episode 5 (Mar 27, 2023)
+						</option>
+						<option value="6">
+							Episode 6 (Apr 3, 2023)
+						</option>
+						<option value="7">
+							Episode 7 (Apr 10, 2023)
+						</option>
+						<option value="8">
+							Episode 8 (Apr 17, 2023)
+						</option>
+						<option value="9">
+							Episode 9 (Apr 24, 2023)
+						</option>
+						<option value="10">
+							Episode 10 (May 1, 2023)
+						</option>
+						<option value="11">
+							Episode 11 (May 8, 2023)
+						</option>
+						<option value="12">
+							Episode 12 (May 15, 2023)
+						</option>
+						<option value="13">
+							Episode 13 (May 22, 2023)
+						</option>
+						<option value="FinalEight">
+							Final Eight
+						</option>-->
+						<option value="FinalThree">
+							Final Three
+						</option>						
+					</select>
+					<button id="past_responses_button">Get Responses</button>
+					<div id="past_responses" style="font-size: 28px;"></div>
+					<p></p>
+				</div>
+				<br><br>
+                <button id="resultsBtn" style="bottom:0;">BACK TO RESULTS</button>
+			</div>
+		</div>
+    </body>
+    
+    <script>
+        $(document).ready(function(){
+           getPastResponses(); 
+        });
+    </script>
+    
+</html>

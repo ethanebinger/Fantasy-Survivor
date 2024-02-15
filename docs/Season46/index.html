@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--<meta http-equiv="X-Merge-Compatible" content="IE=edge">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/torch.gif">
+        <title>Survivor - Season 46</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- D3 -->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="d3-tip.js"></script>
+        
+        <!-- Github API -->
+        <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
+        <script src="../GithubAPIPush.js"></script>
+		<!--<script src="../octokat.js"></script>-->
+        
+        <!-- Stylesheet and Javascript -->
+        <link rel="stylesheet" href="Season45.css">
+        <script src="Season46.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <div class="title_img">
+            <div class="title_text">
+                <p>SOMERVILLE SURVIVORS<br>FANTASY LEAGUE</p>
+                <p>SEASON 46<br></p>
+                <br>
+                <button id="enterBtn">SUBMIT PICKS</button>
+				<br><br>
+                <button id="resultsBtn">SEE RESULTS</button>
+            </div>
+        </div>
+    </body>
+    
+    <script>
+        $(document).ready(function(){
+            init();
+        });
+    </script>
+    
+</html>
