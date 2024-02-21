@@ -148,7 +148,7 @@ function PushPullGithub(form_results) {
     $("#loading_results").removeClass("isHidden");
     $.ajax({
         type: "GET",
-        url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/Season45/Season45_Responses.json",
+        url: "https://api.github.com/repos/ethanebinger/Fantasy-Survivor/contents/docs/Season46/Season46_Responses.json",
         dataType: "json",
         success: function(result) {
             // PULL existing data (saved in 'responses' object)
@@ -173,12 +173,12 @@ function PushPullGithub(form_results) {
                     'new input from '+push_user,
                     [{
                         content: responses_str, 
-                        path: 'docs/Season45/Season45_Responses.json'
+                        path: 'docs/Season46/Season46_Responses.json'
                     }]
                 ))
                 .then(function() {
                     console.log('Files committed!');
-                    window.location = "http://ethanebinger.com/Fantasy-Survivor/Season45/results.html"
+                    window.location = "http://ethanebinger.com/Fantasy-Survivor/Season46/results.html"
                 });
 		}
 	});
