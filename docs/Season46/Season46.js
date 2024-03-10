@@ -890,7 +890,7 @@ function final_three_calc(scores, result) {
     var top_three = [ 
 		 //top three!
 		 'Ben', 'Charlie', 'Jem', 'Maria', 'Moriah', 'Tim', 
-		 'Bhanu', 'David', 'Jess', 'Kenzie', 'Q', 'Tiffany',  
+		 'Bhanu', 'Kenzie', 'Q', 'Tiffany',  
 		 'Hunter', 'Liz', 'Randen', 'Soda', 'Tevin', 'Venus'	
 	]; 
 	var name_ep_count = [0];
@@ -930,21 +930,50 @@ var results = [
         'date': '2/28/24',
         'merge': 'No',
         'reward': '', 
-        'immunity': '',
-		'immunity2': '',
-        'eliminated': '',
-        'idolFound': '',
-        'idolPlayed': '',
-        'titleQuote': '',
-		'summit': '',
-        'nudity': '',
-		'shotInTheDark': '',
+        'immunity': 'team_orange',
+		'immunity2': 'team_green',
+        'eliminated': 'David',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Tevin',
+		'summit': 'Yes',
+        'nudity': 'Yes',
+		'shotInTheDark': 'No',
         'team_green': ['Ben', 'Charlie', 'Jem', 'Maria', 'Moriah', 'Tim'],
         'team_purple': ['Bhanu', 'David', 'Jess', 'Kenzie', 'Q', 'Tiffany'],
 		'team_orange': ['Hunter', 'Liz', 'Randen', 'Soda', 'Tevin', 'Venus']
-    }
+    },
+	{	'vote': 2,
+        'date': '3/6/24',
+        'merge': 'No',
+        'reward': 'team_orange', 
+        'immunity': 'team_orange',
+		'immunity2': 'team_green',
+        'eliminated': 'Jess',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Ben',
+		'summit': 'No',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_green': ['Ben', 'Charlie', 'Jem', 'Maria', 'Moriah', 'Tim'],
+        'team_purple': ['Bhanu', 'Jess', 'Kenzie', 'Q', 'Tiffany'],
+		'team_orange': ['Hunter', 'Liz', 'Randen', 'Soda', 'Tevin', 'Venus']
+    },
+	
 ];
 
 var saved_responses = [
 	// WEEK 2
+	{'name':'Mark', 'reward':'Q', 'immunity':'Tim', 'eliminated':'Jess', 'safe':'Bhanu', 'titleQuote':'Kenzie', 'summit':'Randen', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T18:18:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''},
+	{'name':'Ethan', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Hunter', 'titleQuote':'Tevin', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T18:22:00.000Z', 'pick_1':'Charlie', 'pick_2':'Jem', 'pick_3':'Soda'},
+	{'name':'Dan', 'reward':'Q', 'immunity':'Kenzie', 'eliminated':'Maria', 'safe':'Bhanu', 'titleQuote':'Liz', 'summit':'Bhanu', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T18:25:00.000Z', 'pick_1':'Kenzie', 'pick_2':'Maria', 'pick_3':'Q'},
+	{'name':'Esme', 'reward':'Tevin', 'immunity':'Moriah', 'eliminated':'Liz', 'safe':'Q', 'titleQuote':'Tevin', 'summit':'Kenzie', 'nudity':'Yes', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T18:30:00.000Z', 'pick_1':'Kenzie', 'pick_2':'Tevin', 'pick_3':'Venus'},
+	{'name':'Wilson', 'reward':'Tim', 'immunity':'Q', 'eliminated':'Liz', 'safe':'Jem', 'titleQuote':'Venus', 'summit':'Bhanu', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T18:44:00.000Z', 'pick_1':'Bhanu', 'pick_2':'Jem', 'pick_3':'Moriah'},
+	{'name':'Christy', 'reward':'Soda', 'immunity':'Soda', 'eliminated':'Jess', 'safe':'Tim', 'titleQuote':'Tevin', 'summit':'Moriah', 'nudity':'Yes', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T20:24:00.000Z', 'pick_1':'Charlie', 'pick_2':'Moriah', 'pick_3':'Soda'},
+	{'name':'Josh', 'reward':'Ben', 'immunity':'Ben', 'eliminated':'Randen', 'safe':'Ben', 'titleQuote':'Tevin', 'summit':'Q', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T21:06:00.000Z', 'pick_1':'Hunter', 'pick_2':'Kenzie ', 'pick_3':'Tiffany'},
+	{'name':'Betsy', 'reward':'Maria', 'immunity':'Charlie', 'eliminated':'Bhanu', 'safe':'Maria', 'titleQuote':'Hunter', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T21:17:00.000Z', 'pick_1':'Ben', 'pick_2':'Hunter', 'pick_3':'Maria'},
+	{'name':'Greg', 'reward':'Tevin', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Tevin', 'titleQuote':'Kenzie', 'summit':'Hunter', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T02:28:00.000Z', 'pick_1':'Charlie', 'pick_2':'Kenzie ', 'pick_3':'Maria'},
+	{'name':'Joe', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Tim', 'safe':'Hunter', 'titleQuote':'Moriah', 'summit':'Jem', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T18:51:00.000Z', 'pick_1':'Hunter', 'pick_2':'Q', 'pick_3':'Tiffany'},
+	{'name':'Abby', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Randen', 'titleQuote':'Soda', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T22:52:00.000Z', 'pick_1':'Hunter', 'pick_2':'Liz', 'pick_3':'Tim'},
 ];
