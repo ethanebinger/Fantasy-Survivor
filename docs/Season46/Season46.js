@@ -550,19 +550,19 @@ function determineWeek(responses) {
     var cur_vote = 0;
     var submit_time = new Date(responses.submit_time);
 	// datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
-	if (submit_time <= new Date('February 28, 2024')) { cur_vote = 1; }
-	else if (submit_time <= new Date('March 6, 2024')) { cur_vote = 2; }
-	else if (submit_time <= new Date('March 13, 2024')) { cur_vote = 3; }
-	else if (submit_time <= new Date('March 20, 2024')) { cur_vote = 4; }
-	else if (submit_time <= new Date('March 27, 2024')) { cur_vote = 5; }
-	else if (submit_time <= new Date('April 3, 2024')) { cur_vote = 6; }
-	else if (submit_time <= new Date('April 10, 2024')) { cur_vote = 7; }
-	else if (submit_time <= new Date('April 17, 2024')) { cur_vote = 8; }
-	else if (submit_time <= new Date('April 24, 2024')) { cur_vote = 9; }
-	else if (submit_time <= new Date('May 1, 2024')) { cur_vote = 10; }
-	else if (submit_time <= new Date('May 8, 2024')) { cur_vote = 11; }
-	else if (submit_time <= new Date('May 15, 2024')) { cur_vote = 12; }
-	else if (submit_time <= new Date('May 22, 2024')) { cur_vote = 13; };
+	if (submit_time <= new Date('March 3, 2024')) { cur_vote = 1; }
+	else if (submit_time <= new Date('March 10, 2024')) { cur_vote = 2; }
+	else if (submit_time <= new Date('March 17, 2024')) { cur_vote = 3; }
+	else if (submit_time <= new Date('March 24, 2024')) { cur_vote = 4; }
+	else if (submit_time <= new Date('March 31, 2024')) { cur_vote = 5; }
+	else if (submit_time <= new Date('April 7, 2024')) { cur_vote = 6; }
+	else if (submit_time <= new Date('April 14, 2024')) { cur_vote = 7; }
+	else if (submit_time <= new Date('April 21, 2024')) { cur_vote = 8; }
+	else if (submit_time <= new Date('April 28, 2024')) { cur_vote = 9; }
+	else if (submit_time <= new Date('May 5, 2024')) { cur_vote = 10; }
+	else if (submit_time <= new Date('May 13, 2024')) { cur_vote = 11; }
+	else if (submit_time <= new Date('May 19, 2024')) { cur_vote = 12; }
+	else if (submit_time <= new Date('May 26, 2024')) { cur_vote = 13; };
     return cur_vote;
 };
 
@@ -971,9 +971,9 @@ var saved_responses = [
 	{'name':'Esme', 'reward':'Tevin', 'immunity':'Moriah', 'eliminated':'Liz', 'safe':'Q', 'titleQuote':'Tevin', 'summit':'Kenzie', 'nudity':'Yes', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T18:30:00.000Z', 'pick_1':'Kenzie', 'pick_2':'Tevin', 'pick_3':'Venus'},
 	{'name':'Wilson', 'reward':'Tim', 'immunity':'Q', 'eliminated':'Liz', 'safe':'Jem', 'titleQuote':'Venus', 'summit':'Bhanu', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T18:44:00.000Z', 'pick_1':'Bhanu', 'pick_2':'Jem', 'pick_3':'Moriah'},
 	{'name':'Christy', 'reward':'Soda', 'immunity':'Soda', 'eliminated':'Jess', 'safe':'Tim', 'titleQuote':'Tevin', 'summit':'Moriah', 'nudity':'Yes', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T20:24:00.000Z', 'pick_1':'Charlie', 'pick_2':'Moriah', 'pick_3':'Soda'},
-	{'name':'Josh', 'reward':'Ben', 'immunity':'Ben', 'eliminated':'Randen', 'safe':'Ben', 'titleQuote':'Tevin', 'summit':'Q', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T21:06:00.000Z', 'pick_1':'Hunter', 'pick_2':'Kenzie ', 'pick_3':'Tiffany'},
+	{'name':'Josh', 'reward':'Ben', 'immunity':'Ben', 'eliminated':'Randen', 'safe':'Ben', 'titleQuote':'Tevin', 'summit':'Q', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T21:06:00.000Z', 'pick_1':'Hunter', 'pick_2':'Kenzie', 'pick_3':'Tiffany'},
 	{'name':'Betsy', 'reward':'Maria', 'immunity':'Charlie', 'eliminated':'Bhanu', 'safe':'Maria', 'titleQuote':'Hunter', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T21:17:00.000Z', 'pick_1':'Ben', 'pick_2':'Hunter', 'pick_3':'Maria'},
-	{'name':'Greg', 'reward':'Tevin', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Tevin', 'titleQuote':'Kenzie', 'summit':'Hunter', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T02:28:00.000Z', 'pick_1':'Charlie', 'pick_2':'Kenzie ', 'pick_3':'Maria'},
+	{'name':'Greg', 'reward':'Tevin', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Tevin', 'titleQuote':'Kenzie', 'summit':'Hunter', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T02:28:00.000Z', 'pick_1':'Charlie', 'pick_2':'Kenzie', 'pick_3':'Maria'},
 	{'name':'Joe', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Tim', 'safe':'Hunter', 'titleQuote':'Moriah', 'summit':'Jem', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T18:51:00.000Z', 'pick_1':'Hunter', 'pick_2':'Q', 'pick_3':'Tiffany'},
 	{'name':'Abby', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Randen', 'titleQuote':'Soda', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T22:52:00.000Z', 'pick_1':'Hunter', 'pick_2':'Liz', 'pick_3':'Tim'},
 ];
