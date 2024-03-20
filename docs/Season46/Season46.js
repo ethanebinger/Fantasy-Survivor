@@ -572,9 +572,9 @@ function calculateScores(scores, results, responses, calcType) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-            var team_yellow = results[i].team_yellow;
-            var team_blue = results[i].team_blue;
-			var team_red = results[i].team_red;
+            var team_green = results[i].team_green;
+            var team_orange = results[i].team_orange;
+			var team_purple = results[i].team_purple;
 			var swapped_ep_4 = results[i].team_swap_win;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
@@ -726,29 +726,29 @@ function calculateScores(scores, results, responses, calcType) {
                         } 
 						else {
                             // Reward
-                            if ((results[i].reward === 'team_yellow' || results[i].reward2 === 'team_yellow') && inArray(responses[j].reward, team_yellow) && responses[j].reward) {
+                            if ((results[i].reward === 'team_green' || results[i].reward2 === 'team_green') && inArray(responses[j].reward, team_green) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; }
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_blue' || results[i].reward2 === 'team_blue') && inArray(responses[j].reward, team_blue) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_orange' || results[i].reward2 === 'team_orange') && inArray(responses[j].reward, team_orange) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_red' || results[i].reward2 === 'team_red') && inArray(responses[j].reward, team_red) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_purple' || results[i].reward2 === 'team_purple') && inArray(responses[j].reward, team_purple) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
                             };
                             // Immunity
-                            if ((results[i].immunity === 'team_yellow' || results[i].immunity2 === 'team_yellow') && inArray(responses[j].immunity, team_yellow) && responses[j].immunity) {
+                            if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green') && inArray(responses[j].immunity, team_green) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_blue' || results[i].immunity2 === 'team_blue')  && inArray(responses[j].immunity, team_blue) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_orange' || results[i].immunity2 === 'team_orange')  && inArray(responses[j].immunity, team_orange) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_red' || results[i].immunity2 === 'team_red')  && inArray(responses[j].immunity, team_red) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_purple' || results[i].immunity2 === 'team_purple')  && inArray(responses[j].immunity, team_purple) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -960,6 +960,23 @@ var results = [
         'team_purple': ['Bhanu', 'Jess', 'Kenzie', 'Q', 'Tiffany'],
 		'team_orange': ['Hunter', 'Liz', 'Randen', 'Soda', 'Tevin', 'Venus']
     },
+	{	'vote': 3,
+        'date': '3/13/24',
+        'merge': 'No',
+        'reward': 'team_orange', 
+        'immunity': 'team_orange',
+		'immunity2': 'team_green',
+        'eliminated': 'Randen',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Q',
+		'summit': ['Bhanu', 'Liz', 'Ben'],
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_green': ['Ben', 'Charlie', 'Jem', 'Maria', 'Moriah', 'Tim'],
+        'team_purple': ['Bhanu', 'Kenzie', 'Q', 'Tiffany'],
+		'team_orange': ['Hunter', 'Liz', 'Randen', 'Soda', 'Tevin', 'Venus']
+    },
 	
 ];
 
@@ -976,4 +993,16 @@ var saved_responses = [
 	{'name':'Greg', 'reward':'Tevin', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Tevin', 'titleQuote':'Kenzie', 'summit':'Hunter', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T02:28:00.000Z', 'pick_1':'Charlie', 'pick_2':'Kenzie', 'pick_3':'Maria'},
 	{'name':'Joe', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Tim', 'safe':'Hunter', 'titleQuote':'Moriah', 'summit':'Jem', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T18:51:00.000Z', 'pick_1':'Hunter', 'pick_2':'Q', 'pick_3':'Tiffany'},
 	{'name':'Abby', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Randen', 'titleQuote':'Soda', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T22:52:00.000Z', 'pick_1':'Hunter', 'pick_2':'Liz', 'pick_3':'Tim'},
+	{'name':'Anastassia', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Jess', 'safe':'Hunter', 'titleQuote':'Tevin', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-07T22:52:00.000Z', 'pick_1':'Q', 'pick_2':'Kenzie ', 'pick_3':'Tiffany'},
+	// WEEK 3
+	{'name':'Esme', 'reward':'Charlie', 'immunity':'Ben', 'eliminated':'Liz', 'safe':'Q', 'titleQuote':'Maria', 'summit':'Venus', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-13T18:05:00.000Z'},
+	{'name':'Wilson Baer', 'reward':'Jem', 'immunity':'Q', 'eliminated':'Liz', 'safe':'Moriah', 'titleQuote':'Liz', 'summit':'Maria', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-13T18:54:00.000Z'},
+	{'name':'Betsy', 'reward':'Q', 'immunity':'Charlie', 'eliminated':'Bhanu', 'safe':'Charlie', 'titleQuote':'Maria', 'summit':'Liz', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-13T19:56:00.000Z'},
+	{'name':'Ethan', 'reward':'Charlie', 'immunity':'Charlie', 'eliminated':'Bhanu', 'safe':'Charlie', 'titleQuote':'Ben', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-13T20:01:00.000Z'},
+	{'name':'Christy', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Bhanu', 'safe':'Moriah', 'titleQuote':'Tevin', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-13T20:23:00.000Z'},
+	{'name':'Josh', 'reward':'Tiffany', 'immunity':'Tiffany', 'eliminated':'Randen', 'safe':'Hunter', 'titleQuote':'Tevin', 'summit':'Tiffany', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-13T20:41:00.000Z'},
+	{'name':'Abby', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Bhanu', 'safe':'Hunter', 'titleQuote':'Maria', 'summit':'Q', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'Yes', 'submit_time':'2024-03-13T23:22:00.000Z'},
+	{'name':'Joe', 'reward':'Q', 'immunity':'Hunter', 'eliminated':'Bhanu', 'safe':'Charlie', 'titleQuote':'Jeff Probst', 'summit':'Q', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-13T23:22:00.000Z'},
+	{'name':'Greg', 'reward':'Tevin', 'immunity':'Tevin', 'eliminated':'Moriah', 'safe':'Tevin', 'titleQuote':'Kenzie', 'summit':'Bhanu', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-14T02:56:00.000Z'},
+	{'name':'Anastassia', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Bhanu', 'safe':'Charlie', 'titleQuote':'Ben', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-14T02:56:00.000Z'}
 ];
