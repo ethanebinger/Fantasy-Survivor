@@ -1005,7 +1005,7 @@ var results = [
         'eliminated': 'Jem',
         'idolFound': 'Yes',
         'idolPlayed': 'No',
-        'titleQuote': 'Kenzie',
+        'titleQuote': 'Tim',
 		'summit': ['Q', 'Hunter', 'Tim'],
         'nudity': 'No',
 		'shotInTheDark': 'No',
