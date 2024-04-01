@@ -889,7 +889,7 @@ function final_eight_calc(scores, result) {
 function final_three_calc(scores, result) {
     var top_three = [ 
 		 //top three!
-		 'Ben', 'Charlie', 'Jem', 'Maria', 'Moriah', 'Tim', 
+		 'Ben', 'Charlie', 'Maria', 'Moriah', 'Tim', 
 		 'Kenzie', 'Q', 'Tiffany',  
 		 'Hunter', 'Liz', 'Soda', 'Tevin', 'Venus'	
 	]; 
@@ -994,6 +994,24 @@ var results = [
         'team_green': ['Ben', 'Charlie', 'Jem', 'Maria', 'Moriah', 'Tim'],
         'team_purple': ['Bhanu', 'Kenzie', 'Q', 'Tiffany'],
 		'team_orange': ['Hunter', 'Liz', 'Soda', 'Tevin', 'Venus']
+    },
+	{	'vote': 5,
+        'date': '3/27/24',
+        'merge': 'No',
+        'reward': 'team_orange', 
+		'reward2': 'team_green', 
+        'immunity': 'team_orange',
+		'immunity2': 'team_green',
+        'eliminated': 'Jem',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Kenzie',
+		'summit': ['Q', 'Hunter', 'Tim'],
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_green': ['Ben', 'Charlie', 'Jem', 'Maria', 'Moriah', 'Tim'],
+        'team_purple': ['Kenzie', 'Q', 'Tiffany'],
+		'team_orange': ['Hunter', 'Liz', 'Soda', 'Tevin', 'Venus']
     }
 	
 ];
@@ -1030,5 +1048,13 @@ var saved_responses = [
 	{'name':'Wilson', 'reward':'Bhanu', 'immunity':'Jem', 'eliminated':'Liz', 'safe':'Jem', 'titleQuote':'Q', 'summit':'Q', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-20T20:24:00.000Z'},
 	{'name':'Ethan', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Bhanu', 'safe':'Hunter', 'titleQuote':'Bhanu', 'summit':'Tim', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-21T03:11:00.000Z'},
 	{'name':'Anastassia', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Venus', 'safe':'Hunter', 'titleQuote':'Tevin', 'summit':'Tiffany', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-21T03:11:00.000Z'},
-	{'name':'Josh', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Bhanu', 'safe':'Hunter', 'titleQuote':'Q', 'summit':'Hunter', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'Yes', 'submit_time':'2024-03-22T17:05:00.000Z'}
+	{'name':'Josh', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Bhanu', 'safe':'Hunter', 'titleQuote':'Q', 'summit':'Hunter', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'Yes', 'submit_time':'2024-03-22T17:05:00.000Z'},
+	// WEEK 5
+	{'name':'Betsy', 'reward':'Hunter', 'immunity':'Liz', 'eliminated':'Soda', 'safe':'Charlie', 'titleQuote':'Q', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'Yes', 'submit_time':'2024-03-27T16:06:00.000Z'},
+	{'name':'Ethan', 'reward':'Hunter', 'immunity':'Ben', 'eliminated':'Soda', 'safe':'Ben', 'titleQuote':'Hunter', 'summit':'Jem', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-27T18:00:00.000Z'},
+	{'name':'Esme', 'reward':'Maria', 'immunity':'Maria', 'eliminated':'Liz', 'safe':'Ben', 'titleQuote':'Ben', 'summit':'Q', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-27T19:16:00.000Z'},
+	{'name':'Christy', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Liz', 'safe':'Hunter', 'titleQuote':'Tevin', 'summit':'Moriah', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-27T19:51:00.000Z'},
+	{'name':'Greg', 'reward':'Hunter', 'immunity':'Hunter', 'eliminated':'Moriah', 'safe':'Tevin', 'titleQuote':'Ben', 'summit':'Ben', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-28T00:18:00.000Z'},
+	{'name':'Wilson', 'reward':'Jem', 'immunity':'Hunter', 'eliminated':'Tim', 'safe':'Tevin', 'titleQuote':'Tim', 'summit':'Q', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-28T08:43:00.000Z'},
+	{'name':'Joe', 'reward':'Charlie', 'immunity':'Charlie', 'eliminated':'Soda', 'safe':'Ben', 'titleQuote':'Q', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-28T21:45:00.000Z'}
 ];
