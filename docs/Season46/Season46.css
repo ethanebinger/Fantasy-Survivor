@@ -11,7 +11,8 @@ html, body {
     position: relative;
 }
 .title_img {
-	background-image: url("https://parade.com/.image/t_share/MjAyMTg5OTk4ODA2NTQxMzI0/1781428_26525bc.jpg");
+	/*background-image: url("https://parade.com/.image/t_share/MjAyMTg5OTk4ODA2NTQxMzI0/1781428_26525bc.jpg");*/
+	background-image: url("https://www.realityblurred.com/realitytv/images/2024/05/survivor-46-liz-applebees-728x410.jpg");
 	position: relative;
     background-position: top;
     background-repeat: no-repeat;
