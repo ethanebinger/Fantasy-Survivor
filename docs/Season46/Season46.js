@@ -311,7 +311,7 @@ function getFinalEight(curName) {
 	for (var j=0; j<finalEight.length; j++) {
 		if (finalEight[j].name === curName) {
 			var cur_vote = determineWeek(finalEight[j]);
-			if (cur_vote === 10) {	// only submited responses to this question for episode 10
+			if (cur_vote === 11) {	// only submited responses to this question for episode 11
 				$("#past_responses").append("<h3 id='finalEight_title'></h3>");
 				$("#finalEight_title").html("Order of Final Eight Survivors");
 				$("#past_responses").append("<span id='finalEight_table'></span>");
@@ -852,19 +852,19 @@ function final_eight_calc(scores, result) {
         var sum = 0,
 			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === "") {			// sole survivor
+            if (castaways['place_'+String([i])] === "Kenzie") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// runner up
+            } else if (castaways['place_'+String([i])] === "Charlie") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
 				if (i===2) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// third
+            } else if (castaways['place_'+String([i])] === "Ben") {	// third
                 sum += Math.pow(Math.abs(i-3),2.25);
 				if (i===3) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fourth
+            } else if (castaways['place_'+String([i])] === "Liz") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
 				if (i===4) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fifth
+            } else if (castaways['place_'+String([i])] === "Maria") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Q") {	// sixth
@@ -889,9 +889,7 @@ function final_eight_calc(scores, result) {
 function final_three_calc(scores, result) {
     var top_three = [ 
 		 //top three!
-		 'Ben', 'Charlie', 'Maria',
-		 'Kenzie', 
-		 'Liz',
+		 'Ben', 'Charlie', 'Kenzie'
 	]; 
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -1104,6 +1102,21 @@ var results = [
 		'summit': 'No',
         'nudity': 'No',
 		'shotInTheDark': 'No'
+    },
+	{	'vote': 13,
+        'date': '5/22/24',
+        'merge': 'Yes',
+        'reward': 'Kenzie',
+		'immunity_4': 'Kenzie',
+		'immunity_5': 'Ben',
+		'fireChallenge': 'Kenzie',
+        'eliminated': ['Maria', 'Liz'],
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Charlie',
+		'summit': 'No',
+        'nudity': 'Yes',
+		'shotInTheDark': 'No'
     }
 	
 ];
@@ -1187,7 +1200,7 @@ var saved_responses = [
 	{'name':'Esme', 'reward':'Kenzie', 'immunity':'Kenzie', 'titleQuote':'Kenzie', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-05-08T13:59:00.000Z', 'place_8':'Tiffany', 'place_7':'Ben', 'place_6':'Maria', 'place_5':'Venus', 'place_4':'Charlie', 'place_3':'Q', 'place_2':'Liz', 'place_1':'Kenzie'},
 	{'name':'Wilson', 'reward':'Maria', 'immunity':'Kenzie', 'titleQuote':'Liz', 'summit':'Venus', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-05-08T15:17:00.000Z', 'place_8':'Tiffany', 'place_7':'Venus', 'place_6':'Q', 'place_5':'Kenzie', 'place_4':'Charlie', 'place_3':'Liz', 'place_2':'Ben', 'place_1':'Maria'},
 	{'name':'Christy', 'reward':'Charlie', 'immunity':'Charlie',  'titleQuote':'Venus', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-05-08T20:14:00.000Z', 'place_8':'Tiffany', 'place_7':'Ben', 'place_6':'Q', 'place_5':'Venus', 'place_4':'Kenzie', 'place_3':'Liz', 'place_2':'Charlie', 'place_1':'Maria'},
-	{'name':'Greg', 'reward':'Charlie', 'immunity':'Charlie',  'titleQuote':'Maria', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-05-08T23:09:00.000Z', 'place_8':'Tiffany', 'place_7':'Kenzie', 'place_6':'Ben', 'place_5':'Maria', 'place_4':'Liz', 'place_3':'Q', 'place_2':'Venus', 'place_1':'Charlie'}
+	{'name':'Greg', 'reward':'Charlie', 'immunity':'Charlie',  'titleQuote':'Maria', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-05-08T23:09:00.000Z', 'place_8':'Tiffany', 'place_7':'Kenzie', 'place_6':'Ben', 'place_5':'Maria', 'place_4':'Liz', 'place_3':'Q', 'place_2':'Venus', 'place_1':'Charlie'},
 	// WEEK 12
 	{'name':'Wilson', 'reward':'Liz', 'immunity':'Charlie', 'eliminated':'', 'safe':'', 'titleQuote':'Maria', 'summit':'Ben', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-05-15T20:13:00.000Z'},
 	{'name':'Christy', 'reward':'Charlie', 'immunity':'Charlie', 'eliminated':'', 'safe':'', 'titleQuote':'Maria', 'summit':'Kenzie', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-05-15T20:16:00.000Z'},
