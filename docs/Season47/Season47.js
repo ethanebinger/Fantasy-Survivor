@@ -1,9 +1,7 @@
 function init() {
     // Move past hero page and enter form on click
     $('#enterBtn').click(function(e) {
-		window.location = "https://forms.gle/dedhjs6RQqHfB1QK7"; // Episodes 1-9
-		//window.location = ""; // Episode 10
-		//window.location = ""; // Episodes 11+
+		window.location = "https://forms.gle/DGJdMQj4WR1gEyNL9";
 		//$('.title_img').addClass('isHidden');
         //$('#survivor_form').removeClass('isHidden');
         //$('#advance_form').removeClass('isHidden');
@@ -740,16 +738,16 @@ function final_three_calc(scores, result) {
 						scores[n]['Final Three'] = 0;						
 					};
 					if (inArray(result[i].pick_1, top_three)){
-						scores[n]['Final Three'] += 30;
-						scores[n].total += 30;
+						scores[n]['Final Three'] += 50;
+						scores[n].total += 50;
 					};
 					if (inArray(result[i].pick_2, top_three)){
-						scores[n]['Final Three'] += 30;
-						scores[n].total += 30;
+						scores[n]['Final Three'] += 50;
+						scores[n].total += 50;
 					};
 					if (inArray(result[i].pick_3, top_three)){
-						scores[n]['Final Three'] += 30;
-						scores[n].total += 30;
+						scores[n]['Final Three'] += 50;
+						scores[n].total += 50;
 					};
 					name_ep_count.push(result[i].name);
 				};
