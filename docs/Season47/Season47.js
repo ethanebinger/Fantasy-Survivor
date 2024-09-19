@@ -383,23 +383,35 @@ var inArray = function(x,y) {
 
 // Function to identify week based on date of vote
 function determineWeek(responses) {
-    var cur_vote = 0;
-    var submit_time = new Date(responses.submit_time);
-	// datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
-	if (submit_time <= new Date('September 18, 2024')) { cur_vote = 1; }
-	else if (submit_time <= new Date('March 10, 2024')) { cur_vote = 2; }
-	else if (submit_time <= new Date('March 17, 2024')) { cur_vote = 3; }
-	else if (submit_time <= new Date('March 24, 2024')) { cur_vote = 4; }
-	else if (submit_time <= new Date('March 31, 2024')) { cur_vote = 5; }
-	else if (submit_time <= new Date('April 7, 2024')) { cur_vote = 6; }
-	else if (submit_time <= new Date('April 14, 2024')) { cur_vote = 7; }
-	else if (submit_time <= new Date('April 21, 2024')) { cur_vote = 8; }
-	else if (submit_time <= new Date('April 28, 2024')) { cur_vote = 9; }
-	else if (submit_time <= new Date('May 5, 2024')) { cur_vote = 10; }
-	else if (submit_time <= new Date('May 13, 2024')) { cur_vote = 11; }
-	else if (submit_time <= new Date('May 19, 2024')) { cur_vote = 12; }
-	else if (submit_time <= new Date('May 26, 2024')) { cur_vote = 13; };
-    return cur_vote;
+    // datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
+	// list the dates of episodes in the season, in order
+	let episode_dates = [
+		'2024-09-18',
+		'2024-09-25',
+		'2024-10-02',
+		'2024-10-09',
+		'2024-10-16',
+		'2024-10-23',
+		'2024-10-30',
+		'2024-11-06',
+		'2024-11-13',
+		'2024-11-20',
+		'2024-11-27',
+		'2024-12-04',
+		'2024-12-11'
+	];
+	// loop through the episode dates
+	// return the episode number if the response date is less than or equal to episode date+3
+	let submit_time = new Date(responses.submit_time);
+	for (let i = 0; i < episode_dates.length; i++) {
+        let date = new Date(episode_dates[i]);
+        date.setDate(date.getDate() + 3);
+        if (submit_time <= date) {
+            return i + 1;
+        };
+    };
+	 // Return 0 if no date matches
+    return 0;
 };
 
 // FUNCTION TO CALCULATE SCORES
@@ -408,9 +420,9 @@ function calculateScores(scores, results, responses, calcType) {
     for (var n=0; n<scores.length; n++) {
         var cur_player = scores[n].name;
         for (var i=0; i<results.length; i++) {
-            var team_green = results[i].team_green;
-            var team_orange = results[i].team_orange;
-			var team_purple = results[i].team_purple;
+            var team_red = results[i].team_red;
+            var team_yellow = results[i].team_yellow;
+			var team_blue = results[i].team_blue;
 			var swapped_ep_4 = results[i].team_swap_win;
             for (var j=0; j<responses.length; j++) {
                 // Validate Player
@@ -562,29 +574,29 @@ function calculateScores(scores, results, responses, calcType) {
                         } 
 						else {
                             // Reward
-                            if ((results[i].reward === 'team_green' || results[i].reward2 === 'team_green') && inArray(responses[j].reward, team_green) && responses[j].reward) {
+                            if ((results[i].reward === 'team_red' || results[i].reward2 === 'team_red') && inArray(responses[j].reward, team_red) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; }
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_orange' || results[i].reward2 === 'team_orange') && inArray(responses[j].reward, team_orange) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_yellow' || results[i].reward2 === 'team_yellow') && inArray(responses[j].reward, team_yellow) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_purple' || results[i].reward2 === 'team_purple') && inArray(responses[j].reward, team_purple) && responses[j].reward) {
+                            } else if ((results[i].reward === 'team_blue' || results[i].reward2 === 'team_blue') && inArray(responses[j].reward, team_blue) && responses[j].reward) {
                                 if (calcType === "individual") { scores[n].reward += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
                             };
                             // Immunity
-                            if ((results[i].immunity === 'team_green' || results[i].immunity2 === 'team_green') && inArray(responses[j].immunity, team_green) && responses[j].immunity) {
+                            if ((results[i].immunity === 'team_red' || results[i].immunity2 === 'team_red') && inArray(responses[j].immunity, team_red) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_orange' || results[i].immunity2 === 'team_orange')  && inArray(responses[j].immunity, team_orange) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_yellow' || results[i].immunity2 === 'team_yellow')  && inArray(responses[j].immunity, team_yellow) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_purple' || results[i].immunity2 === 'team_purple')  && inArray(responses[j].immunity, team_purple) && responses[j].immunity) {
+                            } else if ((results[i].immunity === 'team_blue' || results[i].immunity2 === 'team_blue')  && inArray(responses[j].immunity, team_blue) && responses[j].immunity) {
                                 if (calcType === "individual") { scores[n].immunity += 5; }
                                 else { scores[n][val_vote] += 5; };
                                 scores[n].total += 5;
@@ -760,26 +772,26 @@ function final_three_calc(scores, result) {
 
 var results = [
     {	'vote': 1,
-        'date': '2/28/24',
+        'date': '9/18/24',
         'merge': 'No',
         'reward': '', 
-        'immunity': 'team_orange',
-		'immunity2': 'team_green',
-        'eliminated': 'David',
+        'immunity': 'team_yellow',
+		'immunity2': 'team_yellow',
+        'eliminated': '',
         'idolFound': 'Yes',
         'idolPlayed': 'No',
-        'titleQuote': 'Tevin',
-		'summit': 'Yes',
-        'nudity': 'Yes',
+        'titleQuote': '',
+		'summit': 'No',
+        'nudity': 'No',
 		'shotInTheDark': 'No',
-        'team_green': ['Ben', 'Charlie', 'Jem', 'Maria', 'Moriah', 'Tim'],
-        'team_purple': ['Bhanu', 'David', 'Jess', 'Kenzie', 'Q', 'Tiffany'],
-		'team_orange': ['Hunter', 'Liz', 'Randen', 'Soda', 'Tevin', 'Venus']
+        'team_yellow': ['Andy', 'Anika', 'Jon', 'Rachel', 'Sam', 'Sierra'],
+        'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Tenny'],
+		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyanna', 'TK']
     }
 	
 ];
 
 var saved_responses = [
 	// WEEK 2
-	{'name':'Mark', 'reward':'Q', 'immunity':'Tim', 'eliminated':'Jess', 'safe':'Bhanu', 'titleQuote':'Kenzie', 'summit':'Randen', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-03-06T18:18:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''},
+	{},
 ];
