@@ -737,6 +737,9 @@ function final_eight_calc(scores, result) {
 function final_three_calc(scores, result) {
     var top_three = [ 
 		 //top three!
+		'Andy', 'Anika', 'Rachel', 'Sam', 'Sierra', 
+		'Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny',
+		'Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana'
 	]; 
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -786,13 +789,38 @@ var results = [
         'nudity': 'No',
 		'shotInTheDark': 'No',
         'team_yellow': ['Andy', 'Anika', 'Jon', 'Rachel', 'Sam', 'Sierra'],
-        'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Tenny'],
-		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyanna', 'TK']
-    }
-	
+        'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny'],
+		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana', 'TK']
+    },
+	{	'vote': 2,
+        'date': '9/25/24',
+        'merge': 'No',
+        'reward': 'team_yellow', 
+		'reward2': 'team_red',
+        'immunity': 'team_yellow',
+		'immunity2': 'team_red',
+        'eliminated': 'TK',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Jon', // actually Sue but I messed up so have to give folks points
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Andy', 'Anika', 'Rachel', 'Sam', 'Sierra'],
+        'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny'],
+		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana', 'TK']
+    }	
 ];
 
 var saved_responses = [
 	// WEEK 2
-	{},
+	{'name':'Abby', 'reward':'Sue', 'immunity':'Sierra', 'eliminated':'Teeny', 'safe':'Kyle', 'titleQuote':'Genevieve', 'summit':'Kyle', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T08:55:00.000Z', 'pick_1':'Genevieve', 'pick_2':'Sol', 'pick_3':'Tiyana'},
+	{'name':'Christy', 'reward':'Rome', 'immunity':'Aysha', 'eliminated':'Andy', 'safe':'Rome', 'titleQuote':'Andy', 'summit':'Teeny', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T09:26:00.000Z', 'pick_1':'Aysha', 'pick_2':'Teeny', 'pick_3':'Sue'},
+	{'name':'Betsy', 'reward':'Sam', 'immunity':'Sol', 'eliminated':'Andy', 'safe':'Anika', 'titleQuote':'Jon', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T14:36:00.000Z', 'pick_1':'Sol', 'pick_2':'Caroline', 'pick_3':'Sue'},
+	{'name':'Greg', 'reward':'TK', 'immunity':'TK', 'eliminated':'Sierra', 'safe':'Teeny', 'titleQuote':'Jeff Probst', 'summit':'Andy', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T16:47:00.000Z', 'pick_1':'Aysha', 'pick_2':'Rome', 'pick_3':'Sue'},
+	{'name':'Josh', 'reward':'Andy', 'immunity':'Andy', 'eliminated':'TK', 'safe':'Rachel', 'titleQuote':'Teeny', 'summit':'Gabe', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T18:07:00.000Z', 'pick_1':'Rachel', 'pick_2':'Genevieve', 'pick_3':'Sue'},
+	{'name':'Anastassia', 'reward':'Sol', 'immunity':'Sol', 'eliminated':'Gabe', 'safe':'Sol', 'titleQuote':'Aysha', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T11:47:00.000Z', 'pick_1':'Sierra', 'pick_2':'Sol', 'pick_3':'Sue'},
+	{'name':'Ethan', 'reward':'Sam', 'immunity':'Sam', 'eliminated':'Rome', 'safe':'Sol', 'titleQuote':'Anika', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T11:51:00.000Z', 'pick_1':'Sierra', 'pick_2':'Teeny', 'pick_3':'Tiyana'},
+	{'name':'Erika', 'reward':'TK', 'immunity':'Aysha', 'eliminated':'Tiyana', 'safe':'Teeny', 'titleQuote':'Jon', 'summit':'Rome', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T12:46:00.000Z', 'pick_1':'Rachel', 'pick_2':'Sam', 'pick_3':'Teeny'},
+	{'name':'Wilson', 'reward':'Sol', 'immunity':'Kyle', 'eliminated':'Andy', 'safe':'Genevieve', 'titleQuote':'Jon', 'summit':'Kishan', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T13:07:00.000Z', 'pick_1':'Genevieve', 'pick_2':'Sol', 'pick_3':'TK'}
 ];
