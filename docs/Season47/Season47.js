@@ -738,7 +738,7 @@ function final_three_calc(scores, result) {
     var top_three = [ 
 		 //top three!
 		'Andy', 'Anika', 'Rachel', 'Sam', 'Sierra', 
-		'Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny',
+		'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny',
 		'Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana'
 	]; 
 	var name_ep_count = [0];
@@ -809,7 +809,24 @@ var results = [
         'team_yellow': ['Andy', 'Anika', 'Rachel', 'Sam', 'Sierra'],
         'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny'],
 		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana', 'TK']
-    }	
+    },
+	{	'vote': 3,
+       'date': '10/2/24',
+        'merge': 'No',
+        'reward': 'team_yellow',
+        'immunity': 'team_yellow',
+		'immunity2': 'team_blue',
+        'eliminated': 'Aysha',
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Jeff Probst',
+		'summit': ['Rome', 'Kyle', 'Anika'],
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+        'team_yellow': ['Andy', 'Anika', 'Rachel', 'Sam', 'Sierra'],
+        'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny'],
+		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana']
+    }
 ];
 
 var saved_responses = [
@@ -822,5 +839,13 @@ var saved_responses = [
 	{'name':'Anastassia', 'reward':'Sol', 'immunity':'Sol', 'eliminated':'Gabe', 'safe':'Sol', 'titleQuote':'Aysha', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T11:47:00.000Z', 'pick_1':'Sierra', 'pick_2':'Sol', 'pick_3':'Sue'},
 	{'name':'Ethan', 'reward':'Sam', 'immunity':'Sam', 'eliminated':'Rome', 'safe':'Sol', 'titleQuote':'Anika', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T11:51:00.000Z', 'pick_1':'Sierra', 'pick_2':'Teeny', 'pick_3':'Tiyana'},
 	{'name':'Erika', 'reward':'TK', 'immunity':'Aysha', 'eliminated':'Tiyana', 'safe':'Teeny', 'titleQuote':'Jon', 'summit':'Rome', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T12:46:00.000Z', 'pick_1':'Rachel', 'pick_2':'Sam', 'pick_3':'Teeny'},
-	{'name':'Wilson', 'reward':'Sol', 'immunity':'Kyle', 'eliminated':'Andy', 'safe':'Genevieve', 'titleQuote':'Jon', 'summit':'Kishan', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T13:07:00.000Z', 'pick_1':'Genevieve', 'pick_2':'Sol', 'pick_3':'TK'}
+	{'name':'Wilson', 'reward':'Sol', 'immunity':'Kyle', 'eliminated':'Andy', 'safe':'Genevieve', 'titleQuote':'Jon', 'summit':'Kishan', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T13:07:00.000Z', 'pick_1':'Genevieve', 'pick_2':'Sol', 'pick_3':'TK'},
+	// WEEK 3
+	{'name':'Wilson', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Gabe', 'safe':'Anika', 'titleQuote':'Jeff Probst', 'summit':'Rome', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-02T17:03:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''},
+	{'name':'Betsy', 'reward':'Andy', 'immunity':'Sam', 'eliminated':'Rome', 'safe':'Anika', 'titleQuote':'Kyle', 'summit':'Kishan', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-03T11:23:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''},
+	{'name':'Anastassia', 'reward':'Sol', 'immunity':'Kishan', 'eliminated':'Anika', 'safe':'Sol', 'titleQuote':'Sam', 'summit':'Teeny', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-03T13:23:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''},
+	{'name':'Ethan', 'reward':'Gabe', 'immunity':'Gabe', 'eliminated':'Aysha', 'safe':'Sam', 'titleQuote':'Sam', 'summit':'Teeny', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-03T13:25:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''},
+	{'name':'Erika', 'reward':'Sam', 'immunity':'Kyle', 'eliminated':'Aysha', 'safe':'Caroline', 'titleQuote':'Jeff Probst', 'summit':'Teeny', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-03T19:14:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''},
+	{'name':'Greg', 'reward':'Andy', 'immunity':'Andy', 'eliminated':'Kishan', 'safe':'Sue', 'titleQuote':'Gabe', 'summit':'Rome', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-04T11:15:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''},
+	{'name':'Josh', 'reward':'Andy', 'immunity':'Andy', 'eliminated':'Aysha', 'safe':'Rachel', 'titleQuote':'Sierra', 'summit':'Sierra', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-06T17:04:00.000Z', 'pick_1':'', 'pick_2':'', 'pick_3':''}
 ];
