@@ -12,7 +12,8 @@ html, body {
 }
 .title_img {
 	/*background-image: url("https://parade.com/.image/t_share/MjAyMTg5OTk4ODA2NTQxMzI0/1781428_26525bc.jpg");*/
-	background-image: url("https://cdn.vox-cdn.com/thumbor/s-Wxb_sGrYRHEHkYhDv4IzZhXYU=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/73595241/SurvivorS47E01_02_CBS.0.jpg");
+	/*background-image: url("https://cdn.vox-cdn.com/thumbor/s-Wxb_sGrYRHEHkYhDv4IzZhXYU=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/73595241/SurvivorS47E01_02_CBS.0.jpg");*/
+	background-image: url("https://i.redd.it/3l1nxjk8oytd1.jpeg");
 	position: relative;
     background-position: top;
     background-repeat: no-repeat;
