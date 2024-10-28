@@ -777,7 +777,7 @@ function final_three_calc(scores, result) {
     var top_three = [ 
 		 //top three!
 		'Andy', 'Rachel', 'Sam', 'Sierra', 
-		'Genevieve', 'Rome', 'Sol', 'Teeny',
+		'Genevieve', 'Sol', 'Teeny',
 		'Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana'
 	]; 
 	var name_ep_count = [0];
@@ -908,6 +908,23 @@ var results = [
         'team_yellow': ['Rachel', 'Sam', 'Teeny', 'Caroline', 'Kyle', 'Sue', 'Tiyana'],
         'team_red': ['Genevieve', 'Rome', 'Sol', 'Teeny'],
 		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana']
+    },
+	{	'vote': 6,
+		'date': '10/23/24',
+        'merge': 'Yes',
+        'reward': 'team_yellow',
+        'immunity': 'Kyle',
+        'eliminated': 'Rome',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Andy',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+		'fishCatch': 'No',
+		'voteUnanimous': 'No',
+		'jeffJoke': 'No',
+        'team_yellow': ['Rachel', 'Sam', 'Teeny', 'Genevieve', 'Kyle', 'Sue', 'Tiyana']
     }
 ];
 
@@ -944,4 +961,11 @@ var saved_responses = [
 	{'name':'Greg', 'reward':'Gabe', 'immunity':'Sam', 'eliminated':'Rome', 'safe':'Andy', 'titleQuote':'Andy', 'summit':'Sol', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-18T09:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
 	{'name':'Anastassia', 'reward':'Sam', 'immunity':'Sierra', 'eliminated':'Kyle', 'safe':'Sierra', 'titleQuote':'Rome', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-18T21:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
 	{'name':'Ethan', 'reward':'Sierra', 'immunity':'Sierra', 'eliminated':'Tiyana', 'safe':'Sierra', 'titleQuote':'Rome', 'summit':'Genevieve', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-18T21:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
+	// WEEK 6
+	{'name':'Betsy', 'reward':'Kyle', 'immunity':'Gabe', 'eliminated':'Teeny', 'safe':'Kyle', 'titleQuote':'Jeff Probst', 'summit':'Sam', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-23T12:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
+	{'name':'Wilson', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Rome', 'safe':'Sol', 'titleQuote':'Sierra', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-23T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
+	{'name':'Erika', 'reward':'Rome', 'immunity':'Rome', 'eliminated':'Gabe', 'safe':'Sam', 'titleQuote':'Jeff Probst', 'summit':'Sol', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-23T16:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
+	{'name':'Anastassia', 'reward':'Sam', 'immunity':'Rachel', 'eliminated':'Tiyana', 'safe':'Kyle', 'titleQuote':'Sam', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-23T19:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
+	{'name':'Ethan', 'reward':'Sam', 'immunity':'Sam', 'eliminated':'Tiyana', 'safe':'Sam', 'titleQuote':'Sam', 'summit':'Sam', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-23T19:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
+	{'name':'Greg', 'reward':'Gabe', 'immunity':'Gabe', 'eliminated':'Teeny', 'safe':'Caroline', 'titleQuote':'Andy', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-27T09:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
 ];
