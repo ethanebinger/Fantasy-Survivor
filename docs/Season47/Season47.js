@@ -763,7 +763,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25)
 				if (i===7) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// eighth
+            } else if (castaways['place_'+String([i])] === "Kyle") {	// eighth
                 sum += Math.pow(Math.abs(i-8),2.25);
 				if (i===8) { bonus += 5 };
             };
@@ -781,7 +781,7 @@ function final_three_calc(scores, result) {
 		 //top three!
 		'Andy', 'Rachel', 'Sam',
 		'Genevieve', 'Teeny',
-		'Caroline', 'Kyle', 'Sue'
+		'Caroline', 'Sue'
 	]; 
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -995,6 +995,22 @@ var results = [
 		'fishCatch': 'No',
 		'voteUnanimous': 'No',
 		'jeffJoke': 'No'
+    },
+	{	'vote': 11,
+		'date': '11/27/24',
+        'merge': 'Yes',
+        'reward': '',
+        'immunity': 'Rachel',
+        'eliminated': 'Kyle',
+        'idolFound': 'Yes',
+        'idolPlayed': 'No',
+        'titleQuote': 'Andy',
+		'summit': 'Rachel',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+		'fishCatch': 'No',
+		'voteUnanimous': 'No',
+		'jeffJoke': 'No'
     }
 ];
 
@@ -1064,4 +1080,10 @@ var saved_responses = [
 	{'name':'Wilson', 'reward':'Gabe', 'immunity':'Genevieve', 'eliminated':'Kyle', 'safe':'Andy', 'titleQuote':'Jeff Probst', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-21T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'Yes'},
 	{'name':'Ethan', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Sue', 'safe':'Rachel', 'titleQuote':'Andy', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-21T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
 	{'name':'Anastassia', 'reward':'Sam', 'immunity':'Sam', 'eliminated':'Kyle', 'safe':'Rachel', 'titleQuote':'Gabe', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-21T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
+	// WEEK 11
+	{'name':'Ethan', 'reward':'Kyle', 'immunity':'Sue', 'titleQuote':'Kyle', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-26T12:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No''place_1':'Rachel','place_2':'Andy','place_3':'Teeny','place_4':'Caroline','place_5':'Genevieve','place_6':'Sam','place_7':'Sue','place_8':'Kyle'},
+	{'name':'Wilson', 'reward':'Genevieve', 'immunity':'Kyle', 'titleQuote':'Kyle', 'summit':'Rachel', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-28T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'Yes''place_1':'Rachel','place_2':'Caroline','place_3':'Andy','place_4':'Kyle','place_5':'Sam','place_6':'Genevieve','place_7':'Teeny','place_8':'Sue'},
+	{'name':'Greg', 'reward':'Kyle', 'immunity':'Kyle', 'titleQuote':'Teeny', 'summit':'Andy', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-28T14:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'No''place_1':'Caroline','place_2':'Teeny','place_3':'Andy','place_4':'Sam','place_5':'Genevieve','place_6':'Kyle','place_7':'Sue','place_8':'Rachel'},
+	{'name':'Betsy', 'reward':'Teeny', 'immunity':'Rachel', 'titleQuote':'Jeff Probst', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-28T14:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No''place_1':'Teeny','place_2':'Sam','place_3':'Sue','place_4':'Caroline','place_5':'Rachel','place_6':'Andy','place_7':'Genevieve','place_8':'Kyle'},
+	{'name':'Anastassia', 'reward':'Kyle', 'immunity':'Sam', 'titleQuote':'Andy', 'summit':'Andy', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-26T12:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No''place_1':'Rachel','place_2':'Andy','place_3':'Sue','place_4':'Caroline','place_5':'Teeny','place_6':'Sam','place_7':'Genevieve','place_8':'Kyle'},
 ];
