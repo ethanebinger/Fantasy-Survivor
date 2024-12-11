@@ -760,7 +760,7 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// seventh
+            } else if (castaways['place_'+String([i])] === "Caroline") {	// seventh
                 sum += Math.pow(Math.abs(i-7),2.25)
 				if (i===7) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Kyle") {	// eighth
@@ -781,7 +781,7 @@ function final_three_calc(scores, result) {
 		 //top three!
 		'Andy', 'Rachel', 'Sam',
 		'Genevieve', 'Teeny',
-		'Caroline', 'Sue'
+		'Sue'
 	]; 
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -1006,6 +1006,22 @@ var results = [
         'idolPlayed': 'No',
         'titleQuote': 'Andy',
 		'summit': 'Rachel',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+		'fishCatch': 'No',
+		'voteUnanimous': 'No',
+		'jeffJoke': 'No'
+    },
+	{	'vote': 12,
+		'date': '12/4/24',
+        'merge': 'Yes',
+        'reward': 'Sam',
+        'immunity': 'Rachel',
+        'eliminated': 'Caroline',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Andy',
+		'summit': '',
         'nudity': 'No',
 		'shotInTheDark': 'No',
 		'fishCatch': 'No',
