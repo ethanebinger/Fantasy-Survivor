@@ -88,19 +88,22 @@ function getWeeklyResults(curName, curVote) {
 				};
 				$("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
 				$("#past_responses").append("<span id='json_"+String(i)+"'></span>");
-				if (cur_vote == 13) {
+				if (cur_vote == 14) {
 					$("#week_"+String(i)).html("Finale");
 					$("#json_"+String(i)).html(
 						"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-						"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-						"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + responses[i].immunity_5 + "</td><td>"+ scores[0].immunity_5 +"</td></tr>" +
-						"<tr><td><strong>Wins 2nd Immunity Challenge</strong></td><td>" + responses[i].immunity_4 + "</td><td>"+ scores[0].immunity_4 +"</td></tr>" +
+						//"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
+						//"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + responses[i].immunity_5 + "</td><td>"+ scores[0].immunity_5 +"</td></tr>" +
+						"<tr><td><strong>Wins Immunity Challenge</strong></td><td>" + responses[i].immunity_4 + "</td><td>"+ scores[0].immunity_4 +"</td></tr>" +
 						"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + responses[i].fireChallenge + "</td><td>"+ scores[0].fireChallenge +"</td></tr>" +
 						"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
 						"<tr><td><strong>Nudity</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 						"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 						"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-						"<tr><td><strong>Pre-Taped Reunion</strong></td><td>" + responses[i].liveReunion + "</td><td>"+ scores[0].liveReunion +"</td></tr>"
+						"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>" + 
+						"<tr><td><strong>Fish Caught</strong></td><td>" + responses[i].fishCatch + "</td><td>"+ scores[0].fishCatch +"</td></tr>" +
+						"<tr><td><strong>Unanimous Vote</strong></td><td>" + responses[i].voteUnanimous + "</td><td>"+ scores[0].voteUnanimous +"</td></tr>" +
+						"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + responses[i].jeffJoke + "</td><td>"+ scores[0].jeffJoke +"</td></tr>"
 					);
 				} else if (cur_vote >= 11) {
 					$("#week_"+String(i)).html("Episode #"+String(cur_vote));
@@ -113,7 +116,10 @@ function getWeeklyResults(curName, curVote) {
 						"<tr><td><strong>Nudity</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
 						"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
 						"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-						"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>"
+						"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>" + 
+						"<tr><td><strong>Fish Caught</strong></td><td>" + responses[i].fishCatch + "</td><td>"+ scores[0].fishCatch +"</td></tr>" +
+						"<tr><td><strong>Unanimous Vote</strong></td><td>" + responses[i].voteUnanimous + "</td><td>"+ scores[0].voteUnanimous +"</td></tr>" +
+						"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + responses[i].jeffJoke + "</td><td>"+ scores[0].jeffJoke +"</td></tr>"
 					);
 				} else {
 					$("#week_"+String(i)).html("Episode #"+String(cur_vote));
@@ -253,6 +259,7 @@ function init_chart() {
 				'Episode 11': 0,
 				'Episode 12': 0,
 				'Episode 13': 0,
+				'Episode 14': 0,
 				'Final Eight': 0,
 				'Final Three': 0
 			});
@@ -404,7 +411,8 @@ function determineWeek(responses) {
 		'2024-11-20',
 		'2024-11-27',
 		'2024-12-04',
-		'2024-12-11'
+		'2024-12-11',
+		'2024-12-18',
 	];
 	// loop through the episode dates
 	// return the episode number if the response date is less than or equal to episode date+3
@@ -754,10 +762,10 @@ function final_eight_calc(scores, result) {
             } else if (castaways['place_'+String([i])] === "") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
 				if (i===4) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fifth
+            } else if (castaways['place_'+String([i])] === "Genevieve") {	// fifth
                 sum += Math.pow(Math.abs(i-5),2.25);
 				if (i===5) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// sixth
+            } else if (castaways['place_'+String([i])] === "Andy") {	// sixth
                 sum += Math.pow(Math.abs(i-6),2.25);
 				if (i===6) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Caroline") {	// seventh
@@ -779,8 +787,8 @@ function final_eight_calc(scores, result) {
 function final_three_calc(scores, result) {
     var top_three = [ 
 		 //top three!
-		'Andy', 'Rachel', 'Sam',
-		'Genevieve', 'Teeny',
+		'Rachel', 'Sam',
+		'Teeny',
 		'Sue'
 	]; 
 	var name_ep_count = [0];
@@ -1027,6 +1035,22 @@ var results = [
 		'fishCatch': 'No',
 		'voteUnanimous': 'No',
 		'jeffJoke': 'No'
+    },
+	{	'vote': 13,
+		'date': '12/11/24',
+        'merge': 'Yes',
+        'reward': 'Genevieve',
+        'immunity': ['Genevieve', 'Rachel'],
+        'eliminated': ['Andy', 'Genevieve'],
+        'idolFound': 'No',
+        'idolPlayed': 'Yes',
+        'titleQuote': 'Rachel',
+		'summit': '',
+        'nudity': 'No',
+		'shotInTheDark': 'No',
+		'fishCatch': 'No',
+		'voteUnanimous': 'No',
+		'jeffJoke': 'No'
     }
 ];
 
@@ -1104,4 +1128,9 @@ var saved_responses = [
 	{'name':'Anastassia', 'reward':'Kyle', 'immunity':'Sam', 'titleQuote':'Andy', 'summit':'Andy', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-26T12:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No','place_1':'Rachel','place_2':'Andy','place_3':'Sue','place_4':'Caroline','place_5':'Teeny','place_6':'Sam','place_7':'Genevieve','place_8':'Kyle'},
 	// WEEK 12
 	{'name':'Erika', 'reward':'Caroline', 'immunity':'Sue', 'titleQuote':'Andy', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-04T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
+	// WEEK 13
+	{'name':'Ethan', 'reward':'Sam', 'immunity':'Sue', 'titleQuote':'Genevieve', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-11T15:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
+	{'name':'Erika', 'reward':'Rachel', 'immunity':'Genevieve', 'titleQuote':'Rachel', 'summit':'Sam', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-11T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
+	{'name':'Greg', 'reward':'Sue', 'immunity':'Sue', 'titleQuote':'Teeny', 'summit':'Andy', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-11T21:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'No'},
+	{'name':'Anastassia', 'reward':'Genevieve', 'immunity':'Rachel', 'titleQuote':'Genevieve', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-11T15:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
 ];
