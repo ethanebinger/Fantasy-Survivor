@@ -750,16 +750,16 @@ function final_eight_calc(scores, result) {
         var sum = 0,
 			bonus = 0;
         for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === "") {			// sole survivor
+            if (castaways['place_'+String([i])] === "Rachel") {			// sole survivor
                 sum += Math.pow(Math.abs(i-1),2.25);
 				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// runner up
+            } else if (castaways['place_'+String([i])] === "Sam") {	// runner up
                 sum += Math.pow(Math.abs(i-2),2.25);
 				if (i===2) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// third
+            } else if (castaways['place_'+String([i])] === "Sue") {	// third
                 sum += Math.pow(Math.abs(i-3),2.25);
 				if (i===3) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "") {	// fourth
+            } else if (castaways['place_'+String([i])] === "Teeny") {	// fourth
                 sum += Math.pow(Math.abs(i-4),2.25);
 				if (i===4) { bonus += 5 };
             } else if (castaways['place_'+String([i])] === "Genevieve") {	// fifth
@@ -787,9 +787,7 @@ function final_eight_calc(scores, result) {
 function final_three_calc(scores, result) {
     var top_three = [ 
 		 //top three!
-		'Rachel', 'Sam',
-		'Teeny',
-		'Sue'
+		'Rachel', 'Sam', 'Sue'
 	]; 
 	var name_ep_count = [0];
 	for (var n=0; n<scores.length; n++) {
@@ -1047,6 +1045,23 @@ var results = [
         'titleQuote': 'Rachel',
 		'summit': '',
         'nudity': 'No',
+		'shotInTheDark': 'No',
+		'fishCatch': 'No',
+		'voteUnanimous': 'No',
+		'jeffJoke': 'No'
+    },
+	{	'vote': 14,
+		'date': '12/18/24',
+        'merge': 'Yes',
+        'reward': '',
+        'immunity_4': 'Rachel',
+		'fireChallenge': 'Sam',
+        'eliminated': '',
+        'idolFound': 'No',
+        'idolPlayed': 'No',
+        'titleQuote': 'Rachel',
+		'summit': '',
+        'nudity': 'Yes',
 		'shotInTheDark': 'No',
 		'fishCatch': 'No',
 		'voteUnanimous': 'No',
