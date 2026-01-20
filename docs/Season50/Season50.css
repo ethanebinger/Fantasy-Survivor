@@ -1,0 +1,441 @@
+@font-face {
+    font-family: survivor;
+    src: url(Survivor_Font.ttf);
+}
+html, body {
+    font-family: "survivor", "Sans Serif";
+    background-color: black;
+    color: white;
+    height: 100%;
+    margin: 0;
+    position: relative;
+}
+.title_img {
+	background-image: url("https://www.hollywoodreporter.com/wp-content/uploads/2026/01/TSurvivor50_Group_S1_3-2-e1768352522107.jpg"); 
+	position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.title_img_alt {
+    background-image: url("https://parade.com/.image/t_share/MjAyMTg5OTk4ODA2NTQxMzI0/1781428_26525bc.jpg");
+    position: relative;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.title_text {
+    position: absolute;
+    /*width: 100%;*/
+    margin: 0 auto;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.title_text p {
+    padding: 10px 20px;
+    color: white;
+    background-color: black;
+    font-size: 40px;
+    letter-spacing: 10px;
+}
+#survivor_form {
+    margin: 0 auto;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+}
+.isHidden {
+    display: none;            
+}
+.tab {
+    display: none;
+    /*height: 100%;*/
+    min-height: 100%;
+    margin-bottom: -100px;
+    padding-bottom: 100px;
+    align-items: center;
+}
+h1 {
+    font-size: 72px;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+h3 {
+    font-size: 36px;
+    margin-bottom: 10px;
+	margin-top: 0px;
+    color: #fff;
+}
+select,
+.bonusQ_label {
+    font-size: 24px;
+	padding: 6px;
+}
+#advance_form {
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    left: 0;
+    background-color: #000;
+    padding: 10px 0px;
+    margin-top: 50px;
+}
+.torch_gif {
+	height: 30px;
+}
+#enterBtn,
+#resultsBtn,
+#prevBtn, 
+#nextBtn,
+#submitBtn,
+#PastResponses, 
+#LandingPage {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+#enterBtn:hover,
+#resultsBtn:hover,
+#prevBtn:hover, 
+#nextBtn:hover,
+#submitBtn:hover,
+#PastResponses:hover,
+#LandingPage {
+    opacity: 0.8;
+}
+#resultsBtn,
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+/* Success screen layout */
+#success_screen .success-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+#success_screen .success-card {
+  max-width: 720px;
+  width: 100%;
+  padding: 24px 28px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background: #000;
+}
+#success_screen .btn-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+#success_screen .btn {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+#success_screen .btn.secondary { background-color: #bbbbbb; color: #000; }
+#success_screen .btn:hover { opacity: 0.85; }
+
+
+
+/****************/
+/* RESULTS.HTML */
+/****************/
+.results_title {
+    text-align: center;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+	background-image: url("https://inside-survivor.ams3.digitaloceanspaces.com/wp-content/uploads/2017/07/FijiNew2017.png");
+    background-position: 0 -50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.responses_title {
+    text-align: center;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+#PastResponses, 
+#LandingPage {
+    padding: 5px;
+    font-size: 18px;
+    background-color: #bbbbbb;
+}
+#PastResponsesText, 
+#LandingPageText {
+    font-size: 28px;
+}
+#chart {
+    display: table;
+    margin: 0 auto;		
+}
+.graph {
+    display: block;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+    stroke-width: 4px;
+}
+.axis text,
+g text {
+    fill: #fff;
+}
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    text-align: left;
+    position: absolute;
+    z-index: 40;
+    font: 12px verdana, sans-serif;
+}
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Contestant Input Buttons */
+.EoE_Returnee {
+    background-image: url("https://dumielauxepices.net/sites/default/files/anonymous-clipart-mystery-girl-839300-9035192.jpg");
+    width: 800px;
+    height: 1000px;
+}
+.Mike {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/969feef3-05c4-4f9f-aa57-87ac0d718985_1748438861.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Christian {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/404d2742-0615-478a-b889-7aa83e957702_1748439041.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Cirie {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/85a2f307-94d6-438f-9cc8-c22e64ad5e5a_1748438803.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Ozzy {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/fcb1eb4e-5fc9-4971-83d1-536eb528259f_1748438732.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Coach {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/1b8da6a8-a29f-4061-8c9a-2c05b7b81114_1748438651.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Stephanie {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/399ed7bb-14b9-49ee-8042-6aab9e3ab829_1748438573.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Jenna {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/41ca6062-c9b2-42a8-a091-961f3e5513cc_1748438197.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Colby {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/504e395d-623e-46df-8bba-7aadc1b9d22b_1748438047.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Tiffany {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/81a44ee1-9c18-416e-a21e-7a050967673c_1748439482.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Charlie {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Q {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Emily {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Dee {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Jonathan {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Angelina {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Kyle {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Kamilla {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Aubry {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Chrissy {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Devens {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Joe {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Genevieve {
+	background-image: url("");
+	width: 800px;
+	height: 800px;
+}
+.Savannah {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20251217/3f97c758-b0fc-4b66-b637-aa90da2db716_1766015579.jpg");
+	width: 800px;
+	height: 800px;
+}
+.Rizo {
+	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20251217/74772937-4b61-4c2c-9aa6-83c7c54e78fe_1766015579.jpg");
+	width: 800px;
+	height: 800px;
+}
+
+
+.contestants{
+    width: 75%;
+    height: 100%;
+    margin: 0 auto;
+    color: black;
+}
+
+.team_cila {
+    background-color: rgb(255, 123, 41);
+}
+.team_kalo {
+    background-color: rgb(82, 223, 204);
+}
+.team_vatu {
+    background-color: rgb(221, 93, 214);
+}
+
+.team_name {
+    text-align: right;
+}
+.cc-selector {
+    position: relative;
+    width: 210px;
+    margin-bottom: 10px;
+    margin-right: 12px;
+    float: left;
+    padding-bottom: 10px;
+    height: 305px;
+    background-image: url(images/patternBG.jpg);
+    background-repeat: repeat;
+    background-position: center top;
+}
+.cc-selector p {
+    font-size: 24px;
+    position: absolute;
+    text-align: left;
+    margin: 0 0 0 10px;
+}
+.cc-selector .name {
+    top: 10px;
+}
+.cc-selector .team_name {
+    top: 30px;
+}
+.cc-selector img {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.cc-selector input {
+    margin:0;
+    padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+.cc-selector label {
+    margin-bottom: 2px;
+    position: absolute;
+    top: 65px;
+    left: 10px;
+}
+.survivor-cc,
+.survivor-cc-2 {
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:200px;
+    height:240px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.survivor-cc:hover {
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+.greyLabel {
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
