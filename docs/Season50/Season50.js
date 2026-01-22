@@ -1,10 +1,5 @@
 /*****************************
  * NOTES:
- * - currently the submission to supabase (collectResponses) is different by week, but it could be standardized and submit null values
- *   for non-active questions and hide those tabs using the active week category (rather than not developing them for that week)
- * 
- * 
- * 
  * 
  *  
  *****************************/
@@ -44,7 +39,7 @@ const CONTESTANTS = {
 	"Kyle": "Vatu",
 	"Q": "Vatu",
 	"Rizo": "Vatu",
-	"Stephenie": "Vatu"
+	"Stephanie": "Vatu"
 };
 const PLAYERS = [
 	"Ethan E", 
@@ -126,9 +121,7 @@ const QUESTIONS = [
     weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   }
 ];
-const ACTIVE_QUESTIONS = QUESTIONS.filter(q =>
-    q.weeks.includes(CURRENT_WEEK)
-);
+const ACTIVE_QUESTIONS = QUESTIONS.filter(q => q.weeks.includes(CURRENT_WEEK));
 const BONUS_QUESTIONS = [
 	{
 		key: "title_quote",
@@ -168,10 +161,17 @@ const BONUS_QUESTIONS = [
 	}
 ];
 
-/*****************************
- * PAGE INITIALIZATION 
- *****************************/
+// ------------- Supabase client init -------------
+const SUPABASE_URL = 'https://vbqyvyocwoqatmjytysy.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_9vCZvZxuWp0hO9G7aCzSkg_Nie5BdIw';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const SUPABASE_TABLE = 'season_50';
+const SUPABASE_TABLE_RESULTS = 'season_50_results';
 
+/*****************************
+ * MAIN PAGE INITIALIZATION 
+ *****************************/
+// Function to build tabs for submission form
 function buildTabs() {
     const form = $('#survivor_form');
     form.empty();
@@ -197,6 +197,7 @@ function buildTabs() {
 	buildBonusQuestionTabs();
 }
 
+// Functions to create question body html
 function buildQuestionBody(q) {
     const $container = $(`#${q.key}-body`);
     if (q.type === "contestant-radio") {
@@ -293,7 +294,7 @@ function buildContestantRadios({containerId, questionName}) {
 	});
 };
 
-// Form tabs logic
+// Function to form tabs logic
 function initTabs() {
     const tabs = $('#survivor_form .tab');
     const progressBar = $('#progress_bar progress');
@@ -344,7 +345,7 @@ function initTabs() {
 	});
 }
 
-// Init form and hero page
+// Function to initialize index.html (hero page and submission form)
 function init() {
     // Dynamic form creation
 	buildTabs();
@@ -388,15 +389,14 @@ $(document).on("change", ".contestants input[type='radio']", function () {
     $input.next("label.survivor-cc").removeClass("greyLabel");
 });
 
-// Smooth if supported; otherwise it will jump instantly
+// Function to scroll to top after clicking Next/Previous (smooth if supported, otherwise it will jump)
 function scrollToTop() {
 	window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 
-
 /***************************************
- * PUSH / PULL RESPONSES TO SUPABASE
+ * PUSH RESPONSES TO SUPABASE
  ***************************************/
 function collectResponses() {
 	const responses = {};
@@ -426,13 +426,6 @@ function collectResponses() {
 
 	return responses;
 }
-
-// ------------- Supabase client init -------------
-const SUPABASE_URL = 'https://vbqyvyocwoqatmjytysy.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_9vCZvZxuWp0hO9G7aCzSkg_Nie5BdIw';
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-// ------------- Submit handler -------------
 async function submitToSupabase() {
 	// Gather responses directly from DOM
 	const payload = collectResponses();
@@ -450,7 +443,7 @@ async function submitToSupabase() {
 	$('#submitBtn').prop('disabled', true).text('Submitting…');
 	try {
 		const { data, error } = await supabaseClient
-			.from('season_50')       // table name
+			.from(SUPABASE_TABLE)       // table name
 			.insert([row])       // array of rows
 			.select();           // optional: return inserted rows
 
@@ -476,33 +469,83 @@ async function submitToSupabase() {
 	}
 }
 
+/********************************************
+ * LOAD RESULTS AND RESPONSES FROM SUPABASE
+ ********************************************/
+async function requestFromSupabase(table) {
+	let query = supabaseClient.from(table).select('*');
+	if (table === SUPABASE_TABLE) {
+		query = query.order('submit_time', { ascending: true });
+	}
+	const { data, error } = await query;
+	if (error) {
+		console.error('Error loading picks:', error);
+		return [];
+	}
+	return data;
+}
 
+// Function to get player responses
+async function loadResponses() {
+  const rows = await requestFromSupabase(SUPABASE_TABLE);
+  return rows.map(row => ({
+    name: row.player,
+    submit_time: new Date(row.submit_time),
+    week: row.week,
+    ...row.payload
+  }));
+}
 
-
+// Function to get results to score against
+async function loadResults() {
+  const rawResults = await requestFromSupabase(SUPABASE_TABLE_RESULTS);
+  return rawResults.map(r => ({
+    ...r,
+    air_time: r.air_time ? new Date(r.air_time) : null
+  }));
+}
 
 
 /*********************
- * OLD BACKEND CODE
+ * RESPONSES.HTML
  *********************/
-
-function getPastResponses() {
+async function init_responses() {
     $('#resultsBtn').click(function(e) {
 		window.location = "results.html";
     });
-    $("#past_responses_button").click(function() {
-        var curName = $("#past_responses_name option:selected").val();
-        var curVote = $("#past_responses_vote option:selected").val();
-        if (curName.length < 1 || curVote.length < 1) {
-            alert("Please select both a name and a vote number");
-            $("#past_responses").empty();
-        } else if (curVote === "FinalEight") {
-            getFinalEight(curName);
-        } else if (curVote === "FinalThree") {
-            getFinalThree(curName);
-        } else {
-            getWeeklyResults(curName, curVote);
-        };
-    });
+
+	// Function to generate dropdown selection menus
+
+	try {
+        // wait for responses and results to load from supabase
+        const saved_responses = await loadResponses();
+		const responses = keepLastBySubmitTime(saved_responses);
+        const results = await loadResults();
+
+		// calculate scores once data is ready
+        let scores = calculateScoresV2(results, responses);
+		scores = final_three_calcV2(scores, responses);
+		scores = final_eight_calcV2(scores, responses);
+
+		// filter past responses on click
+        $("#past_responses_button").click(function() {
+			var curName = $("#past_responses_name option:selected").val();
+			var curVote = $("#past_responses_vote option:selected").val();
+			if (curName.length < 1 || curVote.length < 1) {
+				alert("Please select both a name and a vote number"); // clean this up to not be an alert
+				$("#past_responses").empty();
+			} else if (curVote === "FinalEight") {
+				getFinalEight(curName);
+			} else if (curVote === "FinalThree") {
+				getFinalThree(curName);
+			} else {
+				getWeeklyResults(curName, curVote);
+			};
+		});
+
+    } catch (err) {
+        console.error("Error loading data:", err);
+    }
 };
 
 function getWeeklyResults(curName, curVote) {
@@ -682,71 +725,158 @@ function ifEmptyHTML() {
 	};
 };
 
-function init_chart() {
+/*********************
+ * RESULTS.HTML
+ *********************/
+// Function to intialize results.html
+async function init_results() {
+    // button functionality
     $('#PastResponses').click(function() {
         window.location = "responses.html";
     });
-	$('#LandingPage').click(function() {
+    $('#LandingPage').click(function() {
         window.location = "index.html";
     });
-    
-	// Function to get players
-	function getActivePlayers(r) {
-		var players = [];
-		var i;
-		for (i=0; i < r.length; i++) {
-			players.push(r[i].name)
+
+    try {
+        // wait for responses and results to load from supabase
+        const saved_responses = await loadResponses();
+		const responses = keepLastBySubmitTime(saved_responses);
+        const results = await loadResults();
+
+		// calculate scores once data is ready
+        let scores = calculateScoresV2(results, responses);
+		scores = final_three_calcV2(scores, responses);
+		scores = final_eight_calcV2(scores, responses);
+
+        // create D3 chart
+		const active_players = getActivePlayers(responses);
+        const scores_flat = flattenScores(scores, active_players);
+		createD3chart(scores_flat);
+
+    } catch (err) {
+        console.error("Error loading data:", err);
+    }
+};
+
+// Functions to get unique list of active players (people who have submitted a response)
+function onlyUnique(value, index, self) {
+	return self.indexOf(value) === index;
+};
+function getActivePlayers(r) {
+	var players = [];
+	for (var i=0; i < r.length; i++) { players.push(r[i].name) };
+	players = players.filter(onlyUnique).sort().reverse();
+	return players;
+};
+
+// Function to de-duplicate responses by (week, name), keeping only the last timestamp
+function keepLastBySubmitTime(items) {
+	const sorted = [...items].sort((a, b) => new Date(a.submit_time) - new Date(b.submit_time));
+	const map = new Map();
+	for (const it of sorted) {
+		const key = `${it.week}||${it.name}`;
+		map.set(key, it);
+	}
+	return Array.from(map.values());
+};
+
+// Function to create score array from players
+function createScoreArrayV2(weeks, players){
+	var scores = {};
+	var questions = [
+		...QUESTIONS.map(item => item.key), 
+		...BONUS_QUESTIONS.map(item => item.key)
+	];
+	for (let p=0; p<players.length; p++) {
+		var player = players[p];
+		scores[player] = {};
+		for (let w=0; w<weeks.length; w++) {
+			var week = weeks[w];		
+			scores[player][week] = {'total':0};
+			for (let q=0; q<questions.length; q++) {
+				var question = questions[q];
+				if (question!='player_name' && question!='final_three' && question!='final_eight') { 
+					scores[player][week][question] = 0 
+				};
+			};
 		};
-		function onlyUnique(value, index, self) {
-			return self.indexOf(value) === index;
+		scores[player]['final_three'] = {'total':0, 'pick_1':0, 'pick_2':0, 'pick_3':0};
+		scores[player]['final_eight'] = {'total':0};
+	}
+	return scores;
+};
+function createScoreArrayV3(weeks, players) {
+	const scores = {};
+	const excluded = new Set(['player_name', 'final_three', 'final_eight']);
+	const questions = [
+		...QUESTIONS.map(item => item.key),
+		...BONUS_QUESTIONS.map(item => item.key),
+	].filter(k => !excluded.has(k));
+	for (const player of players) {
+		const perPlayer = {};
+		for (const week of weeks) {
+			const bucket = { total: 0 };
+		for (const q of questions) bucket[q] = 0;
+			perPlayer[week] = bucket;
 		}
-		var players = players.filter(onlyUnique).sort().reverse();
-		return players;
-	};
-	
-	// Function to create score array from players
-	function createScoreArray(players) {
-		var scores = [];
-		for (var p=0; p<players.length; p++) {
-			scores.push({
-				'name': players[p], 
-				'total': 0, 
-				'Episode 1': 0, 
-				'Episode 2': 0,
-				'Episode 3': 0,
-				'Episode 4': 0,
-				'Episode 5': 0,
-				'Episode 6': 0,
-				'Episode 7': 0,
-				'Episode 8': 0,
-				'Episode 9': 0,
-				'Episode 10': 0,
-				'Episode 11': 0,
-				'Episode 12': 0,
-				'Episode 13': 0,
-				'Episode 14': 0,
-				'Final Eight': 0,
-				'Final Three': 0
-			});
+		perPlayer.final_three = {total: 0, pick_1: 0, pick_2: 0, pick_3: 0,};
+		perPlayer.final_eight = {total: 0};
+		scores[player] = perPlayer;
+	}
+	return scores;
+}
+
+// Function to flatten scores for D3 chart
+function flattenScores(scores, players) {
+	const output = [];
+	for (const player of players) {
+		const entry = {
+			name: player,
+			total: 0,
+			"Episode 1": 0,
+			"Episode 2": 0,
+			"Episode 3": 0,
+			"Episode 4": 0,
+			"Episode 5": 0,
+			"Episode 6": 0,
+			"Episode 7": 0,
+			"Episode 8": 0,
+			"Episode 9": 0,
+			"Episode 10": 0,
+			"Episode 11": 0,
+			"Episode 12": 0,
+			"Episode 13": 0,
+			"Episode 14": 0,
+			"Final Eight": 0,
+			"Final Three": 0
 		};
-		return scores;
-	};
-	
 
-    // Calculate scores
-	var responses = saved_responses;
-	
-	// Create an array of active players from the people who have submitted a response
-	players = getActivePlayers(responses);
-	scores = createScoreArray(players);
-	
-	// Calculate scores
-	scores = calculateScores(scores, results, responses, null);
-	scores = final_eight_calc(scores, responses);
-	scores = final_three_calc(scores, responses);
+		// Fill values from the scores schema
+		const p = scores[player];
+		for (let w = 1; w <= 13; w++) {
+			if (p[w] && typeof p[w].total === "number") {
+				entry[`Episode ${w}`] = p[w].total;
+				entry.total += p[w].total;
+			}
+		}
+		if (p.final_eight) {
+			entry["Final Eight"] = p.final_eight.total;
+			entry.total += p.final_eight.total;
+		}
+		if (p.final_three) {
+			entry["Final Three"] = p.final_three.total;
+			entry.total += p.final_three.total;
+		}
+		output.push(entry);
+	}
+	return output;
+};
 
+// Function to create D3 chart on results.html
+function createD3chart(scores) {
 	// Create arrays for players, keys (votes)
-	//var players = scores.map(function(d) { return d.name; });
+	var players = scores.map(item => item.name);
 	var keys = Object.keys(scores[0]).splice(2,)
 
 	// Define chart elements
@@ -775,10 +905,15 @@ function init_chart() {
 		.attr('class', 'd3-tip')
 		.offset([-5, 0])
 		.html(function(d) {
-			return 	"<strong>" + d.data.name + "</strong>" +
-					"<br><span>Weekly Score = " + parseFloat(d[1]-d[0]).toFixed(1) + "</span>" +
-					"<br><span>Total Score = " + parseFloat(d.data.total).toFixed(1) + "</span>"
+			var seriesKey = (this.parentNode && this.parentNode.__data__) ? this.parentNode.__data__.key : '';
+			return 	"<strong>" + d.data.name + "</strong>"
+					+ "<br><span>" + formatSeriesLabel(seriesKey) + " Score = " + parseFloat(d[1]-d[0]).toFixed(0) + "</span>"
+					+ "<br><span>Total Score = " + parseFloat(d.data.total).toFixed(0) + "</span>";
 		});
+	function formatSeriesLabel(key) {
+		// keys could be "Episode 1", "Final Eight", "Final Three"
+		return key && key.startsWith('Episode') ? key : key;
+	};
 
 	// Define SVG and associated elements
 	var svg = d3.select("#chart")
@@ -807,7 +942,7 @@ function init_chart() {
 			.attr("width", function(d) { return x(d[1]) - x(d[0]); })
 			.attr("height", y.bandwidth())
 			.on("mouseenter", function(d) { 
-				tip.show(d); 
+				tip.show.call(this, d); // ensure `this` is available to tip.html
 				d3.select(this).style("cursor", "pointer")
 							   .style("fill-opacity", 0.5);
 			})
@@ -859,758 +994,142 @@ var inArray = function(x,y) {
     return false;
 };
 
-// Function to identify week based on date of vote
-function determineWeek(responses) {
-    // datetime constructor: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
-	// list the dates of episodes in the season, in order
-	let episode_dates = [
-		'2024-09-18',
-		'2024-09-25',
-		'2024-10-02',
-		'2024-10-09',
-		'2024-10-16',
-		'2024-10-23',
-		'2024-10-30',
-		'2024-11-06',
-		'2024-11-13',
-		'2024-11-20',
-		'2024-11-27',
-		'2024-12-04',
-		'2024-12-11',
-		'2024-12-18',
-	];
-	// loop through the episode dates
-	// return the episode number if the response date is less than or equal to episode date+3
-	let submit_time = new Date(responses.submit_time);
-	for (let i = 0; i < episode_dates.length; i++) {
-        let date = new Date(episode_dates[i]);
-        date.setDate(date.getDate() + 3);
-        if (submit_time <= date) {
-            return i + 1;
-        };
-    };
-	 // Return 0 if no date matches
-    return 0;
-};
-
-// FUNCTION TO CALCULATE SCORES
-function calculateScores(scores, results, responses, calcType) {
-    var name_ep_count = [0];
-    for (var n=0; n<scores.length; n++) {
-        var cur_player = scores[n].name;
-        for (var i=0; i<results.length; i++) {
-            var team_red = results[i].team_red;
-            var team_yellow = results[i].team_yellow;
-			var team_blue = results[i].team_blue;
-			var swapped_ep_4 = results[i].team_swap_win;
-            for (var j=0; j<responses.length; j++) {
-                // Validate Player
-                if (responses[j].name === cur_player) {
-                    // Determine Episode Number/Week (and ignore late sumissions)
-                    var cur_vote = determineWeek(responses[j]);
-                    // Validate Episode Number/Week
-                    if (results[i].vote === cur_vote) {
-                        var val_vote = 'Episode ' + String(results[i].vote);
-						// zero out contestant score if they have multiple submissions, this will only count the most recent one
-						if (inArray(cur_player+"_"+String(cur_vote), name_ep_count)) {
-							scores[n].total -= scores[n][val_vote];
-							scores[n][val_vote] = 0;
-						};
-                        // Determine by team if before merge (where 'Yes' is after merge):
-                        if (results[i].merge === 'Yes') {
-                            // Reward
-                            if (results[i].reward == responses[j].reward && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward += 10; }
-                                else { scores[n][val_vote] += 10; };
-                                scores[n].total += 10;
-                            } else if (results[i].reward !== null && typeof results[i].reward==="object" && inArray(responses[j].reward,results[i].reward) && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            };
-                            // Immunity
-							if (results[i].immunity !== null && typeof results[i].immunity==="object" && inArray(responses[j].immunity,results[i].immunity) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            } else if (results[i].immunity == responses[j].immunity && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 15; }
-                                else { scores[n][val_vote] += 15; };
-                                scores[n].total += 15;
-                            } else if (results[i].immunity2 == responses[j].immunity && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 15; }
-                                else { scores[n][val_vote] += 15; };
-                                scores[n].total += 15;
-                            } else if (results[i].immunity3 == responses[j].immunity && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 15; }
-                                else { scores[n][val_vote] += 15; };
-                                scores[n].total += 15;
-                            };
-                            // Eliminated
-                            if (results[i].eliminated !== null && typeof results[i].eliminated==="object" && inArray(responses[j].eliminated,results[i].eliminated) && responses[j].eliminated) {
-                                if (calcType === "individual") { scores[n].eliminated += 20; }
-                                else { scores[n][val_vote] += 20; };
-                                scores[n].total += 20;
-                            } else if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                                if (calcType === "individual") { scores[n].eliminated += 20; }
-                                else { scores[n][val_vote] += 20; };
-                                scores[n].total += 20;
-							};
-							if (results[i].safe !== null && typeof results[i].eliminated==="object" && responses[j].safe) {
-								// do something
-                            };
-                            // Safe
-							if (inArray(responses[j].safe, results[i].eliminated)) {
-								// no points, person marked safe was voted out
-								continue;
-							} else if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-                                if (calcType === "individual") { scores[n].safe += 10; }
-                                else { scores[n][val_vote] += 10; };
-                                scores[n].total += 10;
-							} else {
-								if (calcType === "individual") { scores[n].safe += 10; }
-								else { scores[n][val_vote] += 10; };
-								scores[n].total += 10;
-                            };
-                            // Title Quote
-                            if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                                if (calcType === "individual") { scores[n].titleQuote += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-							// Risk/Reward
-                            if (results[i].summit !== null && typeof results[i].summit==="object" && inArray(responses[j].summit,results[i].summit) && responses[j].summit) {
-                                if (calcType === "individual") { scores[n].summit += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            } else if (results[i].summit == responses[j].summit && responses[j].summit) {
-                                if (calcType === "individual") { scores[n].summit += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-                            // Erika's hourglass smash
-                            if (results[i].hourglass == responses[j].hourglass && responses[j].hourglass) {
-                                if (calcType === "individual") { scores[n].hourglass += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            };
-                            // Nudity
-                            if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                                if (calcType === "individual") { scores[n].nudity += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-                            // Idol Found
-                            if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                                if (calcType === "individual") { scores[n].idolFound += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-                            // Idol Played
-                            if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                                if (calcType === "individual") { scores[n].idolPlayed += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-							// Shot-in-the-Dark Played
-                            if (results[i].shotInTheDark == responses[j].shotInTheDark && responses[j].shotInTheDark) {
-                                if (calcType === "individual") { scores[n].shotInTheDark += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-							// Live Reunion or Pre-Taped?
-                            if (results[i].liveReunion == responses[j].liveReunion && responses[j].liveReunion) {
-                                if (calcType === "individual") { scores[n].liveReunion += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-							// Was a fish caught during the episode?
-                            if (results[i].fishCatch == responses[j].fishCatch && responses[j].fishCatch) {
-                                if (calcType === "individual") { scores[n].fishCatch += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-							// Was the vote unanimous?
-                            if (results[i].voteUnanimous == responses[j].voteUnanimous && responses[j].voteUnanimous) {
-                                if (calcType === "individual") { scores[n].voteUnanimous += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-							// Did Jeff laugh at / make fun of the team in last place?
-                            if (results[i].jeffJoke == responses[j].jeffJoke && responses[j].jeffJoke) {
-                                if (calcType === "individual") { scores[n].jeffJoke += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-                            // Return from the Edge of Extinction
-                            if (results[i].edgeReturn == responses[j].edgeReturn && responses[j].edgeReturn) {
-                            	if (calcType === "individual") { scores[n].edgeReturn += 4; }
-                                else { scores[n][val_vote] += 4; };
-                                scores[n].total += 4;
-                            };
-                            // Finale Immunity - 5 left
-                            if (results[i].immunity_5 == responses[j].immunity_5 && responses[j].immunity_5) {
-                                if (calcType === "individual") { scores[n].immunity_5 += 10; }
-                                else { scores[n][val_vote] += 10; };
-                                scores[n].total += 10;
-                            };
-							// Finale Immunity - 4 left
-                            if (results[i].immunity_4 == responses[j].immunity_4 && responses[j].immunity_4) {
-                                if (calcType === "individual") { scores[n].immunity_4 += 10; }
-                                else { scores[n][val_vote] += 10; };
-                                scores[n].total += 10;
-                            };
-							// Finale Fire Making Challenge
-                            if (results[i].fireChallenge == responses[j].fireChallenge && responses[j].fireChallenge) {
-                                if (calcType === "individual") { scores[n].fireChallenge += 10; }
-                                else { scores[n][val_vote] += 10; };
-                                scores[n].total += 10;
-                            };
-                            name_ep_count.push(cur_player+"_"+String(cur_vote));
-                            console.log(responses[j].name, val_vote, scores[n][val_vote]);
-                        } 
-						else {
-                            // Reward
-                            if ((results[i].reward === 'team_red' || results[i].reward2 === 'team_red') && inArray(responses[j].reward, team_red) && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward += 5; }
-                                else { scores[n][val_vote] += 5; }
-                                scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_yellow' || results[i].reward2 === 'team_yellow') && inArray(responses[j].reward, team_yellow) && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            } else if ((results[i].reward === 'team_blue' || results[i].reward2 === 'team_blue') && inArray(responses[j].reward, team_blue) && responses[j].reward) {
-                                if (calcType === "individual") { scores[n].reward += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            };
-                            // Immunity
-                            if ((results[i].immunity === 'team_red' || results[i].immunity2 === 'team_red') && inArray(responses[j].immunity, team_red) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_yellow' || results[i].immunity2 === 'team_yellow')  && inArray(responses[j].immunity, team_yellow) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_blue' || results[i].immunity2 === 'team_blue')  && inArray(responses[j].immunity, team_blue) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            } else if ((results[i].immunity === 'team_swap_win')  && inArray(responses[j].immunity, swapped_ep_4) && responses[j].immunity) {
-                                if (calcType === "individual") { scores[n].immunity += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            };
-                            // Eliminated
-                            if (results[i].eliminated !== null && typeof results[i].eliminated==="object" && inArray(responses[j].eliminated,results[i].eliminated) && responses[j].eliminated) {
-                                if (calcType === "individual") { scores[n].eliminated += 10; }
-                                else { scores[n][val_vote] += 10; };
-                                scores[n].total += 10;
-                            } else if (results[i].eliminated == responses[j].eliminated && responses[j].eliminated) {
-                                if (calcType === "individual") { scores[n].eliminated += 10; }
-                                else { scores[n][val_vote] += 10; };
-                                scores[n].total += 10;
-                            };
-                            // Safe
-							if (results[i].eliminated !== responses[j].safe && responses[j].safe) {
-								if (calcType === "individual") { scores[n].safe += 5; }
-								else { scores[n][val_vote] += 5; };
-								scores[n].total += 5;
-                            };
-                            // Title Quote
-                            if (results[i].titleQuote == responses[j].titleQuote && responses[j].titleQuote) {
-                                if (calcType === "individual") { scores[n].titleQuote += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };							
-                            // Erika's hourglass smash
-                            if (results[i].hourglass == responses[j].hourglass && responses[j].hourglass) {
-                                if (calcType === "individual") { scores[n].hourglass += 5; }
-                                else { scores[n][val_vote] += 5; };
-                                scores[n].total += 5;
-                            };
-							// Risk/Reward
-                            if (results[i].summit !== null && typeof results[i].summit==="object" && inArray(responses[j].summit,results[i].summit) && responses[j].summit) {
-                                if (calcType === "individual") { scores[n].summit += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            } else if (results[i].summit == responses[j].summit && responses[j].summit) {
-                                if (calcType === "individual") { scores[n].summit += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-                            // Nudity
-                            if (results[i].nudity == responses[j].nudity && responses[j].nudity) {
-                                if (calcType === "individual") { scores[n].nudity += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-                            // Idol Found
-							if (cur_vote == 3) { // hard code yes to all for vote 3 because of the poor editing where Matt GM found idol
-								if (calcType === "individual") { scores[n].idolFound += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            } else if (results[i].idolFound == responses[j].idolFound && responses[j].idolFound) {
-                                if (calcType === "individual") { scores[n].idolFound += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-                            // Idol Played
-                            if (results[i].idolPlayed == responses[j].idolPlayed && responses[j].idolPlayed) {
-                                if (calcType === "individual") { scores[n].idolPlayed += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-							// Shot-in-the-Dark Played
-                            if (results[i].shotInTheDark == responses[j].shotInTheDark && responses[j].shotInTheDark) {
-                                if (calcType === "individual") { scores[n].shotInTheDark += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-							// Was a fish caught during the episode?
-                            if (results[i].fishCatch == responses[j].fishCatch && responses[j].fishCatch) {
-                                if (calcType === "individual") { scores[n].fishCatch += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-							// Was the vote unanimous?
-                            if (results[i].voteUnanimous == responses[j].voteUnanimous && responses[j].voteUnanimous) {
-                                if (calcType === "individual") { scores[n].voteUnanimous += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-							// Did Jeff laugh at / make fun of the team in last place?
-                            if (results[i].jeffJoke == responses[j].jeffJoke && responses[j].jeffJoke) {
-                                if (calcType === "individual") { scores[n].jeffJoke += 2; }
-                                else { scores[n][val_vote] += 2; };
-                                scores[n].total += 2;
-                            };
-                            name_ep_count.push(cur_player+"_"+String(cur_vote));
-                            console.log(responses[j].name, val_vote, scores[n][val_vote]);
-                        };
-                    };
-                };
-            };
-        };
-    };
-    return scores;
+// FUNCTION TO CALCULATE SCORES FOR WEEKLY RESPONSES
+function calculateScoresV2(results, responses) {
+	// create empty score array using active players within responses array
+	var players = getActivePlayers(responses);
+	var weeks = results.map(item => item.week).filter(onlyUnique).sort();
+	var scores = createScoreArrayV3(weeks, players);
+	// iterate through results
+	for (let i=0; i<results.length; i++){
+		// results for currently selected week
+		const result = results[i];
+		const cur_week = result.week
+		// match responses by week - can update later to match on datetime
+		const matched = responses.filter(r => r.week === cur_week);
+		// iterate through responses
+		for (let j=0; j<matched.length; j++) {
+			// responses for currently selected week and player
+			var response = matched[j];
+			var player = response.name
+			// MAIN QUESTIONS
+			// Reward
+			if (response.reward && inArray(response.reward, result.reward)) {			// there is a probably smarter way to do this
+				if (result.merge === "Yes") { 
+					scores[player][cur_week].reward += 10;
+					scores[player][cur_week].total += 10;
+				} else { 
+					scores[player][cur_week].reward += 5;
+					scores[player][cur_week].total += 5;
+				};				
+			};
+			// Immunity
+			if (response.immunity && inArray(response.immunity, result.immunity)) {
+				if (result.merge === "Yes") { 
+					scores[player][cur_week].immunity += 15;
+					scores[player][cur_week].total += 15;
+				} else { 
+					scores[player][cur_week].immunity += 5;
+					scores[player][cur_week].total += 5;
+				};				
+			};
+			// Eliminated
+			if (response.eliminated && inArray(response.eliminated, result.eliminated)) {
+				if (result.merge === "Yes") { 
+					scores[player][cur_week].eliminated += 20;
+					scores[player][cur_week].total += 20;
+				} else { 
+					scores[player][cur_week].eliminated += 10;
+					scores[player][cur_week].total += 10;
+				};				
+			};
+			// Safe
+			if (inArray(response.safe, result.eliminated)) {
+				continue
+			} else if (response.safe) {
+				scores[player][cur_week].safe += 10;
+				scores[player][cur_week].total += 10;		
+			};
+			// Bonus Questions
+			for (let k=0; k<BONUS_QUESTIONS.length; k++){
+				var bq = BONUS_QUESTIONS[k].key
+				if (response[bq] && result[bq]==response[bq]){
+					if (result.merge === "Yes") { 
+						scores[player][cur_week][bq] += 4;
+						scores[player][cur_week].total += 4;
+					} else { 
+						scores[player][cur_week][bq] += 2;
+						scores[player][cur_week].total += 2;
+					};
+				};
+			};
+		};
+	};
+	return scores;
 };
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL EIGHT
-function final_eight_calc(scores, result) {
-    for (var n=0; n<scores.length; n++) {
-        for (var i=0; i<result.length; i++) {
-            if (result[i].name === scores[n].name) {
-				var cur_vote = determineWeek(result[i]);
-                if (cur_vote === 11) {	// only submited responses to this question during week 10
-					var score8 = which_castaway(result[i]);
-					scores[n]['Final Eight'] += score8;
-					scores[n].total += score8;
-				};
-            };
-        };
-    };
-    function which_castaway(castaways){
-        var sum = 0,
-			bonus = 0;
-        for (var i=1; i<9; i++){
-            if (castaways['place_'+String([i])] === "Rachel") {			// sole survivor
-                sum += Math.pow(Math.abs(i-1),2.25);
-				if (i===1) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Sam") {	// runner up
-                sum += Math.pow(Math.abs(i-2),2.25);
-				if (i===2) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Sue") {	// third
-                sum += Math.pow(Math.abs(i-3),2.25);
-				if (i===3) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Teeny") {	// fourth
-                sum += Math.pow(Math.abs(i-4),2.25);
-				if (i===4) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Genevieve") {	// fifth
-                sum += Math.pow(Math.abs(i-5),2.25);
-				if (i===5) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Andy") {	// sixth
-                sum += Math.pow(Math.abs(i-6),2.25);
-				if (i===6) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Caroline") {	// seventh
-                sum += Math.pow(Math.abs(i-7),2.25)
-				if (i===7) { bonus += 5 };
-            } else if (castaways['place_'+String([i])] === "Kyle") {	// eighth
-                sum += Math.pow(Math.abs(i-8),2.25);
-				if (i===8) { bonus += 5 };
-            };
-        };
-        var score = 100 - (0.75 * sum);
-		if (score < 0) { score = 0 };
-        return (score + bonus);
-    };
+function which_castaway(castaways){
+	var sum = 0,
+		bonus = 0;
+	for (var i=1; i<9; i++){
+		if (castaways['place_'+String([i])] === "Rachel") {			// sole survivor
+			sum += Math.pow(Math.abs(i-1),2.25);
+			if (i===1) { bonus += 5 };
+		} else if (castaways['place_'+String([i])] === "Sam") {	// runner up
+			sum += Math.pow(Math.abs(i-2),2.25);
+			if (i===2) { bonus += 5 };
+		} else if (castaways['place_'+String([i])] === "Sue") {	// third
+			sum += Math.pow(Math.abs(i-3),2.25);
+			if (i===3) { bonus += 5 };
+		} else if (castaways['place_'+String([i])] === "Teeny") {	// fourth
+			sum += Math.pow(Math.abs(i-4),2.25);
+			if (i===4) { bonus += 5 };
+		} else if (castaways['place_'+String([i])] === "Genevieve") {	// fifth
+			sum += Math.pow(Math.abs(i-5),2.25);
+			if (i===5) { bonus += 5 };
+		} else if (castaways['place_'+String([i])] === "Andy") {	// sixth
+			sum += Math.pow(Math.abs(i-6),2.25);
+			if (i===6) { bonus += 5 };
+		} else if (castaways['place_'+String([i])] === "Caroline") {	// seventh
+			sum += Math.pow(Math.abs(i-7),2.25)
+			if (i===7) { bonus += 5 };
+		} else if (castaways['place_'+String([i])] === "Kyle") {	// eighth
+			sum += Math.pow(Math.abs(i-8),2.25);
+			if (i===8) { bonus += 5 };
+		};
+	};
+	var score = 100 - (0.75 * sum);
+	if (score < 0) { score = 0 };
+	return (score + bonus);
+};
+function final_eight_calcV2(scores, responses) {
+    const submit_week = 1;
+	const matched = responses.filter(r => r.week === submit_week);
+	for (let i=0; i<matched.length; i++) {
+		const response = matched[i];
+		const player = response.name;
+		var score8 = which_castaway(response);
+		scores[player].final_eight.total += score8;
+	};
     return (scores);
 };
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
-function final_three_calc(scores, result) {
-    var top_three = [ 
-		 //top three!
-		'Rachel', 'Sam', 'Sue'
-	]; 
-	var name_ep_count = [0];
-	for (var n=0; n<scores.length; n++) {
-        for (var i=0; i<result.length; i++) {
-			if (result[i].name === scores[n].name) {
-				var cur_vote = determineWeek(result[i]);
-				if (cur_vote === 2) {	// submited responses to this question during week 2
-					if (inArray(result[i].name, name_ep_count)) {
-						console.log("duplicate final three -",result[i].name, cur_vote);
-						scores[n].total -= scores[n]['Final Three'];
-						scores[n]['Final Three'] = 0;						
-					};
-					if (inArray(result[i].pick_1, top_three)){
-						scores[n]['Final Three'] += 50;
-						scores[n].total += 50;
-					};
-					if (inArray(result[i].pick_2, top_three)){
-						scores[n]['Final Three'] += 50;
-						scores[n].total += 50;
-					};
-					if (inArray(result[i].pick_3, top_three)){
-						scores[n]['Final Three'] += 50;
-						scores[n].total += 50;
-					};
-					name_ep_count.push(result[i].name);
-				};
+function final_three_calcV2(scores, responses){
+	const FINAL_THREE = ['Rachel', 'Sam', 'Sue'];
+	const submit_week = 1;
+	const matched = responses.filter(r => r.week === submit_week);
+	for (let i=0; i<matched.length; i++) {
+		const response = matched[i];
+		const player = response.name;
+		['pick_1', 'pick_2', 'pick_3'].forEach(x => {
+			if (inArray(response[x], FINAL_THREE)) {
+				scores[player].final_three[x] += 30;
+				scores[player].final_three.total += 30;
 			};
-        };
-    };
-    return (scores);
+		});
+	};
+	return scores;
 };
 //*/
-
-var results = [
-    {	'vote': 1,
-        'date': '9/18/24',
-        'merge': 'No',
-        'reward': 'team_red', 
-		'reward2': 'team_blue',
-        'immunity': 'team_red',
-		'immunity2': 'team_blue',
-        'eliminated': 'Jon',
-        'idolFound': 'Yes',
-        'idolPlayed': 'No',
-        'titleQuote': 'Jon',
-		'summit': ['Aysha', 'TK'],
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-        'team_yellow': ['Andy', 'Anika', 'Jon', 'Rachel', 'Sam', 'Sierra'],
-        'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny'],
-		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana', 'TK']
-    },
-	{	'vote': 2,
-        'date': '9/25/24',
-        'merge': 'No',
-        'reward': 'team_yellow', 
-		'reward2': 'team_red',
-        'immunity': 'team_yellow',
-		'immunity2': 'team_red',
-        'eliminated': 'TK',
-        'idolFound': 'Yes',
-        'idolPlayed': 'No',
-        'titleQuote': 'Jon', // actually Sue but I messed up so have to give folks points
-		'summit': '',
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-        'team_yellow': ['Andy', 'Anika', 'Rachel', 'Sam', 'Sierra'],
-        'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny'],
-		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana', 'TK']
-    },
-	{	'vote': 3,
-		'date': '10/2/24',
-        'merge': 'No',
-        'reward': 'team_yellow',
-        'immunity': 'team_yellow',
-		'immunity2': 'team_blue',
-        'eliminated': 'Aysha',
-        'idolFound': 'No',
-        'idolPlayed': 'Yes',
-        'titleQuote': 'Jeff Probst',
-		'summit': ['Rome', 'Kyle', 'Anika'],
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'Yes',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No',
-        'team_yellow': ['Andy', 'Anika', 'Rachel', 'Sam', 'Sierra'],
-        'team_red': ['Aysha', 'Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny'],
-		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana']
-    },
-	{	'vote': 4,
-		'date': '10/9/24',
-        'merge': 'No',
-        'reward': 'team_yellow',
-        'immunity': 'team_yellow',
-		'immunity2': 'team_blue',
-        'eliminated': 'Kishan',
-        'idolFound': 'Yes',
-        'idolPlayed': 'No',
-        'titleQuote': 'Tiyana',
-		'summit': ['Andy', 'Teeny', 'Caroline'],
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'Yes',
-		'jeffJoke': 'Yes',
-        'team_yellow': ['Andy', 'Anika', 'Rachel', 'Sam', 'Sierra'],
-        'team_red': ['Genevieve', 'Kishan', 'Rome', 'Sol', 'Teeny'],
-		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana']
-    },
-	{	'vote': 5,
-		'date': '10/16/24',
-        'merge': 'No',
-        'reward': 'team_yellow',
-        'immunity': 'team_red',
-		'immunity2': 'team_blue',
-        'eliminated': 'Anika',
-        'idolFound': 'No',
-        'idolPlayed': 'No',
-        'titleQuote': 'Genevieve',
-		'summit': '',
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No',
-        'team_yellow': ['Rachel', 'Sam', 'Teeny', 'Caroline', 'Kyle', 'Sue', 'Tiyana'],
-        'team_red': ['Genevieve', 'Rome', 'Sol', 'Teeny'],
-		'team_blue': ['Caroline', 'Gabe', 'Kyle', 'Sue', 'Tiyana']
-    },
-	{	'vote': 6,
-		'date': '10/23/24',
-        'merge': 'Yes',
-        'reward': 'team_yellow',
-        'immunity': 'Kyle',
-        'eliminated': 'Rome',
-        'idolFound': 'Yes',
-        'idolPlayed': 'No',
-        'titleQuote': 'Andy',
-		'summit': '',
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No',
-        'team_yellow': ['Rachel', 'Sam', 'Teeny', 'Genevieve', 'Kyle', 'Sue', 'Tiyana']
-    },
-	{	'vote': 7,
-		'date': '10/30/24',
-        'merge': 'Yes',
-        'reward': 'team_yellow',
-        'immunity': 'Kyle',
-        'eliminated': 'Tiyana',
-        'idolFound': 'Yes',
-        'idolPlayed': 'Yes',
-        'titleQuote': 'Tiyana',
-		'summit': '',
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'Yes',
-		'jeffJoke': 'No',
-        'team_yellow': ['Sierra', 'Sam', 'Teeny', 'Genevieve', 'Sol', 'Andy']
-    },
-	{	'vote': 8,
-		'date': '11/6/24',
-        'merge': 'Yes',
-        'reward': 'team_yellow',
-        'immunity': 'Kyle',
-        'eliminated': 'Sierra',
-        'idolFound': 'Yes',
-        'idolPlayed': 'No',
-        'titleQuote': 'Andy',
-		'summit': '',
-        'nudity': 'No',
-		'shotInTheDark': 'Yes',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No',
-        'team_yellow': ['Sierra', 'Rachel', 'Sam', 'Genevieve', 'Sol', 'Teeny', 'Caroline', 'Gabe', 'Kyle', 'Sue']
-    },
-	{	'vote': 9,
-		'date': '11/13/24',
-        'merge': 'Yes',
-        'reward': 'team_yellow',
-        'immunity': 'Gabe',
-        'eliminated': 'Sol',
-        'idolFound': 'No',
-        'idolPlayed': 'No',
-        'titleQuote': 'Andy',
-		'summit': ['Rachel', 'Sam', 'Caroline', 'Andy'],
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No',
-        'team_yellow': ['Sol', 'Teeny', 'Gabe', 'Kyle']
-    },
-	{	'vote': 10,
-		'date': '11/20/24',
-        'merge': 'Yes',
-        'reward': ['Kyle', 'Rachel', 'Sam'],
-        'immunity': 'Kyle',
-        'eliminated': 'Gabe',
-        'idolFound': 'No',
-        'idolPlayed': 'No',
-        'titleQuote': 'Gabe',
-		'summit': '',
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No'
-    },
-	{	'vote': 11,
-		'date': '11/27/24',
-        'merge': 'Yes',
-        'reward': '',
-        'immunity': 'Rachel',
-        'eliminated': 'Kyle',
-        'idolFound': 'Yes',
-        'idolPlayed': 'No',
-        'titleQuote': 'Andy',
-		'summit': 'Rachel',
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No'
-    },
-	{	'vote': 12,
-		'date': '12/4/24',
-        'merge': 'Yes',
-        'reward': 'Sam',
-        'immunity': 'Rachel',
-        'eliminated': 'Caroline',
-        'idolFound': 'No',
-        'idolPlayed': 'No',
-        'titleQuote': 'Andy',
-		'summit': '',
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No'
-    },
-	{	'vote': 13,
-		'date': '12/11/24',
-        'merge': 'Yes',
-        'reward': 'Genevieve',
-        'immunity': ['Genevieve', 'Rachel'],
-        'eliminated': ['Andy', 'Genevieve'],
-        'idolFound': 'No',
-        'idolPlayed': 'Yes',
-        'titleQuote': 'Rachel',
-		'summit': '',
-        'nudity': 'No',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No'
-    },
-	{	'vote': 14,
-		'date': '12/18/24',
-        'merge': 'Yes',
-        'reward': '',
-        'immunity_4': 'Rachel',
-		'fireChallenge': 'Sam',
-        'eliminated': '',
-        'idolFound': 'No',
-        'idolPlayed': 'No',
-        'titleQuote': 'Rachel',
-		'summit': '',
-        'nudity': 'Yes',
-		'shotInTheDark': 'No',
-		'fishCatch': 'No',
-		'voteUnanimous': 'No',
-		'jeffJoke': 'No'
-    }
-];
-
-var saved_responses = [
-	// WEEK 2
-	{'name':'Abby', 'reward':'Sue', 'immunity':'Sierra', 'eliminated':'Teeny', 'safe':'Kyle', 'titleQuote':'Genevieve', 'summit':'Kyle', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T08:55:00.000Z', 'pick_1':'Genevieve', 'pick_2':'Sol', 'pick_3':'Tiyana'},
-	{'name':'Christy', 'reward':'Rome', 'immunity':'Aysha', 'eliminated':'Andy', 'safe':'Rome', 'titleQuote':'Andy', 'summit':'Teeny', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T09:26:00.000Z', 'pick_1':'Aysha', 'pick_2':'Teeny', 'pick_3':'Sue'},
-	{'name':'Betsy', 'reward':'Sam', 'immunity':'Sol', 'eliminated':'Andy', 'safe':'Anika', 'titleQuote':'Jon', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T14:36:00.000Z', 'pick_1':'Sol', 'pick_2':'Caroline', 'pick_3':'Sue'},
-	{'name':'Greg', 'reward':'TK', 'immunity':'TK', 'eliminated':'Sierra', 'safe':'Teeny', 'titleQuote':'Jeff Probst', 'summit':'Andy', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T16:47:00.000Z', 'pick_1':'Aysha', 'pick_2':'Rome', 'pick_3':'Sue'},
-	{'name':'Josh', 'reward':'Andy', 'immunity':'Andy', 'eliminated':'TK', 'safe':'Rachel', 'titleQuote':'Teeny', 'summit':'Gabe', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-25T18:07:00.000Z', 'pick_1':'Rachel', 'pick_2':'Genevieve', 'pick_3':'Sue'},
-	{'name':'Anastassia', 'reward':'Sol', 'immunity':'Sol', 'eliminated':'Gabe', 'safe':'Sol', 'titleQuote':'Aysha', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T11:47:00.000Z', 'pick_1':'Sierra', 'pick_2':'Sol', 'pick_3':'Sue'},
-	{'name':'Ethan', 'reward':'Sam', 'immunity':'Sam', 'eliminated':'Rome', 'safe':'Sol', 'titleQuote':'Anika', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T11:51:00.000Z', 'pick_1':'Sierra', 'pick_2':'Teeny', 'pick_3':'Tiyana'},
-	{'name':'Erika', 'reward':'TK', 'immunity':'Aysha', 'eliminated':'Tiyana', 'safe':'Teeny', 'titleQuote':'Jon', 'summit':'Rome', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T12:46:00.000Z', 'pick_1':'Rachel', 'pick_2':'Sam', 'pick_3':'Teeny'},
-	{'name':'Wilson', 'reward':'Sol', 'immunity':'Kyle', 'eliminated':'Andy', 'safe':'Genevieve', 'titleQuote':'Jon', 'summit':'Kishan', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-09-26T13:07:00.000Z', 'pick_1':'Genevieve', 'pick_2':'Sol', 'pick_3':'TK'},
-	// WEEK 3
-	{'name':'Wilson', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Gabe', 'safe':'Anika', 'titleQuote':'Jeff Probst', 'summit':'Rome', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-02T17:03:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Betsy', 'reward':'Andy', 'immunity':'Sam', 'eliminated':'Rome', 'safe':'Anika', 'titleQuote':'Kyle', 'summit':'Kishan', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-03T11:23:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Anastassia', 'reward':'Sol', 'immunity':'Kishan', 'eliminated':'Anika', 'safe':'Sol', 'titleQuote':'Sam', 'summit':'Teeny', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-03T13:23:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Ethan', 'reward':'Gabe', 'immunity':'Gabe', 'eliminated':'Aysha', 'safe':'Sam', 'titleQuote':'Sam', 'summit':'Teeny', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-03T13:25:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Erika', 'reward':'Sam', 'immunity':'Kyle', 'eliminated':'Aysha', 'safe':'Caroline', 'titleQuote':'Jeff Probst', 'summit':'Teeny', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-03T19:14:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Greg', 'reward':'Andy', 'immunity':'Andy', 'eliminated':'Kishan', 'safe':'Sue', 'titleQuote':'Gabe', 'summit':'Rome', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-04T11:15:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Josh', 'reward':'Andy', 'immunity':'Andy', 'eliminated':'Aysha', 'safe':'Rachel', 'titleQuote':'Sierra', 'summit':'Sierra', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-04T17:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'No'},
-	// WEEK 4
-	{'name':'Wilson', 'reward':'Genevieve', 'immunity':'Tiyana', 'eliminated':'Andy', 'safe':'Sol', 'titleQuote':'Tiyana', 'summit':'Genevieve', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-09T17:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Ethan', 'reward':'Kyle', 'immunity':'Kyle', 'eliminated':'Rome', 'safe':'Sierra', 'titleQuote':'Sol', 'summit':'Caroline', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-09T19:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Anastassia', 'reward':'Sierra', 'immunity':'Sierra', 'eliminated':'Sol', 'safe':'Sierra', 'titleQuote':'Gabe', 'summit':'Sierra', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-09T20:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Betsy', 'reward':'Sue', 'immunity':'Sam', 'eliminated':'Sol', 'safe':'Anika', 'titleQuote':'Gabe', 'summit':'Rome', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-10T07:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Erika', 'reward':'Teeny', 'immunity':'Sam', 'eliminated':'Kishan', 'safe':'Genevieve', 'titleQuote':'Tiyana', 'summit':'Andy', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-10T10:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Greg', 'reward':'Sierra', 'immunity':'Andy', 'eliminated':'Gabe', 'safe':'Rachel', 'titleQuote':'Gabe', 'summit':'Sol', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-10T16:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	// WEEK 5
-	{'name':'Wilson', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Rome', 'safe':'Tiyana', 'titleQuote':'Rome', 'summit':'Andy', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-16T16:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Erika', 'reward':'Sam', 'immunity':'Rachel', 'eliminated':'Kyle', 'safe':'Genevieve', 'titleQuote':'Rome', 'summit':'Caroline', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-16T17:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Betsy', 'reward':'Gabe', 'immunity':'Sam', 'eliminated':'Sol', 'safe':'Sam', 'titleQuote':'Jeff Probst', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-16T18:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Greg', 'reward':'Gabe', 'immunity':'Sam', 'eliminated':'Rome', 'safe':'Andy', 'titleQuote':'Andy', 'summit':'Sol', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-18T09:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Anastassia', 'reward':'Sam', 'immunity':'Sierra', 'eliminated':'Kyle', 'safe':'Sierra', 'titleQuote':'Rome', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-18T21:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Ethan', 'reward':'Sierra', 'immunity':'Sierra', 'eliminated':'Tiyana', 'safe':'Sierra', 'titleQuote':'Rome', 'summit':'Genevieve', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-18T21:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	// WEEK 6
-	{'name':'Betsy', 'reward':'Kyle', 'immunity':'Gabe', 'eliminated':'Teeny', 'safe':'Kyle', 'titleQuote':'Jeff Probst', 'summit':'Sam', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-23T12:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Wilson', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Rome', 'safe':'Sol', 'titleQuote':'Sierra', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-23T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Erika', 'reward':'Rome', 'immunity':'Rome', 'eliminated':'Gabe', 'safe':'Sam', 'titleQuote':'Jeff Probst', 'summit':'Sol', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-23T16:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Anastassia', 'reward':'Sam', 'immunity':'Rachel', 'eliminated':'Tiyana', 'safe':'Kyle', 'titleQuote':'Sam', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-23T19:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Ethan', 'reward':'Sam', 'immunity':'Sam', 'eliminated':'Tiyana', 'safe':'Sam', 'titleQuote':'Sam', 'summit':'Sam', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-23T19:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Greg', 'reward':'Gabe', 'immunity':'Gabe', 'eliminated':'Teeny', 'safe':'Caroline', 'titleQuote':'Andy', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-27T09:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	// WEEK 7
-	{'name':'Greg', 'reward':'Gabe', 'immunity':'Gabe', 'eliminated':'Teeny', 'safe':'Caroline', 'titleQuote':'Andy', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-27T09:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Erika', 'reward':'Sam', 'immunity':'Sierra', 'eliminated':'Gabe', 'safe':'Sue', 'titleQuote':'Teeny', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-30T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Betsy', 'reward':'Andy', 'immunity':'Sue', 'eliminated':'Sam', 'safe':'Sol', 'titleQuote':'Teeny', 'summit':'Sierra', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-10-31T11:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Ethan', 'reward':'Kyle', 'immunity':'Kyle', 'eliminated':'Tiyana', 'safe':'Kyle', 'titleQuote':'Andy', 'summit':'Sol', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-31T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Anastassia', 'reward':'Tiyana', 'immunity':'Tiyana', 'eliminated':'Kyle', 'safe':'Sierra', 'titleQuote':'Sam', 'summit':'Sol', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-31T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Wilson', 'reward':'Sol', 'immunity':'Genevieve', 'eliminated':'Andy', 'safe':'Sierra', 'titleQuote':'Teeny', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-10-31T11:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	// WEEK 8
-	{'name':'Erika', 'reward':'Andy', 'immunity':'Sol', 'eliminated':'Sierra', 'safe':'Teeny', 'titleQuote':'Rachel', 'summit':'Kyle', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-06T15:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Wilson', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Sam', 'safe':'Teeny', 'titleQuote':'Sue', 'summit':'Caroline', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-06T16:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Betsy', 'reward':'Kyle', 'immunity':'Sue', 'eliminated':'Gabe', 'safe':'Rachel', 'titleQuote':'Gabe', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-06T17:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Ethan', 'reward':'Kyle', 'immunity':'Kyle', 'eliminated':'Sam', 'safe':'Kyle', 'titleQuote':'Sol', 'summit':'Sol', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-07T10:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Anastassia', 'reward':'Kyle', 'immunity':'Kyle', 'eliminated':'Sam', 'safe':'Kyle', 'titleQuote':'Andy', 'summit':'Andy', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-07T10:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Greg', 'reward':'Kyle', 'immunity':'Kyle', 'eliminated':'Gabe', 'safe':'Andy', 'titleQuote':'Rachel', 'summit':'Caroline', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-07T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	// WEEK 9
-	{'name':'Erika', 'reward':'Sol', 'immunity':'Caroline', 'eliminated':'Kyle', 'safe':'Teeny', 'titleQuote':'Sam', 'summit':'Andy', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-13T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Wilson', 'reward':'Gabe', 'immunity':'Genevieve', 'eliminated':'Kyle', 'safe':'Rachel', 'titleQuote':'Teeny', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-13T17:04:00.000Z', 'fishCatch':'Yes', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Betsy', 'reward':'Sam', 'immunity':'Sam', 'eliminated':'Andy', 'safe':'Rachel', 'titleQuote':'Genevieve', 'summit':'Sam', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-13T18:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Greg', 'reward':'Kyle', 'immunity':'Kyle', 'eliminated':'Sam', 'safe':'Teeny', 'titleQuote':'Andy', 'summit':'Andy', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-14T20:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Ethan', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Kyle', 'safe':'Rachel', 'titleQuote':'Sam', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-14T20:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Anastassia', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Kyle', 'safe':'Rachel', 'titleQuote':'Andy', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-14T20:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	// WEEK 10
-	{'name':'Erika', 'reward':'Andy', 'immunity':'Kyle', 'eliminated':'Caroline', 'safe':'Teeny', 'titleQuote':'Andy', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-20T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Wilson', 'reward':'Gabe', 'immunity':'Genevieve', 'eliminated':'Kyle', 'safe':'Andy', 'titleQuote':'Jeff Probst', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-21T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'Yes'},
-	{'name':'Ethan', 'reward':'Sam', 'immunity':'Genevieve', 'eliminated':'Sue', 'safe':'Rachel', 'titleQuote':'Andy', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-21T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Anastassia', 'reward':'Sam', 'immunity':'Sam', 'eliminated':'Kyle', 'safe':'Rachel', 'titleQuote':'Gabe', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-21T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	// WEEK 11
-	{'name':'Ethan', 'reward':'Kyle', 'immunity':'Sue', 'titleQuote':'Kyle', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-26T12:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No','place_1':'Rachel','place_2':'Andy','place_3':'Teeny','place_4':'Caroline','place_5':'Genevieve','place_6':'Sam','place_7':'Sue','place_8':'Kyle'},
-	{'name':'Wilson', 'reward':'Genevieve', 'immunity':'Kyle', 'titleQuote':'Kyle', 'summit':'Rachel', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-28T11:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'Yes','place_1':'Rachel','place_2':'Caroline','place_3':'Andy','place_4':'Kyle','place_5':'Sam','place_6':'Genevieve','place_7':'Teeny','place_8':'Sue'},
-	{'name':'Greg', 'reward':'Kyle', 'immunity':'Kyle', 'titleQuote':'Teeny', 'summit':'Andy', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-11-28T14:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'No','place_1':'Caroline','place_2':'Teeny','place_3':'Andy','place_4':'Sam','place_5':'Genevieve','place_6':'Kyle','place_7':'Sue','place_8':'Rachel'},
-	{'name':'Betsy', 'reward':'Teeny', 'immunity':'Rachel', 'titleQuote':'Jeff Probst', 'summit':'Rachel', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-28T14:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No','place_1':'Teeny','place_2':'Sam','place_3':'Sue','place_4':'Caroline','place_5':'Rachel','place_6':'Andy','place_7':'Genevieve','place_8':'Kyle'},
-	{'name':'Anastassia', 'reward':'Kyle', 'immunity':'Sam', 'titleQuote':'Andy', 'summit':'Andy', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'No', 'shotInTheDark':'No', 'submit_time':'2024-11-26T12:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No','place_1':'Rachel','place_2':'Andy','place_3':'Sue','place_4':'Caroline','place_5':'Teeny','place_6':'Sam','place_7':'Genevieve','place_8':'Kyle'},
-	// WEEK 12
-	{'name':'Erika', 'reward':'Caroline', 'immunity':'Sue', 'titleQuote':'Andy', 'summit':'Sam', 'nudity':'No', 'idolFound':'Yes', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-04T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	// WEEK 13
-	{'name':'Ethan', 'reward':'Sam', 'immunity':'Sue', 'titleQuote':'Genevieve', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-11T15:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-	{'name':'Erika', 'reward':'Rachel', 'immunity':'Genevieve', 'titleQuote':'Rachel', 'summit':'Sam', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-11T16:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'Yes'},
-	{'name':'Greg', 'reward':'Sue', 'immunity':'Sue', 'titleQuote':'Teeny', 'summit':'Andy', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-11T21:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'Yes', 'jeffJoke':'No'},
-	{'name':'Anastassia', 'reward':'Genevieve', 'immunity':'Rachel', 'titleQuote':'Genevieve', 'summit':'Sue', 'nudity':'No', 'idolFound':'No', 'idolPlayed':'Yes', 'shotInTheDark':'No', 'submit_time':'2024-12-11T15:04:00.000Z', 'fishCatch':'No', 'voteUnanimous':'No', 'jeffJoke':'No'},
-];
