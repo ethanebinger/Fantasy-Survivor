@@ -109,6 +109,7 @@ select,
 #prevBtn:hover, 
 #nextBtn:hover,
 #submitBtn:hover,
+#readmeBtn:hover,
 #past_responses_button:hover,
 #PastResponses:hover,
 #LandingPage {
@@ -117,6 +118,13 @@ select,
 #resultsBtn,
 #prevBtn {
     background-color: #bbbbbb;
+}
+#readmeBtn {
+    background-color: #969696;
+    border: none;
+    padding: 5px 10px;
+    font-size: 10px;
+    cursor: pointer;
 }
 
 /* Success screen layout */

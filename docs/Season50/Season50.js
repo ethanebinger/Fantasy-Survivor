@@ -352,6 +352,9 @@ function init() {
 	$('#resultsBtn2').click(function() {
         window.location = "results.html";
     });
+	$('#readmeBtn').click(function() {
+        window.location = "https://github.com/ethanebinger/Fantasy-Survivor/blob/master/README.md";
+    });
 
 	// Home button reset
 	$('#homeBtn').click(function() {
