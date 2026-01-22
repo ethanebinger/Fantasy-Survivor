@@ -42,23 +42,8 @@ const CONTESTANTS = {
 	"Stephanie": "Vatu"
 };
 const PLAYERS = [
-	"Ethan E", 
-	"Greg H", 
-	"Josh S", 
-	"Lucas B", 
-	"Erika", 
-	"Leslie",  
-	"Anastassia G", 
-	"Betty H", 
-	"Mitch J", 
-	"Esme", 
-	"Dan", 
-	"David O", 
-	"Vivian", 
-	"Wilson", 
-	"Aaron", 
-	"Jonathan", 
-	"Duncan"
+	"Ethan",
+	"Anastassia"
 ]
 const QUESTIONS = [
   {
@@ -509,12 +494,43 @@ async function loadResults() {
 /*********************
  * RESPONSES.HTML
  *********************/
+function buildResponsesDropdown() {
+	// Players
+	let container = $(`#past_responses_name-body`);
+	let select = $('<select></select>')
+		.attr('id', 'past_responses_name')
+		.attr('style', 'font-size:18px')
+		.append('<option value="">-- Select One --</option>');
+	PLAYERS.forEach(p => {
+		select.append(`<option value="${p}">${p}</option>`);
+	});
+	container.append(select);
+
+	// Episodes/Votes
+    container = $(`#past_responses_vote-body`);
+	select = $('<select></select>')
+		.attr('id', 'past_responses_vote')
+		.attr('style', 'font-size:18px')
+		.append('<option value="">-- Select One --</option>');
+	const weeks = Array.from({ length: CURRENT_WEEK }, (_, i) => i + 1);
+	weeks.forEach(w => {
+		select.append(`<option value=${w}>Episode ${w}</option>`);
+	});
+	select.append(`<option value="final_three"}>Final Three</option>`)
+	if (CURRENT_WEEK >= 11) {
+		select.append(`<option value="final_eight"}>Final Eight</option>`)
+	}
+	container.append(select);
+}
+
+let scores_responses = {};
 async function init_responses() {
     $('#resultsBtn').click(function(e) {
 		window.location = "results.html";
     });
 
 	// Function to generate dropdown selection menus
+	buildResponsesDropdown();
 
 	try {
         // wait for responses and results to load from supabase
@@ -523,23 +539,44 @@ async function init_responses() {
         const results = await loadResults();
 
 		// calculate scores once data is ready
-        let scores = calculateScoresV2(results, responses);
-		scores = final_three_calcV2(scores, responses);
-		scores = final_eight_calcV2(scores, responses);
+        scores_responses = calculateScoresV2(results, responses);
+		scores_responses = final_three_calcV2(scores_responses, responses);
+		scores_responses = final_eight_calcV2(scores_responses, responses);
 
 		// filter past responses on click
         $("#past_responses_button").click(function() {
-			var curName = $("#past_responses_name option:selected").val();
-			var curVote = $("#past_responses_vote option:selected").val();
+			$("#past_responses").empty();
+			let curName = $("#past_responses_name option:selected").val();
+			let curVote = $("#past_responses_vote option:selected").val();
 			if (curName.length < 1 || curVote.length < 1) {
-				alert("Please select both a name and a vote number"); // clean this up to not be an alert
-				$("#past_responses").empty();
-			} else if (curVote === "FinalEight") {
-				getFinalEight(curName);
-			} else if (curVote === "FinalThree") {
-				getFinalThree(curName);
+				alert("Please select both a name and a vote/episode"); // clean this up to not be an alert
+			} else if (curVote === "final_eight") {
+				if (!scores_responses[curName][curVote]) { 
+					ifEmptyHTML();
+				} else {
+					let scores_filter = scores_responses[curName][curVote];
+					let response_filter = responses.filter(s => s.name===curName && s.week===11)[0];
+					console.log("CALCULATE FINAL EIGHT SCORE")
+					// getWeeklyResults(scores_filter, response_filter, curVote);
+				};			
+			} else if (curVote === "final_three") {
+				if (!scores_responses[curName][curVote]) { 
+					ifEmptyHTML();
+				} else {
+					let scores_filter = scores_responses[curName][curVote];
+					let response_filter = responses.filter(s => s.name===curName && s.week===1)[0];
+					console.log("CALCULATE FINAL THREE SCORE")
+					// getWeeklyResults(scores_filter, response_filter, curVote);
+				};				
 			} else {
-				getWeeklyResults(curName, curVote);
+				curVote = parseInt(curVote,10);
+				if (!scores_responses[curName][curVote]) { 
+					ifEmptyHTML();
+				} else {
+					let scores_filter = scores_responses[curName][curVote];
+					let response_filter = responses.filter(s => s.name===curName && s.week===curVote)[0];
+					getWeeklyResults(scores_filter, response_filter, curVote);
+				};				
 			};
 		});
 
@@ -548,111 +585,68 @@ async function init_responses() {
     }
 };
 
-function getWeeklyResults(curName, curVote) {
-	// Clear existing html
-	$("#past_responses").empty();
-	
-	// Parse data into readable json
-	var responses = saved_responses;
-	
-	// Calc score
-	var scores = [
-		{	'name': curName, 
-			'total': 0,
-			'reward': 0,
-			'immunity': 0,
-			'eliminated': 0,
-			'safe': 0,
-			'returns': 0,
-			'titleQuote': 0,
-			'summit': 0,
-			'nudity': 0,
-			'idolFound': 0,
-			'idolPlayed': 0,
-			'immunity1': 0,
-			'immunity2': 0,
-			'immunity3': 0,
-			'edgeReturn': 0,
-			'immunity_5': 0,
-			'immunity_4': 0,
-			'fireChallenge': 0,
-			'hourglass': 0,
-			'shotInTheDark':0,
-			'liveReunion': 0,
-			'voteUnanimous': 0,
-			'fishCatch': 0,
-			'jeffJoke': 0			
-		}
-	];
-	
-	// Filter for only selected name and vote, then add html to page
-	// Looping backwards to select most recent submission, then break on success
-	for (var i=responses.length-1; i>=0; i--) {
-		if (responses[i].name === curName) {
-			var cur_vote = determineWeek(responses[i]);
-			if (curVote == cur_vote) {
-				for (var j=0; j<results.length; j++) {
-					scores = calculateScores(scores, [results[j]], [responses[i]], "individual");
-				};
-				$("#past_responses").append("<h3 id='week_"+String(i)+"'></h3>");
-				$("#past_responses").append("<span id='json_"+String(i)+"'></span>");
-				if (cur_vote == 14) {
-					$("#week_"+String(i)).html("Finale");
-					$("#json_"+String(i)).html(
-						"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-						//"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-						//"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + responses[i].immunity_5 + "</td><td>"+ scores[0].immunity_5 +"</td></tr>" +
-						"<tr><td><strong>Wins Immunity Challenge</strong></td><td>" + responses[i].immunity_4 + "</td><td>"+ scores[0].immunity_4 +"</td></tr>" +
-						"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + responses[i].fireChallenge + "</td><td>"+ scores[0].fireChallenge +"</td></tr>" +
-						"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
-						"<tr><td><strong>Nudity</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
-						"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-						"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-						"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>" + 
-						"<tr><td><strong>Fish Caught</strong></td><td>" + responses[i].fishCatch + "</td><td>"+ scores[0].fishCatch +"</td></tr>" +
-						"<tr><td><strong>Unanimous Vote</strong></td><td>" + responses[i].voteUnanimous + "</td><td>"+ scores[0].voteUnanimous +"</td></tr>" +
-						"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + responses[i].jeffJoke + "</td><td>"+ scores[0].jeffJoke +"</td></tr>"
-					);
-				} else if (cur_vote >= 11) {
-					$("#week_"+String(i)).html("Episode #"+String(cur_vote));
-					$("#json_"+String(i)).html(
-						"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-						"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-						"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
-						"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
-						"<tr><td><strong>Goes on Journey</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
-						"<tr><td><strong>Nudity</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
-						"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-						"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-						"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>" + 
-						"<tr><td><strong>Fish Caught</strong></td><td>" + responses[i].fishCatch + "</td><td>"+ scores[0].fishCatch +"</td></tr>" +
-						"<tr><td><strong>Unanimous Vote</strong></td><td>" + responses[i].voteUnanimous + "</td><td>"+ scores[0].voteUnanimous +"</td></tr>" +
-						"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + responses[i].jeffJoke + "</td><td>"+ scores[0].jeffJoke +"</td></tr>"
-					);
-				} else {
-					$("#week_"+String(i)).html("Episode #"+String(cur_vote));
-					$("#json_"+String(i)).html(
-						"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
-						"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + responses[i].reward + "</td><td>"+ scores[0].reward +"</td></tr>" +
-						"<tr><td><strong>Wins Immunity</strong></td><td>" + responses[i].immunity + "</td><td>"+ scores[0].immunity +"</td></tr>" +
-						"<tr><td><strong>Eliminated</strong></td><td>" + responses[i].eliminated + "</td><td>"+ scores[0].eliminated +"</td></tr>" +
-						"<tr><td><strong>Safe</strong></td><td>" + responses[i].safe + "</td><td>"+ scores[0].safe +"</td></tr>" +
-						"<tr><td><strong>Title Quote</strong></td><td>" + responses[i].titleQuote + "</td><td>"+ scores[0].titleQuote +"</td></tr>" +
-						"<tr><td><strong>Goes on Journey</strong></td><td>" + responses[i].summit + "</td><td>"+ scores[0].summit +"</td></tr>" +
-						"<tr><td><strong>Nudity</strong></td><td>" + responses[i].nudity + "</td><td>"+ scores[0].nudity +"</td></tr>" +
-						"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + responses[i].idolFound + "</td><td>"+ scores[0].idolFound +"</td></tr>" +
-						"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + responses[i].idolPlayed + "</td><td>"+ scores[0].idolPlayed +"</td></tr>" +
-						"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + responses[i].shotInTheDark + "</td><td>"+ scores[0].shotInTheDark +"</td></tr>" + 
-						"<tr><td><strong>Fish Caught</strong></td><td>" + responses[i].fishCatch + "</td><td>"+ scores[0].fishCatch +"</td></tr>" +
-						"<tr><td><strong>Unanimous Vote</strong></td><td>" + responses[i].voteUnanimous + "</td><td>"+ scores[0].voteUnanimous +"</td></tr>" +
-						"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + responses[i].jeffJoke + "</td><td>"+ scores[0].jeffJoke +"</td></tr>"
-					);
-				};
-			break;
-			};
-		};
+function getWeeklyResults(score, response, curVote) {
+	$("#past_responses").append("<h3 id='responses_table_header'></h3>");
+	$("#past_responses").append("<table id='responses_table'></table>");
+	if (curVote == "final_three") {
+		console.log("final three insert here");
+	} else if (curVote == "final_eight") {
+		console.log("final eight insert here");
+	} else if (curVote == 14) {
+		$("#responses_table_header").html("Finale");
+		$("#responses_table").html(
+			"<colgroup><col><col><col></colgroup>" +
+			"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+			"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + response.reward + "</td><td>"+ score.reward +"</td></tr>" +
+			"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + response.immunity_5 + "</td><td>"+ score.immunity_5 +"</td></tr>" +
+			"<tr><td><strong>Wins Immunity Challenge</strong></td><td>" + response.immunity_4 + "</td><td>"+ score.immunity_4 +"</td></tr>" +
+			"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + response.fire_challenge + "</td><td>"+ score.fire_challenge +"</td></tr>" +
+			"<tr><td><strong>Title Quote</strong></td><td>" + response.title_quote + "</td><td>"+ score.title_quote +"</td></tr>" +
+			"<tr><td><strong>Nudity</strong></td><td>" + response.nudity + "</td><td>"+ score.nudity +"</td></tr>" +
+			"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + response.idol_found + "</td><td>"+ score.idol_found +"</td></tr>" +
+			"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + response.idol_played + "</td><td>"+ score.idol_played +"</td></tr>" +
+			"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + response.shot_in_the_dark + "</td><td>"+ score.shot_in_the_dark +"</td></tr>" + 
+			"<tr><td><strong>Fish Caught</strong></td><td>" + response.fish_catch + "</td><td>"+ score.fish_catch +"</td></tr>" +
+			"<tr><td><strong>Unanimous Vote</strong></td><td>" + response.vote_unanimous + "</td><td>"+ score.vote_unanimous +"</td></tr>" +
+			"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + response.jeff_joke + "</td><td>"+ score.jeff_joke +"</td></tr>"
+		);
+	} else if (curVote >= 11) {
+		$("#responses_table_header").html("Episode "+String(curVote));
+		$("#responses_table").html(
+			"<colgroup><col><col><col></colgroup>" +
+			"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+			"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + response.reward + "</td><td>"+ score.reward +"</td></tr>" +
+			"<tr><td><strong>Wins Immunity</strong></td><td>" + response.immunity + "</td><td>"+ score.immunity +"</td></tr>" +
+			"<tr><td><strong>Title Quote</strong></td><td>" + response.title_quote + "</td><td>"+ score.title_quote +"</td></tr>" +
+			"<tr><td><strong>Goes on Journey</strong></td><td>" + response.summit + "</td><td>"+ score.summit +"</td></tr>" +
+			"<tr><td><strong>Nudity</strong></td><td>" + response.nudity + "</td><td>"+ score.nudity +"</td></tr>" +
+			"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + response.idol_found + "</td><td>"+ score.idol_found +"</td></tr>" +
+			"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + response.idol_played + "</td><td>"+ score.idol_played +"</td></tr>" +
+			"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + response.shot_in_the_dark + "</td><td>"+ score.shot_in_the_dark +"</td></tr>" + 
+			"<tr><td><strong>Fish Caught</strong></td><td>" + response.fish_catch + "</td><td>"+ score.fish_catch +"</td></tr>" +
+			"<tr><td><strong>Unanimous Vote</strong></td><td>" + response.vote_unanimous + "</td><td>"+ score.vote_unanimous +"</td></tr>" +
+			"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + response.jeff_joke + "</td><td>"+ score.jeff_joke +"</td></tr>"
+		);
+	} else {
+		$("#responses_table_header").html("Episode "+String(curVote));
+		$("#responses_table").html(
+			"<colgroup><col><col><col></colgroup>" +
+			"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
+			"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + response.reward + "</td><td>"+ score.reward +"</td></tr>" +
+			"<tr><td><strong>Wins Immunity</strong></td><td>" + response.immunity + "</td><td>"+ score.immunity +"</td></tr>" +
+			"<tr><td><strong>Eliminated</strong></td><td>" + response.eliminated + "</td><td>"+ score.eliminated +"</td></tr>" +
+			"<tr><td><strong>Safe</strong></td><td>" + response.safe + "</td><td>"+ score.safe +"</td></tr>" +
+			"<tr><td><strong>Title Quote</strong></td><td>" + response.title_quote + "</td><td>"+ score.title_quote +"</td></tr>" +
+			"<tr><td><strong>Goes on Journey</strong></td><td>" + response.summit + "</td><td>"+ score.summit +"</td></tr>" +
+			"<tr><td><strong>Nudity</strong></td><td>" + response.nudity + "</td><td>"+ score.nudity +"</td></tr>" +
+			"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + response.idol_found + "</td><td>"+ score.idol_found +"</td></tr>" +
+			"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + response.idol_played + "</td><td>"+ score.idol_played +"</td></tr>" +
+			"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + response.shot_in_the_dark + "</td><td>"+ score.shot_in_the_dark +"</td></tr>" + 
+			"<tr><td><strong>Fish Caught</strong></td><td>" + response.fish_catch + "</td><td>"+ score.fish_catch +"</td></tr>" +
+			"<tr><td><strong>Unanimous Vote</strong></td><td>" + response.vote_unanimous + "</td><td>"+ score.vote_unanimous +"</td></tr>" +
+			"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + response.jeff_joke + "</td><td>"+ score.jeff_joke +"</td></tr>"
+		);
 	};
-	ifEmptyHTML();
 };
     
 function getFinalEight(curName) {

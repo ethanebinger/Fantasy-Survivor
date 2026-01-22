@@ -94,6 +94,7 @@ select,
 #prevBtn, 
 #nextBtn,
 #submitBtn,
+#past_responses_button,
 #PastResponses, 
 #LandingPage {
     background-color: #4CAF50;
@@ -108,6 +109,7 @@ select,
 #prevBtn:hover, 
 #nextBtn:hover,
 #submitBtn:hover,
+#past_responses_button:hover,
 #PastResponses:hover,
 #LandingPage {
     opacity: 0.8;
@@ -438,4 +440,28 @@ g text {
     -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
             filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+
+/******************/
+/* RESPONSES.HTML */
+/******************/
+table {
+    table-layout: fixed;
+    width: 50%;
+    margin: 10px auto;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #000;
+}
+th, td {
+    padding: 0.6em;
+    vertical-align: top;
+    border: 1px solid #000;
+}
+table colgroup col:first-child {
+    width: 55%;
+}
+table colgroup col:nth-child(2),
+table colgroup col:nth-child(3) {
+    width: 22.5%;
 }
