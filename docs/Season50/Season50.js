@@ -556,8 +556,8 @@ async function init_responses() {
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.name===curName && s.week===11)[0];
-					console.log("CALCULATE FINAL EIGHT SCORE")
-					// getWeeklyResults(scores_filter, response_filter, curVote);
+					//console.log("CALCULATE FINAL EIGHT SCORE")
+					getWeeklyResults(scores_filter, response_filter, curVote);
 				};			
 			} else if (curVote === "final_three") {
 				if (!scores_responses[curName][curVote]) { 
@@ -565,8 +565,8 @@ async function init_responses() {
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.name===curName && s.week===1)[0];
-					console.log("CALCULATE FINAL THREE SCORE")
-					// getWeeklyResults(scores_filter, response_filter, curVote);
+					//console.log("CALCULATE FINAL THREE SCORE")
+					getWeeklyResults(scores_filter, response_filter, curVote);
 				};				
 			} else {
 				curVote = parseInt(curVote,10);
@@ -589,9 +589,30 @@ function getWeeklyResults(score, response, curVote) {
 	$("#past_responses").append("<h3 id='responses_table_header'></h3>");
 	$("#past_responses").append("<table id='responses_table'></table>");
 	if (curVote == "final_three") {
-		console.log("final three insert here");
+		// NEED TO VERIFY THAT THIS WORKS
+		$("#responses_table_header").html("Final Three");
+		$("#responses_table").html(
+			"<colgroup><col><col></colgroup>" +
+			"<tr><th>Pick</th><th>Points Earned</th></tr>" +
+			"<tr><td>" + response.pick_1 + "</td><td>"+ score.pick_1 +"</td></tr>" +
+			"<tr><td>" + response.pick_2 + "</td><td>"+ score.pick_2 +"</td></tr>" +
+			"<tr><td>" + response.pick_3 + "</td><td>"+ score.pick_3 +"</td></tr>"
+		);
 	} else if (curVote == "final_eight") {
-		console.log("final eight insert here");
+		// NEED TO VERIFY THAT THIS WORKS
+		$("#responses_table_header").html("Final Eight");
+		$("#responses_table").html(
+			"<colgroup><col><col></colgroup>" +
+			"<tr><th>Rank</th><th>Name</th></tr>" +
+			"<tr><td>1st</td><td>"+ response.place_1 +"</td></tr>" +
+			"<tr><td>2nd</td><td>"+ response.place_2 +"</td></tr>" +
+			"<tr><td>3rd</td><td>"+ response.place_3 +"</td></tr>" +
+			"<tr><td>4th</td><td>"+ response.place_4 +"</td></tr>" +
+			"<tr><td>5th</td><td>"+ response.place_5 +"</td></tr>" +
+			"<tr><td>6th</td><td>"+ response.place_6 +"</td></tr>" +
+			"<tr><td>7th</td><td>"+ response.place_7 +"</td></tr>" +
+			"<tr><td>8th</td><td>"+ response.place_8 +"</td></tr>"
+		);
 	} else if (curVote == 14) {
 		$("#responses_table_header").html("Finale");
 		$("#responses_table").html(
@@ -647,67 +668,6 @@ function getWeeklyResults(score, response, curVote) {
 			"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + response.jeff_joke + "</td><td>"+ score.jeff_joke +"</td></tr>"
 		);
 	};
-};
-    
-function getFinalEight(curName) {
-	// Clear existing html
-	$("#past_responses").empty();
-	
-	// Parse data into readable json
-	var finalEight = saved_responses;
-
-	// Create table displaying data in order
-	var curName = $("#past_responses_name option:selected").val();
-	for (var j=0; j<finalEight.length; j++) {
-		if (finalEight[j].name === curName) {
-			var cur_vote = determineWeek(finalEight[j]);
-			if (cur_vote === 11) {	// only submited responses to this question for episode 11
-				$("#past_responses").append("<h3 id='finalEight_title'></h3>");
-				$("#finalEight_title").html("Order of Final Eight Survivors");
-				$("#past_responses").append("<span id='finalEight_table'></span>");
-				$("#finalEight_table").html(
-					"<tr><th>Rank</th><th>Name</th></tr>" +
-					"<tr><td>8th</td><td>"+ finalEight[j].place_8 +"</td></tr>" +
-					"<tr><td>7th</td><td>"+ finalEight[j].place_7 +"</td></tr>" +
-					"<tr><td>6th</td><td>"+ finalEight[j].place_6 +"</td></tr>" +
-					"<tr><td>5th</td><td>"+ finalEight[j].place_5 +"</td></tr>" +
-					"<tr><td>4th</td><td>"+ finalEight[j].place_4 +"</td></tr>" +
-					"<tr><td>3rd</td><td>"+ finalEight[j].place_3 +"</td></tr>" +
-					"<tr><td>2nd</td><td>"+ finalEight[j].place_2 +"</td></tr>" +
-					"<tr><td>1st</td><td>"+ finalEight[j].place_1 +"</td></tr>"
-				);
-			};
-		};
-	};
-	ifEmptyHTML();
-};
-    
-function getFinalThree(curName) {
-	// Clear existing html
-	$("#past_responses").empty();
-	
-	// Parse data into readable json
-	var finalThree = saved_responses;
-
-	// Create table displaying data in order
-	var curName = $("#past_responses_name option:selected").val();
-	for (var j=0; j<finalThree.length; j++) {
-		if (finalThree[j].name === curName) {
-			var cur_vote = determineWeek(finalThree[j]);
-			if (cur_vote === 2) {	// submited responses to this question during episode 2
-				$("#past_responses").append("<h3 id='finalThree_title'></h3>");
-				$("#finalThree_title").html("Preseason Picks for Final Three Survivors");
-				$("#past_responses").append("<span id='finalThree_table'></span>");
-				$("#finalThree_table").html(
-					"<tr><th>Pick </th><th>Name</th></tr>" +
-					"<tr><td>1</td><td>"+ finalThree[j].pick_1 +"</td></tr>" +
-					"<tr><td>2</td><td>"+ finalThree[j].pick_2 +"</td></tr>" +
-					"<tr><td>3</td><td>"+ finalThree[j].pick_3 +"</td></tr>"
-				);
-			};
-		};
-	};
-	ifEmptyHTML();
 };
     
 function ifEmptyHTML() {
