@@ -10,6 +10,10 @@ html, body {
     margin: 0;
     position: relative;
 }
+/* body {
+    display: flex;
+    flex-direction: column;
+} */
 .title_img {
 	background-image: url("https://www.hollywoodreporter.com/wp-content/uploads/2026/01/TSurvivor50_Group_S1_3-2-e1768352522107.jpg"); 
 	position: relative;
@@ -44,7 +48,9 @@ html, body {
 }
 #survivor_form {
     margin: 0 auto;
-    height: 100%;
+    /* flex: 1 0 auto; */
+    /* height: 100%; */
+    padding-bottom: 100px;
     align-items: center;
     text-align: center;
 }
@@ -54,8 +60,8 @@ html, body {
 .tab {
     display: none;
     /*height: 100%;*/
-    min-height: 100%;
-    margin-bottom: -100px;
+    /* min-height: 100%; */
+    /* margin-bottom: -100px; */
     padding-bottom: 100px;
     align-items: center;
 }
@@ -101,7 +107,7 @@ select,
     color: #fff;
     border: none;
     padding: 10px 20px;
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
 }
 #enterBtn:hover,
@@ -160,8 +166,13 @@ select,
   cursor: pointer;
   border-radius: 6px;
 }
-#success_screen .btn.secondary { background-color: #bbbbbb; color: #000; }
-#success_screen .btn:hover { opacity: 0.85; }
+#success_screen .btn.secondary { 
+    background-color: #bbbbbb; 
+    color: #000; 
+}
+#success_screen .btn:hover { 
+    opacity: 0.85; 
+}
 
 
 
@@ -246,12 +257,12 @@ g text {
 	height: 800px;
 }
 .Christian {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/404d2742-0615-478a-b889-7aa83e957702_1748439041.jpg");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/3/38/S37_Christian_Hubicki.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Cirie {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/85a2f307-94d6-438f-9cc8-c22e64ad5e5a_1748438803.jpg");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/6/66/AUS13_Cirie_Fields.jpg");
 	width: 800px;
 	height: 800px;
 }
@@ -261,7 +272,7 @@ g text {
 	height: 800px;
 }
 .Coach {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/1b8da6a8-a29f-4061-8c9a-2c05b7b81114_1748438651.jpg");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/2/26/S23_Coach_Wade.jpg");
 	width: 800px;
 	height: 800px;
 }
@@ -271,12 +282,12 @@ g text {
 	height: 800px;
 }
 .Jenna {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/41ca6062-c9b2-42a8-a091-961f3e5513cc_1748438197.jpg");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/7/74/S8_Jenna_Lewis.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Colby {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/504e395d-623e-46df-8bba-7aadc1b9d22b_1748438047.jpg");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/f/fb/S20_Colby_Donaldson.jpg");
 	width: 800px;
 	height: 800px;
 }
@@ -286,67 +297,67 @@ g text {
 	height: 800px;
 }
 .Charlie {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/2/2e/S46_Charlie_Davis.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Q {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/1/1c/S46_Q_Burdette.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Emily {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/e/ef/S45_Emily_Flippen.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Dee {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/3/35/S45_Dee_Valladares.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Jonathan {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/6/68/S42_Jonathan_Young.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Angelina {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/0/00/S50_Angelina_Keeley.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Kyle {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/2/2e/S48_Kyle_Fraser.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Kamilla {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/a/ac/S48_Kamilla_Karthigesu.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Aubry {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/7/73/S50_Aubry_Bracco.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Chrissy {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/b/b6/S35_Chrissy_Hofbeck.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Devens {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/f/f8/S38_Rick_Devens.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Joe {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/0/0f/S48_Joe_Hunter.jpg");
 	width: 800px;
 	height: 800px;
 }
 .Genevieve {
-	background-image: url("");
+	background-image: url("https://static.wikia.nocookie.net/survivor/images/2/2f/S47_Genevieve_Mushaluk.jpg");
 	width: 800px;
 	height: 800px;
 }
@@ -367,6 +378,7 @@ g text {
     height: 100%;
     margin: 0 auto;
     color: black;
+    display: flow-root;
 }
 
 .team_cila {

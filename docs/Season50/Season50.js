@@ -1,7 +1,14 @@
 /*****************************
- * NOTES:
+ * NOTES/TODO:
+ * - figure out if final_three should be in week 1 or week 2, update accordingly
+ * - stress test final_three and final_eight scoring logic
+ * - have flatten_scores() only set up for the actively scored weeks
+ * - remove alert from responses.html and show as text
+ * - update responses.html table to look less janky 
+ * - get players list (using team names?)
+ * - update and align bonus questions
  * 
- *  
+ * 
  *****************************/
 
 /*****************************
@@ -133,14 +140,38 @@ const BONUS_QUESTIONS = [
 		options: ["Yes", "No"]
 	},
 	{
+		key: "vote_unanimous",
+		prompt: "Will the vote be unanimous this week?",
+		type: "dropdown",
+		options: ["Yes", "No"]
+	},
+	{
+		key: "journey",
+		prompt: "Who (if anyone) will go on a journey this week?",
+		type: "dropdown",
+		options: ["No One", ...Object.keys(CONTESTANTS)]
+	},
+	{
 		key: "nudity",
 		prompt: "Will there be nudity (requiring blurring) this week? ",
 		type: "dropdown",
 		options: ["Yes", "No"]
 	},
 	{
+		key: "fish_catch",
+		prompt: "Will someone catch a fish this week?",
+		type: "dropdown",
+		options: ["Yes", "No"]
+	},
+	{
+		key: "confessionals",
+		prompt: "Who will have the most confessionals this episode?",
+		type: "dropdown",
+		options: Object.keys(CONTESTANTS)
+	},
+	{
 		key: "crying",
-		prompt: "Will someone cry this week?",
+		prompt: "Will someone visibly cry this episode?",
 		type: "dropdown",
 		options: ["Yes", "No"]
 	}
@@ -180,6 +211,7 @@ function buildTabs() {
 		}
     });
 	buildBonusQuestionTabs();
+	buildReviewTab();
 }
 
 // Functions to create question body html
@@ -280,32 +312,32 @@ function buildContestantRadios({containerId, questionName}) {
 };
 
 // Function to form tabs logic
-function initTabs() {
-    const tabs = $('#survivor_form .tab');
+function showTab(n) {
+	const tabs = $('#survivor_form .tab');
     const progressBar = $('#progress_bar progress');
-    let currentTab = 0;
-
-    function showTab(n) {
-        tabs.hide();
-        $(tabs[n]).show();
-        const progressValue = ((n + 1) / tabs.length) * 100;
-        progressBar.val(progressValue);
-		if (n==0) { 
-			$('#prevBtn').addClass('isHidden'); 
-		} else { 
-			$('#prevBtn').removeClass('isHidden'); 
-		};
-		if (n==tabs.length-1) { 
-			$('#nextBtn').addClass('isHidden');
-			$('#submitBtn').removeClass('isHidden');
-		} else { 
-			$('#nextBtn').removeClass('isHidden');
-			$('#submitBtn').addClass('isHidden');
-		};
-    }
-	
+	tabs.hide();
+	$(tabs[n]).show();
+	const progressValue = ((n + 1) / tabs.length) * 100;
+	progressBar.val(progressValue);
+	if (n==0) { 
+		$('#prevBtn').addClass('isHidden'); 
+	} else { 
+		$('#prevBtn').removeClass('isHidden'); 
+	};
+	if (n==tabs.length-1) { 
+		renderReview();
+		$('#nextBtn').addClass('isHidden');
+		$('#submitBtn').removeClass('isHidden');
+	} else { 
+		$('#nextBtn').removeClass('isHidden');
+		$('#submitBtn').addClass('isHidden');
+	};
+};
+function initTabs() {
     // Initial display
+	let currentTab = 0;
     showTab(currentTab);
+	const tabs = $('#survivor_form .tab');
 	
 	// Previous and Next buttons
     $('#prevBtn').click(function() {
@@ -381,6 +413,36 @@ $(document).on("change", ".contestants input[type='radio']", function () {
 function scrollToTop() {
 	window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Functions to build and render the review tab (let users see answers prior to submission)
+function buildReviewTab() {
+	const form = $('#survivor_form');
+	const $tab = $(`
+		<div class="tab">
+			<h1>REVIEW</h1>
+			<h3>Please review your picks before submitting</h3>
+			<div id="review-list"></div>
+		</div>
+	`);
+	form.append($tab);
+}
+function renderReview() {
+	const responses = collectResponses();
+	const $list = $('#review-list');
+	$list.empty();
+	const $table = $(`<table id='review_responses_table'><tr><th>Question</th><th>Response</th></tr>`)
+	Object.entries(responses).forEach(([key, value]) => {
+		$table.append(`<tr><td>${formatLabel(key)}</td><td>${value}</td></tr>`);
+	});
+	$table.append(`</table>`);
+	$list.append($table);
+}
+function formatLabel(key) {
+	return key
+		.replace(/_/g, ' ')
+		.replace(/\b\w/g, c => c.toUpperCase());
+}
+
 
 
 /***************************************
@@ -971,7 +1033,7 @@ function calculateScoresV2(results, responses) {
 			var player = response.name
 			// MAIN QUESTIONS
 			// Reward
-			if (response.reward && inArray(response.reward, result.reward)) {			// there is a probably smarter way to do this
+			if (response.reward && inArray(response.reward, result.reward)) {
 				if (result.merge === "Yes") { 
 					scores[player][cur_week].reward += 10;
 					scores[player][cur_week].total += 10;
@@ -1010,7 +1072,15 @@ function calculateScoresV2(results, responses) {
 			// Bonus Questions
 			for (let k=0; k<BONUS_QUESTIONS.length; k++){
 				var bq = BONUS_QUESTIONS[k].key
-				if (response[bq] && result[bq]==response[bq]){
+				if (bq === "journey" && response[bq] && inArray(response[bq], result[bq])) {
+					if (result.merge === "Yes") { 
+						scores[player][cur_week][bq] += 4;
+						scores[player][cur_week].total += 4;
+					} else { 
+						scores[player][cur_week][bq] += 2;
+						scores[player][cur_week].total += 2;
+					};
+				} else if (response[bq] && result[bq]==response[bq]){
 					if (result.merge === "Yes") { 
 						scores[player][cur_week][bq] += 4;
 						scores[player][cur_week].total += 4;
@@ -1030,28 +1100,28 @@ function which_castaway(castaways){
 	var sum = 0,
 		bonus = 0;
 	for (var i=1; i<9; i++){
-		if (castaways['place_'+String([i])] === "Rachel") {			// sole survivor
+		if (castaways['place_'+String([i])] === "-") {			// sole survivor
 			sum += Math.pow(Math.abs(i-1),2.25);
 			if (i===1) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Sam") {	// runner up
+		} else if (castaways['place_'+String([i])] === "-") {	// runner up
 			sum += Math.pow(Math.abs(i-2),2.25);
 			if (i===2) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Sue") {	// third
+		} else if (castaways['place_'+String([i])] === "-") {	// third
 			sum += Math.pow(Math.abs(i-3),2.25);
 			if (i===3) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Teeny") {	// fourth
+		} else if (castaways['place_'+String([i])] === "-") {	// fourth
 			sum += Math.pow(Math.abs(i-4),2.25);
 			if (i===4) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Genevieve") {	// fifth
+		} else if (castaways['place_'+String([i])] === "-") {	// fifth
 			sum += Math.pow(Math.abs(i-5),2.25);
 			if (i===5) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Andy") {	// sixth
+		} else if (castaways['place_'+String([i])] === "-") {	// sixth
 			sum += Math.pow(Math.abs(i-6),2.25);
 			if (i===6) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Caroline") {	// seventh
+		} else if (castaways['place_'+String([i])] === "-") {	// seventh
 			sum += Math.pow(Math.abs(i-7),2.25)
 			if (i===7) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Kyle") {	// eighth
+		} else if (castaways['place_'+String([i])] === "-") {	// eighth
 			sum += Math.pow(Math.abs(i-8),2.25);
 			if (i===8) { bonus += 5 };
 		};
@@ -1074,7 +1144,7 @@ function final_eight_calcV2(scores, responses) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calcV2(scores, responses){
-	const FINAL_THREE = ['Rachel', 'Sam', 'Sue'];
+	const FINAL_THREE = ['Ozzy', 'Kyle', 'Coach'];
 	const submit_week = 1;
 	const matched = responses.filter(r => r.week === submit_week);
 	for (let i=0; i<matched.length; i++) {
