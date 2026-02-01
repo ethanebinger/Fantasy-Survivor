@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="images/torch.gif">
+        <link rel="icon" href="images/survivor_fantasy_logo.png">
         <title>Fantasy Survivor</title>
 	   
         <!-- jQuery -->
@@ -19,33 +19,65 @@
         
     </head>
     <body>
-		<div class="title_img_alt">
-			<div class="responses_title">
-				<br>
-				<h3>SOMERVILLE SURVIVORS FANTASY LEAGUE</h3>
-                <h3>SEASON 50</h3>
-                <h1>RESPONSES</h1>
-                <!--<br>-->
-				<div class="graph">
-					<br>
-					<h3>Select name and vote number to see past responses</h3>
-					<span id="past_responses_name-body"></span>
-					<span id="past_responses_vote-body"></span>
-					<button id="past_responses_button">Get Responses</button>
-					<br>
-					<div id="past_responses" style="font-size: 28px;"></div>
-					<p></p>
-				</div>
-				<br><br>
-                <button id="resultsBtn" style="bottom:0;">BACK TO RESULTS</button>
-				<br><br><br><br>
-			</div>
-		</div>
+        <header class="site-header">
+            <div class="container header-inner">
+                <a class="brand" href="results.html">
+                    <span class="brand-text">Somerville Survivors Fantasy League</span>
+                </a>
+                <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
+                    <span class="sr-only">Toggle menu</span>
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+                <nav id="primary-nav" class="site-nav" aria-label="Primary" data-open="false">
+                    <ul class="nav-list">
+                        <li><a class="nav-link" href="rules.html">Rules</a></li>
+                        <li><a class="nav-link" href="results.html">Results</a></li>
+                        <li><a class="nav-link" href="responses.html">Responses</a></li>
+                    </ul>
+                    <div class="nav-actions">
+                        <a class="btn btn-solid" href="login.html">Login</a>
+                        <a class="btn btn-solid" href="signup.html">Sign Up</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main class="container">
+            <!-- <div class="title_img_alt"> -->
+                <div class="responses_title">
+                    <!-- <br>
+                    <h3>SOMERVILLE SURVIVORS FANTASY LEAGUE</h3>
+                    <h3>SEASON 50</h3> -->
+                    <h1>SEASON 50 RESPONSES</h1>
+                    <!--<br>-->
+                    <div class="graph">
+                        <br>
+                        <h3>Select name and vote number to see past responses</h3>
+                        <span id="past_responses_name-body"></span>
+                        <span id="past_responses_vote-body"></span>
+                        <button id="past_responses_button">Get Responses</button>
+                        <!-- <br><br>
+                        <button id="resultsBtn" style="bottom:0;">BACK TO RESULTS</button> -->
+                        <br><br>
+                    </div>
+                </div>
+            <!-- </div> -->
+            <div id="past_responses"></div>
+            <br><br><br><br>
+        </main>
+        <footer>
+            <div class="footer-bottom">
+                <p class="footer-disclaimer" style="font-size:12px;">
+                This site is not affiliated with, associated, authorized, endorsed by, or officially connected
+                with SURVIVOR, CBS, SEG, or any of its affiliates. Images used are the property of their
+                respective trademark holders.
+                </p>
+            </div>
+        </footer>
     </body>
     
     <script>
         $(document).ready(function(){
-           init_responses(); 
+           init_responses();
         });
     </script>
     

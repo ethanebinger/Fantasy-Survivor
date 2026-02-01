@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/survivor_fantasy_logo.png">
+        <title>Fantasy Survivor</title>
+	   
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!-- Supabase -->
+        <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+        
+        <!-- Stylesheet and Javascript -->
+        <link rel="stylesheet" href="Season50.css">
+        <script src="Season50.js" type="text/javascript"></script>
+        
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container header-inner">
+                <a class="brand" href="results.html">
+                    <span class="brand-text">Somerville Survivors Fantasy League</span>
+                </a>
+                <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
+                    <span class="sr-only">Toggle menu</span>
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+                <nav id="primary-nav" class="site-nav" aria-label="Primary" data-open="false">
+                    <ul class="nav-list">
+                        <li><a class="nav-link" href="rules.html">Rules</a></li>
+                    </ul>
+                    <div class="nav-actions">
+                        <a class="btn btn-solid" href="login.html">Login</a>
+                        <a class="btn btn-solid" href="signup.html">Sign Up</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main class="container page-content">
+            <div class="login_card">
+                <h1>WELCOME SOMERVILLE SURVIVORS!</h1>
+                <p>Here you can find the rules used for the Somerville Survivors Fantasy League.</p>
+                <h3>Fantasy Rules</h3>
+                <p>Weekly points are given if the player properly guesses the following:</p>
+                <table class="rules-table">
+                    <thead>
+                        <tr><th>Question</th><th>Points</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Who will win reward?</td><td>+5 (group), +10 (individual)</td></tr>
+                        <tr><td>Who will win immunity?</td><td>+5 (group), +15 (individual)</td></tr>
+                        <tr><td>Who will be eliminated?</td><td>+10 (group), +20 (individual)</td></tr>
+                        <tr><td>Who will be safe?</td><td>+10</td></tr>
+                        <tr><td>Whose quote is the episode title?</td><td>+2</td></tr>
+                        <tr><td>Will an immunity idol or secret advantage be found?</td><td>+2</td></tr>
+                        <tr><td>Will an immunity idol or secret advantage be played?</td><td>+2</td></tr>
+                    </tbody>
+                </table>
+                <p>And other bonus questions that may vary by season!</p>
+                <p>Before the merge points for reward and immunity will be assessed per tribe, so simply pick any player on the tribe you predict will win that challenge.</p>
+                <p>Points will double after the merge.</p>
+                <p>Other questions may be added for weekly challenges or to accomodate for specifics within the season (i.e. who is sent to Ghost Island this week?).</p>
+                <p>Players will pick a Final Three after the first episode. For each survivor chosen that makes it to the Final Three they will recieve +30 points (max 90).</p>
+                <p>
+                    When there are 8 Survivors left, weekly points will no longer be assigned for the main questions (bonus questions still count). 
+                    Instead, players will rank the remaining players in the order they go home. Based on these picks, points will be assigned using a regression algorithm that determines how close each pick was to the actual order.
+                    A perfect prediction for the Final Eight recieves +140 points.
+                </p>
+                <h3>Do you have what it takes to Outwit, Outplay, and Outlast the other contestants?</h3>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-bottom">
+                <p class="footer-disclaimer" style="font-size:12px;">
+                This site is not affiliated with, associated, authorized, endorsed by, or officially connected
+                with SURVIVOR, CBS, SEG, or any of its affiliates. Images used are the property of their
+                respective trademark holders.
+                </p>
+            </div>
+        </footer>
+    </body>
+    <script>
+    </script>
+</html>

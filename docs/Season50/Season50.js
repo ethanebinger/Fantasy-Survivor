@@ -2,12 +2,14 @@
  * NOTES/TODO:
  * - figure out if final_three should be in week 1 or week 2, update accordingly
  * - stress test final_three and final_eight scoring logic
- * - have flatten_scores() only set up for the actively scored weeks
- * - remove alert from responses.html and show as text
- * - update responses.html table to look less janky 
+ * - [DONE] have flatten_scores() only set up for the actively scored weeks 
+ * - [DONE] remove alert from responses.html and show as text
+ * - [DONE] update responses.html table to look less janky, same applies to preview table on mobile
  * - get players list (using team names?)
- * - update and align bonus questions
- * 
+ * - [DONE] update and align bonus questions
+ * - add login functionality --> idea is to have the submit button go to a login page. user can either enter login info
+ *   (username/email, password) or sign up. after signing up they are presented with the rules readme as HTML. then the form
+ *   is loaded and uses the preset tab progression
  * 
  *****************************/
 
@@ -17,6 +19,9 @@
 const CURRENT_WEEK = 1;
 const CURRENT_EP_DATE = '2/25/26'
 const EPISODE_NAME = 'In the hands of the fans'
+const FINAL_THREE_VOTE_WEEK = 1;
+const FINAL_EIGHT_VOTE_WEEK = 11;
+const FINAL_VOTE_WEEK = 14;
 const CONTESTANTS = {
 	// Orange Cila Tribe
 	"Christian": "Cila",
@@ -48,6 +53,7 @@ const CONTESTANTS = {
 	"Rizo": "Vatu",
 	"Stephanie": "Vatu"
 };
+const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
 const PLAYERS = [
 	"Ethan",
 	"Anastassia"
@@ -69,7 +75,7 @@ const QUESTIONS = [
     details: "You will get +30 points for each correct pick at the end of the season.",
     type: "dropdown", 
 	options: Object.keys(CONTESTANTS),
-    weeks: [1]
+    weeks: [FINAL_THREE_VOTE_WEEK]
   },
   {
     key: "final_eight",
@@ -78,7 +84,7 @@ const QUESTIONS = [
     details: "Please pick one from each dropdown. Order DOES matter.<br> Do not repeat your picks. All eight options should be used once.<br> You will get points for each pick based on the deviation from their final placement.",
     type: "dropdown", 
 	options: Object.keys(CONTESTANTS),
-    weeks: [11]
+    weeks: [FINAL_EIGHT_VOTE_WEEK]
   },
   {
     key: "reward",
@@ -366,16 +372,18 @@ function initTabs() {
 function init() {
     // Dynamic form creation
 	buildTabs();
+	initTabs();
 
 	// Move past hero page and enter form on click
-	$('#enterBtn').click(function() {
-        $('.title_img').addClass('isHidden');
-        $('#survivor_form').removeClass('isHidden');
-        $('#advance_form').removeClass('isHidden');
+	// setupLogin();
+	// $('#enterBtn').click(function() {
+    //     $('.title_img').addClass('isHidden');
+    //     $('#survivor_form').removeClass('isHidden');
+    //     $('#advance_form').removeClass('isHidden');
 		
-        // Init tabs and progress bar
-        initTabs();
-    });
+    //     // Init tabs and progress bar
+    //     initTabs();
+    // });
 	
 	// Move past hero page and go to results on click
     $('#resultsBtn').click(function() {
@@ -385,7 +393,7 @@ function init() {
         window.location = "results.html";
     });
 	$('#readmeBtn').click(function() {
-        window.location = "https://github.com/ethanebinger/Fantasy-Survivor/blob/master/README.md";
+        window.location = "rules.html";
     });
 
 	// Home button reset
@@ -477,15 +485,20 @@ function collectResponses() {
 	return responses;
 }
 async function submitToSupabase() {
+	// Get logged in user information
+	const user_info = await getAuthedUserAndProfile();
 	// Gather responses directly from DOM
 	const payload = collectResponses();
 	console.log(payload);
 
-	// Add optional metadata
+	// Build row for responses table
 	const row = {
 		week: (typeof CURRENT_WEEK !== 'undefined') ? CURRENT_WEEK : null,
 		submit_time: new Date().toISOString(),
-		player: payload['player_name'] || null,
+		user_id: user_info.user_id,
+		name: user_info.name,
+		team_name: user_info.team_name,
+		// player: payload['player_name'] || null,
 		payload
 	};
 
@@ -555,6 +568,29 @@ async function loadResults() {
   }));
 }
 
+// Function to get currently logged in user and their profile information
+async function getAuthedUserAndProfile() {
+  // 1) session/user (who is logged in)
+  const { data: { user }, error: userErr } = await supabaseClient.auth.getUser();
+  if (userErr) throw userErr;
+  if (!user) throw new Error("Not logged in");
+
+  // 2) profile (name/team_name stored in public.profiles)
+  const { data: profile, error: profileErr } = await supabaseClient
+    .from("profiles")
+    .select("name, team_name")
+    .eq("id", user.id)
+    .single();
+
+  if (profileErr) throw profileErr;
+
+  return {
+    user_id: user.id,
+    name: profile?.name || "",
+    team_name: profile?.team_name || ""
+  };
+}
+
 
 /*********************
  * RESPONSES.HTML
@@ -582,7 +618,7 @@ function buildResponsesDropdown() {
 		select.append(`<option value=${w}>Episode ${w}</option>`);
 	});
 	select.append(`<option value="final_three"}>Final Three</option>`)
-	if (CURRENT_WEEK >= 11) {
+	if (CURRENT_WEEK >= FINAL_EIGHT_VOTE_WEEK) {
 		select.append(`<option value="final_eight"}>Final Eight</option>`)
 	}
 	container.append(select);
@@ -614,29 +650,28 @@ async function init_responses() {
 			let curName = $("#past_responses_name option:selected").val();
 			let curVote = $("#past_responses_vote option:selected").val();
 			if (curName.length < 1 || curVote.length < 1) {
-				alert("Please select both a name and a vote/episode"); // clean this up to not be an alert
+				// alert("Please select both a name and a vote/episode"); // clean this up to not be an alert
+				$("#past_responses").empty().append(`<br><h3>Please select both a name and a vote/episode</h3>`);
 			} else if (curVote === "final_eight") {
 				if (!scores_responses[curName][curVote]) { 
-					ifEmptyHTML();
+					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
-					let response_filter = responses.filter(s => s.name===curName && s.week===11)[0];
-					//console.log("CALCULATE FINAL EIGHT SCORE")
+					let response_filter = responses.filter(s => s.name===curName && s.week===FINAL_EIGHT_VOTE_WEEK)[0];
 					getWeeklyResults(scores_filter, response_filter, curVote);
 				};			
 			} else if (curVote === "final_three") {
 				if (!scores_responses[curName][curVote]) { 
-					ifEmptyHTML();
+					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
-					let response_filter = responses.filter(s => s.name===curName && s.week===1)[0];
-					//console.log("CALCULATE FINAL THREE SCORE")
+					let response_filter = responses.filter(s => s.name===curName && s.week===FINAL_THREE_VOTE_WEEK)[0];
 					getWeeklyResults(scores_filter, response_filter, curVote);
 				};				
 			} else {
 				curVote = parseInt(curVote,10);
 				if (!scores_responses[curName][curVote]) { 
-					ifEmptyHTML();
+					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.name===curName && s.week===curVote)[0];
@@ -651,34 +686,33 @@ async function init_responses() {
 };
 
 function getWeeklyResults(score, response, curVote) {
+	$("#past_responses").empty();
 	$("#past_responses").append("<h3 id='responses_table_header'></h3>");
 	$("#past_responses").append("<table id='responses_table'></table>");
 	if (curVote == "final_three") {
-		// NEED TO VERIFY THAT THIS WORKS
 		$("#responses_table_header").html("Final Three");
 		$("#responses_table").html(
 			"<colgroup><col><col></colgroup>" +
-			"<tr><th>Pick</th><th>Points Earned</th></tr>" +
-			"<tr><td>" + response.pick_1 + "</td><td>"+ score.pick_1 +"</td></tr>" +
-			"<tr><td>" + response.pick_2 + "</td><td>"+ score.pick_2 +"</td></tr>" +
-			"<tr><td>" + response.pick_3 + "</td><td>"+ score.pick_3 +"</td></tr>"
+			"<tr><th>Pick</th><th>Points Earned</th><th></th></tr>" +
+			"<tr><td>" + response.pick_1 + "</td><td>"+ score.pick_1 +"</td><td></td></tr>" +
+			"<tr><td>" + response.pick_2 + "</td><td>"+ score.pick_2 +"</td><td></td></tr>" +
+			"<tr><td>" + response.pick_3 + "</td><td>"+ score.pick_3 +"</td><td></td></tr>"
 		);
 	} else if (curVote == "final_eight") {
-		// NEED TO VERIFY THAT THIS WORKS
 		$("#responses_table_header").html("Final Eight");
 		$("#responses_table").html(
 			"<colgroup><col><col></colgroup>" +
-			"<tr><th>Rank</th><th>Name</th></tr>" +
-			"<tr><td>1st</td><td>"+ response.place_1 +"</td></tr>" +
-			"<tr><td>2nd</td><td>"+ response.place_2 +"</td></tr>" +
-			"<tr><td>3rd</td><td>"+ response.place_3 +"</td></tr>" +
-			"<tr><td>4th</td><td>"+ response.place_4 +"</td></tr>" +
-			"<tr><td>5th</td><td>"+ response.place_5 +"</td></tr>" +
-			"<tr><td>6th</td><td>"+ response.place_6 +"</td></tr>" +
-			"<tr><td>7th</td><td>"+ response.place_7 +"</td></tr>" +
-			"<tr><td>8th</td><td>"+ response.place_8 +"</td></tr>"
+			"<tr><th>Rank</th><th>Name</th><th></th></tr>" +
+			"<tr><td>1st</td><td>"+ response.place_1 +"</td><td></td></tr>" +
+			"<tr><td>2nd</td><td>"+ response.place_2 +"</td><td></td></tr>" +
+			"<tr><td>3rd</td><td>"+ response.place_3 +"</td><td></td></tr>" +
+			"<tr><td>4th</td><td>"+ response.place_4 +"</td><td></td></tr>" +
+			"<tr><td>5th</td><td>"+ response.place_5 +"</td><td></td></tr>" +
+			"<tr><td>6th</td><td>"+ response.place_6 +"</td><td></td></tr>" +
+			"<tr><td>7th</td><td>"+ response.place_7 +"</td><td></td></tr>" +
+			"<tr><td>8th</td><td>"+ response.place_8 +"</td><td></td></tr>"
 		);
-	} else if (curVote == 14) {
+	} else if (curVote == FINAL_VOTE_WEEK) {
 		$("#responses_table_header").html("Finale");
 		$("#responses_table").html(
 			"<colgroup><col><col><col></colgroup>" +
@@ -694,9 +728,10 @@ function getWeeklyResults(score, response, curVote) {
 			"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + response.shot_in_the_dark + "</td><td>"+ score.shot_in_the_dark +"</td></tr>" + 
 			"<tr><td><strong>Fish Caught</strong></td><td>" + response.fish_catch + "</td><td>"+ score.fish_catch +"</td></tr>" +
 			"<tr><td><strong>Unanimous Vote</strong></td><td>" + response.vote_unanimous + "</td><td>"+ score.vote_unanimous +"</td></tr>" +
-			"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + response.jeff_joke + "</td><td>"+ score.jeff_joke +"</td></tr>"
+			"<tr><td><strong>Most Confessionals</strong></td><td>" + response.confessionals + "</td><td>"+ score.confessionals +"</td></tr>" + 
+			"<tr><td><strong>Crying</strong></td><td>" + response.crying + "</td><td>"+ score.crying +"</td></tr>"
 		);
-	} else if (curVote >= 11) {
+	} else if (curVote >= FINAL_THREE_VOTE_WEEK) {
 		$("#responses_table_header").html("Episode "+String(curVote));
 		$("#responses_table").html(
 			"<colgroup><col><col><col></colgroup>" +
@@ -711,7 +746,8 @@ function getWeeklyResults(score, response, curVote) {
 			"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + response.shot_in_the_dark + "</td><td>"+ score.shot_in_the_dark +"</td></tr>" + 
 			"<tr><td><strong>Fish Caught</strong></td><td>" + response.fish_catch + "</td><td>"+ score.fish_catch +"</td></tr>" +
 			"<tr><td><strong>Unanimous Vote</strong></td><td>" + response.vote_unanimous + "</td><td>"+ score.vote_unanimous +"</td></tr>" +
-			"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + response.jeff_joke + "</td><td>"+ score.jeff_joke +"</td></tr>"
+			"<tr><td><strong>Most Confessionals</strong></td><td>" + response.confessionals + "</td><td>"+ score.confessionals +"</td></tr>" + 
+			"<tr><td><strong>Crying</strong></td><td>" + response.crying + "</td><td>"+ score.crying +"</td></tr>"
 		);
 	} else {
 		$("#responses_table_header").html("Episode "+String(curVote));
@@ -730,16 +766,8 @@ function getWeeklyResults(score, response, curVote) {
 			"<tr><td><strong>Shot-in-the-Dark Played</strong></td><td>" + response.shot_in_the_dark + "</td><td>"+ score.shot_in_the_dark +"</td></tr>" + 
 			"<tr><td><strong>Fish Caught</strong></td><td>" + response.fish_catch + "</td><td>"+ score.fish_catch +"</td></tr>" +
 			"<tr><td><strong>Unanimous Vote</strong></td><td>" + response.vote_unanimous + "</td><td>"+ score.vote_unanimous +"</td></tr>" +
-			"<tr><td><strong>Jeff Laugh at Last Place</strong></td><td>" + response.jeff_joke + "</td><td>"+ score.jeff_joke +"</td></tr>"
-		);
-	};
-};
-    
-function ifEmptyHTML() {
-	var html_length = $("#past_responses").children().length;
-	if (html_length === 0) {
-		$("#past_responses").append(
-			"<h3></h3><span>Nothing submitted in this category, please select again.</span>"
+			"<tr><td><strong>Most Confessionals</strong></td><td>" + response.confessionals + "</td><td>"+ score.confessionals +"</td></tr>" + 
+			"<tr><td><strong>Crying</strong></td><td>" + response.crying + "</td><td>"+ score.crying +"</td></tr>"
 		);
 	};
 };
@@ -754,6 +782,14 @@ async function init_results() {
         window.location = "responses.html";
     });
     $('#LandingPage').click(function() {
+        window.location = "index.html";
+    });
+	$('#enterBtn').click(function() {
+        window.location = "index.html";
+		// NEED TO CREATE SEPARATE form.html PAGE 
+		// OR FIND WAY TO LOAD INDEX AND PROCEED TO FORM
+    });
+	$('#readmeBtn').click(function() {
         window.location = "index.html";
     });
 
@@ -852,38 +888,21 @@ function flattenScores(scores, players) {
 	for (const player of players) {
 		const entry = {
 			name: player,
-			total: 0,
-			"Episode 1": 0,
-			"Episode 2": 0,
-			"Episode 3": 0,
-			"Episode 4": 0,
-			"Episode 5": 0,
-			"Episode 6": 0,
-			"Episode 7": 0,
-			"Episode 8": 0,
-			"Episode 9": 0,
-			"Episode 10": 0,
-			"Episode 11": 0,
-			"Episode 12": 0,
-			"Episode 13": 0,
-			"Episode 14": 0,
-			"Final Eight": 0,
-			"Final Three": 0
+			total: 0
 		};
-
-		// Fill values from the scores schema
 		const p = scores[player];
-		for (let w = 1; w <= 13; w++) {
+		for (let w = 1; w <= CURRENT_WEEK; w++) {
+			entry[`Episode ${w}`] = 0;
 			if (p[w] && typeof p[w].total === "number") {
 				entry[`Episode ${w}`] = p[w].total;
 				entry.total += p[w].total;
 			}
 		}
-		if (p.final_eight) {
+		if (p.final_eight && CURRENT_WEEK>=FINAL_EIGHT_VOTE_WEEK) {
 			entry["Final Eight"] = p.final_eight.total;
 			entry.total += p.final_eight.total;
 		}
-		if (p.final_three) {
+		if (p.final_three && CURRENT_WEEK>=FINAL_THREE_VOTE_WEEK) {
 			entry["Final Three"] = p.final_three.total;
 			entry.total += p.final_three.total;
 		}
@@ -1144,7 +1163,6 @@ function final_eight_calcV2(scores, responses) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calcV2(scores, responses){
-	const FINAL_THREE = ['Ozzy', 'Kyle', 'Coach'];
 	const submit_week = 1;
 	const matched = responses.filter(r => r.week === submit_week);
 	for (let i=0; i<matched.length; i++) {
@@ -1159,4 +1177,164 @@ function final_three_calcV2(scores, responses){
 	};
 	return scores;
 };
-//*/
+
+
+/*********************
+ * LOGIN.HTML
+ *********************/
+function setupLogin() {
+	$('#enterBtn').on('click', async () => {
+		const { data: { session } } = await supabaseClient.auth.getSession();
+		if (session) {
+			// already logged in → show form
+			// window.location.href = 'index.html';
+			$('.title_img').addClass('isHidden');
+			$('#survivor_form').removeClass('isHidden');
+			$('#advance_form').removeClass('isHidden');
+			initTabs();
+		} else {
+			// not logged in → go to login page
+			window.location.href = 'login.html';
+		}
+	});
+	$('#signup2').on('click', () => {
+		$('#signup_name').removeClass('isHidden');
+		$('#signup_teamName').removeClass('isHidden');
+		$('#signup').addClass('isHidden');
+		$('#signup2').removeClass('isHidden');
+	});
+	// SIGNUP
+	$('#signup').on('click', async () => {
+		const user_name = $('#name').val();
+		const team_name = $('#team_name').val();
+		const email = $('#email').val();
+		const password = $('#password').val();
+		const { data, error } = await supabaseClient.auth.signUp({
+			email,
+			password
+		});
+		if (error) {
+			alert(error.message);
+			return;
+		}
+		await supabaseClient.from('profiles').insert({
+			id: data.user.id,
+			name: user_name,
+			team_name: team_name
+		});
+		window.location.href = 'login.html';
+	});
+	$('#signup').on('click', async () => {
+		const name = $('#name').val();
+		const team_name = $('#team_name').val();
+		const email = $('#email').val();
+		const password = $('#password').val();
+
+		const { error } = await supabaseClient.auth.signUp({
+			email,
+			password,
+			options: { data: { name, team_name } }
+		});
+
+		if (error) return alert(error.message);
+
+		window.location.href = 'login.html';
+	});
+	// LOGIN
+	$('#login').on('click', async () => {
+		const email = $('#email').val();
+		const password = $('#password').val();
+		const { error } = await supabaseClient.auth.signInWithPassword({
+			email,
+			password
+		});
+		if (error) {
+			alert(error.message);
+			return;
+		}
+		window.location.href = 'results.html';
+	});
+
+	// Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const toggle = document.querySelector(".nav-toggle");
+    const nav = document.getElementById("primary-nav");
+
+    function setOpen(isOpen) {
+      nav.dataset.open = String(isOpen);
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      document.documentElement.classList.toggle("nav-open", isOpen);
+    }
+
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.dataset.open === "true";
+      setOpen(!isOpen);
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    // Close when clicking a link (mobile)
+    nav.addEventListener("click", (e) => {
+      if (e.target.matches("a")) setOpen(false);
+    });
+
+    // Ensure nav resets when resizing to desktop
+    const mq = window.matchMedia("(min-width: 821px)");
+    mq.addEventListener?.("change", (e) => {
+      if (e.matches) setOpen(false);
+    });
+};
+
+$(document).ready(function () {
+	const page = (location.pathname.split("/").pop() || "").toLowerCase();
+	const protectedPages = ["results.html", "responses.html", "form.html"];
+	if (protectedPages.includes(page)) {
+		checkLogin();
+	}
+	refreshNav();
+});
+
+async function checkLogin() {
+	const { data: { user } } = await supabaseClient.auth.getUser();
+	if (!user) {
+		window.location.replace("login.html");
+	};
+};
+
+$(document).on("click", "#logoutBtn", async (e) => {
+	e.preventDefault();
+	const { error } = await supabaseClient.auth.signOut();
+	if (error) return alert(error.message);
+	window.location.href = "login.html";
+});
+
+async function refreshNav() {
+	const { data } = await supabaseClient.auth.getSession();
+	if (data.session) {
+		$(".nav-actions").html(`
+			<a class="btn btn-solid-green" href="form.html">Submit Picks</a>
+			<a class="nav-link" id="logoutBtn" href="login.html">Log Out</a>
+		`);
+		$(".nav-list").html(`
+			<li><a class="nav-link" href="rules.html">Rules</a></li>
+			<li><a class="nav-link" href="results.html">Results</a></li>
+			<li><a class="nav-link" href="responses.html">Responses</a></li>
+		`);
+	} else {
+		$(".nav-list").html(`
+			<li><a class="nav-link" href="rules.html">Rules</a></li>
+		`);
+		$(".nav-actions").html(`
+			<a class="btn btn-solid" href="login.html">Login</a>
+			<a class="btn btn-solid" href="signup.html">Sign Up</a>
+		`);
+	}
+};
+$(refreshNav);
+
+

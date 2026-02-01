@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="images/torch.gif">
+        <link rel="icon" href="images/survivor_fantasy_logo.png">
         <title>Fantasy Survivor</title>
 	   
         <!-- jQuery -->
@@ -23,26 +23,63 @@
         
     </head>
     <body>
-        <div class="survivor_form">
-            <div class="results_title">
-                <br>
-                <h3>SOMERVILLE SURVIVORS FANTASY LEAGUE</h3>
-                <h3>SEASON 50</h3>
-                <h1>RESULTS</h1>
-                <!--<br>-->
-                <p id="PastResponsesText"><button id="PastResponses">Click Here</button> to see past responses and point breakdown</p>
-				<p id="LandingPageText"><button id="LandingPage">Click Here</button> to return to main page</p>
-				<br>
+        <header class="site-header">
+            <div class="container header-inner">
+                <a class="brand" href="results.html">
+                    <span class="brand-text">Somerville Survivors Fantasy League</span>
+                </a>
+                <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
+                    <span class="sr-only">Toggle menu</span>
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+                <nav id="primary-nav" class="site-nav" aria-label="Primary" data-open="false">
+                    <ul class="nav-list">
+                        <li><a class="nav-link" href="rules.html">Rules</a></li>
+                        <li><a class="nav-link" href="results.html">Results</a></li>
+                        <li><a class="nav-link" href="responses.html">Responses</a></li>
+                    </ul>
+                    <div class="nav-actions">
+                        <a class="btn btn-solid" href="login.html">Login</a>
+                        <a class="btn btn-solid" href="signup.html">Sign Up</a>
+                    </div>
+                </nav>
             </div>
-            <div class="graph">
-                <div id="chart"></div>
-            </div>       
-        </div>
-        
+        </header>
+        <main class="container">
+            <div class="survivor_form">
+                <!-- <div class="results_title"> -->
+                    <!-- <br>
+                    <h3>SOMERVILLE SURVIVORS FANTASY LEAGUE</h3>
+                    <h3>SEASON 50</h3>
+                    <div>
+                        <button id="enterBtn">Submit Picks</button><tab></tab>
+                        <button id="PastResponses">View Responses</button><tab></tab>
+                        <button id="readmeBtn">Rules</button><tab></tab>
+                    </div> -->
+                    <h1>SEASON 50 RESULTS</h1>
+                    <!--<br>-->
+                    <!-- <p id="PastResponsesText"><button id="PastResponses">Responses</button> to see past responses and point breakdown</p>
+                    <p id="LandingPageText"><button id="LandingPage">Click Here</button> to return to main page</p> -->
+                    <br>
+                <!-- </div> -->
+                <div class="graph">
+                    <div id="chart"></div>
+                </div>       
+            </div>
+        </main>
+        <footer>
+            <div class="footer-bottom">
+                <p class="footer-disclaimer" style="font-size:12px;">
+                This site is not affiliated with, associated, authorized, endorsed by, or officially connected
+                with SURVIVOR, CBS, SEG, or any of its affiliates. Images used are the property of their
+                respective trademark holders.
+                </p>
+            </div>
+        </footer>
     </body>
     
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             init_results();
         });
     </script>

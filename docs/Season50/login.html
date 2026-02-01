@@ -9,10 +9,6 @@
 	   
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        
-        <!-- D3 -->
-        <script src="https://ajax.googleapis.com/ajax/libs/d3js/7.9.0/d3.min.js"></script>
-        <script src="d3-tip.js"></script>
 
         <!-- Supabase -->
         <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
@@ -43,49 +39,38 @@
                 </nav>
             </div>
         </header>
-        
-        <div class="title_img">
-            <!-- <div class="title_text">
-                <br>
-                <p>SOMERVILLE SURVIVORS<br>FANTASY LEAGUE</p>
-                <p>SEASON 50<br></p>
-                <br> -->
-                <!-- <button id="loginBtn">LOGIN</button>
-				<br><br> -->
-                <!-- <button id="enterBtn">SUBMIT PICKS</button> -->
-				<!-- <br><br>
-                <button id="resultsBtn">SEE RESULTS</button>
-                <br><br> -->
-                <!-- <button id="readmeBtn">RULES</button>
-            </div> -->
-        </div>
-        
-        <main class="container">
-            <div id="survivor_form" class="isHidden"><br></div>
-            <div id="advance_form" class="isHidden">
-                <div id="progress_buttons">
-                    <button type="button" id="prevBtn">Previous</button>
-                    <button type="button" id="nextBtn">Next</button>
-                    <button type="button" id="submitBtn" class="isHidden">Submit</button>
-                </div>
-                <div id="progress_bar">
-                    <progress value="0" max="100"></progress>
-                </div>
+        <!-- <main class="container page-content login-page">
+            <div class="login_card">
+                <h3>Welcome! Jeff is Watching</h3>
+                <input id="signup_name" placeholder="Your name" class="isHidden" /><br>
+                <input id="signup_teamName" placeholder="Team name" class="isHidden" /><br>
+                <input id="email" type="email" placeholder="Email" /><br>
+                <input id="password" type="password" placeholder="Password" /><br>
+                <button id="login">Login</button><br>
+                <button id="signup">Sign Up</button>
+                <button id="signup2" class="isHidden">Sign Up</button>
             </div>
-            <div id="success_screen" class="isHidden">
-                <div class="success-wrap">
-                    <div class="success-card">
-                        <h1 id="success-text">Your picks were submitted successfully</h1>
-                        <br>
-                        <div class="btn-row">
-                            <button class="btn secondary" id="homeBtn">Home</button>
-                            <button class="btn" id="resultsBtn2">Results</button>
-                        </div>
+        </main> -->
+        <main class="container page-content login-page">
+            <section class="card auth-card" aria-labelledby="login-title">
+                <form class="form" id="login-form">
+                    <div class="field">
+                        <label class="label" for="email">Email Address</label>
+                        <input class="input" id="email" name="email" type="email" autocomplete="email" required />
                     </div>
+                    <div class="field">
+                        <label class="label" for="password">Password</label>
+                        <input class="input" id="password" name="password" type="password" autocomplete="current-password" required />
+                    </div>
+                </form>
+                <br>
+                <div class="form-row">
+                    <a class="link subtle" href="/forgot-password">Forgot password?</a>
                 </div>
-            </div>
+                <br>
+                <button class="btn btn-solid btn-block" type="submit" style="font-size:24px;" id="login">Login</button>
+            </section>
         </main>
-        
         <footer>
             <div class="footer-bottom">
                 <p class="footer-disclaimer" style="font-size:12px;">
@@ -98,7 +83,7 @@
     </body>
     <script>
         $(document).ready(function(){
-            init();
+            setupLogin();
         });
     </script>
 </html>
