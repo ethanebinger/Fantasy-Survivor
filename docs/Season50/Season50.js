@@ -5,11 +5,19 @@
  * - [DONE] have flatten_scores() only set up for the actively scored weeks 
  * - [DONE] remove alert from responses.html and show as text
  * - [DONE] update responses.html table to look less janky, same applies to preview table on mobile
- * - get players list (using team names?)
+ * - [DONE] get players list (using team names?)
  * - [DONE] update and align bonus questions
- * - add login functionality --> idea is to have the submit button go to a login page. user can either enter login info
+ * - [DONE] add login functionality --> idea is to have the submit button go to a login page. user can either enter login info
  *   (username/email, password) or sign up. after signing up they are presented with the rules readme as HTML. then the form
  *   is loaded and uses the preset tab progression
+ * - validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
+ * - [DONE] D3 table not fitting with expanded names (using team_name) maybe can wrap them or something?
+ * - clean up the formatting for the rules.html page
+ * - clean up init() and code within HTML that is no longer used, especially on the index.html page
+ * - decide what to do with the index.html page is still needed as landing page? image takes a while to load on start
+ * - force footer with disclaimer to bottom of page
+ * - review and clean CSS code
+ * - make the survivor-cc images fit within the boxes neatly (evenly cropped)
  * 
  *****************************/
 
@@ -18,8 +26,8 @@
  *****************************/
 const CURRENT_WEEK = 1;
 const CURRENT_EP_DATE = '2/25/26'
-const EPISODE_NAME = 'In the hands of the fans'
-const FINAL_THREE_VOTE_WEEK = 1;
+const EPISODE_NAME = 'Epic Party'
+const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
 const CONTESTANTS = {
@@ -54,18 +62,14 @@ const CONTESTANTS = {
 	"Stephanie": "Vatu"
 };
 const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
-const PLAYERS = [
-	"Ethan",
-	"Anastassia"
-]
 const QUESTIONS = [
   {
     key: "player_name",
     round: `You are currently voting for<br>Episode ${CURRENT_WEEK}<br>Airing on ${CURRENT_EP_DATE}<br><br>`,
-    prompt: "What is your name?",
+    prompt: "", //"What is your name?",
     details: "",
     type: "dropdown", 
-	options: PLAYERS,
+	options: "",
     weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
   },
   {
@@ -183,7 +187,9 @@ const BONUS_QUESTIONS = [
 	}
 ];
 
-// ------------- Supabase client init -------------
+/*****************************
+ * Supabase client init
+ *****************************/
 const SUPABASE_URL = 'https://vbqyvyocwoqatmjytysy.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_9vCZvZxuWp0hO9G7aCzSkg_Nie5BdIw';
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -202,6 +208,9 @@ function buildTabs() {
 			buildFinalQuestionTabs(q, 3);
 		} else if (q.key=='final_eight') {
 			buildFinalQuestionTabs(q, 8);
+		} else if (q.key=='player_name') {
+			const $tab = $(`<div class="tab"><h1>${q.round}</h1></div>`);
+			form.append($tab);
 		} else {
 			const $tab = $(`
 				<div class="tab">
@@ -452,7 +461,6 @@ function formatLabel(key) {
 }
 
 
-
 /***************************************
  * PUSH RESPONSES TO SUPABASE
  ***************************************/
@@ -486,51 +494,49 @@ function collectResponses() {
 }
 async function submitToSupabase() {
 	// Get logged in user information
-	const user_info = await getAuthedUserAndProfile();
-	// Gather responses directly from DOM
+	const { data: { user } } = await supabaseClient.auth.getUser();
+	if (!user) {
+		alert("You must be logged in to submit.");
+		window.location.href = "login.html";
+		return;
+	};
+	// Gather responses (directly from DOM) and user metadata (name, team_name)
 	const payload = collectResponses();
-	console.log(payload);
-
+	const meta = user.user_metadata || {};
 	// Build row for responses table
 	const row = {
 		week: (typeof CURRENT_WEEK !== 'undefined') ? CURRENT_WEEK : null,
 		submit_time: new Date().toISOString(),
-		user_id: user_info.user_id,
-		name: user_info.name,
-		team_name: user_info.team_name,
-		// player: payload['player_name'] || null,
+		user_id: user.id,
+		name: meta.name || null,
+		team_name: meta.team_name || null,
 		payload
 	};
-
-	// Update UI: disable submit, show progress text
+	// Submit responses to supabase
 	$('#submitBtn').prop('disabled', true).text('Submitting…');
 	try {
-		const { data, error } = await supabaseClient
-			.from(SUPABASE_TABLE)       // table name
-			.insert([row])       // array of rows
-			.select();           // optional: return inserted rows
-
+		const { error } = await supabaseClient
+			.from(SUPABASE_TABLE)
+			.insert([row]);
 		if (error) {
 			console.error('Supabase insert error:', error);
 			alert('Sorry, there was a problem saving your picks. Please try again.');
-			$('#submitBtn').prop('disabled', false).text('Submit');
 			return;
 		}
-
-		// Success UI
 		$('#success_screen').removeClass('isHidden');
 		$('#survivor_form').addClass('isHidden');
 		$('#advance_form').addClass('isHidden');
-
 	} catch (e) {
-		// Error UI
 		console.error('Unexpected error:', e);
 		$('#success-text').text('Unexpected error submitting. Please try again.');
 		$('#success_screen').removeClass('isHidden');
 		$('#survivor_form').addClass('isHidden');
 		$('#advance_form').addClass('isHidden');
-	}
-}
+	} finally {
+		$('#submitBtn').prop('disabled', false).text('Submit');
+	};
+};
+
 
 /********************************************
  * LOAD RESULTS AND RESPONSES FROM SUPABASE
@@ -550,13 +556,15 @@ async function requestFromSupabase(table) {
 
 // Function to get player responses
 async function loadResponses() {
-  const rows = await requestFromSupabase(SUPABASE_TABLE);
-  return rows.map(row => ({
-    name: row.player,
-    submit_time: new Date(row.submit_time),
-    week: row.week,
-    ...row.payload
-  }));
+	const rows = await requestFromSupabase(SUPABASE_TABLE);
+	return rows.map(row => ({
+		user_id: row.user_id,
+		name: row.name,
+		team_name: row.team_name,
+		submit_time: new Date(row.submit_time),
+		week: row.week,
+		...row.payload
+	}));
 }
 
 // Function to get results to score against
@@ -570,39 +578,40 @@ async function loadResults() {
 
 // Function to get currently logged in user and their profile information
 async function getAuthedUserAndProfile() {
-  // 1) session/user (who is logged in)
-  const { data: { user }, error: userErr } = await supabaseClient.auth.getUser();
-  if (userErr) throw userErr;
-  if (!user) throw new Error("Not logged in");
+	// 1) session/user (who is logged in)
+	const { data: { user }, error: userErr } = await supabaseClient.auth.getUser();
+	if (userErr) throw userErr;
+	if (!user) throw new Error("Not logged in");
 
-  // 2) profile (name/team_name stored in public.profiles)
-  const { data: profile, error: profileErr } = await supabaseClient
-    .from("profiles")
-    .select("name, team_name")
-    .eq("id", user.id)
-    .single();
+	// 2) profile (name/team_name stored in public.profiles)
+	const { data: profile, error: profileErr } = await supabaseClient
+		.from("profiles")
+		.select("name, team_name")
+		.eq("id", user.id)
+		.single();
 
-  if (profileErr) throw profileErr;
+	if (profileErr) throw profileErr;
 
-  return {
-    user_id: user.id,
-    name: profile?.name || "",
-    team_name: profile?.team_name || ""
-  };
+	return {
+		user_id: user.id,
+		name: profile?.name || "",
+		team_name: profile?.team_name || ""
+	};
 }
 
 
 /*********************
  * RESPONSES.HTML
  *********************/
-function buildResponsesDropdown() {
+function buildResponsesDropdown(responses) {
 	// Players
 	let container = $(`#past_responses_name-body`);
 	let select = $('<select></select>')
 		.attr('id', 'past_responses_name')
 		.attr('style', 'font-size:18px')
 		.append('<option value="">-- Select One --</option>');
-	PLAYERS.forEach(p => {
+	const active_teams = getActivePlayers(responses, 'team_name')
+	active_teams.forEach(p => {
 		select.append(`<option value="${p}">${p}</option>`);
 	});
 	container.append(select);
@@ -617,10 +626,12 @@ function buildResponsesDropdown() {
 	weeks.forEach(w => {
 		select.append(`<option value=${w}>Episode ${w}</option>`);
 	});
-	select.append(`<option value="final_three"}>Final Three</option>`)
+	if (CURRENT_WEEK >= FINAL_THREE_VOTE_WEEK) {
+		select.append(`<option value="final_three"}>Final Three</option>`)
+	};
 	if (CURRENT_WEEK >= FINAL_EIGHT_VOTE_WEEK) {
 		select.append(`<option value="final_eight"}>Final Eight</option>`)
-	}
+	};
 	container.append(select);
 }
 
@@ -630,14 +641,14 @@ async function init_responses() {
 		window.location = "results.html";
     });
 
-	// Function to generate dropdown selection menus
-	buildResponsesDropdown();
-
 	try {
         // wait for responses and results to load from supabase
         const saved_responses = await loadResponses();
 		const responses = keepLastBySubmitTime(saved_responses);
         const results = await loadResults();
+
+		// Function to generate dropdown selection menus
+		buildResponsesDropdown(responses);
 
 		// calculate scores once data is ready
         scores_responses = calculateScoresV2(results, responses);
@@ -657,7 +668,7 @@ async function init_responses() {
 					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
-					let response_filter = responses.filter(s => s.name===curName && s.week===FINAL_EIGHT_VOTE_WEEK)[0];
+					let response_filter = responses.filter(s => s.team_name===curName && s.week===FINAL_EIGHT_VOTE_WEEK)[0];
 					getWeeklyResults(scores_filter, response_filter, curVote);
 				};			
 			} else if (curVote === "final_three") {
@@ -665,7 +676,7 @@ async function init_responses() {
 					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
-					let response_filter = responses.filter(s => s.name===curName && s.week===FINAL_THREE_VOTE_WEEK)[0];
+					let response_filter = responses.filter(s => s.team_name===curName && s.week===FINAL_THREE_VOTE_WEEK)[0];
 					getWeeklyResults(scores_filter, response_filter, curVote);
 				};				
 			} else {
@@ -674,7 +685,7 @@ async function init_responses() {
 					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
-					let response_filter = responses.filter(s => s.name===curName && s.week===curVote)[0];
+					let response_filter = responses.filter(s => s.team_name===curName && s.week===curVote)[0];
 					getWeeklyResults(scores_filter, response_filter, curVote);
 				};				
 			};
@@ -739,7 +750,7 @@ function getWeeklyResults(score, response, curVote) {
 			"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + response.reward + "</td><td>"+ score.reward +"</td></tr>" +
 			"<tr><td><strong>Wins Immunity</strong></td><td>" + response.immunity + "</td><td>"+ score.immunity +"</td></tr>" +
 			"<tr><td><strong>Title Quote</strong></td><td>" + response.title_quote + "</td><td>"+ score.title_quote +"</td></tr>" +
-			"<tr><td><strong>Goes on Journey</strong></td><td>" + response.summit + "</td><td>"+ score.summit +"</td></tr>" +
+			"<tr><td><strong>Goes on Journey</strong></td><td>" + response.journey + "</td><td>"+ score.journey +"</td></tr>" +
 			"<tr><td><strong>Nudity</strong></td><td>" + response.nudity + "</td><td>"+ score.nudity +"</td></tr>" +
 			"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + response.idol_found + "</td><td>"+ score.idol_found +"</td></tr>" +
 			"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + response.idol_played + "</td><td>"+ score.idol_played +"</td></tr>" +
@@ -759,7 +770,7 @@ function getWeeklyResults(score, response, curVote) {
 			"<tr><td><strong>Eliminated</strong></td><td>" + response.eliminated + "</td><td>"+ score.eliminated +"</td></tr>" +
 			"<tr><td><strong>Safe</strong></td><td>" + response.safe + "</td><td>"+ score.safe +"</td></tr>" +
 			"<tr><td><strong>Title Quote</strong></td><td>" + response.title_quote + "</td><td>"+ score.title_quote +"</td></tr>" +
-			"<tr><td><strong>Goes on Journey</strong></td><td>" + response.summit + "</td><td>"+ score.summit +"</td></tr>" +
+			"<tr><td><strong>Goes on Journey</strong></td><td>" + response.journey + "</td><td>"+ score.journey +"</td></tr>" +
 			"<tr><td><strong>Nudity</strong></td><td>" + response.nudity + "</td><td>"+ score.nudity +"</td></tr>" +
 			"<tr><td><strong>Idol or Advantage Found</strong></td><td>" + response.idol_found + "</td><td>"+ score.idol_found +"</td></tr>" +
 			"<tr><td><strong>Idol or Advantage Played</strong></td><td>" + response.idol_played + "</td><td>"+ score.idol_played +"</td></tr>" +
@@ -782,15 +793,10 @@ async function init_results() {
         window.location = "responses.html";
     });
     $('#LandingPage').click(function() {
-        window.location = "index.html";
-    });
-	$('#enterBtn').click(function() {
-        window.location = "index.html";
-		// NEED TO CREATE SEPARATE form.html PAGE 
-		// OR FIND WAY TO LOAD INDEX AND PROCEED TO FORM
+        window.location = "results.html";
     });
 	$('#readmeBtn').click(function() {
-        window.location = "index.html";
+        window.location = "rules.html";
     });
 
     try {
@@ -805,7 +811,7 @@ async function init_results() {
 		scores = final_eight_calcV2(scores, responses);
 
         // create D3 chart
-		const active_players = getActivePlayers(responses);
+		const active_players = getActivePlayers(responses, 'team_name');
         const scores_flat = flattenScores(scores, active_players);
 		createD3chart(scores_flat);
 
@@ -818,9 +824,10 @@ async function init_results() {
 function onlyUnique(value, index, self) {
 	return self.indexOf(value) === index;
 };
-function getActivePlayers(r) {
+function getActivePlayers(r, fieldName='name') {
+	// fieldName = 'name' || fieldName = 'team_name'
 	var players = [];
-	for (var i=0; i < r.length; i++) { players.push(r[i].name) };
+	for (var i=0; i < r.length; i++) { players.push(r[i][fieldName]) };
 	players = players.filter(onlyUnique).sort().reverse();
 	return players;
 };
@@ -837,30 +844,6 @@ function keepLastBySubmitTime(items) {
 };
 
 // Function to create score array from players
-function createScoreArrayV2(weeks, players){
-	var scores = {};
-	var questions = [
-		...QUESTIONS.map(item => item.key), 
-		...BONUS_QUESTIONS.map(item => item.key)
-	];
-	for (let p=0; p<players.length; p++) {
-		var player = players[p];
-		scores[player] = {};
-		for (let w=0; w<weeks.length; w++) {
-			var week = weeks[w];		
-			scores[player][week] = {'total':0};
-			for (let q=0; q<questions.length; q++) {
-				var question = questions[q];
-				if (question!='player_name' && question!='final_three' && question!='final_eight') { 
-					scores[player][week][question] = 0 
-				};
-			};
-		};
-		scores[player]['final_three'] = {'total':0, 'pick_1':0, 'pick_2':0, 'pick_3':0};
-		scores[player]['final_eight'] = {'total':0};
-	}
-	return scores;
-};
 function createScoreArrayV3(weeks, players) {
 	const scores = {};
 	const excluded = new Set(['player_name', 'final_three', 'final_eight']);
@@ -920,14 +903,15 @@ function createD3chart(scores) {
 	// Define chart elements
 	var margin = {top: 20, right: 20, bottom: 30, left: 80},
 		width = $('.graph').width() - margin.left - margin.right,
-		height = 480 - margin.top - margin.bottom;
+		height = (players.length * 80) - margin.top - margin.bottom;
 
 	// Define Scales and Axes
 	var x = d3.scaleLinear()
 		.range([0, width-100]);
 	var y = d3.scaleBand()
 		.domain(players)
-		.rangeRound([height, 0], 0.3);
+		.rangeRound([height, 0])
+		.padding(0.3);
 	var color = d3.scaleOrdinal()
 		.domain(keys)
 		.range(["#8dd3c7", "#ffffb3", "#bebada", 
@@ -994,9 +978,12 @@ function createD3chart(scores) {
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis);
-	chart.append("g")
+	var yAxisG = chart.append("g")
 		.attr("class", "y axis")
 		.call(yAxis);
+	yAxisG.selectAll(".tick text")
+    	.call(wrap, margin.left - 12);
+
 
 	// Add Legend
 	var legend = chart.append("g")
@@ -1021,6 +1008,45 @@ function createD3chart(scores) {
 		.text(function(d) { return d; });
 };
 
+// Wrap helper for D3 y-axis labels
+function wrap(text, width) {
+	if (width <= 10) return;
+	text.each(function () {
+		var text = d3.select(this);
+		var words = (text.text() || "")
+			.replace(/\u00A0/g, " ")
+			.trim()
+			.split(/\s+/)
+			.filter(Boolean)
+			.reverse();
+		var word, line = [];
+		var lineHeight = 1.1; // em
+		var y = text.attr("y");
+		var dy = parseFloat(text.attr("dy")) || 0;
+		text.text(null);
+		var tspan = text.append("tspan")
+			.attr("x", -6)
+			.attr("y", y)
+			.attr("dy", dy + "em");
+		while ((word = words.pop())) {
+			if (!word) continue;
+			line.push(word);
+			tspan.text(line.join(" "));
+			if (tspan.node().getComputedTextLength() > width && line.length > 1) {
+				line.pop();
+				tspan.text(line.join(" "));
+				line = [word];
+
+				tspan = text.append("tspan")
+				.attr("x", -6)
+				.attr("y", y)
+				.attr("dy", lineHeight + "em")   // ✅ constant spacing each new line
+				.text(word);
+			};
+		};
+	});
+};
+
 // Function to check if x in array y
 var inArray = function(x,y) {
     var i;
@@ -1035,7 +1061,7 @@ var inArray = function(x,y) {
 // FUNCTION TO CALCULATE SCORES FOR WEEKLY RESPONSES
 function calculateScoresV2(results, responses) {
 	// create empty score array using active players within responses array
-	var players = getActivePlayers(responses);
+	var players = getActivePlayers(responses, 'team_name');
 	var weeks = results.map(item => item.week).filter(onlyUnique).sort();
 	var scores = createScoreArrayV3(weeks, players);
 	// iterate through results
@@ -1049,7 +1075,7 @@ function calculateScoresV2(results, responses) {
 		for (let j=0; j<matched.length; j++) {
 			// responses for currently selected week and player
 			var response = matched[j];
-			var player = response.name
+			var player = response.team_name
 			// MAIN QUESTIONS
 			// Reward
 			if (response.reward && inArray(response.reward, result.reward)) {
@@ -1154,7 +1180,7 @@ function final_eight_calcV2(scores, responses) {
 	const matched = responses.filter(r => r.week === submit_week);
 	for (let i=0; i<matched.length; i++) {
 		const response = matched[i];
-		const player = response.name;
+		const player = response.team_name;
 		var score8 = which_castaway(response);
 		scores[player].final_eight.total += score8;
 	};
@@ -1167,7 +1193,7 @@ function final_three_calcV2(scores, responses){
 	const matched = responses.filter(r => r.week === submit_week);
 	for (let i=0; i<matched.length; i++) {
 		const response = matched[i];
-		const player = response.name;
+		const player = response.team_name;
 		['pick_1', 'pick_2', 'pick_3'].forEach(x => {
 			if (inArray(response[x], FINAL_THREE)) {
 				scores[player].final_three[x] += 30;
@@ -1179,69 +1205,67 @@ function final_three_calcV2(scores, responses){
 };
 
 
-/*********************
- * LOGIN.HTML
- *********************/
+/*******************************************
+ * LOGIN.HTML AND USER AUTHENTICATION LOGIC
+ *******************************************/
 function setupLogin() {
-	$('#enterBtn').on('click', async () => {
-		const { data: { session } } = await supabaseClient.auth.getSession();
-		if (session) {
-			// already logged in → show form
-			// window.location.href = 'index.html';
-			$('.title_img').addClass('isHidden');
-			$('#survivor_form').removeClass('isHidden');
-			$('#advance_form').removeClass('isHidden');
-			initTabs();
-		} else {
-			// not logged in → go to login page
-			window.location.href = 'login.html';
-		}
-	});
-	$('#signup2').on('click', () => {
-		$('#signup_name').removeClass('isHidden');
-		$('#signup_teamName').removeClass('isHidden');
-		$('#signup').addClass('isHidden');
-		$('#signup2').removeClass('isHidden');
-	});
 	// SIGNUP
 	$('#signup').on('click', async () => {
-		const user_name = $('#name').val();
-		const team_name = $('#team_name').val();
-		const email = $('#email').val();
-		const password = $('#password').val();
-		const { data, error } = await supabaseClient.auth.signUp({
-			email,
-			password
-		});
-		if (error) {
-			alert(error.message);
-			return;
-		}
-		await supabaseClient.from('profiles').insert({
-			id: data.user.id,
-			name: user_name,
-			team_name: team_name
-		});
-		window.location.href = 'login.html';
-	});
-	$('#signup').on('click', async () => {
+		// 0) lock form and get input user info
+		$('#signup').prop('disabled', true).text('Submitting…');
 		const name = $('#name').val();
 		const team_name = $('#team_name').val();
 		const email = $('#email').val();
 		const password = $('#password').val();
 
+		// 1) check if team_name already taken
+		const { data: taken } = await supabaseClient
+			.from('team_names')
+			.select('team_name')
+			.eq('team_name', team_name)
+			.maybeSingle();
+		if (taken) {
+			$('#signup').prop('disabled', false).text('Sign Up');
+			return alert('Team name already taken. Pick another.');
+		};
+
+		// 2) Register user
 		const { error } = await supabaseClient.auth.signUp({
 			email,
 			password,
 			options: { data: { name, team_name } }
 		});
+		if (error) {
+			$('#signup').prop('disabled', false).text('Sign Up');
+			// Duplicate email case
+			if ((error.message || '').includes('users_email_partial_key') ||
+				(error.status === 500 && (error.message || '').toLowerCase().includes('database error saving new user'))) {
+				alert('That email is already registered. Please log in.');
+				window.location.href = 'login.html';
+				return;
+			} else {
+				return alert(error.message);
+			}
+		}
 
-		if (error) return alert(error.message);
+		// 3) Reserve team name (now that user exists) in profiles table
+		const { error: profileErr } = await supabaseClient.from('profiles').insert({
+			id: data.user.id,
+			name,
+			team_name
+		});
+		if (reserveErr) { 
+			$('#signup').prop('disabled', false).text('Sign Up');
+			return alert('Team name just got taken. Pick another.');
+		};
 
+		// 4) Done, proceed to login
 		window.location.href = 'login.html';
 	});
+
 	// LOGIN
 	$('#login').on('click', async () => {
+		$('#login').prop('disabled', true).text('Loading…');
 		const email = $('#email').val();
 		const password = $('#password').val();
 		const { error } = await supabaseClient.auth.signInWithPassword({
@@ -1250,53 +1274,144 @@ function setupLogin() {
 		});
 		if (error) {
 			alert(error.message);
+			$('#login').prop('disabled', false).text('Login');
 			return;
 		}
 		window.location.href = 'results.html';
 	});
+};
+function setupLogin() {
+	// SIGNUP
+	$('#signup').on('click', async () => {
+		$('#signup').prop('disabled', true).text('Submitting…');
+		try {
+			// 0) Read + normalize inputs
+			const name = ($('#name').val() || '').trim();
+			const team_name = ($('#team_name').val() || '').trim();
+			const email = ($('#email').val() || '').trim().toLowerCase();
+			const password = ($('#password').val() || '');
+			if (!name || !team_name || !email || !password) {
+				alert('Please fill in all fields.');
+				return;
+			};
 
-	// Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+			// 1) Create auth user (capture data)
+			const { data, error } = await supabaseClient.auth.signUp({
+				email,
+				password,
+				options: { data: { name, team_name } }
+			});
+			if (error) {
+				alert(error.message);
+				return;
+			};
+			const userId = data?.user?.id;
+			if (!userId) {
+				// Can happen depending on auth settings (e.g., email confirmation flows)
+				alert("Signup completed, but there was an issue finishing profile setup. Please check your email or try logging in.");
+				return;
+			};
 
-    // Mobile nav toggle
-    const toggle = document.querySelector(".nav-toggle");
-    const nav = document.getElementById("primary-nav");
+			// 2) Insert into profiles (UNIQUE constraint on team_name enforces exclusivity)
+			const { error: profileErr } = await supabaseClient
+				.from('profiles')
+				.insert({ id: userId, name, team_name });
+			if (profileErr) {
+				// Unique constraint violation => team_name already taken
+				// Supabase/Postgres unique violations are SQLSTATE 23505.
+				if (profileErr.code === '23505') {
+					alert('Team name already taken. Pick another.');
+					return;
+				};
+				alert(profileErr.message);
+				return;
+			};
 
-    function setOpen(isOpen) {
-      nav.dataset.open = String(isOpen);
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      document.documentElement.classList.toggle("nav-open", isOpen);
-    }
+			// 3) Done, return to login page
+			window.location.href = 'login.html';
 
-    toggle.addEventListener("click", () => {
-      const isOpen = nav.dataset.open === "true";
-      setOpen(!isOpen);
-    });
+		} catch (err) {
+			alert(err?.message || 'Something went wrong.');
+		} finally {
+			$('#signup').prop('disabled', false).text('Sign Up');
+		};
+	});
 
-    // Close on Escape
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setOpen(false);
-    });
-
-    // Close when clicking a link (mobile)
-    nav.addEventListener("click", (e) => {
-      if (e.target.matches("a")) setOpen(false);
-    });
-
-    // Ensure nav resets when resizing to desktop
-    const mq = window.matchMedia("(min-width: 821px)");
-    mq.addEventListener?.("change", (e) => {
-      if (e.matches) setOpen(false);
-    });
+  	// LOGIN
+	$('#login').on('click', async () => {
+		$('#login').prop('disabled', true).text('Loading…');
+		try {
+			const email = ($('#email').val() || '').trim().toLowerCase();
+			const password = ($('#password').val() || '');
+			const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+			if (error) {
+				alert(error.message);
+				return;
+			};
+			window.location.href = 'results.html';
+		} finally {
+			$('#login').prop('disabled', false).text('Login');
+		};
+	});
 };
 
 $(document).ready(function () {
+	// Check Login
 	const page = (location.pathname.split("/").pop() || "").toLowerCase();
 	const protectedPages = ["results.html", "responses.html", "form.html"];
 	if (protectedPages.includes(page)) {
 		checkLogin();
 	}
+	
+	// Refresh Navigation
+	async function refreshNav() {
+		const { data, error } = await supabaseClient.auth.getUser();
+		if (error) { console.error(error) };
+		const user = data?.user;
+		if (user && user.id) {
+			$(".nav-actions").html(`
+				<a class="btn btn-solid-green" href="form.html">Submit Picks</a>
+				<a class="nav-link" id="logoutBtn" href="login.html">Log Out</a>
+			`);
+			$(".nav-list").html(`
+				<li><a class="nav-link" href="rules.html">Rules</a></li>
+				<li><a class="nav-link" href="results.html">Results</a></li>
+				<li><a class="nav-link" href="responses.html">Responses</a></li>
+			`);
+		} else {
+			$(".nav-list").html(`
+				<li><a class="nav-link" href="rules.html">Rules</a></li>
+			`);
+			$(".nav-actions").html(`
+				<a class="btn btn-solid" href="login.html">Login</a>
+				<a class="btn btn-solid" href="signup.html">Sign Up</a>
+			`);
+		}
+	};
 	refreshNav();
+
+	// Hamburger / Mobile Menu Functionality
+	const toggle = document.querySelector(".nav-toggle");
+    const nav = document.getElementById("primary-nav");
+    function setOpen(isOpen) {
+		nav.dataset.open = String(isOpen);
+		toggle.setAttribute("aria-expanded", String(isOpen));
+		document.documentElement.classList.toggle("nav-open", isOpen);
+    }
+    toggle.addEventListener("click", () => {
+		const isOpen = nav.dataset.open === "true";
+		setOpen(!isOpen);
+    });
+    document.addEventListener("keydown", (e) => {
+    	if (e.key === "Escape") setOpen(false);
+    });
+    nav.addEventListener("click", (e) => {
+    	if (e.target.matches("a")) setOpen(false);
+    });
+    const mq = window.matchMedia("(min-width: 821px)");
+    mq.addEventListener?.("change", (e) => {
+		if (e.matches) setOpen(false);
+    });
 });
 
 async function checkLogin() {
@@ -1312,29 +1427,3 @@ $(document).on("click", "#logoutBtn", async (e) => {
 	if (error) return alert(error.message);
 	window.location.href = "login.html";
 });
-
-async function refreshNav() {
-	const { data } = await supabaseClient.auth.getSession();
-	if (data.session) {
-		$(".nav-actions").html(`
-			<a class="btn btn-solid-green" href="form.html">Submit Picks</a>
-			<a class="nav-link" id="logoutBtn" href="login.html">Log Out</a>
-		`);
-		$(".nav-list").html(`
-			<li><a class="nav-link" href="rules.html">Rules</a></li>
-			<li><a class="nav-link" href="results.html">Results</a></li>
-			<li><a class="nav-link" href="responses.html">Responses</a></li>
-		`);
-	} else {
-		$(".nav-list").html(`
-			<li><a class="nav-link" href="rules.html">Rules</a></li>
-		`);
-		$(".nav-actions").html(`
-			<a class="btn btn-solid" href="login.html">Login</a>
-			<a class="btn btn-solid" href="signup.html">Sign Up</a>
-		`);
-	}
-};
-$(refreshNav);
-
-
