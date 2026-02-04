@@ -26,9 +26,6 @@ body{
     display: flex;
     flex-direction: column;
 }
-.page-content{
-    flex: 1;
-}
 .title_img {
 	background-image: url("https://www.hollywoodreporter.com/wp-content/uploads/2026/01/TSurvivor50_Group_S1_3-2-e1768352522107.jpg"); 
 	position: relative;
@@ -579,50 +576,71 @@ g text {
 /* LOGIN.HTML     */
 /******************/
 .login-page {
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    height: auto;
+    overflow: visible;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    /* background-image: url("https://parade.com/.image/t_share/MjAyMTg5OTk4ODA2NTQxMzI0/1781428_26525bc.jpg");
-    position: relative;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover; */
-}
-/* .login-card {
-    width: 100%;
-    max-width: 360px;
-    padding: 24px;
-    text-align: center;
-} */
-
-/* .login-card {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 360px;
-    padding: 24px;
-    text-align: center;
+    justify-content: flex-start;
+    padding-top: 3rem;
+    gap: 1.25rem;
 }
 
-.login-card input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
+/******************/
+/* RULES.HTML     */
+/******************/
+.rules-page {
+    height: auto;
+    overflow: visible;
+}
+.rules-body {
     font-size: 24px;
 }
-.login-card button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    font-size: 24px;
-    cursor: pointer;
-} */
-/* #login {
-    margin-top: 4px;
-} */
+.rules-body h1{
+    letter-spacing: 2px;
+}
+.rules-body h3 {
+    letter-spacing: 1px;
+}
+.rules-table {
+    margin-left: 0;
+    margin-right: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 20px;
+    line-height: 1.35;
+    letter-spacing: 0.3px;
+}
+.rules-table th,
+.rules-table td {
+    padding: 8px 10px;
+    vertical-align: middle;
+}
+.rules-table thead th {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+.rules-table tbody td {
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.rules-table tbody tr:last-child td {
+    border-bottom: none; /* Remove last bottom border for clean edge */
+}
+/* Align numeric columns to the right */
+.rules-table th:nth-child(2),
+.rules-table th:nth-child(3),
+.rules-table td:nth-child(2),
+.rules-table td:nth-child(3) {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
 
 
 /***********************/
@@ -646,8 +664,9 @@ a{ color: inherit; text-decoration: none; }
 a:focus-visible{ outline: 2px solid var(--brand); outline-offset: 3px; }
 
 .container{
-  width: min(1100px, calc(100% - 2rem));
-  margin-inline: auto;
+    width: min(1100px, calc(100% - 2rem));
+    margin-inline: auto;
+    flex: 1 0 auto;
 }
 
 /* ----- Header ----- */
@@ -832,9 +851,10 @@ html.nav-open .hamburger::after{ top: 0; transform: rotate(-45deg); }
 }
 
 .footer-bottom{
-  padding-top: 1.25rem;
-  display: grid;
-  gap: .75rem;
+    padding-top: 1.25rem;
+    display: grid;
+    gap: .75rem;
+    flex-shrink: 0;
 }
 
 .footer-copy{
@@ -904,21 +924,22 @@ html.nav-open .hamburger::after{ top: 0; transform: rotate(-45deg); }
 }
 
 /* LOGIN SECTION (reuses your existing :root variables if you kept them) */
-
 .auth{
-  padding: 3rem 0 4rem;
-  display: grid;
-  place-items: center;
+    padding: 3rem 0 4rem;
+    display: flex;
+    /* place-items: center; */
+    flex-direction: column;
+    align-items: center; /* centers header and card as blocks */
+    gap: 1.25rem;        /* space between header and card */
 }
-
 .auth-card{
-  width: min(520px, 100%);
-  border: 1px solid var(--line, rgba(255,255,255,.10));
-  border-radius: var(--radius, 14px);
-  background: rgba(15, 22, 35, .82);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 60px rgba(0,0,0,.35);
-  padding: 1.4rem 1.25rem;
+    width: min(520px, 100%);
+    border: 1px solid var(--line, rgba(255,255,255,.10));
+    border-radius: var(--radius, 14px);
+    background: rgba(15, 22, 35, .82);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    padding: 1.4rem 1.25rem;
 }
 
 .auth-header{
@@ -1049,4 +1070,12 @@ html.nav-open .hamburger::after{ top: 0; transform: rotate(-45deg); }
   margin: 0;
   text-align: center;
   color: var(--muted, #b7c2dd);
+}
+
+.login-header {
+    width: 100%;
+    text-align: center;
+}
+.login-header h1 {
+    margin: 0;
 }

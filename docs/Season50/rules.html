@@ -21,9 +21,7 @@
     <body>
         <header class="site-header">
             <div class="container header-inner">
-                <a class="brand" href="results.html">
-                    <span class="brand-text">Somerville Survivors Fantasy League</span>
-                </a>
+                <p class="brand"><span class="brand-text">Somerville Survivors Fantasy League</span></p>
                 <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
                     <span class="sr-only">Toggle menu</span>
                     <span class="hamburger" aria-hidden="true"></span>
@@ -34,36 +32,68 @@
                 </nav>
             </div>
         </header>
-        <main class="container page-content">
-            <div class="login_card">
-                <h1>WELCOME SOMERVILLE SURVIVORS!</h1>
-                <p>Here you can find the rules used for the Somerville Survivors Fantasy League.</p>
-                <h3>Fantasy Rules</h3>
-                <p>Weekly points are given if the player properly guesses the following:</p>
+        <main class="container rules-page">
+            <div class="rules-body">
+                <h1>Fantasy League Rules</h1>
+                <p>Submit your picks every week to score points in the following categories:</p>
+                <h3>1) Weekly Main Questions</h3>
                 <table class="rules-table">
                     <thead>
-                        <tr><th>Question</th><th>Points</th></tr>
+                        <tr><th>Question</th><th>Pre-Merge or Group</th><th>Post-Merge or Individual</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Who will win reward?</td><td>+5 (group), +10 (individual)</td></tr>
-                        <tr><td>Who will win immunity?</td><td>+5 (group), +15 (individual)</td></tr>
-                        <tr><td>Who will be eliminated?</td><td>+10 (group), +20 (individual)</td></tr>
-                        <tr><td>Who will be safe?</td><td>+10</td></tr>
-                        <tr><td>Whose quote is the episode title?</td><td>+2</td></tr>
-                        <tr><td>Will an immunity idol or secret advantage be found?</td><td>+2</td></tr>
-                        <tr><td>Will an immunity idol or secret advantage be played?</td><td>+2</td></tr>
+                        <tr><td>Who will win reward?</td><td>+5</td><td>+10</td></tr>
+                        <tr><td>Who will win immunity?</td><td>+5</td><td>+15</td></tr>
+                        <tr><td>Who will be eliminated?</td><td>+10</td><td>+20</td></tr>
+                        <tr><td>Who will be safe?</td><td>+10</td><td>+10</td></tr>
+                    </tbody>
+                </table>
+                <p>
+                    Before the merge points for reward and immunity will be assessed per tribe, 
+                    so simply pick any player on the tribe you predict will win that challenge.
+                </p>
+                <br>
+                <h3>2) Weekly Bonus Questions</h3>
+                <table class="rules-table">
+                    <thead>
+                        <tr><th>Question</th><th>Pre-Merge or Group</th><th>Post-Merge or Individual</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Who says the episode title?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Will an immunity idol or secret advantage be found?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Will an immunity idol or secret advantage be played?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Will someone play their Shot-in-the-Dark?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Will the vote be unanimous?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Who (if anyone) will go on a journey?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Will there be nudity?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Will someone catch a fish?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Who will have the most confessionals?</td><td>+2</td><td>+4</td></tr>
+                        <tr><td>Will someone visibly cry?</td><td>+2</td><td>+4</td></tr>
                     </tbody>
                 </table>
                 <p>And other bonus questions that may vary by season!</p>
-                <p>Before the merge points for reward and immunity will be assessed per tribe, so simply pick any player on the tribe you predict will win that challenge.</p>
-                <p>Points will double after the merge.</p>
-                <p>Other questions may be added for weekly challenges or to accomodate for specifics within the season (i.e. who is sent to Ghost Island this week?).</p>
-                <p>Players will pick a Final Three after the first episode. For each survivor chosen that makes it to the Final Three they will recieve +30 points (max 90).</p>
                 <p>
-                    When there are 8 Survivors left, weekly points will no longer be assigned for the main questions (bonus questions still count). 
-                    Instead, players will rank the remaining players in the order they go home. Based on these picks, points will be assigned using a regression algorithm that determines how close each pick was to the actual order.
+                    Questions may be added for weekly challenges (who wins the fire making challeng) 
+                    or to accomodate for specifics within the season (who is sent to Ghost Island this week?).
+                </p>
+                <br>
+                <h3>3) Final Three</h3>
+                <p>Players will pick who they think will be the Final Three survivors prior to the second episode.</p>
+                <p>For each survivor chosen that makes it to the Final Three they will recieve +30 points (max 90).</p>
+                <br>
+                <h3>4) Final Eight</h3>
+                <p>
+                    When there are 8 Survivors left, weekly points will no longer be assigned for the main "Eliminated" and "Safe" questions. 
+                    Bonus questions will continue to count. 
+                </p>
+                <p>
+                    Instead, players will rank the remaining players in the order they go home. 
+                    Based on these picks, points will be assigned based on how close each pick was to the actual order.
+                </p>
+                <p>
                     A perfect prediction for the Final Eight recieves +140 points.
                 </p>
+                <br>
                 <h3>Do you have what it takes to Outwit, Outplay, and Outlast the other contestants?</h3>
             </div>
         </main>

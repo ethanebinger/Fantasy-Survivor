@@ -1,6 +1,6 @@
 /*****************************
  * NOTES/TODO:
- * - figure out if final_three should be in week 1 or week 2, update accordingly
+ * - [DONE] figure out if final_three should be in week 1 or week 2, update accordingly
  * - stress test final_three and final_eight scoring logic
  * - [DONE] have flatten_scores() only set up for the actively scored weeks 
  * - [DONE] remove alert from responses.html and show as text
@@ -12,13 +12,17 @@
  *   is loaded and uses the preset tab progression
  * - validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
  * - [DONE] D3 table not fitting with expanded names (using team_name) maybe can wrap them or something?
- * - clean up the formatting for the rules.html page
- * - clean up init() and code within HTML that is no longer used, especially on the index.html page
- * - decide what to do with the index.html page is still needed as landing page? image takes a while to load on start
- * - force footer with disclaimer to bottom of page
+ * - [DONE] limit team_name length to avoid labeling issues with D3 chart
+ * - [DONE] clean up the formatting for the rules.html page
+ * - [DONE] clean up init() and code within HTML that is no longer used, especially on the index.html page
+ * - [DONE] decide what to do with the index.html page is still needed as landing page? image takes a while to load on start
+ * - [DONE] force footer with disclaimer to bottom of page
  * - review and clean CSS code
  * - make the survivor-cc images fit within the boxes neatly (evenly cropped)
- * 
+ * - add date/time catch to block late responses
+ * - [DONE] forgot password reset and recovery catch
+ * - test password reset and recovery catch
+ *  
  *****************************/
 
 /*****************************
@@ -378,44 +382,22 @@ function initTabs() {
 }
 
 // Function to initialize index.html (hero page and submission form)
-function init() {
+function initForm() {
     // Dynamic form creation
 	buildTabs();
 	initTabs();
 
-	// Move past hero page and enter form on click
-	// setupLogin();
-	// $('#enterBtn').click(function() {
-    //     $('.title_img').addClass('isHidden');
-    //     $('#survivor_form').removeClass('isHidden');
-    //     $('#advance_form').removeClass('isHidden');
-		
-    //     // Init tabs and progress bar
-    //     initTabs();
-    // });
-	
-	// Move past hero page and go to results on click
+	// Successful form submission - proceed to results
     $('#resultsBtn').click(function() {
         window.location = "results.html";
     });
-	$('#resultsBtn2').click(function() {
-        window.location = "results.html";
-    });
-	$('#readmeBtn').click(function() {
-        window.location = "rules.html";
-    });
 
-	// Home button reset
-	$('#homeBtn').click(function() {
-        window.location = "index.html";
-    });
-
-    // Responsive height
-    function autoResizeDiv() {
-        document.getElementById('survivor_form').style.height = window.innerHeight + 'px';
-    }
-    window.onresize = autoResizeDiv;
-    autoResizeDiv();
+    // // Responsive height
+    // function autoResizeDiv() {
+    //     document.getElementById('survivor_form').style.height = window.innerHeight + 'px';
+    // }
+    // window.onresize = autoResizeDiv;
+    // autoResizeDiv();
 }
 
 // Grey-out functionality for contestant buttons
@@ -576,29 +558,6 @@ async function loadResults() {
   }));
 }
 
-// Function to get currently logged in user and their profile information
-async function getAuthedUserAndProfile() {
-	// 1) session/user (who is logged in)
-	const { data: { user }, error: userErr } = await supabaseClient.auth.getUser();
-	if (userErr) throw userErr;
-	if (!user) throw new Error("Not logged in");
-
-	// 2) profile (name/team_name stored in public.profiles)
-	const { data: profile, error: profileErr } = await supabaseClient
-		.from("profiles")
-		.select("name, team_name")
-		.eq("id", user.id)
-		.single();
-
-	if (profileErr) throw profileErr;
-
-	return {
-		user_id: user.id,
-		name: profile?.name || "",
-		team_name: profile?.team_name || ""
-	};
-}
-
 
 /*********************
  * RESPONSES.HTML
@@ -637,10 +596,6 @@ function buildResponsesDropdown(responses) {
 
 let scores_responses = {};
 async function init_responses() {
-    $('#resultsBtn').click(function(e) {
-		window.location = "results.html";
-    });
-
 	try {
         // wait for responses and results to load from supabase
         const saved_responses = await loadResponses();
@@ -651,9 +606,9 @@ async function init_responses() {
 		buildResponsesDropdown(responses);
 
 		// calculate scores once data is ready
-        scores_responses = calculateScoresV2(results, responses);
-		scores_responses = final_three_calcV2(scores_responses, responses);
-		scores_responses = final_eight_calcV2(scores_responses, responses);
+        scores_responses = calculateScores(results, responses);
+		scores_responses = final_three_calc(scores_responses, responses);
+		scores_responses = final_eight_calc(scores_responses, responses);
 
 		// filter past responses on click
         $("#past_responses_button").click(function() {
@@ -788,17 +743,6 @@ function getWeeklyResults(score, response, curVote) {
  *********************/
 // Function to intialize results.html
 async function init_results() {
-    // button functionality
-    $('#PastResponses').click(function() {
-        window.location = "responses.html";
-    });
-    $('#LandingPage').click(function() {
-        window.location = "results.html";
-    });
-	$('#readmeBtn').click(function() {
-        window.location = "rules.html";
-    });
-
     try {
         // wait for responses and results to load from supabase
         const saved_responses = await loadResponses();
@@ -806,15 +750,14 @@ async function init_results() {
         const results = await loadResults();
 
 		// calculate scores once data is ready
-        let scores = calculateScoresV2(results, responses);
-		scores = final_three_calcV2(scores, responses);
-		scores = final_eight_calcV2(scores, responses);
+        let scores = calculateScores(results, responses);
+		scores = final_three_calc(scores, responses);
+		scores = final_eight_calc(scores, responses);
 
         // create D3 chart
 		const active_players = getActivePlayers(responses, 'team_name');
         const scores_flat = flattenScores(scores, active_players);
 		createD3chart(scores_flat);
-
     } catch (err) {
         console.error("Error loading data:", err);
     }
@@ -844,7 +787,7 @@ function keepLastBySubmitTime(items) {
 };
 
 // Function to create score array from players
-function createScoreArrayV3(weeks, players) {
+function createScoreArray(weeks, players) {
 	const scores = {};
 	const excluded = new Set(['player_name', 'final_three', 'final_eight']);
 	const questions = [
@@ -1059,11 +1002,11 @@ var inArray = function(x,y) {
 };
 
 // FUNCTION TO CALCULATE SCORES FOR WEEKLY RESPONSES
-function calculateScoresV2(results, responses) {
+function calculateScores(results, responses) {
 	// create empty score array using active players within responses array
 	var players = getActivePlayers(responses, 'team_name');
 	var weeks = results.map(item => item.week).filter(onlyUnique).sort();
-	var scores = createScoreArrayV3(weeks, players);
+	var scores = createScoreArray(weeks, players);
 	// iterate through results
 	for (let i=0; i<results.length; i++){
 		// results for currently selected week
@@ -1140,7 +1083,7 @@ function calculateScoresV2(results, responses) {
 	return scores;
 };
 
-// FUNCTION TO CALCULATE SCORES FOR FINAL EIGHT
+// FUNCTIONS TO CALCULATE SCORES FOR FINAL EIGHT
 function which_castaway(castaways){
 	var sum = 0,
 		bonus = 0;
@@ -1175,7 +1118,7 @@ function which_castaway(castaways){
 	if (score < 0) { score = 0 };
 	return (score + bonus);
 };
-function final_eight_calcV2(scores, responses) {
+function final_eight_calc(scores, responses) {
     const submit_week = 1;
 	const matched = responses.filter(r => r.week === submit_week);
 	for (let i=0; i<matched.length; i++) {
@@ -1188,7 +1131,7 @@ function final_eight_calcV2(scores, responses) {
 };
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
-function final_three_calcV2(scores, responses){
+function final_three_calc(scores, responses){
 	const submit_week = 1;
 	const matched = responses.filter(r => r.week === submit_week);
 	for (let i=0; i<matched.length; i++) {
@@ -1208,78 +1151,6 @@ function final_three_calcV2(scores, responses){
 /*******************************************
  * LOGIN.HTML AND USER AUTHENTICATION LOGIC
  *******************************************/
-function setupLogin() {
-	// SIGNUP
-	$('#signup').on('click', async () => {
-		// 0) lock form and get input user info
-		$('#signup').prop('disabled', true).text('Submitting…');
-		const name = $('#name').val();
-		const team_name = $('#team_name').val();
-		const email = $('#email').val();
-		const password = $('#password').val();
-
-		// 1) check if team_name already taken
-		const { data: taken } = await supabaseClient
-			.from('team_names')
-			.select('team_name')
-			.eq('team_name', team_name)
-			.maybeSingle();
-		if (taken) {
-			$('#signup').prop('disabled', false).text('Sign Up');
-			return alert('Team name already taken. Pick another.');
-		};
-
-		// 2) Register user
-		const { error } = await supabaseClient.auth.signUp({
-			email,
-			password,
-			options: { data: { name, team_name } }
-		});
-		if (error) {
-			$('#signup').prop('disabled', false).text('Sign Up');
-			// Duplicate email case
-			if ((error.message || '').includes('users_email_partial_key') ||
-				(error.status === 500 && (error.message || '').toLowerCase().includes('database error saving new user'))) {
-				alert('That email is already registered. Please log in.');
-				window.location.href = 'login.html';
-				return;
-			} else {
-				return alert(error.message);
-			}
-		}
-
-		// 3) Reserve team name (now that user exists) in profiles table
-		const { error: profileErr } = await supabaseClient.from('profiles').insert({
-			id: data.user.id,
-			name,
-			team_name
-		});
-		if (reserveErr) { 
-			$('#signup').prop('disabled', false).text('Sign Up');
-			return alert('Team name just got taken. Pick another.');
-		};
-
-		// 4) Done, proceed to login
-		window.location.href = 'login.html';
-	});
-
-	// LOGIN
-	$('#login').on('click', async () => {
-		$('#login').prop('disabled', true).text('Loading…');
-		const email = $('#email').val();
-		const password = $('#password').val();
-		const { error } = await supabaseClient.auth.signInWithPassword({
-			email,
-			password
-		});
-		if (error) {
-			alert(error.message);
-			$('#login').prop('disabled', false).text('Login');
-			return;
-		}
-		window.location.href = 'results.html';
-	});
-};
 function setupLogin() {
 	// SIGNUP
 	$('#signup').on('click', async () => {
@@ -1355,8 +1226,56 @@ function setupLogin() {
 	});
 };
 
+function setupReset() {
+	supabaseClient.auth.onAuthStateChange(async (event) => {
+		// When the user arrives from the email link, 
+		// Supabase emits PASSWORD_RECOVERY 
+		// https://supabase.com/docs/reference/javascript/auth-resetpasswordforemail
+		if (event === 'PASSWORD_RECOVERY') {
+			$('#password-recovery').removeClass('isHidden');
+		} else {
+			$('#password-reset-section').removeClass('isHidden');
+		}
+	});
+
+	$('#forgotPassword').on('click', async (e) => {
+		e.preventDefault();
+		$('#forgotPassword').text("Sending...")
+		const email = ($('#email').val() || '').trim().toLowerCase();
+		const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+			redirectTo: 'reset-password.html'
+		});
+		if (error) {
+			$('#forgotPassword').text("Send Reset Email");
+			return alert(error.message);
+		};
+		$('#password-reset-section').addClass(`isHidden`);
+		$('#password-reset-success').removeClass(`isHidden`);
+	});
+
+	$('#resetPassword').on('click', async (e) => {
+		e.preventDefault();
+		$('#resetPassword').text("Resetting...")
+		const password = $('#newPassword').val();
+		const { error } = await supabaseClient.auth.updateUser({ password });
+		if (error) {
+			$('#resetPassword').text("Reset Password");
+			return alert(error.message);
+		};
+		$('#password-recovery').addClass(`isHidden`);
+		$('#password-recovery-success').removeClass(`isHidden`);
+	});
+};
+
+
 $(document).ready(function () {
 	// Check Login
+	async function checkLogin() {
+		const { data: { user } } = await supabaseClient.auth.getUser();
+		if (!user) {
+			window.location.replace("login.html");
+		};
+	};
 	const page = (location.pathname.split("/").pop() || "").toLowerCase();
 	const protectedPages = ["results.html", "responses.html", "form.html"];
 	if (protectedPages.includes(page)) {
@@ -1371,7 +1290,7 @@ $(document).ready(function () {
 		if (user && user.id) {
 			$(".nav-actions").html(`
 				<a class="btn btn-solid-green" href="form.html">Submit Picks</a>
-				<a class="nav-link" id="logoutBtn" href="login.html">Log Out</a>
+				<a class="nav-link" id="logoutBtn" href="#">Log Out</a>
 			`);
 			$(".nav-list").html(`
 				<li><a class="nav-link" href="rules.html">Rules</a></li>
@@ -1414,16 +1333,11 @@ $(document).ready(function () {
     });
 });
 
-async function checkLogin() {
-	const { data: { user } } = await supabaseClient.auth.getUser();
-	if (!user) {
-		window.location.replace("login.html");
-	};
-};
-
-$(document).on("click", "#logoutBtn", async (e) => {
+// Logout button
+$(document).off("click", "#logoutBtn").on("click", "#logoutBtn", async function (e) {
 	e.preventDefault();
+	e.stopPropagation();
 	const { error } = await supabaseClient.auth.signOut();
 	if (error) return alert(error.message);
-	window.location.href = "login.html";
+	window.location.replace("login.html");
 });
