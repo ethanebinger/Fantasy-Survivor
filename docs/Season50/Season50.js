@@ -412,7 +412,7 @@ $(document).on("change", ".contestants input[type='radio']", function () {
     const $input = $(this);
     const $contestants = $input.closest(".contestants");
     $contestants.find("label.survivor-cc").addClass("greyLabel");
-    $input.next("label.survivor-cc").removeClass("greyLabel");
+	$contestants.find(`label.survivor-cc[for='${this.id}']`).removeClass("greyLabel");
 });
 
 // Function to scroll to top after clicking Next/Previous (smooth if supported, otherwise it will jump)
