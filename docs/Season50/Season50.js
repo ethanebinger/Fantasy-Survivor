@@ -8,8 +8,8 @@
  * - [DONE] get players list (using team names?)
  * - [DONE] update and align bonus questions
  * - [DONE] add login functionality --> idea is to have the submit button go to a login page. user can either enter login info
- *   (username/email, password) or sign up. after signing up they are presented with the rules readme as HTML. then the form
- *   is loaded and uses the preset tab progression
+ *   	(username/email, password) or sign up. after signing up they are presented with the rules readme as HTML. then the form
+ *   	is loaded and uses the preset tab progression
  * - validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
  * - [DONE] D3 table not fitting with expanded names (using team_name) maybe can wrap them or something?
  * - [DONE] limit team_name length to avoid labeling issues with D3 chart
@@ -19,7 +19,7 @@
  * - [DONE] force footer with disclaimer to bottom of page
  * - review and clean CSS code
  * - make the survivor-cc images fit within the boxes neatly (evenly cropped)
- * - add date/time catch to block late responses
+ * - [DONE] add date/time catch to block late responses --> solved with form lockout
  * - [DONE] forgot password reset and recovery catch
  * - test password reset and recovery catch
  *  
@@ -29,7 +29,7 @@
  * VARIABLES 
  *****************************/
 const CURRENT_WEEK = 1;
-const CURRENT_EP_DATE = '2/25/26'
+const CURRENT_EP_DATE = '2/25/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
 const EPISODE_NAME = 'Epic Party'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
@@ -71,7 +71,7 @@ const QUESTIONS = [
     key: "player_name",
     round: `You are currently voting for<br>Episode ${CURRENT_WEEK}<br>Airing on ${CURRENT_EP_DATE}<br><br>`,
     prompt: "", //"What is your name?",
-    details: "",
+    details: "Submit before 8pm EST (when episode airs) for picks to count",
     type: "dropdown", 
 	options: "",
     weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
@@ -382,22 +382,29 @@ function initTabs() {
 }
 
 // Function to initialize index.html (hero page and submission form)
-function initForm() {
-    // Dynamic form creation
-	buildTabs();
-	initTabs();
-
-	// Successful form submission - proceed to results
+function init_form() {
+	// Button to proceed to results (either on success or on lockout)
     $('#resultsBtn').click(function() {
         window.location = "results.html";
     });
+	
+	// Lock out form if outside of submission window
+	const lockout = enforceFormLockout();
 
-    // // Responsive height
-    // function autoResizeDiv() {
-    //     document.getElementById('survivor_form').style.height = window.innerHeight + 'px';
-    // }
-    // window.onresize = autoResizeDiv;
-    // autoResizeDiv();
+    // Dynamic form creation
+	if (lockout!=="LOCKOUT") {
+		$('#survivor_form').removeClass('isHidden');
+		$('#advance_form').removeClass('isHidden');
+		buildTabs();
+		initTabs();
+
+		// Responsive height
+		function autoResizeDiv() {
+		    document.getElementById('survivor_form').style.height = window.innerHeight + 'px';
+		}
+		window.onresize = autoResizeDiv;
+		autoResizeDiv();
+	};
 }
 
 // Grey-out functionality for contestant buttons
@@ -620,7 +627,7 @@ async function init_responses() {
 				$("#past_responses").empty().append(`<br><h3>Please select both a name and a vote/episode</h3>`);
 			} else if (curVote === "final_eight") {
 				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
+					$("#past_responses").empty().append(`<br><h3>No Votes Cast Prior to Selected Episode</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.team_name===curName && s.week===FINAL_EIGHT_VOTE_WEEK)[0];
@@ -628,7 +635,7 @@ async function init_responses() {
 				};			
 			} else if (curVote === "final_three") {
 				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
+					$("#past_responses").empty().append(`<br><h3>No Votes Cast Prior to Selected Episode</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.team_name===curName && s.week===FINAL_THREE_VOTE_WEEK)[0];
@@ -637,7 +644,7 @@ async function init_responses() {
 			} else {
 				curVote = parseInt(curVote,10);
 				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>Nothing submitted in this category</h3>`);
+					$("#past_responses").empty().append(`<br><h3>No Votes Cast Prior to Selected Episode</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.team_name===curName && s.week===curVote)[0];
@@ -738,16 +745,20 @@ function getWeeklyResults(score, response, curVote) {
 	};
 };
 
-/*********************
- * RESULTS.HTML
- *********************/
+/****************************
+ * RESULTS.HTML AND SCORING
+ ****************************/
 // Function to intialize results.html
 async function init_results() {
     try {
         // wait for responses and results to load from supabase
         const saved_responses = await loadResponses();
-		const responses = keepLastBySubmitTime(saved_responses);
         const results = await loadResults();
+
+		// filter to only the latest on time responses
+		const responses = keepLastBySubmitTime(saved_responses);
+		// const responses_onTime = filterResponsesByAirDate(saved_responses, results, 5);
+		// const responses = keepLatestResponses(responses_onTime);
 
 		// calculate scores once data is ready
         let scores = calculateScores(results, responses);
@@ -773,17 +784,6 @@ function getActivePlayers(r, fieldName='name') {
 	for (var i=0; i < r.length; i++) { players.push(r[i][fieldName]) };
 	players = players.filter(onlyUnique).sort().reverse();
 	return players;
-};
-
-// Function to de-duplicate responses by (week, name), keeping only the last timestamp
-function keepLastBySubmitTime(items) {
-	const sorted = [...items].sort((a, b) => new Date(a.submit_time) - new Date(b.submit_time));
-	const map = new Map();
-	for (const it of sorted) {
-		const key = `${it.week}||${it.name}`;
-		map.set(key, it);
-	}
-	return Array.from(map.values());
 };
 
 // Function to create score array from players
@@ -1341,3 +1341,100 @@ $(document).off("click", "#logoutBtn").on("click", "#logoutBtn", async function 
 	if (error) return alert(error.message);
 	window.location.replace("login.html");
 });
+
+
+/**************
+ * INDEX.HTML 
+ **************/
+async function init_index() {
+	// check superbase login credentials
+	const { data, error } = await supabaseClient.auth.getUser();
+	// Not logged in → redirect to login page
+	if (error || !data.user) {
+		window.location.href = "login.html";
+		return;
+	}
+	// Logged in → redirect to results page
+	window.location.href = "results.html";
+};
+
+
+/*********************************************
+ * TIME CATCH FOR FORM AND RESPONSE FILTERING
+ *********************************************/
+function keepLastBySubmitTime(items) {
+	const sorted = [...items].sort((a, b) => new Date(a.submit_time) - new Date(b.submit_time));
+	const map = new Map();
+	for (const it of sorted) {
+		const key = `${it.week}||${it.team_name}`;
+		map.set(key, it);
+	}
+	return Array.from(map.values());
+}
+
+// // Function accepts 'YYYY-MM-DD HH:mm:ss+00' or ISO; returns ms or null
+// function utc_to_ms(input) {
+// 	if (input == null) return null;
+// 	// Normalize to string and ensure 'T' between date and time for cross-browser parsing
+// 	let str = String(input);
+// 	if (str.indexOf(' ') !== -1) {
+// 		str = str.replace(' ', 'T');
+// 	}
+// 	const ms = new Date(str).getTime();
+// 	return Number.isFinite(ms) ? ms : null;
+// };
+
+// // Function to filter responses to only those submitted before respective episode air date (aka on time)
+// // Note: this serves as catch for valid response times although responseive form closure should prevent this from being needed
+// function filterResponsesByAirDate(responses, results, graceMinutes=5) {
+// 	// build map for week:air_date
+// 	const airDateUtcByWeek = {};
+// 	for (const r of results) {
+// 		airDateUtcByWeek[r.week] = utc_to_ms(r.air_date);
+// 	};
+// 	// add grace period (default 5 minutes, converted to ms) to episode airdate
+// 	const cutoffDelta = graceMinutes * 60 * 1000;
+// 	// map air_date to response by episode week and then use to filter responses to only valid submit times
+// 	return responses
+// 		.map((it) => ({
+// 			...it,
+// 			__submitMs: utc_to_ms(it.submit_time),
+// 			__airMs: airDateUtcByWeek[it.week],
+// 		}))
+// 		.filter((it) =>
+// 			Number.isFinite(it.__submitMs) && Number.isFinite(it.__airMs) &&
+// 			it.__submitMs <= it.__airMs + cutoffDelta
+// 		);
+// }
+
+// // Function to de-duplicate responses by (week, team_name), keeping only the last timestamp
+// function keepLatestResponses(items) {
+// 	// initialize map of responses
+// 	const latest = new Map();
+// 	for (const it of items) {
+// 		const key = `${it.week}||${(it.team_name ?? '').trim().toLowerCase()}`;
+// 		const curr = latest.get(key);
+// 		if (!curr || it.__submitMs > curr.__submitMs) {
+// 			latest.set(key, it);
+// 		};
+// 	};
+// 	// Most-recent-first; strip internal fields
+// 	return Array.from(latest.values())
+// 		.sort((a, b) => b.__submitMs - a.__submitMs)
+// 		.map(({ __submitMs, __airMs, ...clean }) => clean);
+// }
+
+// Blocks form if loaded between episode air time and end of grace window
+function enforceFormLockout(graceMinutes = 5) {
+	// Convert CURRENT_EP_DATE from "MM/DD/YYYY" → "YYYY-MM-DD"
+	const [m, d, yy] = CURRENT_EP_DATE.split('/');
+	const yyyyMmDd = `20${yy}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+	const airMs = new Date(`${yyyyMmDd}T20:00:00-05:00`).getTime();  // EST = UTC-5
+	const cutoffMs = airMs + graceMinutes * 60 * 1000;
+	if (Date.now() >= cutoffMs) {
+		$('#lockout_screen').removeClass('isHidden');
+		return "LOCKOUT";
+	} else {
+		return;
+	};
+}

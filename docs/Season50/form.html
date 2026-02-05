@@ -36,9 +36,9 @@
                 </nav>
             </div>
         </header>
-        <main class="container">
-            <div id="survivor_form"><br></div>
-            <div id="advance_form">
+        <main class="container form-page">
+            <div id="survivor_form" class="isHidden"><br></div>
+            <div id="advance_form" class="isHidden">
                 <div id="progress_buttons">
                     <button type="button" id="prevBtn">Previous</button>
                     <button type="button" id="nextBtn">Next</button>
@@ -59,11 +59,32 @@
                     </div>
                 </div>
             </div>
+            <div id="lockout_screen" class="isHidden">
+                <div class="lockout-wrap">
+                    <div class="lockout-card">
+                        <h1>Form is Closed</h1>
+						<p>This week's episode is airing or has aired</p>
+                        <p>Next submission open soon</p>
+                        <div class="btn-row">
+                            <button class="btn" id="resultsBtn">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>	
         </main>
+        <!-- <footer>
+            <div class="footer-bottom">
+                <p class="footer-disclaimer" style="font-size:12px;">
+                This site is not affiliated with, associated, authorized, endorsed by, or officially connected
+                with SURVIVOR, CBS, SEG, or any of its affiliates. Images used are the property of their
+                respective trademark holders.
+                </p>
+            </div>
+        </footer> -->
     </body>
     <script>
         $(document).ready(function(){
-            init();
+            init_form();
         });
     </script>
 </html>
