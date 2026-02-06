@@ -12,12 +12,12 @@
 } */
 html, body{ 
     /* height: 100%;  */
+    height: auto;
+    min-height: 100vh;
     background-color: black;
     font-family: "survivor", "Sans Serif";
 }
 body{
-    min-height: 100vh;
-    height: auto;
     margin: 0;
     background:
         radial-gradient(1200px 600px at 20% -10%, rgba(125,211,252,.18), transparent 60%),
@@ -26,6 +26,7 @@ body{
     color: var(--text);
     display: flex;
     flex-direction: column;
+    letter-spacing: 1px;
 }
 .title_img {
 	background-image: url("https://www.hollywoodreporter.com/wp-content/uploads/2026/01/TSurvivor50_Group_S1_3-2-e1768352522107.jpg"); 
@@ -61,8 +62,8 @@ body{
 }
 #survivor_form {
     margin: 0 auto;
-    /* flex: 1 0 auto; */
-    /* height: 100%; */
+    height: auto;
+    overflow: visible;
     padding-bottom: 100px;
     align-items: center;
     text-align: center;
@@ -72,9 +73,6 @@ body{
 }
 .tab {
     display: none;
-    /*height: 100%;*/
-    /* min-height: 100%; */
-    /* margin-bottom: -100px; */
     padding-bottom: 100px;
     align-items: center;
 }
@@ -109,7 +107,10 @@ select,
     bottom: 0;
     text-align: center;
     left: 0;
-    background-color: #000;
+    background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(252, 150, 125, 0.18), transparent 60%),
+        radial-gradient(1200px 600px at 90% 0%, rgba(254, 183, 6, 0.12), transparent 55%),
+        var(--bg);
     padding: 10px 0px;
     margin-top: 50px;
 }
@@ -302,80 +303,78 @@ g text {
 .team_vatu {
     background-color: rgb(221, 93, 214);
 }
-.EoE_Returnee {
-    background-image: url("https://dumielauxepices.net/sites/default/files/anonymous-clipart-mystery-girl-839300-9035192.jpg");
-}
-.Mike {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/969feef3-05c4-4f9f-aa57-87ac0d718985_1748438861.jpg");
-}
-.Christian {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/3/38/S37_Christian_Hubicki.jpg");
-}
-.Cirie {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/6/66/AUS13_Cirie_Fields.jpg");
-}
-.Ozzy {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/fcb1eb4e-5fc9-4971-83d1-536eb528259f_1748438732.jpg");
-}
-.Coach {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/2/26/S23_Coach_Wade.jpg");
-}
-.Stephanie {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/399ed7bb-14b9-49ee-8042-6aab9e3ab829_1748438573.jpg");
-}
-.Jenna {
-	background-image: url("https://ew.com/thmb/1vqu-MuU0-Wo-_DRbcg8zD-GPgo=/2000x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Survivor-Jenna-Lewis-Dougherty-3-012326-b00c2f0e11bf4bda85dae6b5e528616e.jpg");
-}
-.Colby {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/f/fb/S20_Colby_Donaldson.jpg");
-}
-.Tiffany {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20250528/81a44ee1-9c18-416e-a21e-7a050967673c_1748439482.jpg");
-}
-.Charlie {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/2/2e/S46_Charlie_Davis.jpg");
-}
-.Q {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/1/1c/S46_Q_Burdette.jpg");
-}
-.Emily {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/e/ef/S45_Emily_Flippen.jpg");
-}
-.Dee {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/3/35/S45_Dee_Valladares.jpg");
-}
-.Jonathan {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/6/68/S42_Jonathan_Young.jpg");
-}
+/* Cast photos from: https://www.survivor50challenge.com/castaways */
 .Angelina {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/0/00/S50_Angelina_Keeley.jpg");
-}
-.Kyle {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/2/2e/S48_Kyle_Fraser.jpg");
-}
-.Kamilla {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/a/ac/S48_Kamilla_Karthigesu.jpg");
+	background-image: url("images/Angelina.webp");
 }
 .Aubry {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/7/73/S50_Aubry_Bracco.jpg");
+	background-image: url("images/Aubry.webp");
+}
+.Coach {
+	background-image: url("images/Coach.webp");
 }
 .Chrissy {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/b/b6/S35_Chrissy_Hofbeck.jpg");
+	background-image: url("images/Chrissy.webp");
 }
-.Devens {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/f/f8/S38_Rick_Devens.jpg");
+.Charlie {
+	background-image: url("images/Charlie.webp");
 }
-.Joe {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/0/0f/S48_Joe_Hunter.jpg");
+.Christian {
+	background-image: url("images/Christian.webp");
+}
+.Cirie {
+	background-image: url("images/Cirie.webp");
+}
+.Colby {
+	background-image: url("images/Colby.webp");
+}
+.Dee {
+	background-image: url("images/Dee.webp");
+}
+.Emily {
+	background-image: url("images/Emily.webp");
 }
 .Genevieve {
-	background-image: url("https://static.wikia.nocookie.net/survivor/images/2/2f/S47_Genevieve_Mushaluk.jpg");
+	background-image: url("images/Genevieve.webp");
 }
-.Savannah {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20251217/3f97c758-b0fc-4b66-b637-aa90da2db716_1766015579.jpg");
+.Jenna {
+	background-image: url("images/Jenna.webp");
+}
+.Joe {
+	background-image: url("images/Joe.webp");
+}
+.Jonathan {
+	background-image: url("images/Jonathan.webp");
+}
+.Kamilla {
+	background-image: url("images/Kamilla.webp");
+}
+.Kyle {
+	background-image: url("images/Kyle.webp");
+}
+.Mike {
+	background-image: url("images/Mike.webp");
+}
+.Ozzy {
+	background-image: url("images/Ozzy.webp");
+}
+.Q {
+	background-image: url("images/Q.webp");
+}
+.Devens {
+	background-image: url("images/Devens.webp");
 }
 .Rizo {
-	background-image: url("https://akns-images.eonline.com/eol_images/Entire_Site/20251217/74772937-4b61-4c2c-9aa6-83c7c54e78fe_1766015579.jpg");
+	background-image: url("images/Rizo.webp");
+}
+.Savannah {
+	background-image: url("images/Savannah.webp");
+}
+.Stephenie {
+	background-image: url("images/Stephenie.webp");
+}
+.Tiffany {
+	background-image: url("images/Tiffany.webp");
 }
 .contestants{
     height: 100%;

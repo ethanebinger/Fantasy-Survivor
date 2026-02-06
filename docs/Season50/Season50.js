@@ -1,28 +1,32 @@
 /*****************************
  * NOTES/TODO:
  * - [DONE] figure out if final_three should be in week 1 or week 2, update accordingly
- * - stress test final_three and final_eight scoring logic
  * - [DONE] have flatten_scores() only set up for the actively scored weeks 
  * - [DONE] remove alert from responses.html and show as text
  * - [DONE] update responses.html table to look less janky, same applies to preview table on mobile
  * - [DONE] get players list (using team names?)
  * - [DONE] update and align bonus questions
  * - [DONE] add login functionality --> idea is to have the submit button go to a login page. user can either enter login info
- *   	(username/email, password) or sign up. after signing up they are presented with the rules readme as HTML. then the form
- *   	is loaded and uses the preset tab progression
- * - validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
+ *   		(username/email, password) or sign up. after signing up they are presented with the rules readme as HTML. then the form
+ *   		is loaded and uses the preset tab progression
  * - [DONE] D3 table not fitting with expanded names (using team_name) maybe can wrap them or something?
  * - [DONE] limit team_name length to avoid labeling issues with D3 chart
  * - [DONE] clean up the formatting for the rules.html page
  * - [DONE] clean up init() and code within HTML that is no longer used, especially on the index.html page
  * - [DONE] decide what to do with the index.html page is still needed as landing page? image takes a while to load on start
  * - [DONE] force footer with disclaimer to bottom of page
- * - review and clean CSS code
- * - make the survivor-cc images fit within the boxes neatly (evenly cropped)
+ * - [DONE] make the survivor-cc images fit within the boxes neatly (evenly cropped)
  * - [DONE] add date/time catch to block late responses --> solved with form lockout
  * - [DONE] forgot password reset and recovery catch
- * - test password reset and recovery catch
- *  
+ * - [DONE] update CSS for survivor images so they are standardized and load fast (maybe just download and save)
+ * - [DONE] scrolling issue where header nav disappears on form.html but appears to be working responsively and loading with content on other pages
+ * - [DONE] add lockout exception for Nastia
+ * - verify RLS on all supabase tables
+ * - stress test final_three and final_eight scoring logic
+ * - validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
+ * - review and clean CSS code 
+ * - test password reset and recovery catch 
+ * 
  *****************************/
 
 /*****************************
@@ -63,7 +67,7 @@ const CONTESTANTS = {
 	"Kyle": "Vatu",
 	"Q": "Vatu",
 	"Rizo": "Vatu",
-	"Stephanie": "Vatu"
+	"Stephenie": "Vatu"
 };
 const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
 const QUESTIONS = [
@@ -71,7 +75,7 @@ const QUESTIONS = [
     key: "player_name",
     round: `You are currently voting for<br>Episode ${CURRENT_WEEK}<br>Airing on ${CURRENT_EP_DATE}<br><br>`,
     prompt: "", //"What is your name?",
-    details: "Submit before 8pm EST (when episode airs) for picks to count",
+    details: "submit before 8PM EST",
     type: "dropdown", 
 	options: "",
     weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
@@ -200,9 +204,9 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_
 const SUPABASE_TABLE = 'season_50';
 const SUPABASE_TABLE_RESULTS = 'season_50_results';
 
-/*****************************
- * MAIN PAGE INITIALIZATION 
- *****************************/
+/************************************
+ * FORM INITIALIZATION AND BUILDING
+ ************************************/
 // Function to build tabs for submission form
 function buildTabs() {
     const form = $('#survivor_form');
@@ -213,7 +217,7 @@ function buildTabs() {
 		} else if (q.key=='final_eight') {
 			buildFinalQuestionTabs(q, 8);
 		} else if (q.key=='player_name') {
-			const $tab = $(`<div class="tab"><h1>${q.round}</h1></div>`);
+			const $tab = $(`<div class="tab"><h1>${q.round}</h1><h3>${q.details || ''}</h3></div>`);
 			form.append($tab);
 		} else {
 			const $tab = $(`
@@ -331,13 +335,23 @@ function buildContestantRadios({containerId, questionName}) {
 };
 
 // Function to form tabs logic
+// function showTab(n) {
+//   const tabs = document.querySelectorAll("#survivor_form .tab");
+//   tabs.forEach(t => t.classList.remove("active"));
+//   tabs[n].classList.add("active");
+// }
 function showTab(n) {
+	// change tab 
 	const tabs = $('#survivor_form .tab');
-    const progressBar = $('#progress_bar progress');
 	tabs.hide();
 	$(tabs[n]).show();
+
+	// update progress bar
+	const progressBar = $('#progress_bar progress');
 	const progressValue = ((n + 1) / tabs.length) * 100;
 	progressBar.val(progressValue);
+
+	// update advance_form buttons
 	if (n==0) { 
 		$('#prevBtn').addClass('isHidden'); 
 	} else { 
@@ -357,7 +371,7 @@ function initTabs() {
 	let currentTab = 0;
     showTab(currentTab);
 	const tabs = $('#survivor_form .tab');
-	
+
 	// Previous and Next buttons
     $('#prevBtn').click(function() {
         if (currentTab > 0) {
@@ -382,14 +396,15 @@ function initTabs() {
 }
 
 // Function to initialize index.html (hero page and submission form)
-function init_form() {
+async function init_form() {
 	// Button to proceed to results (either on success or on lockout)
-    $('#resultsBtn').click(function() {
-        window.location = "results.html";
-    });
+	$(document).on('click', '#resultsBtn', function (e) {
+		e.preventDefault();
+		window.location.href = 'results.html';
+	});
 	
 	// Lock out form if outside of submission window
-	const lockout = enforceFormLockout();
+	const {status: lockout, user} = await enforceFormLockout();
 
     // Dynamic form creation
 	if (lockout!=="LOCKOUT") {
@@ -397,23 +412,26 @@ function init_form() {
 		$('#advance_form').removeClass('isHidden');
 		buildTabs();
 		initTabs();
-
-		// Responsive height
-		function autoResizeDiv() {
-		    document.getElementById('survivor_form').style.height = window.innerHeight + 'px';
-		}
-		window.onresize = autoResizeDiv;
-		autoResizeDiv();
+		if (lockout=="BYPASS") {
+			// Nastia bypass
+			$('.tab').eq(0).append('<br><h3>Unless your name is Nastia XOXO</h3>');
+		} else {
+			// Add name recognition
+			$('.tab').eq(0).append(`
+				<br><h3></h3><br>
+				<h3 style="color: rgba(253,184,99,0.8);">Welcome ${user?.user_metadata?.name}</h3>`
+			);
+		};
 	};
-}
 
-// Grey-out functionality for contestant buttons
-$(document).on("change", ".contestants input[type='radio']", function () {
-    const $input = $(this);
-    const $contestants = $input.closest(".contestants");
-    $contestants.find("label.survivor-cc").addClass("greyLabel");
-	$contestants.find(`label.survivor-cc[for='${this.id}']`).removeClass("greyLabel");
-});
+	// Grey-out functionality for contestant buttons
+	$(document).on("change", ".contestants input[type='radio']", function () {
+		const $input = $(this);
+		const $contestants = $input.closest(".contestants");
+		$contestants.find("label.survivor-cc").addClass("greyLabel");
+		$contestants.find(`label.survivor-cc[for='${this.id}']`).removeClass("greyLabel");
+	});
+};
 
 // Function to scroll to top after clicking Next/Previous (smooth if supported, otherwise it will jump)
 function scrollToTop() {
@@ -1166,16 +1184,39 @@ function setupLogin() {
 				return;
 			};
 
-			// 1) Create auth user (capture data)
+			// 1) Check profiles table for existing team_name
+			const { data: existing, error: checkErr } = await supabaseClient
+				.from('profiles')
+				.select('id')
+				.eq('team_name', team_name)
+				.maybeSingle();
+			if (checkErr) {
+				alert(checkErr.message);
+				return;
+			}
+			if (existing) {
+				alert('Team name already taken. Pick another.');
+				return;
+			}
+
+			// 2) Create auth user (capture data)
+			// Note: information automatically saved to profiles table, linked within supabase
 			const { data, error } = await supabaseClient.auth.signUp({
 				email,
 				password,
 				options: { data: { name, team_name } }
 			});
 			if (error) {
+				const msg = (error.message || '').toLowerCase();
+				if (msg.includes('database error saving new user') || error.code === '23505') {
+					alert('Team name already taken. Please pick another.');
+					return;
+				};
 				alert(error.message);
 				return;
-			};
+			};	
+
+			// 3) Generate user id
 			const userId = data?.user?.id;
 			if (!userId) {
 				// Can happen depending on auth settings (e.g., email confirmation flows)
@@ -1183,22 +1224,8 @@ function setupLogin() {
 				return;
 			};
 
-			// 2) Insert into profiles (UNIQUE constraint on team_name enforces exclusivity)
-			const { error: profileErr } = await supabaseClient
-				.from('profiles')
-				.insert({ id: userId, name, team_name });
-			if (profileErr) {
-				// Unique constraint violation => team_name already taken
-				// Supabase/Postgres unique violations are SQLSTATE 23505.
-				if (profileErr.code === '23505') {
-					alert('Team name already taken. Pick another.');
-					return;
-				};
-				alert(profileErr.message);
-				return;
-			};
-
-			// 3) Done, return to login page
+			// 4) Done, sign out and return to login page
+			await supabaseClient.auth.signOut();
 			window.location.href = 'login.html';
 
 		} catch (err) {
@@ -1372,69 +1399,27 @@ function keepLastBySubmitTime(items) {
 	return Array.from(map.values());
 }
 
-// // Function accepts 'YYYY-MM-DD HH:mm:ss+00' or ISO; returns ms or null
-// function utc_to_ms(input) {
-// 	if (input == null) return null;
-// 	// Normalize to string and ensure 'T' between date and time for cross-browser parsing
-// 	let str = String(input);
-// 	if (str.indexOf(' ') !== -1) {
-// 		str = str.replace(' ', 'T');
-// 	}
-// 	const ms = new Date(str).getTime();
-// 	return Number.isFinite(ms) ? ms : null;
-// };
-
-// // Function to filter responses to only those submitted before respective episode air date (aka on time)
-// // Note: this serves as catch for valid response times although responseive form closure should prevent this from being needed
-// function filterResponsesByAirDate(responses, results, graceMinutes=5) {
-// 	// build map for week:air_date
-// 	const airDateUtcByWeek = {};
-// 	for (const r of results) {
-// 		airDateUtcByWeek[r.week] = utc_to_ms(r.air_date);
-// 	};
-// 	// add grace period (default 5 minutes, converted to ms) to episode airdate
-// 	const cutoffDelta = graceMinutes * 60 * 1000;
-// 	// map air_date to response by episode week and then use to filter responses to only valid submit times
-// 	return responses
-// 		.map((it) => ({
-// 			...it,
-// 			__submitMs: utc_to_ms(it.submit_time),
-// 			__airMs: airDateUtcByWeek[it.week],
-// 		}))
-// 		.filter((it) =>
-// 			Number.isFinite(it.__submitMs) && Number.isFinite(it.__airMs) &&
-// 			it.__submitMs <= it.__airMs + cutoffDelta
-// 		);
-// }
-
-// // Function to de-duplicate responses by (week, team_name), keeping only the last timestamp
-// function keepLatestResponses(items) {
-// 	// initialize map of responses
-// 	const latest = new Map();
-// 	for (const it of items) {
-// 		const key = `${it.week}||${(it.team_name ?? '').trim().toLowerCase()}`;
-// 		const curr = latest.get(key);
-// 		if (!curr || it.__submitMs > curr.__submitMs) {
-// 			latest.set(key, it);
-// 		};
-// 	};
-// 	// Most-recent-first; strip internal fields
-// 	return Array.from(latest.values())
-// 		.sort((a, b) => b.__submitMs - a.__submitMs)
-// 		.map(({ __submitMs, __airMs, ...clean }) => clean);
-// }
-
 // Blocks form if loaded between episode air time and end of grace window
-function enforceFormLockout(graceMinutes = 5) {
+async function enforceFormLockout(graceMinutes = 5) {
 	// Convert CURRENT_EP_DATE from "MM/DD/YYYY" → "YYYY-MM-DD"
 	const [m, d, yy] = CURRENT_EP_DATE.split('/');
 	const yyyyMmDd = `20${yy}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
 	const airMs = new Date(`${yyyyMmDd}T20:00:00-05:00`).getTime();  // EST = UTC-5
 	const cutoffMs = airMs + graceMinutes * 60 * 1000;
+	// check if current datetime is past that of the cutoff
+	let status = "OPEN";
+	const { data, error } = await supabaseClient.auth.getUser();
+	const user = data?.user ?? null;
 	if (Date.now() >= cutoffMs) {
-		$('#lockout_screen').removeClass('isHidden');
-		return "LOCKOUT";
-	} else {
-		return;
+		if (user?.email=='anagorvi@gmail.com') {
+			// Nastia bypass
+			status = "BYPASS";
+		} else {
+			// show lockout screen and do not load form
+			$('#lockout_screen').removeClass('isHidden');
+			status = "LOCKOUT";
+		};
 	};
+	// Continue
+	return { status, user };
 }
