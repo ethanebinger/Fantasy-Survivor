@@ -1,17 +1,8 @@
 @font-face {
     font-family: survivor;
-    src: url(Survivor_Font.ttf);
+    src: url(support/Survivor_Font.ttf);
 }
-/* html, body {
-    font-family: "survivor", "Sans Serif";
-    background-color: black;
-    color: white;
-    height: 100%;
-    margin: 0;
-    position: relative;
-} */
 html, body{ 
-    /* height: 100%;  */
     height: auto;
     min-height: 100vh;
     background-color: black;
@@ -148,17 +139,6 @@ select,
     /* opacity: 0.8; */
     background-color: #4CAF50;
 }
-/* #resultsBtn,
-#prevBtn {
-    background-color: #bbbbbb;
-} */
-/* #readmeBtn {
-    background-color: #969696;
-    border: none;
-    padding: 5px 10px;
-    font-size: 10px;
-    cursor: pointer; 
-}*/
 
 /* Success screen layout */
 #success_screen .success-wrap,

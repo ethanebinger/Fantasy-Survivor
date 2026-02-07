@@ -25,10 +25,10 @@
  * - stress test final_three and final_eight scoring logic
  * - [DONE] validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
  * - review and clean CSS code 
- * - test password reset and recovery catch 
+ * - [DONE] test password reset and recovery catch 
  * - [DONE] responsively size the .brand-title to not overflow the header
  * - [DONE] get welcome {name} text before 'you are currently voting for'
- * - [DONE] reorganize folder structure
+ * - [DONE] reorganize folder structure 
  * 
  *****************************/
 
