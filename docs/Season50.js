@@ -21,11 +21,14 @@
  * - [DONE] update CSS for survivor images so they are standardized and load fast (maybe just download and save)
  * - [DONE] scrolling issue where header nav disappears on form.html but appears to be working responsively and loading with content on other pages
  * - [DONE] add lockout exception for Nastia
- * - verify RLS on all supabase tables
+ * - [DONE] verify RLS on all supabase tables
  * - stress test final_three and final_eight scoring logic
- * - validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
+ * - [DONE] validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
  * - review and clean CSS code 
  * - test password reset and recovery catch 
+ * - [DONE] responsively size the .brand-title to not overflow the header
+ * - [DONE] get welcome {name} text before 'you are currently voting for'
+ * - [DONE] reorganize folder structure
  * 
  *****************************/
 
@@ -207,6 +210,44 @@ const SUPABASE_TABLE_RESULTS = 'season_50_results';
 /************************************
  * FORM INITIALIZATION AND BUILDING
  ************************************/
+async function init_form() {
+	// Button to proceed to results (either on success or on lockout)
+	$(document).on('click', '#resultsBtn', function (e) {
+		e.preventDefault();
+		window.location.href = 'results.html';
+	});
+	
+	// Lock out form if outside of submission window
+	const {status: lockout, user} = await enforceFormLockout();
+
+    // Dynamic form creation
+	if (lockout!=="LOCKOUT") {
+		$('#survivor_form').removeClass('isHidden');
+		$('#advance_form').removeClass('isHidden');
+		buildTabs();
+		initTabs();
+	};
+
+	// Nastia bypass
+	if (lockout=="BYPASS") {
+		$('.tab').eq(0).append('<br><h3>Unless your name is Nastia XOXO</h3>');
+	};
+
+	// Add name recognition
+	$('.tab').eq(0).prepend(`
+		<br><h3></h3><br>
+		<h3 style="color: rgba(253,184,99,0.8);">Welcome ${user?.user_metadata?.name}</h3>`
+	);
+
+	// Grey-out functionality for contestant buttons
+	$(document).on("change", ".contestants input[type='radio']", function () {
+		const $input = $(this);
+		const $contestants = $input.closest(".contestants");
+		$contestants.find("label.survivor-cc").addClass("greyLabel");
+		$contestants.find(`label.survivor-cc[for='${this.id}']`).removeClass("greyLabel");
+	});
+};
+
 // Function to build tabs for submission form
 function buildTabs() {
     const form = $('#survivor_form');
@@ -237,7 +278,7 @@ function buildTabs() {
 	buildReviewTab();
 }
 
-// Functions to create question body html
+// Functions to create form question body html
 function buildQuestionBody(q) {
     const $container = $(`#${q.key}-body`);
     if (q.type === "contestant-radio") {
@@ -335,11 +376,6 @@ function buildContestantRadios({containerId, questionName}) {
 };
 
 // Function to form tabs logic
-// function showTab(n) {
-//   const tabs = document.querySelectorAll("#survivor_form .tab");
-//   tabs.forEach(t => t.classList.remove("active"));
-//   tabs[n].classList.add("active");
-// }
 function showTab(n) {
 	// change tab 
 	const tabs = $('#survivor_form .tab');
@@ -394,44 +430,6 @@ function initTabs() {
 		await submitToSupabase();
 	});
 }
-
-// Function to initialize index.html (hero page and submission form)
-async function init_form() {
-	// Button to proceed to results (either on success or on lockout)
-	$(document).on('click', '#resultsBtn', function (e) {
-		e.preventDefault();
-		window.location.href = 'results.html';
-	});
-	
-	// Lock out form if outside of submission window
-	const {status: lockout, user} = await enforceFormLockout();
-
-    // Dynamic form creation
-	if (lockout!=="LOCKOUT") {
-		$('#survivor_form').removeClass('isHidden');
-		$('#advance_form').removeClass('isHidden');
-		buildTabs();
-		initTabs();
-		if (lockout=="BYPASS") {
-			// Nastia bypass
-			$('.tab').eq(0).append('<br><h3>Unless your name is Nastia XOXO</h3>');
-		} else {
-			// Add name recognition
-			$('.tab').eq(0).append(`
-				<br><h3></h3><br>
-				<h3 style="color: rgba(253,184,99,0.8);">Welcome ${user?.user_metadata?.name}</h3>`
-			);
-		};
-	};
-
-	// Grey-out functionality for contestant buttons
-	$(document).on("change", ".contestants input[type='radio']", function () {
-		const $input = $(this);
-		const $contestants = $input.closest(".contestants");
-		$contestants.find("label.survivor-cc").addClass("greyLabel");
-		$contestants.find(`label.survivor-cc[for='${this.id}']`).removeClass("greyLabel");
-	});
-};
 
 // Function to scroll to top after clicking Next/Previous (smooth if supported, otherwise it will jump)
 function scrollToTop() {
@@ -641,7 +639,6 @@ async function init_responses() {
 			let curName = $("#past_responses_name option:selected").val();
 			let curVote = $("#past_responses_vote option:selected").val();
 			if (curName.length < 1 || curVote.length < 1) {
-				// alert("Please select both a name and a vote/episode"); // clean this up to not be an alert
 				$("#past_responses").empty().append(`<br><h3>Please select both a name and a vote/episode</h3>`);
 			} else if (curVote === "final_eight") {
 				if (!scores_responses[curName][curVote]) { 
@@ -762,6 +759,7 @@ function getWeeklyResults(score, response, curVote) {
 		);
 	};
 };
+
 
 /****************************
  * RESULTS.HTML AND SCORING
@@ -1254,23 +1252,30 @@ function setupLogin() {
 };
 
 function setupReset() {
-	supabaseClient.auth.onAuthStateChange(async (event) => {
-		// When the user arrives from the email link, 
-		// Supabase emits PASSWORD_RECOVERY 
-		// https://supabase.com/docs/reference/javascript/auth-resetpasswordforemail
-		if (event === 'PASSWORD_RECOVERY') {
-			$('#password-recovery').removeClass('isHidden');
-		} else {
-			$('#password-reset-section').removeClass('isHidden');
-		}
-	});
+    // Catches (hash and auth state) for password recovery
+    const hash = window.location.hash || '';
+    const isRecovery = hash.includes('type=recovery');
+    if (isRecovery) {
+        $('#password-recovery').removeClass('isHidden');
+        $('#password-reset-section').addClass('isHidden');
+    } else {
+        $('#password-reset-section').removeClass('isHidden');
+    }
+    supabaseClient.auth.onAuthStateChange((event) => {
+        if (event === 'PASSWORD_RECOVERY') {
+            $('#password-recovery').removeClass('isHidden');
+            $('#password-reset-section').addClass('isHidden');
+        }
+    });
 
+    // Forgot password button handler
 	$('#forgotPassword').on('click', async (e) => {
 		e.preventDefault();
 		$('#forgotPassword').text("Sending...")
 		const email = ($('#email').val() || '').trim().toLowerCase();
 		const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-			redirectTo: 'reset-password.html'
+			// redirectTo: `${window.location.origin}/reset-password.html`
+			redirectTo: `https://ethanebinger.com/Fantasy-Survivor/password-reset.html`
 		});
 		if (error) {
 			$('#forgotPassword').text("Send Reset Email");
@@ -1280,6 +1285,7 @@ function setupReset() {
 		$('#password-reset-success').removeClass(`isHidden`);
 	});
 
+	// Reset password button handler
 	$('#resetPassword').on('click', async (e) => {
 		e.preventDefault();
 		$('#resetPassword').text("Resetting...")
@@ -1293,7 +1299,6 @@ function setupReset() {
 		$('#password-recovery-success').removeClass(`isHidden`);
 	});
 };
-
 
 $(document).ready(function () {
 	// Check Login
@@ -1373,6 +1378,8 @@ $(document).off("click", "#logoutBtn").on("click", "#logoutBtn", async function 
 /**************
  * INDEX.HTML 
  **************/
+// Index page is currently superseded and auto-redirects to the login or results page
+// Leaving here in case want to re-introduce a hero page in the future
 async function init_index() {
 	// check superbase login credentials
 	const { data, error } = await supabaseClient.auth.getUser();
@@ -1380,7 +1387,7 @@ async function init_index() {
 	if (error || !data.user) {
 		window.location.href = "login.html";
 		return;
-	}
+	};
 	// Logged in → redirect to results page
 	window.location.href = "results.html";
 };
