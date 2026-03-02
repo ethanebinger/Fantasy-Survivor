@@ -35,9 +35,9 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 1;
-const CURRENT_EP_DATE = '2/25/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Epic Party'
+const CURRENT_WEEK = 2;
+const CURRENT_EP_DATE = '3/4/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Therapy Carousel'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
@@ -46,7 +46,7 @@ const CONTESTANTS = {
 	"Christian": "Cila",
 	"Cirie": "Cila",
 	"Emily": "Cila",
-	"Jenna": "Cila",
+	// "Jenna": "Cila", // Voted out Episode 1
 	"Joe": "Cila",
 	"Ozzy": "Cila",
 	"Devens": "Cila",
@@ -67,7 +67,7 @@ const CONTESTANTS = {
 	"Aubry": "Vatu",
 	"Colby": "Vatu",
 	"Genevieve": "Vatu",
-	"Kyle": "Vatu",
+	// "Kyle": "Vatu", // Medevac Episode 1
 	"Q": "Vatu",
 	"Rizo": "Vatu",
 	"Stephenie": "Vatu"
@@ -1407,7 +1407,7 @@ function keepLastBySubmitTime(items) {
 }
 
 // Blocks form if loaded between episode air time and end of grace window
-async function enforceFormLockout(graceMinutes = 5) {
+async function enforceFormLockout(graceMinutes = 5280) {
 	// Convert CURRENT_EP_DATE from "MM/DD/YYYY" → "YYYY-MM-DD"
 	const [m, d, yy] = CURRENT_EP_DATE.split('/');
 	const yyyyMmDd = `20${yy}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
