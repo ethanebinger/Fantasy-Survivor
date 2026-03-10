@@ -1,43 +1,16 @@
 /*****************************
  * NOTES/TODO:
- * - [DONE] figure out if final_three should be in week 1 or week 2, update accordingly
- * - [DONE] have flatten_scores() only set up for the actively scored weeks 
- * - [DONE] remove alert from responses.html and show as text
- * - [DONE] update responses.html table to look less janky, same applies to preview table on mobile
- * - [DONE] get players list (using team names?)
- * - [DONE] update and align bonus questions
- * - [DONE] add login functionality --> idea is to have the submit button go to a login page. user can either enter login info
- *   		(username/email, password) or sign up. after signing up they are presented with the rules readme as HTML. then the form
- *   		is loaded and uses the preset tab progression
- * - [DONE] D3 table not fitting with expanded names (using team_name) maybe can wrap them or something?
- * - [DONE] limit team_name length to avoid labeling issues with D3 chart
- * - [DONE] clean up the formatting for the rules.html page
- * - [DONE] clean up init() and code within HTML that is no longer used, especially on the index.html page
- * - [DONE] decide what to do with the index.html page is still needed as landing page? image takes a while to load on start
- * - [DONE] force footer with disclaimer to bottom of page
- * - [DONE] make the survivor-cc images fit within the boxes neatly (evenly cropped)
- * - [DONE] add date/time catch to block late responses --> solved with form lockout
- * - [DONE] forgot password reset and recovery catch
- * - [DONE] update CSS for survivor images so they are standardized and load fast (maybe just download and save)
- * - [DONE] scrolling issue where header nav disappears on form.html but appears to be working responsively and loading with content on other pages
- * - [DONE] add lockout exception for Nastia
- * - [DONE] verify RLS on all supabase tables
  * - stress test final_three and final_eight scoring logic
- * - [DONE] validate that signup works without errors. it appears to push data to tables but still throws error, unsure why
  * - review and clean CSS code 
- * - [DONE] test password reset and recovery catch 
- * - [DONE] responsively size the .brand-title to not overflow the header
- * - [DONE] get welcome {name} text before 'you are currently voting for'
- * - [DONE] reorganize folder structure 
  * 
  *****************************/
 
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 2;
-const CURRENT_EP_DATE = '3/4/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Therapy Carousel'
+const CURRENT_WEEK = 3;
+const CURRENT_EP_DATE = '3/11/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Did You Vote For A Swap?'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
@@ -50,7 +23,7 @@ const CONTESTANTS = {
 	"Joe": "Cila",
 	"Ozzy": "Cila",
 	"Devens": "Cila",
-	"Savannah": "Cila",
+	// "Savannah": "Cila", // Voted out Episode 2
 	
 	// Teal Kalo Tribe
 	"Charlie": "Kalo",
@@ -642,7 +615,7 @@ async function init_responses() {
 				$("#past_responses").empty().append(`<br><h3>Please select both a name and a vote/episode</h3>`);
 			} else if (curVote === "final_eight") {
 				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>No Votes Cast Prior to Selected Episode</h3>`);
+					$("#past_responses").empty().append(`<br><h3>No Votes Cast for this Episode</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.team_name===curName && s.week===FINAL_EIGHT_VOTE_WEEK)[0];
@@ -650,7 +623,7 @@ async function init_responses() {
 				};			
 			} else if (curVote === "final_three") {
 				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>No Votes Cast Prior to Selected Episode</h3>`);
+					$("#past_responses").empty().append(`<br><h3>No Votes Cast for this Episode</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.team_name===curName && s.week===FINAL_THREE_VOTE_WEEK)[0];
@@ -659,7 +632,7 @@ async function init_responses() {
 			} else {
 				curVote = parseInt(curVote,10);
 				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>No Votes Cast Prior to Selected Episode</h3>`);
+					$("#past_responses").empty().append(`<br><h3>No Votes Cast for this Episode</h3>`);
 				} else {
 					let scores_filter = scores_responses[curName][curVote];
 					let response_filter = responses.filter(s => s.team_name===curName && s.week===curVote)[0];
@@ -719,7 +692,7 @@ function getWeeklyResults(score, response, curVote) {
 			"<tr><td><strong>Most Confessionals</strong></td><td>" + response.confessionals + "</td><td>"+ score.confessionals +"</td></tr>" + 
 			"<tr><td><strong>Crying</strong></td><td>" + response.crying + "</td><td>"+ score.crying +"</td></tr>"
 		);
-	} else if (curVote >= FINAL_THREE_VOTE_WEEK) {
+	} else if (curVote >= FINAL_EIGHT_VOTE_WEEK) {
 		$("#responses_table_header").html("Episode "+String(curVote));
 		$("#responses_table").html(
 			"<colgroup><col><col><col></colgroup>" +
@@ -1135,7 +1108,7 @@ function which_castaway(castaways){
 	return (score + bonus);
 };
 function final_eight_calc(scores, responses) {
-    const submit_week = 1;
+    const submit_week = FINAL_EIGHT_VOTE_WEEK;
 	const matched = responses.filter(r => r.week === submit_week);
 	for (let i=0; i<matched.length; i++) {
 		const response = matched[i];
@@ -1148,7 +1121,7 @@ function final_eight_calc(scores, responses) {
 
 // FUNCTION TO CALCULATE SCORES FOR FINAL THREE
 function final_three_calc(scores, responses){
-	const submit_week = 1;
+	const submit_week = FINAL_THREE_VOTE_WEEK;
 	const matched = responses.filter(r => r.week === submit_week);
 	for (let i=0; i<matched.length; i++) {
 		const response = matched[i];
