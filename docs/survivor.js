@@ -8,41 +8,41 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 3;
-const CURRENT_EP_DATE = '3/11/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Did You Vote For A Swap?'
+const CURRENT_WEEK = 4;
+const CURRENT_EP_DATE = '3/18/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Knife to the Heart'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
 const CONTESTANTS = {
 	// Orange Cila Tribe
-	"Christian": "Cila",
+	"Christian": "Vatu",
 	"Cirie": "Cila",
-	"Emily": "Cila",
+	"Emily": "Vatu",
 	// "Jenna": "Cila", // Voted out Episode 1
-	"Joe": "Cila",
-	"Ozzy": "Cila",
+	"Joe": "Kalo",
+	"Ozzy": "Vatu",
 	"Devens": "Cila",
 	// "Savannah": "Cila", // Voted out Episode 2
 	
 	// Teal Kalo Tribe
-	"Charlie": "Kalo",
+	"Charlie": "Cila",
 	"Chrissy": "Kalo",
 	"Coach": "Kalo",
-	"Dee": "Kalo",
-	"Jonathan": "Kalo",
+	"Dee": "Cila",
+	"Jonathan": "Cila",
 	"Kamilla": "Kalo",
-	"Mike": "Kalo",
+	"Mike": "Vatu",
 	"Tiffany": "Kalo",
 	
 	// Purple Vatu Tribe
 	"Angelina": "Vatu",
-	"Aubry": "Vatu",
-	"Colby": "Vatu",
-	"Genevieve": "Vatu",
+	"Aubry": "Kalo",
+	"Colby": "Kalo",
+	"Genevieve": "Kalo",
 	// "Kyle": "Vatu", // Medevac Episode 1
-	"Q": "Vatu",
-	"Rizo": "Vatu",
+	// "Q": "Vatu", // Voted Out Episode 3
+	"Rizo": "Cila",
 	"Stephenie": "Vatu"
 };
 const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
