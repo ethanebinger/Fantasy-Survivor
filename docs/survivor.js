@@ -16,34 +16,35 @@ const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
 const CONTESTANTS = {
 	// Orange Cila Tribe
-	"Christian": "Vatu",
-	"Cirie": "Cila",
-	"Emily": "Vatu",
-	// "Jenna": "Cila", // Voted out Episode 1
-	"Joe": "Kalo",
-	"Ozzy": "Vatu",
+	"Charlie": "Cila",
+	"Cirie": "Cila",	
+	"Dee": "Cila",
 	"Devens": "Cila",
-	// "Savannah": "Cila", // Voted out Episode 2
+	"Jonathan": "Cila",
+	"Kamilla": "Cila",
+	"Rizo": "Cila",
 	
 	// Teal Kalo Tribe
-	"Charlie": "Cila",
-	"Chrissy": "Kalo",
-	"Coach": "Kalo",
-	"Dee": "Cila",
-	"Jonathan": "Cila",
-	"Kamilla": "Kalo",
-	"Mike": "Vatu",
-	"Tiffany": "Kalo",
-	
-	// Purple Vatu Tribe
-	"Angelina": "Vatu",
 	"Aubry": "Kalo",
 	"Colby": "Kalo",
 	"Genevieve": "Kalo",
-	// "Kyle": "Vatu", // Medevac Episode 1
-	// "Q": "Vatu", // Voted Out Episode 3
-	"Rizo": "Cila",
+	"Chrissy": "Kalo",
+	"Coach": "Kalo",
+	"Tiffany": "Kalo",
+	"Joe": "Kalo",
+	
+	// Purple Vatu Tribe
+	"Angelina": "Vatu",
+	"Christian": "Vatu",
+	"Emily": "Vatu",
+	"Mike": "Vatu",	
+	"Ozzy": "Vatu",
 	"Stephenie": "Vatu"
+
+	// "Jenna": "Cila", // Voted out Episode 1
+	// "Kyle": "Vatu", // Medevac Episode 1
+	// "Savannah": "Cila", // Voted out Episode 2
+	// "Q": "Vatu", // Voted Out Episode 3
 };
 const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
 const QUESTIONS = [
