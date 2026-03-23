@@ -8,9 +8,9 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 4;
-const CURRENT_EP_DATE = '3/18/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Knife to the Heart'
+const CURRENT_WEEK = 5;
+const CURRENT_EP_DATE = '3/25/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Open Wounds'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
@@ -37,7 +37,6 @@ const CONTESTANTS = {
 	"Angelina": "Vatu",
 	"Christian": "Vatu",
 	"Emily": "Vatu",
-	"Mike": "Vatu",	
 	"Ozzy": "Vatu",
 	"Stephenie": "Vatu"
 
@@ -45,6 +44,7 @@ const CONTESTANTS = {
 	// "Kyle": "Vatu", // Medevac Episode 1
 	// "Savannah": "Cila", // Voted out Episode 2
 	// "Q": "Vatu", // Voted Out Episode 3
+	// "Mike": "Vatu",	// Voted Out Episode 4
 };
 const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
 const QUESTIONS = [
