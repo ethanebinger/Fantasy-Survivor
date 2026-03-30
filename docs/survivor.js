@@ -8,15 +8,14 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 5;
-const CURRENT_EP_DATE = '3/25/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Open Wounds'
+const CURRENT_WEEK = 6;
+const CURRENT_EP_DATE = '4/1/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'The Blood Moon'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
 const CONTESTANTS = {
 	// Orange Cila Tribe
-	"Charlie": "Cila",
 	"Cirie": "Cila",	
 	"Dee": "Cila",
 	"Devens": "Cila",
@@ -34,7 +33,6 @@ const CONTESTANTS = {
 	"Joe": "Kalo",
 	
 	// Purple Vatu Tribe
-	"Angelina": "Vatu",
 	"Christian": "Vatu",
 	"Emily": "Vatu",
 	"Ozzy": "Vatu",
@@ -45,6 +43,8 @@ const CONTESTANTS = {
 	// "Savannah": "Cila", // Voted out Episode 2
 	// "Q": "Vatu", // Voted Out Episode 3
 	// "Mike": "Vatu",	// Voted Out Episode 4
+	// "Angelina": "Vatu" // Voted Out Episode 5
+	// "Charlie": "Cila" // Voted Out Episode 5
 };
 const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
 const QUESTIONS = [

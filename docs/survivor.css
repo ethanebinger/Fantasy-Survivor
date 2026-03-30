@@ -185,7 +185,8 @@ select,
 #lockout_screen .btn:hover  { 
     opacity: 0.85; 
 }
-#lockout_screen p {
+#lockout_screen p,
+#success-text {
     font-size: 20px;
 }
 
