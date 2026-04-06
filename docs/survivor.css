@@ -284,6 +284,9 @@ g text {
 .team_vatu {
     background-color: rgb(221, 93, 214);
 }
+.team_merge {
+    background-color: rgb(254, 223, 73);
+}
 /* Cast photos from: https://www.survivor50challenge.com/castaways */
 .Angelina {
 	background-image: url("images/Angelina.webp");

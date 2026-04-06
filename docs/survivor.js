@@ -8,36 +8,28 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 6;
-const CURRENT_EP_DATE = '4/1/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'The Blood Moon'
+const CURRENT_WEEK = 7;
+const CURRENT_EP_DATE = '4/8/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Thats Not How I Play Survivor'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
 const CONTESTANTS = {
-	// Orange Cila Tribe
-	"Cirie": "Cila",	
-	"Dee": "Cila",
-	"Devens": "Cila",
-	"Jonathan": "Cila",
-	"Kamilla": "Cila",
-	"Rizo": "Cila",
-	
-	// Teal Kalo Tribe
-	"Aubry": "Kalo",
-	"Colby": "Kalo",
-	"Genevieve": "Kalo",
-	"Chrissy": "Kalo",
-	"Coach": "Kalo",
-	"Tiffany": "Kalo",
-	"Joe": "Kalo",
-	
-	// Purple Vatu Tribe
-	"Christian": "Vatu",
-	"Emily": "Vatu",
-	"Ozzy": "Vatu",
-	"Stephenie": "Vatu"
-
+	// Yellow Merge Tribe
+	"Aubry": "Merge",
+	"Chrissy": "Merge",
+	"Christian": "Merge",
+	"Cirie": "Merge",
+	"Coach": "Merge",
+	"Dee": "Merge",
+	"Devens": "Merge",
+	"Emily": "Merge",
+	"Joe": "Merge",
+	"Jonathan": "Merge",
+	"Ozzy": "Merge",
+	"Rizo": "Merge",
+	"Stephenie": "Merge",
+	"Tiffany": "Merge"
 	// "Jenna": "Cila", // Voted out Episode 1
 	// "Kyle": "Vatu", // Medevac Episode 1
 	// "Savannah": "Cila", // Voted out Episode 2
@@ -45,6 +37,9 @@ const CONTESTANTS = {
 	// "Mike": "Vatu",	// Voted Out Episode 4
 	// "Angelina": "Vatu" // Voted Out Episode 5
 	// "Charlie": "Cila" // Voted Out Episode 5
+	// "Colby": "Kalo", // Voted out Episode 6
+	// "Genevieve": "Kalo", // Voted out Episode 6
+	// "Kamilla": "Cila", // Voted out Episode 6
 };
 const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
 const QUESTIONS = [
