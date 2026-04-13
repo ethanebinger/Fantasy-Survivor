@@ -8,9 +8,9 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 7;
-const CURRENT_EP_DATE = '4/8/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Thats Not How I Play Survivor'
+const CURRENT_WEEK = 8;
+const CURRENT_EP_DATE = '4/15/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Double The Fun, Double The Demise'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
@@ -21,7 +21,7 @@ const CONTESTANTS = {
 	"Christian": "Merge",
 	"Cirie": "Merge",
 	"Coach": "Merge",
-	"Dee": "Merge",
+	// "Dee": "Merge", // Voted Out Episode 7
 	"Devens": "Merge",
 	"Emily": "Merge",
 	"Joe": "Merge",
