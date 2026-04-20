@@ -8,28 +8,29 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 8;
-const CURRENT_EP_DATE = '4/15/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Double The Fun, Double The Demise'
+const CURRENT_WEEK = 9;
+const CURRENT_EP_DATE = '4/22/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'I Deserve All Of This'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
 const CONTESTANTS = {
-	// Yellow Merge Tribe
-	"Aubry": "Merge",
-	"Chrissy": "Merge",
-	"Christian": "Merge",
-	"Cirie": "Merge",
-	"Coach": "Merge",
-	// "Dee": "Merge", // Voted Out Episode 7
-	"Devens": "Merge",
-	"Emily": "Merge",
-	"Joe": "Merge",
-	"Jonathan": "Merge",
-	"Ozzy": "Merge",
-	"Rizo": "Merge",
-	"Stephenie": "Merge",
-	"Tiffany": "Merge"
+	// Yellow Manulevu Merged Tribe
+	"Aubry": "Manulevu",
+	// "Chrissy": "Manulevu", // Voted out Episode 8
+	"Christian": "Manulevu",
+	"Cirie": "Manulevu",
+	// "Coach": "Manulevu", // Voted Out Episode 8
+	// "Dee": "Manulevu", // Voted Out Episode 7
+	"Devens": "Manulevu",
+	"Emily": "Manulevu",
+	"Joe": "Manulevu",
+	"Jonathan": "Manulevu",
+	"Ozzy": "Manulevu",
+	"Rizo": "Manulevu",
+	"Stephenie": "Manulevu",
+	"Tiffany": "Manulevu"
+	// Pre-Merge Boots
 	// "Jenna": "Cila", // Voted out Episode 1
 	// "Kyle": "Vatu", // Medevac Episode 1
 	// "Savannah": "Cila", // Voted out Episode 2
