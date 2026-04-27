@@ -8,9 +8,9 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 9;
-const CURRENT_EP_DATE = '4/22/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'I Deserve All Of This'
+const CURRENT_WEEK = 10;
+const CURRENT_EP_DATE = '4/29/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'A Side Dish of Chaos'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 11;
 const FINAL_VOTE_WEEK = 14;
@@ -18,7 +18,7 @@ const CONTESTANTS = {
 	// Yellow Manulevu Merged Tribe
 	"Aubry": "Manulevu",
 	// "Chrissy": "Manulevu", // Voted out Episode 8
-	"Christian": "Manulevu",
+	// "Christian": "Manulevu", // Voted out Episode 9
 	"Cirie": "Manulevu",
 	// "Coach": "Manulevu", // Voted Out Episode 8
 	// "Dee": "Manulevu", // Voted Out Episode 7
