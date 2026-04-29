@@ -1,6 +1,6 @@
 /*****************************
  * NOTES/TODO:
- * - stress test final_three and final_eight scoring logic
+ * - stress final_eight scoring logic
  * - review and clean CSS code 
  * 
  *****************************/
@@ -1038,10 +1038,10 @@ function calculateScores(results, responses) {
 			};
 			// Safe
 			if (inArray(response.safe, result.eliminated)) {
-				continue
+				scores[player][cur_week].safe += 0;
 			} else if (response.safe) {
 				scores[player][cur_week].safe += 10;
-				scores[player][cur_week].total += 10;		
+				scores[player][cur_week].total += 10;
 			};
 			// Bonus Questions
 			for (let k=0; k<BONUS_QUESTIONS.length; k++){
