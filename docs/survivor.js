@@ -8,11 +8,11 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 10;
-const CURRENT_EP_DATE = '4/29/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'A Side Dish of Chaos'
+const CURRENT_WEEK = 11;
+const CURRENT_EP_DATE = '5/6/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Everyone Will Be Shooketh!'
 const FINAL_THREE_VOTE_WEEK = 2;
-const FINAL_EIGHT_VOTE_WEEK = 11;
+const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 14;
 const CONTESTANTS = {
 	// Yellow Manulevu Merged Tribe
@@ -28,7 +28,7 @@ const CONTESTANTS = {
 	"Jonathan": "Manulevu",
 	"Ozzy": "Manulevu",
 	"Rizo": "Manulevu",
-	"Stephenie": "Manulevu",
+	// "Stephenie": "Manulevu", // Voted Out Episode 10
 	"Tiffany": "Manulevu"
 	// Pre-Merge Boots
 	// "Jenna": "Cila", // Voted out Episode 1
