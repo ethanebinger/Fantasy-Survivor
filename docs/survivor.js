@@ -13,7 +13,7 @@ const CURRENT_EP_DATE = '5/6/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
 const EPISODE_NAME = 'Everyone Will Be Shooketh!'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
-const FINAL_VOTE_WEEK = 14;
+const FINAL_VOTE_WEEK = 13;
 const CONTESTANTS = {
 	// Yellow Manulevu Merged Tribe
 	"Aubry": "Manulevu",
@@ -93,7 +93,7 @@ const QUESTIONS = [
     prompt: "Who will be ELIMINATED this week?",
     details: "(select one)<br>(+10 if group) (+20 if individual)",
     type: "contestant-radio",
-    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
   },
   {
     key: "safe",
@@ -101,7 +101,7 @@ const QUESTIONS = [
     prompt: "Who will be SAFE this week?",
     details: "(select one)<br>(+10)",
     type: "contestant-radio",
-    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
   }
 ];
 const ACTIVE_QUESTIONS = QUESTIONS.filter(q => q.weeks.includes(CURRENT_WEEK));
