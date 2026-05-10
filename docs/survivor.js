@@ -8,9 +8,9 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 11;
-const CURRENT_EP_DATE = '5/6/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Everyone Will Be Shooketh!'
+const CURRENT_WEEK = 12;
+const CURRENT_EP_DATE = '5/13/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Inconceivable'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 13;
@@ -23,10 +23,10 @@ const CONTESTANTS = {
 	// "Coach": "Manulevu", // Voted Out Episode 8
 	// "Dee": "Manulevu", // Voted Out Episode 7
 	"Devens": "Manulevu",
-	"Emily": "Manulevu",
+	// "Emily": "Manulevu", // Voted out Episode 11
 	"Joe": "Manulevu",
 	"Jonathan": "Manulevu",
-	"Ozzy": "Manulevu",
+	// "Ozzy": "Manulevu", // Voted out Episode 11
 	"Rizo": "Manulevu",
 	// "Stephenie": "Manulevu", // Voted Out Episode 10
 	"Tiffany": "Manulevu"
@@ -66,7 +66,7 @@ const QUESTIONS = [
     key: "final_eight",
     round: "OUTLAST",
     prompt: "Rank the remaining survivors.",
-    details: "Please pick one from each dropdown. Order DOES matter.<br> Do not repeat your picks. All eight options should be used once.<br> You will get points for each pick based on the deviation from their final placement.",
+    details: "Please pick one from each dropdown, placing them in the final order they will finish (1st, 2nd, etc.).<br> Order DOES matter.<br> Do not repeat your picks. All options should be used once.<br> You will get points for each pick based on the deviation from their final placement.",
     type: "dropdown", 
 	options: Object.keys(CONTESTANTS),
     weeks: [FINAL_EIGHT_VOTE_WEEK]
@@ -226,7 +226,7 @@ function buildTabs() {
 		if (q.key=='final_three'){
 			buildFinalQuestionTabs(q, 3);
 		} else if (q.key=='final_eight') {
-			buildFinalQuestionTabs(q, 8);
+			buildFinalQuestionTabs(q, 7);
 		} else if (q.key=='player_name') {
 			const $tab = $(`<div class="tab"><h1>${q.round}</h1><h3>${q.details || ''}</h3></div>`);
 			form.append($tab);
@@ -300,7 +300,7 @@ function buildFinalQuestionTabs(q, n){
 			<br><br>
 	`);
 	let prefix = 'pick_';
-	if (n === 8) { 
+	if (n === 8 || n === 7) { 
 		prefix = 'place_';
 	}
 	for (let i = 1; i <= n; i++) {
@@ -1095,7 +1095,7 @@ function which_castaway(castaways){
 		} else if (castaways['place_'+String([i])] === "-") {	// seventh
 			sum += Math.pow(Math.abs(i-7),2.25)
 			if (i===7) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "-") {	// eighth
+		} else if (castaways['place_'+String([i])] === "Ozzy") {	// eighth
 			sum += Math.pow(Math.abs(i-8),2.25);
 			if (i===8) { bonus += 5 };
 		};
