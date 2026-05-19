@@ -8,9 +8,9 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 12;
-const CURRENT_EP_DATE = '5/13/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Inconceivable'
+const CURRENT_WEEK = 13;
+const CURRENT_EP_DATE = '5/20/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Reverse the Curse'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 13;
@@ -19,10 +19,10 @@ const CONTESTANTS = {
 	"Aubry": "Manulevu",
 	// "Chrissy": "Manulevu", // Voted out Episode 8
 	// "Christian": "Manulevu", // Voted out Episode 9
-	"Cirie": "Manulevu",
+	// "Cirie": "Manulevu", // Voted out Episode 12
 	// "Coach": "Manulevu", // Voted Out Episode 8
 	// "Dee": "Manulevu", // Voted Out Episode 7
-	"Devens": "Manulevu",
+	// "Devens": "Manulevu", // Voted out Episode 12
 	// "Emily": "Manulevu", // Voted out Episode 11
 	"Joe": "Manulevu",
 	"Jonathan": "Manulevu",
@@ -51,7 +51,7 @@ const QUESTIONS = [
     details: "submit before 8PM EST",
     type: "dropdown", 
 	options: "",
-    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    weeks: [...Array(FINAL_VOTE_WEEK + 1).keys()]
   },
   {
     key: "final_three",
@@ -77,7 +77,7 @@ const QUESTIONS = [
     prompt: "Who will win REWARD this week?",
     details: "(select one)<br>(+5 if group) (+10 if individual)",
     type: "contestant-radio",
-    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    weeks: [...Array(FINAL_VOTE_WEEK + 1).keys()]
   },
   {
     key: "immunity",
@@ -85,7 +85,7 @@ const QUESTIONS = [
     prompt: "Who will win IMMUNITY this week?",
     details: "(select one)<br>(+5 if group) (+15 if individual)",
     type: "contestant-radio",
-    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    weeks: [...Array(FINAL_VOTE_WEEK).keys()]
   },
   {
     key: "eliminated",
@@ -93,7 +93,7 @@ const QUESTIONS = [
     prompt: "Who will be ELIMINATED this week?",
     details: "(select one)<br>(+10 if group) (+20 if individual)",
     type: "contestant-radio",
-    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    weeks: [...Array(FINAL_EIGHT_VOTE_WEEK).keys()]
   },
   {
     key: "safe",
@@ -101,7 +101,31 @@ const QUESTIONS = [
     prompt: "Who will be SAFE this week?",
     details: "(select one)<br>(+10)",
     type: "contestant-radio",
-    weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    weeks: [...Array(FINAL_EIGHT_VOTE_WEEK).keys()]
+  },
+  {
+    key: "immunity_5",
+    round: "OUTPLAY I",
+    prompt: "Who will win IMMUNITY with 5 survivors remaining?",
+    details: "(select one)<br>(+5 if group) (+15 if individual)",
+    type: "contestant-radio",
+    weeks: [FINAL_VOTE_WEEK]
+  },
+  {
+    key: "immunity_4",
+    round: "OUTPLAY II",
+    prompt: "Who will win IMMUNITY with 4 survivors remaining?",
+    details: "(select one)<br>(+5 if group) (+15 if individual)",
+    type: "contestant-radio",
+    weeks: [FINAL_VOTE_WEEK]
+  },
+  {
+    key: "fire_challenge",
+    round: "OUTLAST",
+    prompt: "Who will win the FIRE MAKING challenge?",
+    details: "(select one)<br>(+5 if group) (+15 if individual)",
+    type: "contestant-radio",
+    weeks: [FINAL_VOTE_WEEK]
   }
 ];
 const ACTIVE_QUESTIONS = QUESTIONS.filter(q => q.weeks.includes(CURRENT_WEEK));
@@ -676,8 +700,8 @@ function getWeeklyResults(score, response, curVote) {
 			"<colgroup><col><col><col></colgroup>" +
 			"<tr><th>Question</th><th>Response</th><th>Points Earned</th></tr>" +
 			"<tr><td><strong>Wins Reward Challenge</strong></td><td>" + response.reward + "</td><td>"+ score.reward +"</td></tr>" +
-			"<tr><td><strong>Wins 1st Immunity Challenge</strong></td><td>" + response.immunity_5 + "</td><td>"+ score.immunity_5 +"</td></tr>" +
-			"<tr><td><strong>Wins Immunity Challenge</strong></td><td>" + response.immunity_4 + "</td><td>"+ score.immunity_4 +"</td></tr>" +
+			"<tr><td><strong>Wins Immunity Challenge (5 Remain)</strong></td><td>" + response.immunity_5 + "</td><td>"+ score.immunity_5 +"</td></tr>" +
+			"<tr><td><strong>Wins Immunity Challenge (4 Remain)</strong></td><td>" + response.immunity_4 + "</td><td>"+ score.immunity_4 +"</td></tr>" +
 			"<tr><td><strong>Wins Fire Making Challenge</strong></td><td>" + response.fire_challenge + "</td><td>"+ score.fire_challenge +"</td></tr>" +
 			"<tr><td><strong>Title Quote</strong></td><td>" + response.title_quote + "</td><td>"+ score.title_quote +"</td></tr>" +
 			"<tr><td><strong>Nudity</strong></td><td>" + response.nudity + "</td><td>"+ score.nudity +"</td></tr>" +
@@ -1089,10 +1113,10 @@ function which_castaway(castaways){
 		} else if (castaways['place_'+String([i])] === "-") {	// fifth
 			sum += Math.pow(Math.abs(i-5),2.25);
 			if (i===5) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "-") {	// sixth
+		} else if (castaways['place_'+String([i])] === "Cirie") {	// sixth
 			sum += Math.pow(Math.abs(i-6),2.25);
 			if (i===6) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "-") {	// seventh
+		} else if (castaways['place_'+String([i])] === "Devens") {	// seventh
 			sum += Math.pow(Math.abs(i-7),2.25)
 			if (i===7) { bonus += 5 };
 		} else if (castaways['place_'+String([i])] === "Ozzy") {	// eighth
