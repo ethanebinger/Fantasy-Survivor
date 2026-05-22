@@ -42,7 +42,8 @@ const CONTESTANTS = {
 	// "Genevieve": "Kalo", // Voted out Episode 6
 	// "Kamilla": "Cila", // Voted out Episode 6
 };
-const FINAL_THREE = Object.keys(CONTESTANTS); //['1', '2', '3'];
+// const FINAL_THREE = Object.keys(CONTESTANTS);
+const FINAL_THREE = ['Aubry', 'Joe', 'Jonathan'];
 const QUESTIONS = [
   {
     key: "player_name",
@@ -1088,6 +1089,16 @@ function calculateScores(results, responses) {
 					};
 				};
 			};
+			// Immunity at Final 5
+			if (response.immunity_5 && inArray(response.immunity_5, result.immunity_5)) {
+				scores[player][cur_week].immunity_5 += 15;
+				scores[player][cur_week].total += 15;			
+			};
+			// Immunity at Final 4
+			if (response.immunity_4 && inArray(response.immunity_4, result.immunity_4)) {
+				scores[player][cur_week].immunity_4 += 15;
+				scores[player][cur_week].total += 15;				
+			};
 		};
 	};
 	return scores;
@@ -1098,19 +1109,19 @@ function which_castaway(castaways){
 	var sum = 0,
 		bonus = 0;
 	for (var i=1; i<9; i++){
-		if (castaways['place_'+String([i])] === "-") {			// sole survivor
+		if (castaways['place_'+String([i])] === "Aubry") {	// sole survivor
 			sum += Math.pow(Math.abs(i-1),2.25);
 			if (i===1) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "-") {	// runner up
+		} else if (castaways['place_'+String([i])] === "Jonathan") {	// runner up
 			sum += Math.pow(Math.abs(i-2),2.25);
 			if (i===2) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "-") {	// third
+		} else if (castaways['place_'+String([i])] === "Joe") {		// third
 			sum += Math.pow(Math.abs(i-3),2.25);
 			if (i===3) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "-") {	// fourth
+		} else if (castaways['place_'+String([i])] === "Rizo") {	// fourth
 			sum += Math.pow(Math.abs(i-4),2.25);
 			if (i===4) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "-") {	// fifth
+		} else if (castaways['place_'+String([i])] === "Tiffany") {	// fifth
 			sum += Math.pow(Math.abs(i-5),2.25);
 			if (i===5) { bonus += 5 };
 		} else if (castaways['place_'+String([i])] === "Cirie") {	// sixth
