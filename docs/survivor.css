@@ -275,90 +275,78 @@ g text {
     justify-items: center;     /* centers items horizontally in each cell */
     align-items: start;        /* top-align items vertically (usually best for cards) */
 }
-.team_cila {
+.team_yellow {
     background-color: rgb(255, 123, 41);
 }
-.team_kalo {
+.team_purple {
     background-color: rgb(82, 223, 204);
 }
-.team_vatu {
+.team_blue {
     background-color: rgb(221, 93, 214);
 }
-.team_manulevu {
-    background-color: rgb(254, 223, 73);
+/* Cast photos from: https://parade.com/tv/survivor-51-cast-2026 */
+.Aaliyah {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwMzgx/aaliyah-puglia.jpg");
 }
-/* Cast photos from: https://www.survivor50challenge.com/castaways */
-.Angelina {
-	background-image: url("images/Angelina.webp");
+.Alexis {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwMzgz/alexis-levine.jpg");
 }
-.Aubry {
-	background-image: url("images/Aubry.webp");
+.ThienAn {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDUy/an-thien-an-nguyen.jpg");
 }
-.Coach {
-	background-image: url("images/Coach.webp");
+.Ana {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwMzg4/ana-sani.jpg");
 }
-.Chrissy {
-	background-image: url("images/Chrissy.webp");
+.Jelly {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwMzkz/angelica-jelly-loblack.jpg");
 }
-.Charlie {
-	background-image: url("images/Charlie.webp");
+.Brady {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwMzk3/brady-booker.jpg");
 }
-.Christian {
-	background-image: url("images/Christian.webp");
+.Carter {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDAw/carter-krull.jpg");
 }
-.Cirie {
-	background-image: url("images/Cirie.webp");
+.Cristian {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDA0/cristian-chavez.jpg");
 }
-.Colby {
-	background-image: url("images/Colby.webp");
+.Kilby {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDA2/danny-kilby.jpg");
 }
-.Dee {
-	background-image: url("images/Dee.webp");
+.Devin {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDEy/devin-way.jpg");
 }
-.Emily {
-	background-image: url("images/Emily.webp");
-}
-.Genevieve {
-	background-image: url("images/Genevieve.webp");
+.Eric {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDE3/erick-macksoud.jpg");
 }
 .Jenna {
-	background-image: url("images/Jenna.webp");
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDIx/survivor.jpg");
 }
-.Joe {
-	background-image: url("images/Joe.webp");
+.Kristin {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDIz/kristin-flickinger.jpg");
 }
-.Jonathan {
-	background-image: url("images/Jonathan.webp");
+.Lewis {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDI1/lewis-kelly.jpg");
 }
-.Kamilla {
-	background-image: url("images/Kamilla.webp");
+.Linnea {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDI5/linnea-capobianco.jpg");
 }
-.Kyle {
-	background-image: url("images/Kyle.webp");
+.Maggie {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDMy/maggie-nestor.jpg");
 }
 .Mike {
-	background-image: url("images/Mike.webp");
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDM2/mike-pinsky.jpg");
 }
-.Ozzy {
-	background-image: url("images/Ozzy.webp");
+.Ori {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDQx/ori-jean-charles.jpg");
 }
-.Q {
-	background-image: url("images/Q.webp");
+.Patt {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDQ1/patt-cannaday-on-survivor-51.jpg");
 }
-.Devens {
-	background-image: url("images/Devens.webp");
+.Rob {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDQ3/rob-antonson.jpg");
 }
-.Rizo {
-	background-image: url("images/Rizo.webp");
-}
-.Savannah {
-	background-image: url("images/Savannah.webp");
-}
-.Stephenie {
-	background-image: url("images/Stephenie.webp");
-}
-.Tiffany {
-	background-image: url("images/Tiffany.webp");
+.Sharonda {
+	background-image: url("https://parade.com/.image/ODowMDAwMDAwMDAyMzMwNDQ5/sharonda-cox.jpg");
 }
 .contestants{
     height: 100%;

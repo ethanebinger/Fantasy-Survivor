@@ -8,42 +8,44 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 13;
-const CURRENT_EP_DATE = '5/20/26' // MUST BE LIKE M/D/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Reverse the Curse'
+const CURRENT_WEEK = 1;
+const CURRENT_EP_DATE = '9/21/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Permanent Uncertainty'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 13;
 const CONTESTANTS = {
-	// Yellow Manulevu Merged Tribe
-	"Aubry": "Manulevu",
-	// "Chrissy": "Manulevu", // Voted out Episode 8
-	// "Christian": "Manulevu", // Voted out Episode 9
-	// "Cirie": "Manulevu", // Voted out Episode 12
-	// "Coach": "Manulevu", // Voted Out Episode 8
-	// "Dee": "Manulevu", // Voted Out Episode 7
-	// "Devens": "Manulevu", // Voted out Episode 12
-	// "Emily": "Manulevu", // Voted out Episode 11
-	"Joe": "Manulevu",
-	"Jonathan": "Manulevu",
-	// "Ozzy": "Manulevu", // Voted out Episode 11
-	"Rizo": "Manulevu",
-	// "Stephenie": "Manulevu", // Voted Out Episode 10
-	"Tiffany": "Manulevu"
-	// Pre-Merge Boots
-	// "Jenna": "Cila", // Voted out Episode 1
-	// "Kyle": "Vatu", // Medevac Episode 1
-	// "Savannah": "Cila", // Voted out Episode 2
-	// "Q": "Vatu", // Voted Out Episode 3
-	// "Mike": "Vatu",	// Voted Out Episode 4
-	// "Angelina": "Vatu" // Voted Out Episode 5
-	// "Charlie": "Cila" // Voted Out Episode 5
-	// "Colby": "Kalo", // Voted out Episode 6
-	// "Genevieve": "Kalo", // Voted out Episode 6
-	// "Kamilla": "Cila", // Voted out Episode 6
+    "Aaliyah": "blue",
+    "Alexis": "blue",
+    "ThienAn": "blue", // An "Thien An" Nguyen
+    "Ana": "blue",
+    "Jelly": "blue", // Angelica "Jelly" Loblack
+    "Brady": "blue",
+    "Carter": "blue",
+    "Cristian": "blue",
+    "Kilby": "blue", // Danny Kilby
+    "Devin": "blue",
+    "Eric": "blue",
+    "Jenna": "blue",
+    "Kristin": "blue",
+    "Lewis": "blue",
+    "Linnea": "blue",
+    "Maggie": "blue",
+    "Mike": "blue",
+    "Ori": "blue",
+    "Patt": "blue",
+    "Rob": "blue",
+    "Sharonda": "blue"
 };
+function nameSpacer(name) {
+    const replacements = {
+        "ThienAn": "Thien An"
+    };
+    return replacements[name] || name;
+}
+
 // const FINAL_THREE = Object.keys(CONTESTANTS);
-const FINAL_THREE = ['Aubry', 'Joe', 'Jonathan'];
+const FINAL_THREE = ['', '', ''];
 const QUESTIONS = [
   {
     key: "player_name",
@@ -199,8 +201,8 @@ const BONUS_QUESTIONS = [
 const SUPABASE_URL = 'https://vbqyvyocwoqatmjytysy.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_9vCZvZxuWp0hO9G7aCzSkg_Nie5BdIw';
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-const SUPABASE_TABLE = 'season_50';
-const SUPABASE_TABLE_RESULTS = 'season_50_results';
+const SUPABASE_TABLE = 'season_51';
+const SUPABASE_TABLE_RESULTS = 'season_51_results';
 
 /************************************
  * FORM INITIALIZATION AND BUILDING
@@ -361,7 +363,7 @@ function buildContestantRadios({containerId, questionName}) {
 		const wrapper = document.createElement("div");
 		wrapper.className = "cc-selector";
 		wrapper.innerHTML = `
-			<p class="name">${name}</p>
+			<p class="name">${nameSpacer(name)}</p>
 			<img src="images/flag_${tribe.toLowerCase()}.jpg" />
 			<input id="${id}" type="radio" name="${questionName}" value="${name}" />
 			<label class="survivor-cc ${name} ${questionName}" for="${id}"></label>
@@ -1109,28 +1111,28 @@ function which_castaway(castaways){
 	var sum = 0,
 		bonus = 0;
 	for (var i=1; i<9; i++){
-		if (castaways['place_'+String([i])] === "Aubry") {	// sole survivor
+		if (castaways['place_'+String([i])] === "") {	// sole survivor
 			sum += Math.pow(Math.abs(i-1),2.25);
 			if (i===1) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Jonathan") {	// runner up
+		} else if (castaways['place_'+String([i])] === "") {	// runner up
 			sum += Math.pow(Math.abs(i-2),2.25);
 			if (i===2) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Joe") {		// third
+		} else if (castaways['place_'+String([i])] === "") {		// third
 			sum += Math.pow(Math.abs(i-3),2.25);
 			if (i===3) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Rizo") {	// fourth
+		} else if (castaways['place_'+String([i])] === "") {	// fourth
 			sum += Math.pow(Math.abs(i-4),2.25);
 			if (i===4) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Tiffany") {	// fifth
+		} else if (castaways['place_'+String([i])] === "") {	// fifth
 			sum += Math.pow(Math.abs(i-5),2.25);
 			if (i===5) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Cirie") {	// sixth
+		} else if (castaways['place_'+String([i])] === "") {	// sixth
 			sum += Math.pow(Math.abs(i-6),2.25);
 			if (i===6) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Devens") {	// seventh
+		} else if (castaways['place_'+String([i])] === "") {	// seventh
 			sum += Math.pow(Math.abs(i-7),2.25)
 			if (i===7) { bonus += 5 };
-		} else if (castaways['place_'+String([i])] === "Ozzy") {	// eighth
+		} else if (castaways['place_'+String([i])] === "") {	// eighth
 			sum += Math.pow(Math.abs(i-8),2.25);
 			if (i===8) { bonus += 5 };
 		};
