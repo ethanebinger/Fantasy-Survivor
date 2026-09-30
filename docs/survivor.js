@@ -8,9 +8,9 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 1;
-const CURRENT_EP_DATE = '9/21/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Permanent Uncertainty'
+const CURRENT_WEEK = 2;
+const CURRENT_EP_DATE = '9/30/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Weaponized Honesty'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 13;
@@ -517,9 +517,10 @@ async function submitToSupabase() {
 	// Submit responses to supabase
 	$('#submitBtn').prop('disabled', true).text('Submitting…');
 	try {
-		const { error } = await supabaseClient
+		const { data, error } = await supabaseClient
 			.from(SUPABASE_TABLE)
 			.insert([row]);
+		// console.log('Row being submitted:', row);
 		if (error) {
 			console.error('Supabase insert error:', error);
 			alert('Sorry, there was a problem saving your picks. Please try again.');
