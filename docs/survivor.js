@@ -638,38 +638,40 @@ async function init_responses() {
 		scores_responses = final_eight_calc(scores_responses, responses);
 
 		// filter past responses on click
-        $("#past_responses_button").click(function() {
+		$("#past_responses_button").click(function() {
 			$("#past_responses").empty();
 			let curName = $("#past_responses_name option:selected").val();
 			let curVote = $("#past_responses_vote option:selected").val();
 			if (curName.length < 1 || curVote.length < 1) {
-				$("#past_responses").empty().append(`<br><h3>Please select both a name and a vote/episode</h3>`);
-			} else if (curVote === "final_eight") {
-				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>No Votes Cast for this Episode</h3>`);
-				} else {
-					let scores_filter = scores_responses[curName][curVote];
-					let response_filter = responses.filter(s => s.team_name===curName && s.week===FINAL_EIGHT_VOTE_WEEK)[0];
-					getWeeklyResults(scores_filter, response_filter, curVote);
-				};			
-			} else if (curVote === "final_three") {
-				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>No Votes Cast for this Episode</h3>`);
-				} else {
-					let scores_filter = scores_responses[curName][curVote];
-					let response_filter = responses.filter(s => s.team_name===curName && s.week===FINAL_THREE_VOTE_WEEK)[0];
-					getWeeklyResults(scores_filter, response_filter, curVote);
-				};				
-			} else {
-				curVote = parseInt(curVote,10);
-				if (!scores_responses[curName][curVote]) { 
-					$("#past_responses").empty().append(`<br><h3>No Votes Cast for this Episode</h3>`);
-				} else {
-					let scores_filter = scores_responses[curName][curVote];
-					let response_filter = responses.filter(s => s.team_name===curName && s.week===curVote)[0];
-					getWeeklyResults(scores_filter, response_filter, curVote);
-				};				
+				$("#past_responses").append(`<br><h3>Please select both a name and a vote/episode</h3>`);
+				return;
 			};
+			let responseWeek;
+			let scoreKey;
+			if (curVote === "final_eight") {
+				responseWeek = FINAL_EIGHT_VOTE_WEEK;
+				scoreKey = "final_eight";
+			} else if (curVote === "final_three") {
+				responseWeek = FINAL_THREE_VOTE_WEEK;
+				scoreKey = "final_three";
+			} else {
+				responseWeek = parseInt(curVote, 10);
+				scoreKey = responseWeek;
+			};
+			const response_filter = responses.find(
+				s => s.team_name === curName && s.week === responseWeek
+			);
+			if (!response_filter) {
+				$("#past_responses").append(`<br><h3>No Votes Cast for this Episode</h3>`);
+				return;
+			};
+			let scores_filter;
+			if (scores_responses[curName] && scores_responses[curName][scoreKey]) {
+				scores_filter = scores_responses[curName][scoreKey];
+			} else {
+				scores_filter = emptyScore(response_filter);
+			};
+			getWeeklyResults(scores_filter, response_filter, curVote);
 		});
 
     } catch (err) {
@@ -807,7 +809,7 @@ function getActivePlayers(r, fieldName='name') {
 };
 
 // Function to create score array from players
-function createScoreArray(weeks, players, defaultScore=0) {
+function createScoreArray(weeks, players) {
 	const scores = {};
 	const excluded = new Set(['player_name', 'final_three', 'final_eight']);
 	const questions = [
@@ -817,9 +819,9 @@ function createScoreArray(weeks, players, defaultScore=0) {
 	for (const player of players) {
 		const perPlayer = {};
 		for (const week of weeks) {
-			const bucket = { total: defaultScore };
+			const bucket = { total: 0 };
 			for (const q of questions) {
-				bucket[q] = defaultScore;
+				bucket[q] = 0;
 			}
 			perPlayer[week] = bucket;
 		}
@@ -1023,18 +1025,26 @@ var inArray = function(x,y) {
     return false;
 };
 
+// Function to return value for response without score
+function emptyScore(response) {
+	const score = {};
+	Object.keys(response).forEach(key => {
+		score[key] = "-";
+	});
+	return score;
+}
+
 // FUNCTION TO CALCULATE SCORES FOR WEEKLY RESPONSES
 function calculateScores(results, responses) {
 	// create empty score array using active players within responses array
 	var players = getActivePlayers(responses, 'team_name');
 	var weeks = results.map(item => item.week).filter(onlyUnique).sort();
-	var scores = createScoreArray(weeks, players, "-");
+	var scores = createScoreArray(weeks, players);
 	// iterate through results
 	for (let i=0; i<results.length; i++){
 		// results for currently selected week
 		const result = results[i];
 		const cur_week = result.week
-		// match responses by week - can update later to match on datetime
 		const matched = responses.filter(r => r.week === cur_week);
 		// iterate through responses
 		for (let j=0; j<matched.length; j++) {
