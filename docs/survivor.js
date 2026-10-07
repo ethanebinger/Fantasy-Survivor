@@ -8,34 +8,34 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 2;
-const CURRENT_EP_DATE = '9/30/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Weaponized Honesty'
+const CURRENT_WEEK = 3;
+const CURRENT_EP_DATE = '10/7/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'What Im Smellin Is Stinky'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 13;
 const CONTESTANTS = {
-    "Aaliyah": "blue",
-    "Alexis": "blue",
-    "ThienAn": "blue", // An "Thien An" Nguyen
-    "Ana": "blue",
-    "Jelly": "blue", // Angelica "Jelly" Loblack
-    "Brady": "blue",
-    "Carter": "blue",
-    "Cristian": "blue",
-    "Kilby": "blue", // Danny Kilby
-    "Devin": "blue",
-    "Eric": "blue",
-    "Jenna": "blue",
-    "Kristin": "blue",
-    "Lewis": "blue",
-    "Linnea": "blue",
-    "Maggie": "blue",
-    "Mike": "blue",
-    "Ori": "blue",
-    "Patt": "blue",
-    "Rob": "blue",
-    "Sharonda": "blue"
+    "Aaliyah": "yellow",
+    "Alexis": "purple",
+    "ThienAn": "yellow", // An "Thien An" Nguyen
+    "Ana": "purple",
+    "Jelly": "yellow", // Angelica "Jelly" Loblack
+    "Brady": "yellow",
+    "Carter": "purple",
+    "Cristian": "purple",
+    "Kilby": "yellow", // Danny Kilby
+    "Devin": "yellow",
+    "Eric": "purple",
+    "Jenna": "yellow",
+    "Kristin": "purple",
+    "Lewis": "yellow",
+    "Linnea": "purple",
+    "Maggie": "yellow",
+    "Mike": "yellow",
+    "Ori": "purple",
+    "Patt": "yellow",
+    "Rob": "purple",
+    "Sharonda": "purple"
 };
 function nameSpacer(name) {
     const replacements = {
@@ -51,7 +51,7 @@ const QUESTIONS = [
     key: "player_name",
     round: `You are currently voting for<br>Episode ${CURRENT_WEEK}<br>Airing on ${CURRENT_EP_DATE}<br><br>`,
     prompt: "", //"What is your name?",
-    details: "submit before 8PM EST",
+    details: "submit before 8PM EST<br><br>(sorry I still haven't watched so options include all contestants)",
     type: "dropdown", 
 	options: "",
     weeks: [...Array(FINAL_VOTE_WEEK + 1).keys()]
@@ -549,7 +549,13 @@ async function requestFromSupabase(table) {
 	if (table === SUPABASE_TABLE) {
 		query = query.order('submit_time', { ascending: true });
 	}
-	const { data, error } = await query;
+	const { data, error, status, statusText } = await query;
+	
+	//console.log("Supabase table:", table);
+	//console.log("Supabase data:", data);
+	//console.log("Supabase error:", error);
+	//console.log("Supabase status:", status, statusText);
+	
 	if (error) {
 		console.error('Error loading picks:', error);
 		return [];
@@ -620,11 +626,11 @@ async function init_responses() {
 	try {
         // wait for responses and results to load from supabase
         const saved_responses = await loadResponses();
-		const responses = keepLastBySubmitTime(saved_responses);
+		const responses = keepLastBySubmitTime(saved_responses);		
         const results = await loadResults();
 
 		// Function to generate dropdown selection menus
-		buildResponsesDropdown(responses);
+		buildResponsesDropdown(responses)
 
 		// calculate scores once data is ready
         scores_responses = calculateScores(results, responses);
@@ -801,7 +807,7 @@ function getActivePlayers(r, fieldName='name') {
 };
 
 // Function to create score array from players
-function createScoreArray(weeks, players) {
+function createScoreArray(weeks, players, defaultScore=0) {
 	const scores = {};
 	const excluded = new Set(['player_name', 'final_three', 'final_eight']);
 	const questions = [
@@ -811,8 +817,10 @@ function createScoreArray(weeks, players) {
 	for (const player of players) {
 		const perPlayer = {};
 		for (const week of weeks) {
-			const bucket = { total: 0 };
-		for (const q of questions) bucket[q] = 0;
+			const bucket = { total: defaultScore };
+			for (const q of questions) {
+				bucket[q] = defaultScore;
+			}
 			perPlayer[week] = bucket;
 		}
 		perPlayer.final_three = {total: 0, pick_1: 0, pick_2: 0, pick_3: 0,};
@@ -1020,7 +1028,7 @@ function calculateScores(results, responses) {
 	// create empty score array using active players within responses array
 	var players = getActivePlayers(responses, 'team_name');
 	var weeks = results.map(item => item.week).filter(onlyUnique).sort();
-	var scores = createScoreArray(weeks, players);
+	var scores = createScoreArray(weeks, players, "-");
 	// iterate through results
 	for (let i=0; i<results.length; i++){
 		// results for currently selected week
@@ -1033,6 +1041,8 @@ function calculateScores(results, responses) {
 			// responses for currently selected week and player
 			var response = matched[j];
 			var player = response.team_name
+			// Results exist, so initialize this week's scores to 0
+			Object.keys(scores[player][cur_week]).forEach(key => {scores[player][cur_week][key] = 0;});
 			// MAIN QUESTIONS
 			// Reward
 			if (response.reward && inArray(response.reward, result.reward)) {
