@@ -8,9 +8,9 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 3;
-const CURRENT_EP_DATE = '10/7/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'What Im Smellin Is Stinky'
+const CURRENT_WEEK = 4;
+const CURRENT_EP_DATE = '10/14/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Thats the Magic of Survivor'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 13;
