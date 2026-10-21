@@ -8,20 +8,20 @@
 /*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 4;
-const CURRENT_EP_DATE = '10/14/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Thats the Magic of Survivor'
+const CURRENT_WEEK = 5;
+const CURRENT_EP_DATE = '10/21/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'Not Here to Get a Pedicure'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 13;
 const CONTESTANTS = {
-    "Aaliyah": "yellow",
+    // "Aaliyah": "yellow", // VOTED OFF EPISODE 1
     "Alexis": "purple",
     "ThienAn": "yellow", // An "Thien An" Nguyen
-    "Ana": "purple",
+    // "Ana": "purple", // VOTED OFF EPISODE 2
     "Jelly": "yellow", // Angelica "Jelly" Loblack
     "Brady": "yellow",
-    "Carter": "purple",
+    "Carter": "yellow", // MUTINIED EPISODE 3
     "Cristian": "purple",
     "Kilby": "yellow", // Danny Kilby
     "Devin": "yellow",
@@ -34,7 +34,7 @@ const CONTESTANTS = {
     "Mike": "yellow",
     "Ori": "purple",
     "Patt": "yellow",
-    "Rob": "purple",
+    // "Rob": "purple", // QUIT EPISODE 3
     "Sharonda": "purple"
 };
 function nameSpacer(name) {
