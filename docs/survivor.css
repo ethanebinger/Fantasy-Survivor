@@ -276,13 +276,16 @@ g text {
     align-items: start;        /* top-align items vertically (usually best for cards) */
 }
 .team_yellow {
-    background-color: rgb(255, 123, 41);
+    background-color: rgb(255, 198, 41);
 }
 .team_purple {
-    background-color: rgb(82, 223, 204);
+    background-color: rgb(221, 93, 214);
 }
 .team_blue {
-    background-color: rgb(221, 93, 214);
+    background-color: rgb(82, 223, 204);
+}
+.team_red {
+    background-color: rgb(221, 93, 93);
 }
 /* Cast photos from: https://parade.com/tv/survivor-51-cast-2026 */
 .Aaliyah {

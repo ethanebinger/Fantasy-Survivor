@@ -1,41 +1,34 @@
 /*****************************
- * NOTES/TODO:
- * - stress final_eight scoring logic
- * - review and clean CSS code 
- * 
- *****************************/
-
-/*****************************
  * VARIABLES 
  *****************************/
-const CURRENT_WEEK = 5;
-const CURRENT_EP_DATE = '10/21/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
-const EPISODE_NAME = 'Not Here to Get a Pedicure'
+const CURRENT_WEEK = 6;
+const CURRENT_EP_DATE = '10/28/26' // MUST BE LIKE M/DD/YY FOR LOCKOUT TO FUNCTION
+const EPISODE_NAME = 'I Love Crying'
 const FINAL_THREE_VOTE_WEEK = 2;
 const FINAL_EIGHT_VOTE_WEEK = 12;
 const FINAL_VOTE_WEEK = 13;
 const CONTESTANTS = {
     // "Aaliyah": "yellow", // VOTED OFF EPISODE 1
-    "Alexis": "purple",
+    // "Alexis": "purple", // VOTED OFF EPISODE 5
     "ThienAn": "yellow", // An "Thien An" Nguyen
     // "Ana": "purple", // VOTED OFF EPISODE 2
-    "Jelly": "yellow", // Angelica "Jelly" Loblack
+    "Jelly": "purple", // Angelica "Jelly" Loblack
     "Brady": "yellow",
     "Carter": "yellow", // MUTINIED EPISODE 3
-    "Cristian": "purple",
-    "Kilby": "yellow", // Danny Kilby
-    "Devin": "yellow",
-    "Eric": "purple",
-    "Jenna": "yellow",
-    "Kristin": "purple",
-    "Lewis": "yellow",
-    "Linnea": "purple",
-    "Maggie": "yellow",
+    "Cristian": "red",
+    "Kilby": "red", // Danny Kilby
+    "Devin": "purple",
+    "Eric": "yellow",
+    // "Jenna": "purple", // VOTED OFF EPISODE 4
+    "Kristin": "yellow",
+    "Lewis": "red",
+    // "Linnea": "red", // VOTED OFF EPISODE 5
+    "Maggie": "red",
     "Mike": "yellow",
     "Ori": "purple",
-    "Patt": "yellow",
+    // "Patt": "yellow", // VOTED OFF EPISODE 3
     // "Rob": "purple", // QUIT EPISODE 3
-    "Sharonda": "purple"
+    "Sharonda": "red"
 };
 function nameSpacer(name) {
     const replacements = {
@@ -51,7 +44,7 @@ const QUESTIONS = [
     key: "player_name",
     round: `You are currently voting for<br>Episode ${CURRENT_WEEK}<br>Airing on ${CURRENT_EP_DATE}<br><br>`,
     prompt: "", //"What is your name?",
-    details: "submit before 8PM EST<br><br>(sorry I still haven't watched so options include all contestants)",
+    details: "submit before 8PM EST<br><br>",
     type: "dropdown", 
 	options: "",
     weeks: [...Array(FINAL_VOTE_WEEK + 1).keys()]
