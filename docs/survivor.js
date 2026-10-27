@@ -37,8 +37,8 @@ function nameSpacer(name) {
     return replacements[name] || name;
 }
 
-// const FINAL_THREE = Object.keys(CONTESTANTS);
-const FINAL_THREE = ['', '', ''];
+const FINAL_THREE = Object.keys(CONTESTANTS);
+// const FINAL_THREE = ['', '', ''];
 const QUESTIONS = [
   {
     key: "player_name",
